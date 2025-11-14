@@ -22,6 +22,25 @@ export default function HowItWorksSection() {
           </p>
         </motion.div>
 
+        {/* Demo Video */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.7 }}
+          className="relative mb-16"
+        >
+          <div className="aspect-video bg-gradient-to-br from-gray-900/90 to-gray-900/50 rounded-3xl border border-gray-800 shadow-2xl overflow-hidden">
+            <iframe
+              src="https://www.youtube.com/embed/ZwmWPHiCP8o?mute=1&autoplay=1&loop=1&playlist=ZwmWPHiCP8o&controls=1"
+              title="UC CUT Demo Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
+          </div>
+        </motion.div>
+
         {/* Main explanation card */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
