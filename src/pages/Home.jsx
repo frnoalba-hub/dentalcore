@@ -5,8 +5,8 @@ import HeroSection from '../components/dentalcore/HeroSection';
 import FeaturesSection from '../components/dentalcore/FeaturesSection';
 import UseCasesSection from '../components/dentalcore/UseCasesSection';
 import HowItWorksSection from '../components/dentalcore/HowItWorksSection';
+import ProductShowcase from '../components/dentalcore/ProductShowcase';
 import TipsSection from '../components/dentalcore/TipsSection';
-import ProductGallerySection from '../components/dentalcore/ProductGallerySection';
 import ComparisonSection from '../components/dentalcore/ComparisonSection';
 import AboutSection from '../components/dentalcore/AboutSection';
 import ContactSection from '../components/dentalcore/ContactSection';
@@ -28,7 +28,7 @@ export default function Home() {
         <FeaturesSection />
         <UseCasesSection />
         <HowItWorksSection />
-        <ProductGallerySection />
+        <ProductShowcase />
         <TipsSection />
         <ComparisonSection />
         <AboutSection />
