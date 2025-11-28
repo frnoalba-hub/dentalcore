@@ -19,7 +19,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Gradient accent */}
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-transparent" />
       
@@ -40,7 +40,7 @@ export default function HeroSection() {
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="text-sm font-medium tracking-wider text-cyan-400 uppercase"
               >
-                DentalCore
+                Dental Core Supplies
               </motion.div>
             </div>
 
@@ -87,7 +87,7 @@ export default function HeroSection() {
 
             {/* Supporting line */}
             <p className="text-sm text-gray-500 pt-2">
-              DentalCore is a dentist-focused distributor bringing UC CUT by EPDENT to local practices with personalized support.
+              Dental Core Supplies is a dentist-focused distributor bringing UC CUT by EPDENT to local practices with personalized support.
             </p>
           </motion.div>
 

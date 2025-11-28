@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Header from '../components/dentalcore/Header';
 import HeroSection from '../components/dentalcore/HeroSection';
 import FeaturesSection from '../components/dentalcore/FeaturesSection';
 import UseCasesSection from '../components/dentalcore/UseCasesSection';
@@ -20,6 +21,7 @@ export default function Home() {
         }}
       />
 
+      <Header />
       <div className="relative z-10">
         <HeroSection />
         <FeaturesSection />

@@ -4,7 +4,7 @@ import { Zap, Waves, Target, Gauge } from 'lucide-react';
 
 export default function HowItWorksSection() {
   return (
-    <section className="relative py-32 px-6 lg:px-12">
+    <section id="how-it-works" className="relative py-32 px-6 lg:px-12">
       <div className="container mx-auto max-w-6xl">
         {/* Section header */}
         <motion.div

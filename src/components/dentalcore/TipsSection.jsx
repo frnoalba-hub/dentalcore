@@ -33,7 +33,7 @@ export default function TipsSection() {
   const [selectedTip, setSelectedTip] = useState(null);
 
   return (
-    <section className="relative py-32 px-6 lg:px-12 bg-gradient-to-b from-transparent via-gray-950/50 to-transparent">
+    <section id="tips" className="relative py-32 px-6 lg:px-12 bg-gradient-to-b from-transparent via-gray-950/50 to-transparent">
       <div className="container mx-auto max-w-7xl">
         {/* Section header */}
         <motion.div

@@ -4,7 +4,7 @@ import { Heart, MessageCircle, Award } from 'lucide-react';
 
 export default function AboutSection() {
   return (
-    <section className="relative py-32 px-6 lg:px-12 bg-gradient-to-b from-transparent via-gray-950/50 to-transparent">
+    <section id="about" className="relative py-32 px-6 lg:px-12 bg-gradient-to-b from-transparent via-gray-950/50 to-transparent">
       <div className="container mx-auto max-w-5xl">
         {/* Section header */}
         <motion.div
@@ -15,7 +15,7 @@ export default function AboutSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-            About DentalCore
+            About Dental Core Supplies
           </h2>
           <div className="w-16 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent mx-auto mb-8" />
         </motion.div>
@@ -34,7 +34,7 @@ export default function AboutSection() {
             
             <div className="relative z-10 space-y-6">
               <p className="text-xl lg:text-2xl text-gray-300 leading-relaxed">
-                DentalCore is a <span className="text-white font-medium">small, dentist-focused startup</span> led by 
+                Dental Core Supplies is a <span className="text-white font-medium">small, dentist-focused startup</span> led by 
                 Cisco in California. We're dedicated to bringing practical, high-value products like the 
                 <span className="text-cyan-400 font-medium"> UC CUT by EPDENT</span> directly to local dental practices.
               </p>
@@ -46,7 +46,7 @@ export default function AboutSection() {
               </p>
 
               <p className="text-lg text-gray-400 leading-relaxed">
-                When you work with DentalCore, you're not just getting a product — you're getting a partner who 
+                When you work with Dental Core Supplies, you're not just getting a product — you're getting a partner who 
                 understands the day-to-day challenges of running a practice and is committed to your success.
               </p>
             </div>

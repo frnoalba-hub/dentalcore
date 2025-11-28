@@ -247,7 +247,7 @@ export default function ContactSection() {
           </p>
           <div className="pt-8 border-t border-gray-800/50">
             <p className="text-sm text-gray-600">
-              © 2025 DentalCore. UC CUT by EPDENT. All rights reserved.
+              © 2025 Dental Core Supplies. UC CUT by EPDENT. All rights reserved.
             </p>
           </div>
         </motion.div>

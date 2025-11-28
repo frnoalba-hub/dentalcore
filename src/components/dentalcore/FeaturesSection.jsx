@@ -22,7 +22,7 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section className="relative py-32 px-6 lg:px-12">
+    <section id="features" className="relative py-32 px-6 lg:px-12">
       <div className="container mx-auto max-w-7xl">
         {/* Section header */}
         <motion.div
