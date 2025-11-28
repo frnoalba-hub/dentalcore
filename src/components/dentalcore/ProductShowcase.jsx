@@ -271,7 +271,7 @@ export default function ProductShowcase() {
 
   const productVideos = [
     { id: 'ZwmWPHiCP8o', title: 'UC CUT Overview Demo', duration: '2:45' },
-    { id: null, title: 'Gum Cauterization Technique', duration: '1:30' },
+    { id: 'BK_5dFZ5p8w', title: 'UC CUT In Action', duration: '1:30' },
     { id: null, title: 'Gutta-Percha Cutting Demo', duration: '2:00' },
     { id: null, title: 'Vertical Condensation Guide', duration: '1:45' },
   ];
