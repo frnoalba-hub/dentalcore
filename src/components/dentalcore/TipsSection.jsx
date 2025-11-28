@@ -5,27 +5,51 @@ import { ZoomIn } from 'lucide-react';
 const tips = [
   {
     id: 'bovie',
-    name: 'Bovie Tip',
+    name: 'SB Tip (Bovie)',
     description: 'Gum cautery & gingivectomy',
     details: 'Specialized for precise soft-tissue cauterization and controlled gingivectomy procedures. Ideal for hemostasis and tissue management.',
+    image: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/sb%202-1.png',
+    price: '$140.00',
   },
   {
-    id: 'endo',
-    name: 'Endo Tip',
-    description: 'Gutta-percha cutting with heat + vibration',
+    id: 'b2',
+    name: 'B2 Tip',
+    description: 'Gutta-percha cutting',
     details: 'Combines localized heat and sonic vibration to cut gutta-percha cleanly and efficiently without pulling the cone from the canal.',
+    image: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/B2%201-1.png',
+    price: '$140.00',
+  },
+  {
+    id: 'b8',
+    name: 'B8 Tip (Ball)',
+    description: 'Ball tip for precision work',
+    details: 'Ball-shaped tip design for specialized precision work and controlled heat application.',
+    image: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/B8%201-1.png',
+    price: '$140.00',
   },
   {
     id: 'f-tip',
     name: 'F Tip',
     description: 'Vertical condensation / down-packing',
     details: 'Designed for effective vertical condensation during obturation. Provides controlled compaction of gutta-percha in the canal.',
+    image: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/F%20tip-1_1200x1200.jpg',
+    price: '$140.00',
   },
   {
     id: 'fm-tip',
     name: 'FM Tip',
     description: 'Vertical condensation / down-packing',
     details: 'Alternative geometry for down-packing procedures, offering versatility in obturation technique based on canal anatomy.',
+    image: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/F%20tip-2_1200x1200-20369bd.jpg',
+    price: '$140.00',
+  },
+  {
+    id: 'stand',
+    name: 'Tip Stand',
+    description: 'Storage for tips',
+    details: 'Convenient tip stand for organized storage and easy access to your UC CUT tips during procedures.',
+    image: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/stand%203.jpg',
+    price: '$160.00',
   },
 ];
 
@@ -70,14 +94,15 @@ export default function TipsSection() {
                 <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-cyan-500/0 group-hover:from-cyan-500/10 group-hover:to-transparent rounded-2xl transition-all duration-300" />
                 
                 <div className="relative z-10 space-y-4">
-                  {/* Image placeholder */}
-                  <div className="aspect-square bg-gray-800/50 rounded-xl border border-gray-700 flex items-center justify-center mb-4 group-hover:border-cyan-500/30 transition-colors duration-300">
-                    <div className="text-center">
-                      <ZoomIn className="w-8 h-8 text-gray-600 group-hover:text-cyan-400 mx-auto mb-2 transition-colors duration-300" />
-                      <p className="text-xs text-gray-600 group-hover:text-gray-500 transition-colors duration-300">
-                        Upload {tip.name.toLowerCase()}<br />image here
-                      </p>
-                    </div>
+                  {/* Tip Image */}
+                  <div className="aspect-square bg-white rounded-xl border border-gray-700 flex items-center justify-center mb-4 group-hover:border-cyan-500/30 transition-colors duration-300 overflow-hidden p-2">
+                    {tip.image ? (
+                      <img src={tip.image} alt={tip.name} className="w-full h-full object-contain" />
+                    ) : (
+                      <div className="text-center">
+                        <ZoomIn className="w-8 h-8 text-gray-600 group-hover:text-cyan-400 mx-auto mb-2 transition-colors duration-300" />
+                      </div>
+                    )}
                   </div>
 
                   {/* Tip name */}
@@ -89,6 +114,13 @@ export default function TipsSection() {
                   <p className="text-sm text-gray-400">
                     {tip.description}
                   </p>
+
+                  {/* Price */}
+                  {tip.price && (
+                    <p className="text-lg font-semibold text-cyan-400 mt-2">
+                      {tip.price}
+                    </p>
+                  )}
 
                   {/* Hover indicator */}
                   <div className="flex items-center gap-2 text-xs text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -113,15 +145,16 @@ export default function TipsSection() {
             >
               <div className="p-8 lg:p-12 bg-gradient-to-br from-cyan-500/10 via-gray-900/90 to-gray-900/50 rounded-3xl border border-cyan-500/30 shadow-2xl">
                 <div className="grid lg:grid-cols-2 gap-8 items-center">
-                  {/* Large image placeholder */}
-                  <div className="aspect-square bg-gray-800/50 rounded-2xl border border-gray-700 flex items-center justify-center">
-                    <div className="text-center p-8">
-                      <ZoomIn className="w-16 h-16 text-gray-600 mx-auto mb-4" />
-                      <p className="text-gray-500">
-                        Enlarged {selectedTip.name.toLowerCase()} image<br />
-                        <span className="text-xs">(Upload high-resolution detail shot)</span>
-                      </p>
-                    </div>
+                  {/* Large image */}
+                  <div className="aspect-square bg-white rounded-2xl border border-gray-700 flex items-center justify-center overflow-hidden p-4">
+                    {selectedTip.image ? (
+                      <img src={selectedTip.image} alt={selectedTip.name} className="w-full h-full object-contain" />
+                    ) : (
+                      <div className="text-center p-8">
+                        <ZoomIn className="w-16 h-16 text-gray-600 mx-auto mb-4" />
+                        <p className="text-gray-500">Image placeholder</p>
+                      </div>
+                    )}
                   </div>
 
                   {/* Details */}
@@ -138,7 +171,12 @@ export default function TipsSection() {
                     <p className="text-gray-300 leading-relaxed text-lg">
                       {selectedTip.details}
                     </p>
-                  </div>
+                    {selectedTip.price && (
+                      <p className="text-2xl font-bold text-cyan-400">
+                        {selectedTip.price}
+                      </p>
+                    )}
+                    </div>
                 </div>
               </div>
             </motion.div>

@@ -91,27 +91,23 @@ export default function HeroSection() {
             </p>
           </motion.div>
 
-          {/* Right: Product image placeholder */}
+          {/* Right: Product image */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
             className="relative"
           >
-            <div className="relative aspect-square bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-3xl border border-gray-800 flex items-center justify-center overflow-hidden">
+            <div className="relative aspect-square bg-white rounded-3xl border border-gray-800 flex items-center justify-center overflow-hidden p-8">
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-transparent to-transparent" />
-              
-              {/* Placeholder */}
-              <div className="relative z-10 text-center p-8">
-                <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gray-800/80 border border-gray-700 flex items-center justify-center">
-                  <Zap className="w-12 h-12 text-cyan-400" />
-                </div>
-                <p className="text-gray-500 text-sm">
-                  Product image placeholder<br />
-                  <span className="text-xs">(Upload UC CUT hero image here)</span>
-                </p>
-              </div>
+
+              {/* Product Image */}
+              <img 
+                src="https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/uc%20cut-2.jpg" 
+                alt="UC CUT Sonic GP Cutter"
+                className="relative z-10 w-full h-full object-contain"
+              />
 
               {/* Decorative elements */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
