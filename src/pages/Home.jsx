@@ -6,6 +6,7 @@ import FeaturesSection from '../components/dentalcore/FeaturesSection';
 import UseCasesSection from '../components/dentalcore/UseCasesSection';
 import HowItWorksSection from '../components/dentalcore/HowItWorksSection';
 import TipsSection from '../components/dentalcore/TipsSection';
+import ProductGallerySection from '../components/dentalcore/ProductGallerySection';
 import ComparisonSection from '../components/dentalcore/ComparisonSection';
 import AboutSection from '../components/dentalcore/AboutSection';
 import ContactSection from '../components/dentalcore/ContactSection';
@@ -27,6 +28,7 @@ export default function Home() {
         <FeaturesSection />
         <UseCasesSection />
         <HowItWorksSection />
+        <ProductGallerySection />
         <TipsSection />
         <ComparisonSection />
         <AboutSection />
