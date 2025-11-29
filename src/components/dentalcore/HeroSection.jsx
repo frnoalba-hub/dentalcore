@@ -98,20 +98,20 @@ export default function HeroSection() {
             transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
             className="relative"
           >
-            <div className="relative aspect-square bg-white rounded-3xl border border-gray-800 flex items-center justify-center overflow-hidden p-8">
+            <div className="relative aspect-square bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-3xl border border-gray-700 flex items-center justify-center overflow-hidden p-8">
               {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/10 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-transparent to-transparent" />
 
-              {/* Product Image */}
+              {/* Product Image - UC CUT with green tip visible */}
               <img 
-                src="https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/uc%20cut-2.jpg" 
+                src="https://essentials.dental/cdn/shop/files/epdent-dental-uc-cut-sonic-gutta-percha-cutter_png.png?v=1702251767" 
                 alt="UC CUT Sonic GP Cutter"
-                className="relative z-10 w-full h-full object-contain"
+                className="relative z-10 w-full h-full object-contain drop-shadow-2xl"
               />
 
               {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-cyan-500/5 rounded-full blur-3xl" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl" />
             </div>
           </motion.div>
         </div>

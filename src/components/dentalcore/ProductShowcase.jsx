@@ -181,7 +181,7 @@ function ImageZoom({ src, alt, onClose }) {
         onClick={(e) => e.stopPropagation()}
       >
         <div
-          className="w-full h-full bg-white flex items-center justify-center transition-transform duration-100"
+          className="w-full h-full bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 flex items-center justify-center transition-transform duration-100"
           style={{
             transform: `scale(${zoom})`,
             transformOrigin: `${position.x}% ${position.y}%`
@@ -262,14 +262,14 @@ export default function ProductShowcase() {
   const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0);
 
   const galleryImages = [
-    { id: 1, label: 'UC CUT Device', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/uc%20cut-2.jpg' },
-    { id: 2, label: 'UC CUT Front View', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/uc%20cut-2.jpg' },
-    { id: 3, label: 'B2 Tip', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/B2%201-1.png' },
-    { id: 4, label: 'B8 Tip', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/B8%201-1.png' },
-    { id: 5, label: 'F Tip', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/F%20tip-1_1200x1200.jpg' },
-    { id: 6, label: 'FM Tip', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/F%20tip-2_1200x1200-20369bd.jpg' },
-    { id: 7, label: 'SB Tip', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/sb%202-1.png' },
-    { id: 8, label: 'Tip Stand', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/stand%203.jpg' },
+    { id: 1, label: 'UC CUT Device', src: 'https://essentials.dental/cdn/shop/files/epdent-dental-uc-cut-sonic-gutta-percha-cutter_png.png?v=1702251767', darkBg: true },
+    { id: 2, label: 'UC CUT with Tips', src: 'https://essentials.dental/cdn/shop/files/shopping_07f6c864-efc6-4518-838b-1aceda5e140b.webp?v=1758602330', darkBg: true },
+    { id: 3, label: 'B2 Tip', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/B2%201-1.png', darkBg: true },
+    { id: 4, label: 'B8 Tip', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/B8%201-1.png', darkBg: true },
+    { id: 5, label: 'F Tip', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/F%20tip-1_1200x1200.jpg', darkBg: false },
+    { id: 6, label: 'FM Tip', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/F%20tip-2_1200x1200-20369bd.jpg', darkBg: false },
+    { id: 7, label: 'SB Tip', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/sb%202-1.png', darkBg: true },
+    { id: 8, label: 'Tip Stand', src: 'https://img1.wsimg.com/isteam/ip/c0885ec8-5ebb-4e9d-8d8d-92c6620d622a/ols/stand%203.jpg', darkBg: false },
   ];
 
   const productVideos = [
@@ -351,7 +351,11 @@ export default function ProductShowcase() {
               {/* Main image */}
               <div className="max-w-3xl mx-auto mb-8">
                 <div 
-                  className="relative aspect-[4/3] bg-white rounded-2xl border border-gray-700 overflow-hidden group cursor-pointer"
+                  className={`relative aspect-[4/3] rounded-2xl border border-gray-700 overflow-hidden group cursor-pointer ${
+                    galleryImages[currentGalleryIndex].darkBg 
+                      ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
+                      : 'bg-white'
+                  }`}
                   onClick={() => setShowZoom(true)}
                 >
                   <div className="absolute inset-0 flex items-center justify-center p-8">
@@ -359,7 +363,7 @@ export default function ProductShowcase() {
                       <img 
                         src={galleryImages[currentGalleryIndex].src} 
                         alt={galleryImages[currentGalleryIndex].label}
-                        className="max-w-full max-h-full object-contain"
+                        className="max-w-full max-h-full object-contain drop-shadow-lg"
                       />
                     ) : (
                       <div className="text-center">
@@ -411,7 +415,9 @@ export default function ProductShowcase() {
                         : 'border-gray-700 hover:border-gray-600'
                     }`}
                   >
-                    <div className="w-full h-full bg-white flex items-center justify-center p-1">
+                    <div className={`w-full h-full flex items-center justify-center p-1 ${
+                      img.darkBg ? 'bg-gray-800' : 'bg-white'
+                    }`}>
                       {img.src ? (
                         <img src={img.src} alt={img.label} className="w-full h-full object-contain" />
                       ) : (

@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 const navLinks = [
   { label: 'Features', href: '#features' },
   { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Products', href: '#products' },
+  { label: 'Tips', href: '#tips' },
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ];
@@ -47,11 +47,9 @@ export default function Header() {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <a href="#" className="flex items-center">
-              <img 
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/318247f53_file_00000000c29c7230812acd795f6494d7.png"
-                alt="Dental Core Supplies"
-                className="h-12 md:h-14 w-auto"
-              />
+              <span className="text-xl md:text-2xl font-bold text-white tracking-tight">
+                <span className="text-cyan-400">Dental</span> Core Supplies
+              </span>
             </a>
 
             {/* Desktop Navigation */}
