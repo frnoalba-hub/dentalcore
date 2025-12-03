@@ -102,9 +102,9 @@ export default function HeroSection() {
               {/* Glow effect */}
               <div className="absolute inset-0 bg-gradient-to-tr from-cyan-500/20 via-transparent to-transparent" />
 
-              {/* Product Image - UC CUT with green tip visible */}
+              {/* Product Image - UC CUT with orange tip visible from side */}
               <img 
-                src="https://essentials.dental/cdn/shop/files/epdent-dental-uc-cut-sonic-gutta-percha-cutter_png.png?v=1702251767" 
+                src="https://maruchiusa.com/cdn/shop/products/Black_2048x2048.png?v=1656021060" 
                 alt="UC CUT Sonic GP Cutter"
                 className="relative z-10 w-full h-full object-contain drop-shadow-2xl"
               />
