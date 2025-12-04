@@ -255,7 +255,7 @@ function VideoDemo({ videoId, title, isOpen, onClose }) {
 
 // Main Product Showcase Component
 export default function ProductShowcase() {
-  const [activeView, setActiveView] = useState('360'); // '360', 'gallery', 'video'
+  const [activeView, setActiveView] = useState('gallery'); // '360', 'gallery', 'video'
   const [selectedImage, setSelectedImage] = useState(null);
   const [showZoom, setShowZoom] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
@@ -280,7 +280,7 @@ export default function ProductShowcase() {
   ];
 
   return (
-    <section className="relative py-32 px-6 lg:px-12 bg-gradient-to-b from-gray-950/50 via-transparent to-transparent">
+    <section className="relative py-32 px-6 lg:px-12 bg-gray-50">
       <div className="container mx-auto max-w-7xl">
         {/* Section header */}
         <motion.div
@@ -290,17 +290,17 @@ export default function ProductShowcase() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
             Explore UC CUT
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-500 max-w-3xl mx-auto">
             Get an up-close look at the UC CUT device with interactive 360° views, zoomable images, and detailed video demonstrations
           </p>
         </motion.div>
 
         {/* View selector tabs */}
         <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-gray-900/50 border border-gray-800 rounded-xl p-1">
+          <div className="inline-flex bg-white border border-gray-200 rounded-xl p-1 shadow-sm">
             {[
               { id: '360', icon: RotateCcw, label: '360° View' },
               { id: 'gallery', icon: ImageIcon, label: 'Gallery' },
@@ -311,8 +311,8 @@ export default function ProductShowcase() {
                 onClick={() => setActiveView(tab.id)}
                 className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                   activeView === tab.id
-                    ? 'bg-cyan-500 text-black'
-                    : 'text-gray-400 hover:text-white'
+                    ? 'bg-cyan-600 text-white'
+                    : 'text-gray-500 hover:text-gray-900'
                 }`}
               >
                 <tab.icon className="w-4 h-4" />
