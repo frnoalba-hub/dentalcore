@@ -22,7 +22,7 @@ const features = [
 
 export default function FeaturesSection() {
   return (
-    <section id="features" className="relative py-32 px-6 lg:px-12">
+    <section id="features" className="relative py-32 px-6 lg:px-12 bg-white">
       <div className="container mx-auto max-w-7xl">
         {/* Section header */}
         <motion.div
@@ -32,10 +32,10 @@ export default function FeaturesSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
             What UC CUT Does
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-500 max-w-3xl mx-auto">
             Three essential functions in one compact, chairside device — built for speed, precision, and convenience.
           </p>
         </motion.div>
@@ -50,25 +50,25 @@ export default function FeaturesSection() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ delay: index * 0.15, duration: 0.6 }}
             >
-              <div className="group relative h-full p-8 bg-gradient-to-br from-gray-900/80 to-gray-900/40 rounded-2xl border border-gray-800 hover:border-cyan-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-cyan-500/10">
+              <div className="group relative h-full p-8 bg-white rounded-2xl border border-gray-200 hover:border-cyan-300 transition-all duration-500 hover:shadow-xl hover:shadow-cyan-100/50">
                 {/* Glow effect on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-cyan-500/0 group-hover:from-cyan-500/5 group-hover:to-transparent rounded-2xl transition-all duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-50/0 to-cyan-50/0 group-hover:from-cyan-50 group-hover:to-transparent rounded-2xl transition-all duration-500" />
                 
                 <div className="relative z-10">
                   {/* Icon */}
                   <div className="mb-6 inline-flex">
-                    <div className="p-4 bg-gray-800 group-hover:bg-cyan-500/10 rounded-xl border border-gray-700 group-hover:border-cyan-500/30 transition-all duration-500">
-                      <feature.icon className="w-8 h-8 text-cyan-400 group-hover:scale-110 transition-transform duration-500" />
+                    <div className="p-4 bg-gray-50 group-hover:bg-cyan-50 rounded-xl border border-gray-200 group-hover:border-cyan-200 transition-all duration-500">
+                      <feature.icon className="w-8 h-8 text-cyan-600 group-hover:scale-110 transition-transform duration-500" />
                     </div>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-2xl font-semibold mb-4 group-hover:text-cyan-400 transition-colors duration-300">
+                  <h3 className="text-2xl font-semibold mb-4 text-gray-900 group-hover:text-cyan-600 transition-colors duration-300">
                     {feature.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="text-gray-400 leading-relaxed">
+                  <p className="text-gray-500 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -85,10 +85,10 @@ export default function FeaturesSection() {
           transition={{ delay: 0.6, duration: 0.8 }}
           className="text-center mt-16"
         >
-          <p className="text-lg text-gray-400">
-            Chairside <span className="text-white font-medium">convenience</span>, 
-            {' '}<span className="text-white font-medium">speed</span>, and 
-            {' '}<span className="text-white font-medium">control</span> — all in a lightweight, ergonomic design.
+          <p className="text-lg text-gray-500">
+            Chairside <span className="text-gray-900 font-medium">convenience</span>, 
+            {' '}<span className="text-gray-900 font-medium">speed</span>, and 
+            {' '}<span className="text-gray-900 font-medium">control</span> — all in a lightweight, ergonomic design.
           </p>
         </motion.div>
       </div>
