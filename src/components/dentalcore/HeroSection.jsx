@@ -85,6 +85,20 @@ export default function HeroSection() {
               </Button>
             </div>
 
+            {/* Price highlight */}
+            <div className="flex items-center gap-4 pt-2">
+              <div className="bg-cyan-50 border border-cyan-200 rounded-lg px-4 py-2">
+                <p className="text-sm text-gray-500">Starting at</p>
+                <p className="text-2xl font-bold text-cyan-600">$599</p>
+                <p className="text-xs text-gray-400 line-through">MSRP $699</p>
+              </div>
+              <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-2">
+                <p className="text-sm text-gray-500">Full Kit</p>
+                <p className="text-2xl font-bold text-gray-900">$799</p>
+                <p className="text-xs text-gray-400 line-through">MSRP $899</p>
+              </div>
+            </div>
+
             {/* Supporting line */}
             <p className="text-sm text-gray-500 pt-2">
               Dental Core Supplies is a dentist-focused distributor bringing UC CUT by EPDENT to local practices with personalized support.
