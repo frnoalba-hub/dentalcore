@@ -239,12 +239,16 @@ export default function ContactSection() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="text-center mt-16 space-y-4"
         >
-          <p className="text-gray-500">
-            Questions? Contact Cisco directly at{' '}
-            <a href="mailto:cisco@dentalcore.com" className="text-cyan-600 hover:text-cyan-500 transition-colors">
-              cisco@dentalcore.com
-            </a>
-          </p>
+          <div className="text-center text-sm text-gray-500 space-y-2">
+            <p>Dental Core Supplies</p>
+            <p>California, USA</p>
+            <p className="font-medium">(626) 214-6598</p>
+            <p>
+              <a href="mailto:info@dentalcoresupplies.com" className="text-cyan-600 hover:text-cyan-500 transition-colors">
+                info@dentalcoresupplies.com
+              </a>
+            </p>
+          </div>
           <div className="pt-8 border-t border-gray-200">
             <p className="text-sm text-gray-400">
               © 2025 Dental Core Supplies. UC CUT by EPDENT. All rights reserved.
