@@ -27,6 +27,7 @@ export default function Home() {
         <ProductShowcase />
         <TipsSection />
         <ComparisonSection />
+        <CatalogSection />
         <TechSpecsSection />
         <TestimonialsSection />
         <FAQSection />
