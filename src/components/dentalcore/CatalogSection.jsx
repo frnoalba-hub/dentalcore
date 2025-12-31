@@ -60,12 +60,21 @@ const products = [
     popular: false
   },
   {
-    id: 'uc-one-tips',
-    name: 'UC One Tips',
+    id: 'uc-one-metal-tip',
+    name: 'UC One Metal Tip',
     category: 'Accessories',
-    price: 'Contact for Price',
-    description: 'Replacement tips for UC ONE. Available in Metal and Plastic (50pcs/pack).',
-    image: 'https://kdentalsupplies.com/cdn/shop/files/UCONE-1_74a6c9ab-0980-4277-8c6d-b81e124cde28.jpg?v=1752124058&width=600', // Using UC One image for context
+    price: '$80.00',
+    description: 'Replacement metal tip for UC ONE ultrasonic irrigation system. Durable and autoclavable.',
+    image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/a9c9658c0_image.png',
+    popular: false
+  },
+  {
+    id: 'uc-one-plastic-tips',
+    name: 'UC One Plastic Tips',
+    category: 'Accessories',
+    price: '$60.00',
+    description: 'Disposable plastic tips for UC ONE. Flexible design for curved canals. 50 pcs/pack.',
+    image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/8e30013bb_image.png',
     popular: false
   }
 ];
