@@ -11,8 +11,7 @@ const tips = [
     description: 'Gum cautery & gingivectomy',
     details: 'Specialized for precise soft-tissue cauterization and controlled gingivectomy procedures. Ideal for hemostasis and tissue management.',
     image: 'https://usdentaloutlet.com/cdn/shop/files/sb-tip.png?v=1751916971',
-    price: '$140.00',
-    msrp: '$160.00',
+    price: '$160.00',
   },
   {
     id: '90-tip',
@@ -21,8 +20,7 @@ const tips = [
     description: 'For posterior teeth',
     details: 'Small metal tip designed for posterior teeth. Reusable and autoclavable stainless steel.',
     image: 'https://cdn.shopify.com/s/files/1/0699/5378/1926/files/UC_CUT_90_Metal_Tip.webp?v=1753651035',
-    price: '$140.00',
-    msrp: '$160.00',
+    price: '$160.00',
   },
   {
     id: '110-tip',
@@ -31,8 +29,7 @@ const tips = [
     description: 'For anterior teeth',
     details: 'Large metal tip designed for anterior teeth. Reusable and autoclavable stainless steel.',
     image: 'https://usdentaloutlet.com/cdn/shop/files/uc-cut-110.jpg?v=1751916973',
-    price: '$140.00',
-    msrp: '$160.00',
+    price: '$160.00',
   },
   {
     id: 'b2',
@@ -41,8 +38,7 @@ const tips = [
     description: 'Gutta-percha cutting',
     details: 'Combines localized heat and sonic vibration to cut gutta-percha cleanly and efficiently without pulling the cone from the canal.',
     image: 'https://usdentaloutlet.com/cdn/shop/files/uc-cut-b2-metal.png?v=1751916972',
-    price: '$140.00',
-    msrp: '$160.00',
+    price: '$160.00',
   },
   {
     id: 'b8',
@@ -51,8 +47,7 @@ const tips = [
     description: 'Ball tip for precision work',
     details: 'Ball-shaped green tip for specialized precision work and controlled heat application.',
     image: 'https://usdentaloutlet.com/cdn/shop/files/UC-CUT-TIP-B8.png?v=1751916973',
-    price: '$140.00',
-    msrp: '$160.00',
+    price: '$160.00',
   },
   {
     id: 'f-tip',
@@ -61,8 +56,7 @@ const tips = [
     description: 'Vertical condensation / down-packing',
     details: 'Designed for effective vertical condensation during obturation. Provides controlled compaction of gutta-percha in the canal.',
     image: 'https://tricountydental.com/cdn/shop/files/uccutfTip_cae217dd-dbad-48c1-a1d5-81cdba86fcbb.webp?v=1757619032',
-    price: '$140.00',
-    msrp: '$160.00',
+    price: '$160.00',
   },
   {
     id: 'fm-tip',
@@ -71,8 +65,7 @@ const tips = [
     description: 'Vertical condensation / down-packing',
     details: 'Alternative geometry for down-packing procedures, offering versatility in obturation technique based on canal anatomy.',
     image: 'https://tricountydental.com/cdn/shop/files/uccutfTip_cae217dd-dbad-48c1-a1d5-81cdba86fcbb.webp?v=1757619032',
-    price: '$140.00',
-    msrp: '$160.00',
+    price: '$160.00',
   },
   {
     id: 'stand',
@@ -81,8 +74,7 @@ const tips = [
     description: 'Storage for tips',
     details: 'Convenient tip stand for organized storage and easy access to your UC CUT tips during procedures.',
     image: 'https://cdn.shopify.com/s/files/1/0699/5378/1926/files/UC_CUT_Tip_Stand.webp?v=1753651036',
-    price: '$160.00',
-    msrp: '$200.00',
+    price: '$200.00',
   },
 ];
 

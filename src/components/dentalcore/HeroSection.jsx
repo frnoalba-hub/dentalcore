@@ -73,20 +73,30 @@ export default function HeroSection() {
 
             {/* Pricing Card - Integrated */}
             <div className="bg-white p-6 rounded-2xl border border-gray-100 shadow-xl shadow-gray-200/50 max-w-md">
-              <div className="flex items-end justify-between mb-4">
-                <div>
-                  <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Starting Price</p>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-4xl font-bold text-gray-900">$599</span>
-                    <span className="text-sm text-gray-400 line-through">MSRP $699</span>
+              <div className="space-y-4 mb-4">
+                <div className="flex items-center justify-between pb-4 border-b border-gray-50">
+                  <div>
+                    <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Unit Only</p>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-3xl font-bold text-gray-900">$699</span>
+                    </div>
                   </div>
                 </div>
-                <div className="text-right">
-                  <div className="bg-cyan-100 text-cyan-700 px-3 py-1 rounded-lg text-xs font-bold uppercase">
-                    Save $100
+
+                <div className="flex items-center justify-between">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Full Kit</p>
+                      <span className="bg-cyan-100 text-cyan-700 px-2 py-0.5 rounded text-[10px] font-bold uppercase">Best Value</span>
+                    </div>
+                    <div className="flex items-baseline gap-2">
+                      <span className="text-3xl font-bold text-gray-900">$799</span>
+                    </div>
+                    <p className="text-xs text-gray-400 mt-1">Includes unit + 3 tips of choice</p>
                   </div>
                 </div>
               </div>
+
               <div className="grid grid-cols-2 gap-3">
                 <Button
                   size="lg"
@@ -102,7 +112,7 @@ export default function HeroSection() {
                   variant="outline"
                   className="w-full border-gray-200 hover:border-cyan-200 text-gray-700 hover:text-cyan-600 font-semibold h-12 rounded-xl"
                 >
-                  Details
+                  Order Now
                 </Button>
               </div>
             </div>
