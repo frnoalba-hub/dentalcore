@@ -34,8 +34,8 @@ export default function AboutSection() {
             
             <div className="relative z-10 space-y-6">
               <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed">
-                Dental Core Supplies is a <span className="text-gray-900 font-medium">small, dentist-focused startup</span> led by 
-                Cisco in California. We're dedicated to bringing practical, high-value products like the 
+                Dental Core Supplies is a <span className="text-gray-900 font-medium">small, dentist-focused startup</span> based in 
+                California. We're dedicated to bringing practical, high-value products like the 
                 <span className="text-cyan-600 font-medium"> UC CUT by EPDENT</span> directly to local dental practices.
               </p>
               
