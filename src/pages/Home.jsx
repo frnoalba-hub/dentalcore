@@ -7,6 +7,7 @@ import UseCasesSection from '../components/dentalcore/UseCasesSection';
 import HowItWorksSection from '../components/dentalcore/HowItWorksSection';
 import ProductShowcase from '../components/dentalcore/ProductShowcase';
 import TipsSection from '../components/dentalcore/TipsSection';
+import CatalogSection from '../components/dentalcore/CatalogSection';
 import ComparisonSection from '../components/dentalcore/ComparisonSection';
 import TechSpecsSection from '../components/dentalcore/TechSpecsSection';
 import TestimonialsSection from '../components/dentalcore/TestimonialsSection';
