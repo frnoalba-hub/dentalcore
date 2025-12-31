@@ -54,21 +54,26 @@ export default function Header() {
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => scrollToSection(link.href)}
-                  className="text-gray-600 hover:text-cyan-600 transition-colors text-sm font-medium"
-                >
-                  {link.label}
-                </button>
-              ))}
+            {navLinks.map((link) => (
+              <button
+                key={link.label}
+                onClick={() => scrollToSection(link.href)}
+                className="text-gray-600 hover:text-cyan-600 transition-colors text-sm font-medium"
+              >
+                {link.label}
+              </button>
+            ))}
+            <div className="flex items-center gap-4 pl-4 border-l border-gray-200">
+              <a href="tel:6262146598" className="text-sm font-semibold text-gray-900 hover:text-cyan-600 transition-colors">
+                (626) 214-6598
+              </a>
               <Button
                 onClick={() => scrollToSection('#contact')}
                 className="bg-cyan-600 hover:bg-cyan-500 text-white font-semibold px-6 rounded-lg"
               >
                 Get Started
               </Button>
+            </div>
             </nav>
 
             {/* Mobile Menu Button */}
