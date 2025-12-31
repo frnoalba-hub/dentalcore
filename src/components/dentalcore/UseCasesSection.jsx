@@ -1,76 +1,65 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
 
 const useCases = [
-  'Controlling minor bleeding and cauterizing gingival tissue in localized areas',
-  'Small gingivectomy and soft-tissue trimming around crown margins or restorative areas',
-  'Cutting and cleaning gutta-percha during root canal treatments using heated, vibrating tips',
-  'Vertical condensation and down-packing with F / FM tips for precise obturation',
-  'Quick tissue management during crown and bridge preparations',
-  'Efficient hemostasis during minor surgical procedures without bulky electrosurgical equipment',
+  'Controlling minor bleeding & cauterizing gingival tissue',
+  'Gingivectomy & soft-tissue trimming around crown margins',
+  'Cutting & cleaning gutta-percha during root canals',
+  'Vertical condensation & down-packing for obturation',
+  'Quick tissue management for crown/bridge preparations',
+  'Hemostasis during minor surgical procedures',
 ];
 
 export default function UseCasesSection() {
   return (
-    <section className="relative py-32 px-6 lg:px-12 bg-gray-50">
+    <section className="relative py-32 px-6 lg:px-12 bg-white">
       <div className="container mx-auto max-w-6xl">
-        {/* Section header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900">
-            When You'd Use It
-          </h2>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto">
-            Real clinical situations where UC CUT delivers practical value
-          </p>
-        </motion.div>
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="text-cyan-600 font-semibold tracking-wider text-sm uppercase mb-2 block">Applications</span>
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 tracking-tight">
+              One Device, <br />
+              <span className="text-cyan-600">Many Uses.</span>
+            </h2>
+            <p className="text-xl text-gray-500 mb-8 leading-relaxed">
+              From everyday tissue management to precise endodontic procedures, the UC CUT is the versatile workhorse your practice needs.
+            </p>
+            
+            <div className="p-6 bg-cyan-50 rounded-2xl border border-cyan-100">
+              <p className="text-cyan-800 font-medium italic">
+                "It's the tool I reach for when I need quick hemostasis or a clean gutta-percha cut without setting up the big unit."
+              </p>
+            </div>
+          </motion.div>
 
-        {/* Use cases grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {useCases.map((useCase, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="group"
-            >
-              <div className="flex items-start gap-4 p-6 rounded-xl bg-white border border-gray-200 hover:border-cyan-300 transition-all duration-300 hover:shadow-lg">
-                {/* Check icon */}
-                <div className="flex-shrink-0 mt-1">
-                  <div className="w-6 h-6 rounded-full bg-cyan-100 border border-cyan-200 flex items-center justify-center group-hover:bg-cyan-200 group-hover:scale-110 transition-all duration-300">
-                    <Check className="w-4 h-4 text-cyan-600" strokeWidth={3} />
-                  </div>
+          <div className="grid gap-4">
+            {useCases.map((useCase, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                className="flex items-center gap-4 p-5 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-md hover:border-cyan-200 transition-all duration-300"
+              >
+                <div className="flex-shrink-0">
+                  <CheckCircle2 className="w-6 h-6 text-cyan-500" />
                 </div>
-
-                {/* Text */}
-                <p className="text-gray-600 leading-relaxed flex-1">
+                <p className="text-gray-700 font-medium">
                   {useCase}
                 </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </div>
 
-        {/* Bottom note */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-          className="text-center mt-12"
-        >
-          <p className="text-gray-400 italic">
-            Practical, everyday applications — no hype, just clinical efficiency.
-          </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
