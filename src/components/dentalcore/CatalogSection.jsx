@@ -5,81 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-
-const products = [
-  {
-    id: 'endoseal',
-    name: 'Endoseal MTA',
-    category: 'Bioceramics',
-    price: '$90.00',
-    description: 'Paste-type root canal sealer and filler based on pozzolan cement. Excellent physical and biological properties of MTA.',
-    image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/379589678_image.png',
-    popular: true
-  },
-  {
-    id: 'gp-cut-fit',
-    name: 'GP Cut & Fit',
-    category: 'Instruments',
-    price: '$45.00',
-    description: 'Cordless Gutta Percha Cutter. Features interchangeable tips (0.5mm, 1.2mm, 2.0mm) for precise sizing and clean cuts.',
-    image: 'https://kdentalsupplies.com/cdn/shop/files/GP-CUT-_-Fit-1_de2c8b15-4775-44fe-a2b6-f05c5e08ce48.jpg?v=1752124007&width=600',
-    popular: false
-  },
-  {
-    id: 'uc-one',
-    name: 'UC ONE',
-    category: 'Endodontics',
-    price: '$480.00',
-    description: 'Cordless Passive Ultrasonic Irrigation. 30,000 vibrations/sec with flexible 90° bendable tips for curved canals.',
-    image: 'https://kdentalsupplies.com/cdn/shop/files/UCONE-1_74a6c9ab-0980-4277-8c6d-b81e124cde28.jpg?v=1752124058&width=600',
-    popular: true
-  },
-  {
-    id: 'ep-cure',
-    name: 'EP Cure',
-    category: 'Curing Lights',
-    price: '$599.00',
-    description: 'High-performance curing light with 1,200 mW/cm² intensity. Features 3s/5s modes and built-in light guides.',
-    image: 'https://dowelldentalproducts.com/cdn/shop/files/EPCUREW.png?v=1728590132&width=800',
-    popular: false
-  },
-  {
-    id: 'ep-cure-mini',
-    name: 'EP Cure Mini',
-    category: 'Curing Lights',
-    price: '$550.00',
-    description: 'Compact and lightweight curing light. Available in Black, White, and Green. Perfect for quick procedures.',
-    image: 'https://kdentalsupplies.com/cdn/shop/files/black.jpg?v=1752123906&width=416',
-    popular: false
-  },
-  {
-    id: 'ep-light',
-    name: 'EP Light',
-    category: 'Diagnostics',
-    price: '$160.00',
-    description: 'LED Transilluminator for detecting fractures, caries, and root canal orifices. Compact and battery operated.',
-    image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/388efd2cf_image.png',
-    popular: false
-  },
-  {
-    id: 'uc-one-metal-tip',
-    name: 'UC One Metal Tip',
-    category: 'Accessories',
-    price: '$80.00',
-    description: 'Replacement metal tip for UC ONE ultrasonic irrigation system. Durable and autoclavable.',
-    image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/a9c9658c0_image.png',
-    popular: false
-  },
-  {
-    id: 'uc-one-plastic-tips',
-    name: 'UC One Plastic Tips',
-    category: 'Accessories',
-    price: '$60.00',
-    description: 'Disposable plastic tips for UC ONE. Flexible design for curved canals. 50 pcs/pack.',
-    image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/8e30013bb_image.png',
-    popular: false
-  }
-];
+import { createPageUrl } from '../../utils';
+import { products } from './productsData';
 
 export default function CatalogSection() {
   const [filter, setFilter] = useState('All');
@@ -296,7 +223,10 @@ export default function CatalogSection() {
                   {product.description}
                 </p>
 
-                <Button className="w-full bg-white border-2 border-gray-100 text-gray-900 hover:border-cyan-600 hover:text-cyan-600 hover:bg-cyan-50 font-semibold group-hover:border-cyan-600 group-hover:text-cyan-600 transition-all duration-300">
+                <Button 
+                  onClick={() => window.location.href = createPageUrl('ProductDetail') + `?id=${product.id}`}
+                  className="w-full bg-white border-2 border-gray-100 text-gray-900 hover:border-cyan-600 hover:text-cyan-600 hover:bg-cyan-50 font-semibold group-hover:border-cyan-600 group-hover:text-cyan-600 transition-all duration-300"
+                >
                   <ShoppingBag className="w-4 h-4 mr-2" />
                   View Details
                 </Button>
