@@ -11,7 +11,7 @@ const products = [
     category: 'Bioceramics',
     price: '$90.00',
     description: 'Paste-type root canal sealer and filler based on pozzolan cement. Excellent physical and biological properties of MTA.',
-    image: 'https://maruchiusa.com/cdn/shop/products/White_Endoseal_MTA_2048x2048.png?v=1656021060',
+    image: 'https://maruchiusa.com/cdn/shop/files/3_fc72ee14-ec6b-4882-9f55-891d7afde16a_2048x2048.png?v=1742580616',
     popular: true
   },
   {
@@ -56,7 +56,7 @@ const products = [
     category: 'Diagnostics',
     price: '$160.00',
     description: 'LED Transilluminator for detecting fractures, caries, and root canal orifices. Compact and battery operated.',
-    image: 'https://m.media-amazon.com/images/I/31S1s5C5tVL._AC_.jpg', // Fallback image found on Amazon for EP Light
+    image: 'https://www.net32.com/media/images/product/large/174311.jpg',
     popular: false
   },
   {
