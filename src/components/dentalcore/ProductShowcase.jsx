@@ -65,7 +65,7 @@ function Product360View({ images, productName }) {
     <div className="relative">
       <div
         ref={containerRef}
-        className="aspect-square bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl border border-gray-700 overflow-hidden cursor-grab active:cursor-grabbing select-none"
+        className="aspect-square bg-white rounded-[2rem] border border-gray-100 shadow-xl overflow-hidden cursor-grab active:cursor-grabbing select-none"
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -78,36 +78,36 @@ function Product360View({ images, productName }) {
         <div className="w-full h-full flex items-center justify-center relative">
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center p-8">
-              <Box className="w-20 h-20 text-cyan-400 mx-auto mb-4 opacity-50" />
-              <p className="text-gray-500 text-sm">
+              <Box className="w-20 h-20 text-cyan-200 mx-auto mb-4" />
+              <p className="text-gray-900 text-sm font-medium">
                 360° View - Frame {currentFrame + 1}/{frameCount}
               </p>
-              <p className="text-gray-600 text-xs mt-2">
+              <p className="text-gray-400 text-xs mt-2">
                 Drag to rotate • Upload 360° images
               </p>
             </div>
           </div>
-          
+
           {/* Rotation indicator */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-full">
-            <RotateCcw className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: '3s' }} />
-            <span className="text-xs text-gray-300">Drag to rotate</span>
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-gray-100">
+            <RotateCcw className="w-4 h-4 text-cyan-600 animate-spin" style={{ animationDuration: '3s' }} />
+            <span className="text-xs text-gray-600 font-medium">Drag to rotate</span>
           </div>
         </div>
       </div>
 
       {/* Controls */}
-      <div className="flex items-center justify-center gap-4 mt-4">
+      <div className="flex items-center justify-center gap-4 mt-6">
         <Button
           variant="outline"
           size="sm"
           onClick={() => setIsPlaying(!isPlaying)}
-          className="border-gray-700 bg-gray-900/50 hover:bg-gray-800 text-white"
+          className="border-gray-200 bg-white hover:bg-gray-50 text-gray-700"
         >
           {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
           <span className="ml-2">{isPlaying ? 'Pause' : 'Auto Rotate'}</span>
         </Button>
-        
+
         <div className="flex items-center gap-2 flex-1 max-w-xs">
           <Slider
             value={[currentFrame]}
