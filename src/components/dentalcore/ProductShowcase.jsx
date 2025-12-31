@@ -265,9 +265,9 @@ export default function ProductShowcase() {
     { id: 1, label: 'UC CUT Device', src: 'https://maruchiusa.com/cdn/shop/products/Black_2048x2048.png?v=1656021060', darkBg: true },
     { id: 2, label: 'UC CUT Side View', src: 'https://maruchiusa.com/cdn/shop/products/UC-CUT-side_2048x2048.png?v=1656021060', darkBg: true },
     // Removed colors image to only show black device as requested
-    { id: 4, label: 'Tips Collection', src: 'https://usdentaloutlet.com/cdn/shop/files/uc-cut-2.jpg?v=1731621503', darkBg: false },
+    { id: 4, label: 'Tips Collection', src: 'https://tricountydental.com/cdn/shop/files/epdent-uccut-gutta-percha-cutting-devices-1006-4.jpg?v=1757618951', darkBg: false },
     { id: 5, label: 'F Tip', src: 'https://tricountydental.com/cdn/shop/files/uccutfTip_cae217dd-dbad-48c1-a1d5-81cdba86fcbb.webp?v=1757619032', darkBg: true },
-    { id: 6, label: 'SB Bovie Tip', src: 'https://tricountydental.com/cdn/shop/files/sb-tip.avif?v=1757618977', darkBg: true },
+    { id: 6, label: 'SB Bovie Tip', src: 'https://usdentaloutlet.com/cdn/shop/files/sb-tip.png?v=1751916971', darkBg: true },
     { id: 7, label: 'Full Kit', src: 'https://tricountydental.com/cdn/shop/files/epdent-uccut-gutta-percha-cutting-devices-1006-4.jpg?v=1757618951', darkBg: false },
     { id: 8, label: 'Device in Use', src: 'https://usdentaloutlet.com/cdn/shop/files/uc-cut-3.jpg?v=1731621539', darkBg: false },
   ];

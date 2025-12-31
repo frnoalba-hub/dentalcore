@@ -10,7 +10,7 @@ const tips = [
     itemCode: '1006-4',
     description: 'Gum cautery & gingivectomy',
     details: 'Specialized for precise soft-tissue cauterization and controlled gingivectomy procedures. Ideal for hemostasis and tissue management.',
-    image: 'https://tricountydental.com/cdn/shop/files/sb-tip.avif?v=1757618977',
+    image: 'https://usdentaloutlet.com/cdn/shop/files/sb-tip.png?v=1751916971',
     price: '$140.00',
     msrp: '$160.00',
   },
