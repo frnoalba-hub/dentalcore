@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  RotateCcw, 
   ZoomIn, 
   ZoomOut, 
   Play, 
@@ -11,119 +10,9 @@ import {
   ChevronRight,
   Maximize2,
   Video,
-  Box,
   Image as ImageIcon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Slider } from '@/components/ui/slider';
-
-// 360 View Component
-function Product360View({ images, productName }) {
-  const [currentFrame, setCurrentFrame] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const containerRef = useRef(null);
-  const intervalRef = useRef(null);
-
-  // Placeholder frames (in production, these would be actual 360 images)
-  const frameCount = images?.length || 36;
-
-  useEffect(() => {
-    if (isPlaying) {
-      intervalRef.current = setInterval(() => {
-        setCurrentFrame(prev => (prev + 1) % frameCount);
-      }, 100);
-    } else {
-      clearInterval(intervalRef.current);
-    }
-    return () => clearInterval(intervalRef.current);
-  }, [isPlaying, frameCount]);
-
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.clientX || e.touches?.[0]?.clientX);
-    setIsPlaying(false);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    const currentX = e.clientX || e.touches?.[0]?.clientX;
-    const diff = currentX - startX;
-    if (Math.abs(diff) > 10) {
-      const direction = diff > 0 ? 1 : -1;
-      setCurrentFrame(prev => (prev + direction + frameCount) % frameCount);
-      setStartX(currentX);
-    }
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  return (
-    <div className="relative">
-      <div
-        ref={containerRef}
-        className="aspect-square bg-white rounded-[2rem] border border-gray-100 shadow-xl overflow-hidden cursor-grab active:cursor-grabbing select-none"
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onTouchStart={handleMouseDown}
-        onTouchMove={handleMouseMove}
-        onTouchEnd={handleMouseUp}
-      >
-        {/* Placeholder for 360 images */}
-        <div className="w-full h-full flex items-center justify-center relative">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center p-8">
-              <Box className="w-20 h-20 text-cyan-200 mx-auto mb-4" />
-              <p className="text-gray-900 text-sm font-medium">
-                360° View - Frame {currentFrame + 1}/{frameCount}
-              </p>
-              <p className="text-gray-400 text-xs mt-2">
-                Drag to rotate • Upload 360° images
-              </p>
-            </div>
-          </div>
-
-          {/* Rotation indicator */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-sm border border-gray-100">
-            <RotateCcw className="w-4 h-4 text-cyan-600 animate-spin" style={{ animationDuration: '3s' }} />
-            <span className="text-xs text-gray-600 font-medium">Drag to rotate</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Controls */}
-      <div className="flex items-center justify-center gap-4 mt-6">
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => setIsPlaying(!isPlaying)}
-          className="border-gray-200 bg-white hover:bg-gray-50 text-gray-700"
-        >
-          {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-          <span className="ml-2">{isPlaying ? 'Pause' : 'Auto Rotate'}</span>
-        </Button>
-
-        <div className="flex items-center gap-2 flex-1 max-w-xs">
-          <Slider
-            value={[currentFrame]}
-            max={frameCount - 1}
-            step={1}
-            onValueChange={([value]) => {
-              setCurrentFrame(value);
-              setIsPlaying(false);
-            }}
-            className="flex-1"
-          />
-        </div>
-      </div>
-    </div>
-  );
-}
 
 // Interactive Zoom Component
 function ImageZoom({ src, alt, onClose }) {
@@ -255,7 +144,7 @@ function VideoDemo({ videoId, title, isOpen, onClose }) {
 
 // Main Product Showcase Component
 export default function ProductShowcase() {
-  const [activeView, setActiveView] = useState('gallery'); // '360', 'gallery', 'video'
+  const [activeView, setActiveView] = useState('gallery'); // 'gallery', 'video'
   const [selectedImage, setSelectedImage] = useState(null);
   const [showZoom, setShowZoom] = useState(false);
   const [showVideo, setShowVideo] = useState(false);
@@ -293,7 +182,7 @@ export default function ProductShowcase() {
             Explore UC CUT
           </h2>
           <p className="text-xl text-gray-500 max-w-3xl mx-auto">
-            Get an up-close look at the UC CUT device with interactive 360° views, zoomable images, and detailed video demonstrations
+            Get an up-close look at the UC CUT device with zoomable images and detailed video demonstrations
           </p>
         </motion.div>
 
@@ -301,7 +190,6 @@ export default function ProductShowcase() {
         <div className="flex justify-center mb-12">
           <div className="inline-flex bg-white border border-gray-200 rounded-xl p-1 shadow-sm">
             {[
-              { id: '360', icon: RotateCcw, label: '360° View' },
               { id: 'gallery', icon: ImageIcon, label: 'Gallery' },
               { id: 'video', icon: Video, label: 'Video Demos' },
             ].map((tab) => (
@@ -323,22 +211,6 @@ export default function ProductShowcase() {
 
         {/* Content area */}
         <AnimatePresence mode="wait">
-          {activeView === '360' && (
-            <motion.div
-              key="360"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="max-w-2xl mx-auto"
-            >
-              <Product360View productName="UC CUT" />
-              <p className="text-center text-gray-500 text-sm mt-6">
-                Click and drag to rotate the product • Use controls to auto-rotate
-              </p>
-            </motion.div>
-          )}
-
           {activeView === 'gallery' && (
             <motion.div
               key="gallery"
