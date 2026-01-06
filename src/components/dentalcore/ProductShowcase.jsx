@@ -452,11 +452,11 @@ export default function ProductShowcase() {
                       setShowVideo(true);
                     }}
                     className="group cursor-pointer"
-                  >
+                    >
                     <div className="relative aspect-video bg-gradient-to-br from-gray-800/50 to-gray-900/50 rounded-2xl border border-gray-700 overflow-hidden hover:border-cyan-500/50 transition-all duration-300">
                       {video.id ? (
                         <img
-                          src={`https://img.youtube.com/vi/${video.id}/maxresdefault.jpg`}
+                          src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`}
                           alt={video.title}
                           className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                         />
