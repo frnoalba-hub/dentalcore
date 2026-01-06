@@ -276,9 +276,6 @@ export default function ProductShowcase() {
     { id: 'ZwmWPHiCP8o', title: 'UC CUT Overview Demo', duration: '2:45' },
     { id: 'BK_5dFZ5p8w', title: 'UC CUT In Action', duration: '1:30' },
     { id: 'Y3fF-V9SGlw', title: 'Gutta-Percha Cutting Demo', duration: '2:00' },
-    { id: 'nQ8Q6K3xjYA', title: 'Vertical Condensation Guide', duration: '1:45' },
-    { id: 'XxmP8jp-8CU', title: 'Endodontic Techniques', duration: '3:15' },
-    { id: 'kVJ3yQT1fLs', title: 'Clinical Applications', duration: '2:30' },
   ];
 
   return (
