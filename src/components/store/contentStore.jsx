@@ -5,11 +5,11 @@ import { base44 } from '@/api/base44Client';
 const useContentStore = create(
   persist(
     (set, get) => ({
-      // Content data
+      // Content data (defaults, will be overwritten by GitHub data)
       businessInfo: {
-        name: 'Dental Core Supplies',
-        phone: '(555) 123-4567',
-        email: 'hello@dentalcoresupplies.com',
+        name: 'Dental Core Instruments LLC',
+        phone: '(626) 214-6598',
+        email: 'frno.alba@gmail.com',
         location: 'California, USA',
       },
       
@@ -88,8 +88,30 @@ const useContentStore = create(
 
           const content = response.data.content;
           
-          // Parse the JSX file to extract product data and any other configs
-          // For now, we'll keep the existing structure but mark it as fetched
+          // Parse companyInfo from the JSX file
+          const companyInfoMatch = content.match(/export const companyInfo = \{([^}]+)\}/s);
+          if (companyInfoMatch) {
+            const companyInfoStr = '{' + companyInfoMatch[1] + '}';
+            const cleanedStr = companyInfoStr
+              .replace(/\/\/[^\n]*/g, '') // Remove comments
+              .replace(/(\w+):/g, '"$1":') // Quote keys
+              .replace(/,\s*}/g, '}'); // Remove trailing commas
+            
+            try {
+              const parsedInfo = eval('(' + cleanedStr + ')');
+              set({ 
+                businessInfo: {
+                  name: parsedInfo.companyName || get().businessInfo.name,
+                  phone: parsedInfo.phone || get().businessInfo.phone,
+                  email: parsedInfo.email || get().businessInfo.email,
+                  location: get().businessInfo.location,
+                }
+              });
+            } catch (parseError) {
+              console.warn('Failed to parse companyInfo:', parseError);
+            }
+          }
+          
           set({ 
             lastFetched: new Date().toISOString(),
             isLoading: false 
