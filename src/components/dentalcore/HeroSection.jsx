@@ -26,7 +26,7 @@ import React from 'react';
             </div>
             <div className="relative glass-card rounded-2xl p-8 overflow-hidden">
               <div className="absolute top-0 right-0 p-4 text-[100px] font-bold text-white/5 select-none tracking-tighter">CORE</div>
-              <img src={heroProduct?.image} alt="Hero Product" className="relative z-10 w-full rounded-lg mix-blend-lighten" />
+              <img src={heroProduct?.image} alt={heroProduct?.name || "Hero Product"} className="relative z-10 w-full rounded-lg mix-blend-lighten" />
             </div>
           </div>
         </section>
