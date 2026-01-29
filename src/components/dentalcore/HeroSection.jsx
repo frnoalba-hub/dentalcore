@@ -1,9 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Zap, FileText, ArrowRight, Check } from 'lucide-react';
+import { Zap, FileText, Check } from 'lucide-react';
+import { useContentStore } from '../store/contentStore';
 
 export default function HeroSection() {
+  const { heroContent } = useContentStore();
+  
   const scrollToContact = (interest) => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -41,27 +44,27 @@ export default function HeroSection() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full"
             >
               <span className="flex h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-sm font-semibold text-cyan-400 tracking-wide uppercase">New Standard in Cautery</span>
+              <span className="text-sm font-semibold text-cyan-400 tracking-wide uppercase">{heroContent.badge}</span>
             </motion.div>
 
             {/* Headline */}
             <div className="space-y-4">
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight tracking-tight text-white">
-                Precision Control <br />
-                <span className="text-cyan-400">Simplified.</span>
+                {heroContent.headline.includes('by') ? (
+                  <>
+                    {heroContent.headline.split(' by ')[0]} <br />
+                    <span className="text-cyan-400">by {heroContent.headline.split(' by ')[1]}</span>
+                  </>
+                ) : heroContent.headline}
               </h1>
               <p className="text-xl text-gray-400 leading-relaxed max-w-lg">
-                The <span className="font-bold text-white">UC CUT</span> is a 3-in-1 sonic powerhouse for gum cautery, gutta-percha cutting, and vertical condensation.
+                {heroContent.tagline}
               </p>
             </div>
 
             {/* Feature list */}
             <div className="space-y-3">
-              {[
-                "Cordless & Compact Design",
-                "Instant Heating & Cooling",
-                "Multiple Interchangeable Tips"
-              ].map((item, i) => (
+              {heroContent.features.map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-cyan-500/20 flex items-center justify-center">
                     <Check className="w-3.5 h-3.5 text-cyan-400" />
@@ -73,28 +76,15 @@ export default function HeroSection() {
 
             {/* Pricing Card */}
             <div className="bg-gray-900 p-6 rounded-2xl border border-gray-800 shadow-xl shadow-black/50 max-w-md">
-              <div className="space-y-4 mb-4">
-                <div className="flex items-center justify-between pb-4 border-b border-gray-800">
-                  <div>
-                    <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Unit Only</p>
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-bold text-white">$699</span>
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">Includes unit + 1 tip</p>
-                  </div>
+              <div className="flex items-baseline gap-4 mb-6">
+                <div>
+                  <p className="text-sm text-gray-400 mb-1">Device</p>
+                  <p className="text-4xl font-bold text-white">{heroContent.pricing.device}</p>
                 </div>
-
-                <div className="flex items-center justify-between">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1">
-                      <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Full Kit</p>
-                      <span className="bg-cyan-500/20 text-cyan-400 px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-cyan-500/30">Best Value</span>
-                    </div>
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-bold text-white">$799</span>
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1">Includes unit + 3 tips of choice</p>
-                  </div>
+                <div className="w-px h-12 bg-gray-700" />
+                <div>
+                  <p className="text-sm text-gray-400 mb-1">Tips</p>
+                  <p className="text-2xl font-bold text-cyan-400">{heroContent.pricing.tips}</p>
                 </div>
               </div>
 
@@ -140,37 +130,24 @@ export default function HeroSection() {
               </div>
 
               {/* Floating Cards */}
-              <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-10 right-0 bg-gray-900 p-4 rounded-2xl shadow-lg border border-gray-800 z-20 hidden md:block"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
-                    <Zap className="w-5 h-5 text-cyan-400" />
+              {heroContent.highlights.map((highlight, idx) => (
+                <motion.div
+                  key={idx}
+                  animate={{ y: [0, idx === 0 ? -10 : 10, 0] }}
+                  transition={{ duration: idx === 0 ? 4 : 5, repeat: Infinity, ease: "easeInOut", delay: idx }}
+                  className={`absolute ${idx === 0 ? 'top-10 right-0' : 'bottom-20 left-0'} bg-gray-900 p-4 rounded-2xl shadow-lg border border-gray-800 z-20 hidden md:block`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
+                      {idx === 0 ? <Zap className="w-5 h-5 text-cyan-400" /> : <FileText className="w-5 h-5 text-cyan-400" />}
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 font-semibold uppercase">{highlight.label}</p>
+                      <p className="text-sm font-bold text-white">{highlight.value}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-xs text-gray-500 font-semibold uppercase">Heating Time</p>
-                    <p className="text-sm font-bold text-white">Instant</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-20 left-0 bg-gray-900 p-4 rounded-2xl shadow-lg border border-gray-800 z-20 hidden md:block"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-cyan-500/20 rounded-full flex items-center justify-center">
-                    <FileText className="w-5 h-5 text-cyan-400" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 font-semibold uppercase">Warranty</p>
-                    <p className="text-sm font-bold text-white">1 Year</p>
-                  </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>
