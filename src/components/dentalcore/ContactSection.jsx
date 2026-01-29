@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Send, CheckCircle2, Phone, Mail, MapPin } from 'lucide-react';
 import { toast } from 'sonner';
+import { companyInfo, contactContent } from './contentConfig';
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -33,7 +34,7 @@ export default function ContactSection() {
 
     setIsSubmitting(false);
     setIsSubmitted(true);
-    toast.success('Request submitted successfully! We\'ll be in touch soon.');
+    toast.success(contactContent.successMessage);
 
     // Reset form after delay
     setTimeout(() => {
@@ -66,10 +67,10 @@ export default function ContactSection() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-              Get in Touch
+              {contactContent.sectionTitle}
             </h2>
             <p className="text-xl text-gray-400 mb-12 leading-relaxed">
-              Ready to upgrade your practice with UC CUT? Request a demo or intro pricing today. We usually respond within 24 hours.
+              {contactContent.description}
             </p>
 
             <div className="space-y-8">
@@ -79,10 +80,10 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-1">Call Us</h3>
-                  <a href="tel:6262146598" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">
-                    (626) 214-6598
+                  <a href={`tel:${companyInfo.phone.replace(/\D/g, '')}`} className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">
+                    {companyInfo.phone}
                   </a>
-                  <p className="text-sm text-gray-500 mt-1">Mon-Fri, 9am - 5pm PST</p>
+                  <p className="text-sm text-gray-500 mt-1">{companyInfo.hours}</p>
                 </div>
               </div>
 
@@ -92,8 +93,8 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-1">Email Us</h3>
-                  <a href="mailto:info@dentalcoresupplies.com" className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">
-                    info@dentalcoresupplies.com
+                  <a href={`mailto:${companyInfo.email}`} className="text-gray-400 hover:text-cyan-400 transition-colors text-lg">
+                    {companyInfo.email}
                   </a>
                 </div>
               </div>
@@ -105,9 +106,9 @@ export default function ContactSection() {
                 <div>
                   <h3 className="text-lg font-semibold text-white mb-1">Location</h3>
                   <p className="text-gray-400 text-lg">
-                    California, USA
+                    {companyInfo.location}
                   </p>
-                  <p className="text-sm text-gray-500 mt-1">Serving local practices</p>
+                  <p className="text-sm text-gray-500 mt-1">{companyInfo.locationDetail}</p>
                 </div>
               </div>
             </div>
@@ -124,34 +125,34 @@ export default function ContactSection() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Name */}
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-gray-300 font-medium">Your Name</Label>
+                  <Label htmlFor="name" className="text-gray-300 font-medium">{contactContent.formLabels.name}</Label>
                   <Input
                     id="name"
                     required
                     value={formData.name}
                     onChange={(e) => handleChange('name', e.target.value)}
                     className="bg-gray-800 border-gray-700 focus:border-cyan-500 focus:ring-cyan-500/20 h-12 text-white"
-                    placeholder="Dr. John Smith"
+                    placeholder={contactContent.formPlaceholders.name}
                   />
                 </div>
 
                 {/* Practice name */}
                 <div className="space-y-2">
-                  <Label htmlFor="practice_name" className="text-gray-300 font-medium">Practice Name</Label>
+                  <Label htmlFor="practice_name" className="text-gray-300 font-medium">{contactContent.formLabels.practice}</Label>
                   <Input
                     id="practice_name"
                     required
                     value={formData.practice_name}
                     onChange={(e) => handleChange('practice_name', e.target.value)}
                     className="bg-gray-800 border-gray-700 focus:border-cyan-500 focus:ring-cyan-500/20 h-12 text-white"
-                    placeholder="Smith Family Dentistry"
+                    placeholder={contactContent.formPlaceholders.practice}
                   />
                 </div>
 
                 {/* Email & Phone */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-gray-300 font-medium">Email</Label>
+                    <Label htmlFor="email" className="text-gray-300 font-medium">{contactContent.formLabels.email}</Label>
                     <Input
                       id="email"
                       type="email"
@@ -159,11 +160,11 @@ export default function ContactSection() {
                       value={formData.email}
                       onChange={(e) => handleChange('email', e.target.value)}
                       className="bg-gray-800 border-gray-700 focus:border-cyan-500 focus:ring-cyan-500/20 h-12 text-white"
-                      placeholder="email@example.com"
+                      placeholder={contactContent.formPlaceholders.email}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-gray-300 font-medium">Phone</Label>
+                    <Label htmlFor="phone" className="text-gray-300 font-medium">{contactContent.formLabels.phone}</Label>
                     <Input
                       id="phone"
                       type="tel"
@@ -171,7 +172,7 @@ export default function ContactSection() {
                       value={formData.phone}
                       onChange={(e) => handleChange('phone', e.target.value)}
                       className="bg-gray-800 border-gray-700 focus:border-cyan-500 focus:ring-cyan-500/20 h-12 text-white"
-                      placeholder="(555) 123-4567"
+                      placeholder={contactContent.formPlaceholders.phone}
                     />
                   </div>
                 </div>
@@ -179,32 +180,32 @@ export default function ContactSection() {
                 {/* City & State */}
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="city" className="text-gray-300 font-medium">City</Label>
+                    <Label htmlFor="city" className="text-gray-300 font-medium">{contactContent.formLabels.city}</Label>
                     <Input
                       id="city"
                       required
                       value={formData.city}
                       onChange={(e) => handleChange('city', e.target.value)}
                       className="bg-gray-800 border-gray-700 focus:border-cyan-500 focus:ring-cyan-500/20 h-12 text-white"
-                      placeholder="City"
+                      placeholder={contactContent.formPlaceholders.city}
                     />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="state" className="text-gray-300 font-medium">State</Label>
+                    <Label htmlFor="state" className="text-gray-300 font-medium">{contactContent.formLabels.state}</Label>
                     <Input
                       id="state"
                       required
                       value={formData.state}
                       onChange={(e) => handleChange('state', e.target.value)}
                       className="bg-gray-800 border-gray-700 focus:border-cyan-500 focus:ring-cyan-500/20 h-12 text-white"
-                      placeholder="State"
+                      placeholder={contactContent.formPlaceholders.state}
                     />
                   </div>
                 </div>
 
                 {/* Interest */}
                 <div className="space-y-2">
-                  <Label htmlFor="interest" className="text-gray-300 font-medium">I'm interested in</Label>
+                  <Label htmlFor="interest" className="text-gray-300 font-medium">{contactContent.formLabels.interest}</Label>
                   <Select
                     value={formData.interest}
                     onValueChange={(value) => handleChange('interest', value)}
@@ -213,9 +214,9 @@ export default function ContactSection() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Demo">Requesting a Demo</SelectItem>
-                      <SelectItem value="Pricing">Requesting Intro Pricing</SelectItem>
-                      <SelectItem value="Both">Both Demo & Pricing</SelectItem>
+                      {contactContent.interestOptions.map((option) => (
+                        <SelectItem key={option.value} value={option.value}>{option.label}</SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
@@ -228,20 +229,20 @@ export default function ContactSection() {
                   {isSubmitted ? (
                     <>
                       <CheckCircle2 className="w-5 h-5 mr-2" />
-                      Request Sent
+                      {contactContent.submitButton.success}
                     </>
                   ) : isSubmitting ? (
-                    'Sending...'
+                    contactContent.submitButton.submitting
                   ) : (
                     <>
                       <Send className="w-5 h-5 mr-2" />
-                      Submit Request
+                      {contactContent.submitButton.default}
                     </>
                   )}
                 </Button>
                 
                 <p className="text-xs text-center text-gray-500 mt-4">
-                  By submitting, you agree to our privacy policy. Your data is safe.
+                  {contactContent.privacyNote}
                 </p>
               </form>
             </div>
@@ -250,7 +251,7 @@ export default function ContactSection() {
 
         {/* Footer */}
         <div className="mt-20 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} Dental Core Supplies. UC CUT by EPDENT. All rights reserved.
+          © {new Date().getFullYear()} {companyInfo.copyright}
         </div>
       </div>
     </section>

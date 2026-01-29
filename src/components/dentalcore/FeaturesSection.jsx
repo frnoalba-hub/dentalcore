@@ -60,7 +60,8 @@ export default function FeaturesSection() {
                 </div>
               </div>
             </motion.div>
-          )})}
+          );
+          })}
         </div>
       </div>
     </section>
