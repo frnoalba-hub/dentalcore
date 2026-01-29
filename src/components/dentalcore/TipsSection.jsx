@@ -82,7 +82,7 @@ export default function TipsSection() {
   const [selectedTip, setSelectedTip] = useState(null);
 
   return (
-    <section id="tips" className="relative py-32 px-6 lg:px-12 bg-gray-50/50">
+    <section id="tips" className="relative py-32 px-6 lg:px-12 bg-[#0a0a0a]">
       <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -91,11 +91,11 @@ export default function TipsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <span className="text-cyan-600 font-semibold tracking-wider text-sm uppercase mb-2 block">Accessories</span>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-gray-900 tracking-tight">
+          <span className="text-cyan-400 font-semibold tracking-wider text-sm uppercase mb-2 block">Accessories</span>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
             Specialized Tips
           </h2>
-          <p className="text-xl text-gray-500 max-w-3xl mx-auto font-light">
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto font-light">
             Interchangeable tips for every clinical scenario. All available with introductory pricing.
           </p>
         </motion.div>
@@ -109,37 +109,37 @@ export default function TipsSection() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ delay: index * 0.05, duration: 0.5 }}
               onClick={() => setSelectedTip(selectedTip?.id === tip.id ? null : tip)}
-              className={`group cursor-pointer relative bg-white rounded-3xl p-6 border transition-all duration-300 ${
+              className={`group cursor-pointer relative bg-gray-900 rounded-3xl p-6 border transition-all duration-300 ${
                 selectedTip?.id === tip.id 
-                  ? 'border-cyan-500 ring-4 ring-cyan-500/10 shadow-xl scale-[1.02] z-10' 
-                  : 'border-gray-100 hover:border-cyan-200 hover:shadow-lg hover:-translate-y-1'
+                  ? 'border-cyan-500 ring-2 ring-cyan-500/20 shadow-xl scale-[1.02] z-10' 
+                  : 'border-gray-800 hover:border-cyan-500/50 hover:shadow-lg hover:-translate-y-1'
               }`}
             >
-              <div className="aspect-square bg-gray-50 rounded-2xl mb-6 p-4 flex items-center justify-center overflow-hidden relative">
+              <div className="aspect-square bg-gray-800 rounded-2xl mb-6 p-4 flex items-center justify-center overflow-hidden relative">
                 {tip.image ? (
-                  <img src={tip.image} alt={tip.name} className="w-full h-full object-contain mix-blend-multiply" />
+                  <img src={tip.image} alt={tip.name} className="w-full h-full object-contain" />
                 ) : (
-                  <ZoomIn className="w-10 h-10 text-gray-300" />
+                  <ZoomIn className="w-10 h-10 text-gray-600" />
                 )}
-                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-bold text-cyan-700 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-bold text-cyan-400 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
                   View
                 </div>
               </div>
 
-              <h3 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-cyan-600 transition-colors">
+              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">
                 {tip.name}
               </h3>
-              <p className="text-sm text-gray-500 mb-4 line-clamp-2">
+              <p className="text-sm text-gray-400 mb-4 line-clamp-2">
                 {tip.description}
               </p>
               
-              <div className="flex items-center justify-between pt-4 border-t border-gray-50">
+              <div className="flex items-center justify-between pt-4 border-t border-gray-800">
                 <div>
-                  <span className="block text-lg font-bold text-cyan-600">{tip.price}</span>
-                  {tip.msrp && <span className="block text-xs text-gray-400 line-through">MSRP {tip.msrp}</span>}
+                  <span className="block text-lg font-bold text-cyan-400">{tip.price}</span>
+                  {tip.msrp && <span className="block text-xs text-gray-500 line-through">MSRP {tip.msrp}</span>}
                 </div>
-                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-cyan-50 transition-colors">
-                  <Info className="w-4 h-4 text-gray-400 group-hover:text-cyan-600" />
+                <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-cyan-500/10 transition-colors">
+                  <Info className="w-4 h-4 text-gray-500 group-hover:text-cyan-400" />
                 </div>
               </div>
             </motion.div>
@@ -154,14 +154,14 @@ export default function TipsSection() {
               exit={{ opacity: 0, y: 20, height: 0 }}
               className="overflow-hidden"
             >
-              <div className="bg-white rounded-[2rem] border border-cyan-100 shadow-2xl p-8 lg:p-12 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-50 rounded-bl-full -mr-20 -mt-20 opacity-50" />
+              <div className="bg-gray-900 rounded-[2rem] border border-cyan-500/30 shadow-2xl p-8 lg:p-12 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-bl-full -mr-20 -mt-20" />
                 
                 <div className="grid lg:grid-cols-3 gap-12 relative z-10">
                   <div className="lg:col-span-1">
-                    <div className="aspect-square bg-gray-50 rounded-2xl p-8 flex items-center justify-center border border-gray-100">
+                    <div className="aspect-square bg-gray-800 rounded-2xl p-8 flex items-center justify-center border border-gray-700">
                       {selectedTip.image && (
-                        <img src={selectedTip.image} alt={selectedTip.name} className="w-full h-full object-contain mix-blend-multiply" />
+                        <img src={selectedTip.image} alt={selectedTip.name} className="w-full h-full object-contain" />
                       )}
                     </div>
                   </div>
@@ -169,25 +169,25 @@ export default function TipsSection() {
                   <div className="lg:col-span-2 space-y-8">
                     <div>
                       <div className="flex flex-wrap items-center gap-4 mb-4">
-                        <h3 className="text-3xl font-bold text-gray-900">{selectedTip.name}</h3>
-                        <span className="px-3 py-1 bg-cyan-100 text-cyan-700 text-sm font-bold rounded-full">
+                        <h3 className="text-3xl font-bold text-white">{selectedTip.name}</h3>
+                        <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 text-sm font-bold rounded-full border border-cyan-500/30">
                           {selectedTip.itemCode}
                         </span>
                       </div>
-                      <p className="text-xl text-gray-600 leading-relaxed font-light">
+                      <p className="text-xl text-gray-300 leading-relaxed font-light">
                         {selectedTip.details}
                       </p>
                     </div>
 
-                    <div className="flex items-center gap-12 p-6 bg-gray-50 rounded-2xl w-fit">
+                    <div className="flex items-center gap-12 p-6 bg-gray-800 rounded-2xl w-fit">
                       <div>
-                        <p className="text-sm text-gray-500 font-medium uppercase tracking-wider mb-1">Our Price</p>
-                        <p className="text-4xl font-bold text-cyan-600">{selectedTip.price}</p>
+                        <p className="text-sm text-gray-400 font-medium uppercase tracking-wider mb-1">Our Price</p>
+                        <p className="text-4xl font-bold text-cyan-400">{selectedTip.price}</p>
                       </div>
-                      <div className="h-12 w-px bg-gray-200" />
+                      <div className="h-12 w-px bg-gray-700" />
                       <div>
-                        <p className="text-sm text-gray-500 font-medium uppercase tracking-wider mb-1">Retail Price</p>
-                        <p className="text-2xl font-bold text-gray-400 line-through">{selectedTip.msrp}</p>
+                        <p className="text-sm text-gray-400 font-medium uppercase tracking-wider mb-1">Retail Price</p>
+                        <p className="text-2xl font-bold text-gray-500 line-through">{selectedTip.msrp}</p>
                       </div>
                     </div>
                   </div>
