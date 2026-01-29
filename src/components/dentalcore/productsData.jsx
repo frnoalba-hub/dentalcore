@@ -7,7 +7,17 @@ export const companyInfo = {
   logoText: "DENTALCORE"
 };
 
-// --- MASTER PRODUCT CATALOG (Apexdent & Flyers Only) ---
+// --- STOCK IMAGES (Hosted Online for Stability) ---
+const images = {
+  hero: "https://kdentalsupplies.com/cdn/shop/files/UC-CUT_Heat_Vibration_Sonic_GP_Cutter_4_colors.jpg?v=1710953457",
+  endo: "https://images.unsplash.com/photo-1599423300746-b62505752f7e?q=80&w=1000&auto=format&fit=crop",
+  digital: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
+  handpiece: "https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop",
+  surgical: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop",
+  general: "https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop"
+};
+
+// --- MASTER PRODUCT CATALOG ---
 export const products = [
   // =========================================
   // ENDODONTICS (System UC & Accessories)
@@ -18,7 +28,7 @@ export const products = [
     price: 599.00,
     category: "Endodontics",
     description: "The new standard in Gutta Percha removal. Cordless, Sonic, Precision.",
-    image: "/images/uc-cut-hero.jpg",
+    image: images.hero, // REAL PRODUCT IMAGE
     features: ["Cordless Operation", "Instant Heating (180°C)", "Sonic Vibration"],
     inStock: true,
     rating: 5.0
@@ -29,7 +39,7 @@ export const products = [
     price: 599.00,
     category: "Endodontics",
     description: "Cordless ultrasonic irrigation for superior canal cleaning.",
-    image: "/images/uc-one.jpg"
+    image: images.endo
   },
   {
     id: "1005-1",
@@ -37,6 +47,7 @@ export const products = [
     price: 80.00,
     category: "Endodontics",
     description: "Reliable cordless GP cutter with interchangeable tips.",
+    image: images.endo
   },
   {
     id: "1004-1",
@@ -44,6 +55,7 @@ export const products = [
     price: 120.00,
     category: "Endodontics",
     description: "Ergonomic gutta percha plugger kit (FM/M and ML/L).",
+    image: images.endo
   },
   {
     id: "1003-1",
@@ -51,6 +63,7 @@ export const products = [
     price: 60.00,
     category: "Endodontics",
     description: "Micro-suction tips for drying canals. Includes 2 adapters + 5 tips.",
+    image: images.endo
   },
   {
     id: "MTA-1",
@@ -58,6 +71,7 @@ export const products = [
     price: 90.00,
     category: "Endodontics",
     description: "Bioactive bioceramic root canal sealer. High radiopacity.",
+    image: images.endo
   },
   {
     id: "MTA-3",
@@ -65,6 +79,7 @@ export const products = [
     price: 90.00,
     category: "Endodontics",
     description: "Rapid setting MTA for root repair and apicoectomy.",
+    image: images.endo
   },
 
   // =========================================
@@ -77,7 +92,7 @@ export const products = [
     originalPrice: 7599.00,
     category: "Equipment",
     description: "30-second full arch scans. 10μm accuracy. No subscription fees.",
-    image: "/images/isuni-scanner.jpg",
+    image: images.digital,
     specs: { "Accuracy": "10μm", "Depth": "20mm", "AI": "Smart Filtering" }
   },
   {
@@ -86,6 +101,7 @@ export const products = [
     price: 1599.00,
     category: "Equipment",
     description: "Crystal clear CMOS imaging for Pedo/General use.",
+    image: images.digital
   },
   {
     id: "A1024",
@@ -93,6 +109,7 @@ export const products = [
     price: 1999.00,
     category: "Equipment",
     description: "Crystal clear CMOS imaging for Adult Bitewings.",
+    image: images.digital
   },
   {
     id: "A1022",
@@ -100,6 +117,7 @@ export const products = [
     price: 2899.00,
     category: "Equipment",
     description: "Lightweight, handheld X-ray generator. Shielded for safety.",
+    image: images.digital
   },
 
   // =========================================
@@ -111,6 +129,7 @@ export const products = [
     price: 399.00,
     category: "Handpieces",
     description: "Titanium, Fiber Optic, Quattro Spray. 400,000 RPM.",
+    image: images.handpiece
   },
   {
     id: "A1005",
@@ -118,6 +137,7 @@ export const products = [
     price: 399.00,
     category: "Handpieces",
     description: "Titanium, Fiber Optic, Quattro Spray. NSK Coupler compatible.",
+    image: images.handpiece
   },
   {
     id: "A1018",
@@ -125,6 +145,7 @@ export const products = [
     price: 569.00,
     category: "Handpieces",
     description: "45-degree head for surgical access. Rear exhaust to prevent embolism.",
+    image: images.handpiece
   },
   {
     id: "A1004-V3",
@@ -132,6 +153,7 @@ export const products = [
     price: 499.00,
     category: "Handpieces",
     description: "Ultra-mini head for pediatric and limited opening cases.",
+    image: images.handpiece
   },
   {
     id: "A1009B",
@@ -139,6 +161,7 @@ export const products = [
     price: 129.00,
     category: "Handpieces",
     description: "1:1 Contra Angle, Latch Type, Push Button.",
+    image: images.handpiece
   },
   {
     id: "A1012",
@@ -146,6 +169,7 @@ export const products = [
     price: 129.00,
     category: "Handpieces",
     description: "1:1 Straight Nose Cone for extraoral adjustments.",
+    image: images.handpiece
   },
 
   // =========================================
@@ -157,6 +181,7 @@ export const products = [
     price: 1299.00,
     category: "Equipment",
     description: "Brushless micromotor with integrated Endo function. 3.0 N.cm torque.",
+    image: images.handpiece
   },
   {
     id: "A1003",
@@ -164,6 +189,7 @@ export const products = [
     price: 729.00,
     category: "Handpieces",
     description: "Electric 1:5 increaser. Titanium body, DLC coating, Quattro Spray.",
+    image: images.handpiece
   },
   {
     id: "A1028",
@@ -171,6 +197,7 @@ export const products = [
     price: 479.00,
     category: "Handpieces",
     description: "Electric 1:1 direct drive. Internal water spray.",
+    image: images.handpiece
   },
   {
     id: "A1020",
@@ -178,6 +205,7 @@ export const products = [
     price: 599.00,
     category: "Handpieces",
     description: "20:1 Reduction for Implantology. External irrigation clip.",
+    image: images.handpiece
   },
 
   // =========================================
@@ -189,6 +217,7 @@ export const products = [
     price: 799.00,
     category: "Equipment",
     description: "Touch control ultrasonic unit. Endo/Perio/Scaling modes.",
+    image: images.general
   },
   {
     id: "A1061",
@@ -196,6 +225,7 @@ export const products = [
     price: 466.00,
     category: "Handpieces",
     description: "Fits KaVo coupler. 6000 Hz oscillation for gentle scaling.",
+    image: images.handpiece
   },
   {
     id: "A1658",
@@ -203,6 +233,7 @@ export const products = [
     price: 446.00,
     category: "Equipment",
     description: "Anti-clogging air polishing system. 360° swivel nozzle.",
+    image: images.general
   },
   {
     id: "A1030",
@@ -210,6 +241,7 @@ export const products = [
     price: 1399.00,
     category: "Equipment",
     description: "Automated handpiece cleaning and lubrication. 4 Ports.",
+    image: images.general
   },
   {
     id: "TH-001",
@@ -217,6 +249,7 @@ export const products = [
     price: 199.00,
     category: "Endodontics",
     description: "Wireless obturation heating pen with multiple tips.",
+    image: images.endo
   },
   {
     id: "IPR-001",
@@ -224,6 +257,7 @@ export const products = [
     price: 199.00,
     category: "Handpieces",
     description: "Ortho interproximal reduction handpiece with reciprocating motion.",
+    image: images.handpiece
   },
 
   // =========================================
@@ -235,6 +269,7 @@ export const products = [
     price: 68.00,
     category: "Surgical",
     description: "Mineralized Cortical/Cancellous Bone Graft (250-1000um).",
+    image: images.surgical
   },
   {
     id: "OS-MEM",
@@ -242,6 +277,7 @@ export const products = [
     price: 70.00,
     category: "Surgical",
     description: "Resorbable Porcine Collagen Membrane.",
+    image: images.surgical
   },
   {
     id: "OSTEO-PLUG",
@@ -249,6 +285,7 @@ export const products = [
     price: 549.00,
     category: "Surgical",
     description: "Resorbable Bone Grafting Plug (10/Box).",
+    image: images.surgical
   },
   {
     id: "ORA-20",
@@ -256,13 +293,15 @@ export const products = [
     price: 90.00,
     category: "Surgical",
     description: "Intraoral protective dressing. 15mm x 25mm (20 Pack).",
+    image: images.surgical
   },
-   {
+  {
     id: "HELI-1",
     name: "Collagen Wound Dressing",
     price: 110.00,
     category: "Surgical",
     description: "Resorbable collagen sponge for hemostasis (10/Box).",
+    image: images.surgical
   },
 
   // =========================================
@@ -274,6 +313,7 @@ export const products = [
     price: 699.00,
     category: "Restorative",
     description: "Broadband LED (380-520nm) with detection mode. Aerospace aluminum.",
+    image: images.general
   },
   {
     id: "1007-1",
@@ -281,6 +321,7 @@ export const products = [
     price: 599.00,
     category: "Restorative",
     description: "High-intensity LED curing light. 1-sec cure capability.",
+    image: images.general
   },
   {
     id: "1008-1",
@@ -288,6 +329,7 @@ export const products = [
     price: 160.00,
     category: "Restorative",
     description: "Diagnostic light for crack detection.",
+    image: images.general
   },
   {
     id: "M1001",
@@ -295,6 +337,7 @@ export const products = [
     price: 200.00,
     category: "Restorative",
     description: "Sectional matrix system. 100 matrices, 2 rings, forceps.",
+    image: images.general
   },
   {
     id: "M1002",
@@ -302,6 +345,7 @@ export const products = [
     price: 86.65,
     category: "Restorative",
     description: "Universal NiTi rings with outstanding spring memory.",
+    image: images.general
   },
 
   // =========================================
@@ -313,6 +357,7 @@ export const products = [
     price: 140.00,
     category: "Accessories",
     description: "Small Metal Posterior Tip for UC-CUT.",
+    image: images.general
   },
   {
     id: "1006-3",
@@ -320,5 +365,6 @@ export const products = [
     price: 140.00,
     category: "Accessories",
     description: "Large Metal Anterior Tip for UC-CUT.",
+    image: images.general
   }
 ];
