@@ -17,14 +17,11 @@ import ContactSection from '../components/dentalcore/ContactSection';
 import CartDrawer from '../components/cart/CartDrawer';
 
 export default function Home() {
-  const { fetchContentFromGitHub, lastFetched } = useContentStore();
+  const { refreshContent } = useContentStore();
 
   useEffect(() => {
-    // Fetch content from GitHub on mount if not fetched recently (within last hour)
-    const oneHourAgo = Date.now() - (60 * 60 * 1000);
-    if (!lastFetched || new Date(lastFetched).getTime() < oneHourAgo) {
-      fetchContentFromGitHub();
-    }
+    // Always fetch fresh content from GitHub on mount
+    refreshContent();
   }, []);
 
   return (

@@ -125,6 +125,7 @@ const useContentStore = create(
       },
 
       refreshContent: async () => {
+        set({ lastFetched: null });
         await get().fetchContentFromGitHub();
       },
 
