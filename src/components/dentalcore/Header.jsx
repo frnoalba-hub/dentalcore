@@ -3,14 +3,7 @@ import { motion } from 'framer-motion';
 import { Menu, X, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCartStore } from '../store/cartStore';
-
-const navLinks = [
-  { label: 'Features', href: '#features' },
-  { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Tips', href: '#tips' },
-  { label: 'About', href: '#about' },
-  { label: 'Contact', href: '#contact' },
-];
+import { companyInfo, navigation } from './contentConfig';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -50,13 +43,13 @@ export default function Header() {
             {/* Logo */}
             <a href="#" className="flex items-center">
               <span className="text-xl md:text-2xl font-bold text-white tracking-tight">
-                <span className="text-cyan-400">Dental</span> Core Supplies
+                <span className="text-cyan-400">{companyInfo.logoText.split(' ')[0]}</span> {companyInfo.logoText.split(' ').slice(1).join(' ')}
               </span>
             </a>
 
             {/* Desktop Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {navigation.map((link) => (
               <button
                 key={link.label}
                 onClick={() => scrollToSection(link.href)}
@@ -66,8 +59,8 @@ export default function Header() {
               </button>
             ))}
             <div className="flex items-center gap-4 pl-4 border-l border-gray-800">
-              <a href="tel:6262146598" className="text-sm font-semibold text-gray-300 hover:text-cyan-400 transition-colors">
-                (626) 214-6598
+              <a href={`tel:${companyInfo.phone.replace(/\D/g, '')}`} className="text-sm font-semibold text-gray-300 hover:text-cyan-400 transition-colors">
+                {companyInfo.phone}
               </a>
               
               <button
@@ -110,7 +103,7 @@ export default function Header() {
             className="lg:hidden bg-[#0a0a0a] border-t border-gray-800"
           >
             <nav className="container mx-auto px-6 py-6 space-y-4">
-              {navLinks.map((link) => (
+              {navigation.map((link) => (
                 <button
                   key={link.label}
                   onClick={() => scrollToSection(link.href)}

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Zap, FileText, ArrowRight, Check } from 'lucide-react';
+import { heroContent } from './contentConfig';
 
 export default function HeroSection() {
   const scrollToContact = (interest) => {
@@ -41,27 +42,23 @@ export default function HeroSection() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full"
             >
               <span className="flex h-2 w-2 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-sm font-semibold text-cyan-400 tracking-wide uppercase">New Standard in Cautery</span>
+              <span className="text-sm font-semibold text-cyan-400 tracking-wide uppercase">{heroContent.badge.text}</span>
             </motion.div>
 
             {/* Headline */}
             <div className="space-y-4">
               <h1 className="text-5xl lg:text-7xl font-bold leading-tight tracking-tight text-white">
-                Precision Control <br />
-                <span className="text-cyan-400">Simplified.</span>
+                {heroContent.headline.line1} <br />
+                <span className="text-cyan-400">{heroContent.headline.line2}</span>
               </h1>
               <p className="text-xl text-gray-400 leading-relaxed max-w-lg">
-                The <span className="font-bold text-white">UC CUT</span> is a 3-in-1 sonic powerhouse for gum cautery, gutta-percha cutting, and vertical condensation.
+                {heroContent.subheadline}
               </p>
             </div>
 
             {/* Feature list */}
             <div className="space-y-3">
-              {[
-                "Cordless & Compact Design",
-                "Instant Heating & Cooling",
-                "Multiple Interchangeable Tips"
-              ].map((item, i) => (
+              {heroContent.features.map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <div className="flex-shrink-0 w-6 h-6 rounded-full bg-cyan-500/20 flex items-center justify-center">
                     <Check className="w-3.5 h-3.5 text-cyan-400" />
@@ -76,24 +73,24 @@ export default function HeroSection() {
               <div className="space-y-4 mb-4">
                 <div className="flex items-center justify-between pb-4 border-b border-gray-800">
                   <div>
-                    <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Unit Only</p>
+                    <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">{heroContent.pricing.unitOnly.label}</p>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-bold text-white">$699</span>
+                      <span className="text-3xl font-bold text-white">{heroContent.pricing.unitOnly.price}</span>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">Includes unit + 1 tip</p>
+                    <p className="text-xs text-gray-500 mt-1">{heroContent.pricing.unitOnly.description}</p>
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between">
                   <div>
                     <div className="flex items-center gap-2 mb-1">
-                      <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Full Kit</p>
-                      <span className="bg-cyan-500/20 text-cyan-400 px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-cyan-500/30">Best Value</span>
+                      <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">{heroContent.pricing.fullKit.label}</p>
+                      <span className="bg-cyan-500/20 text-cyan-400 px-2 py-0.5 rounded text-[10px] font-bold uppercase border border-cyan-500/30">{heroContent.pricing.fullKit.badge}</span>
                     </div>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-bold text-white">$799</span>
+                      <span className="text-3xl font-bold text-white">{heroContent.pricing.fullKit.price}</span>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">Includes unit + 3 tips of choice</p>
+                    <p className="text-xs text-gray-500 mt-1">{heroContent.pricing.fullKit.description}</p>
                   </div>
                 </div>
               </div>
@@ -101,19 +98,19 @@ export default function HeroSection() {
               <div className="grid grid-cols-2 gap-3">
                 <Button
                   size="lg"
-                  onClick={() => scrollToContact('Demo')}
+                  onClick={() => scrollToContact(heroContent.cta.primary.action)}
                   className="w-full bg-cyan-500 hover:bg-cyan-400 text-black font-bold h-12 rounded-xl"
                 >
                   <Zap className="w-4 h-4 mr-2" />
-                  Demo
+                  {heroContent.cta.primary.text}
                 </Button>
                 <Button
                   size="lg"
-                  onClick={() => scrollToContact('Pricing')}
+                  onClick={() => scrollToContact(heroContent.cta.secondary.action)}
                   variant="outline"
                   className="w-full border-gray-700 hover:border-cyan-400 text-gray-300 hover:text-cyan-400 font-semibold h-12 rounded-xl"
                 >
-                  Order Now
+                  {heroContent.cta.secondary.text}
                 </Button>
               </div>
             </div>
@@ -133,8 +130,8 @@ export default function HeroSection() {
               {/* Image Container */}
               <div className="relative z-10 w-full h-full flex items-center justify-center p-8">
                 <img 
-                  src="https://maruchiusa.com/cdn/shop/products/Black_2048x2048.png?v=1656021060" 
-                  alt="UC CUT Sonic GP Cutter"
+                  src={heroContent.image} 
+                  alt={heroContent.productName}
                   className="w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700 ease-in-out"
                 />
               </div>
