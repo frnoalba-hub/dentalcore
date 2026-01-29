@@ -8,6 +8,8 @@ import { Send, CheckCircle2, Phone, Mail, MapPin } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function ContactSection() {
+  const { businessInfo } = useContentStore();
+  
   const [formData, setFormData] = useState({
     name: '',
     practice_name: '',
