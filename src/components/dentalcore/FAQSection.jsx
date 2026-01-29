@@ -6,7 +6,33 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { faqContent } from './contentConfig';
+
+const faqs = [
+  {
+    question: "How do I sterilize the UC CUT tips?",
+    answer: "All UC CUT tips (Metal #90, #110, Bovie, etc.) are fully autoclavable. They can be sterilized in a standard steam autoclave at 134°C (273°F). The main handpiece unit should be wiped down with a disinfectant and barrier-protected; it is NOT autoclavable."
+  },
+  {
+    question: "What is the warranty period?",
+    answer: "The UC CUT unit comes with a 1-Year Manufacturer's Warranty covering defects in materials and workmanship. This ensures peace of mind for your practice."
+  },
+  {
+    question: "How does the vibration feature help?",
+    answer: "The unique sonic vibration (unlike standard heat carriers) helps to cut through gutta-percha cleanly. This micro-vibration prevents the heated tip from sticking to the cone, ensuring you don't accidentally pull the obturation material out of the canal."
+  },
+  {
+    question: "How fast does it heat up?",
+    answer: "The UC CUT features instantaneous heating, reaching up to 180°C at the tip within seconds. The heat is concentrated at the apical 2-3mm of the tip for safety and precision."
+  },
+  {
+    question: "Is the battery replaceable?",
+    answer: "The UC CUT uses a high-performance built-in rechargeable battery designed for long-lasting use. It charges quickly via the included charging base."
+  },
+  {
+    question: "Can I use it for soft tissue?",
+    answer: "Yes! With the specialized 'Bovie' (SB) tip, the UC CUT functions as a precise gum cautery device for gingivectomies and hemostasis."
+  }
+];
 
 export default function FAQSection() {
   return (
@@ -18,9 +44,9 @@ export default function FAQSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-cyan-400 font-semibold tracking-wider text-sm uppercase mb-2 block">{faqContent.badge}</span>
+          <span className="text-cyan-400 font-semibold tracking-wider text-sm uppercase mb-2 block">Common Questions</span>
           <h2 className="text-3xl lg:text-4xl font-bold text-white">
-            {faqContent.sectionTitle}
+            Frequently Asked Questions
           </h2>
         </motion.div>
 
@@ -30,7 +56,7 @@ export default function FAQSection() {
           viewport={{ once: true }}
         >
           <Accordion type="single" collapsible className="w-full space-y-4">
-            {faqContent.faqs.map((faq, index) => (
+            {faqs.map((faq, index) => (
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
