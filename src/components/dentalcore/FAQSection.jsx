@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HelpCircle, ChevronDown, Check } from 'lucide-react';
 import {
   Accordion,
   AccordionContent,
@@ -37,7 +36,7 @@ const faqs = [
 
 export default function FAQSection() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-[#0a0a0a]">
       <div className="container mx-auto px-6 lg:px-12 max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -45,8 +44,8 @@ export default function FAQSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-cyan-600 font-semibold tracking-wider text-sm uppercase mb-2 block">Common Questions</span>
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+          <span className="text-cyan-400 font-semibold tracking-wider text-sm uppercase mb-2 block">Common Questions</span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white">
             Frequently Asked Questions
           </h2>
         </motion.div>
@@ -61,12 +60,12 @@ export default function FAQSection() {
               <AccordionItem 
                 key={index} 
                 value={`item-${index}`}
-                className="border border-gray-100 rounded-xl px-6 bg-gray-50/50 hover:bg-gray-50 transition-colors"
+                className="border border-gray-800 rounded-xl px-6 bg-gray-900 hover:bg-gray-800 transition-colors"
               >
-                <AccordionTrigger className="text-left text-gray-900 font-semibold py-6 hover:no-underline">
+                <AccordionTrigger className="text-left text-white font-semibold py-6 hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 leading-relaxed pb-6">
+                <AccordionContent className="text-gray-400 leading-relaxed pb-6">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>

@@ -4,7 +4,7 @@ import { Quote, Star } from 'lucide-react';
 
 const testimonials = [
   {
-    text: "The vibration feature is a game-changer. It cuts through gutta-percha cleanly without ever pulling the cone out of the canal. It’s significantly faster than my old heat carrier.",
+    text: "The vibration feature is a game-changer. It cuts through gutta-percha cleanly without ever pulling the cone out of the canal. It's significantly faster than my old heat carrier.",
     author: "Endodontic Specialist",
     location: "California"
   },
@@ -22,8 +22,8 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-24 bg-gray-50 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] opacity-50" />
+    <section className="py-24 bg-[#050505] relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-full opacity-20 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-cyan-500/10 via-transparent to-transparent" />
       
       <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <motion.div
@@ -32,10 +32,10 @@ export default function TestimonialsSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
             Trusted by Clinicians
           </h2>
-          <p className="text-gray-500 max-w-2xl mx-auto">
+          <p className="text-gray-400 max-w-2xl mx-auto">
             See why dental professionals are upgrading to the UC CUT for their endodontic and soft tissue procedures.
           </p>
         </motion.div>
@@ -48,7 +48,7 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+              className="bg-gray-900 p-8 rounded-2xl border border-gray-800 hover:border-cyan-500/50 transition-all"
             >
               <div className="mb-6 flex items-center gap-1 text-yellow-400">
                 {[...Array(5)].map((_, i) => (
@@ -56,15 +56,15 @@ export default function TestimonialsSection() {
                 ))}
               </div>
               
-              <Quote className="w-8 h-8 text-cyan-100 mb-4" />
+              <Quote className="w-8 h-8 text-cyan-500/20 mb-4" />
               
-              <p className="text-gray-700 italic mb-6 leading-relaxed">
+              <p className="text-gray-300 italic mb-6 leading-relaxed">
                 "{item.text}"
               </p>
               
               <div>
-                <p className="font-bold text-gray-900">{item.author}</p>
-                <p className="text-sm text-cyan-600">{item.location}</p>
+                <p className="font-bold text-white">{item.author}</p>
+                <p className="text-sm text-cyan-400">{item.location}</p>
               </div>
             </motion.div>
           ))}
