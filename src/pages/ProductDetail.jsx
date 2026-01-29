@@ -42,7 +42,7 @@ export default function ProductDetail() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center">
         <Loader2 className="w-8 h-8 animate-spin text-cyan-400" />
       </div>
     );
@@ -50,7 +50,7 @@ export default function ProductDetail() {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-black flex items-center justify-center p-6">
+      <div className="min-h-screen bg-[#050505] flex items-center justify-center p-6">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-white mb-4">Product Not Found</h2>
           <Link to={createPageUrl('Home')}>
@@ -65,9 +65,9 @@ export default function ProductDetail() {
   }
 
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-[#050505]">
       {/* Header */}
-      <div className="bg-black border-b border-gray-800 sticky top-0 z-40">
+      <div className="bg-[#050505] border-b border-gray-800 sticky top-0 z-40">
         <div className="container mx-auto px-6 py-4">
           <Link to={createPageUrl('Home')}>
             <Button

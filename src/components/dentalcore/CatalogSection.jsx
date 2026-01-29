@@ -78,7 +78,7 @@ export default function CatalogSection() {
   };
 
   return (
-    <section id="catalog" className="py-24 bg-black">
+    <section id="catalog" className="py-24 bg-[#0a0a0a]">
       <div className="container mx-auto px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -107,7 +107,7 @@ export default function CatalogSection() {
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 h-12 bg-[#0a0a0a] border-gray-800 text-white focus:border-cyan-500"
+                className="pl-12 h-12 bg-[#050505] border-gray-800 text-white focus:border-cyan-500"
               />
               {searchQuery && (
                 <button
@@ -120,7 +120,7 @@ export default function CatalogSection() {
             </div>
 
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-full md:w-[200px] h-12 bg-[#0a0a0a] border-gray-800 text-white">
+              <SelectTrigger className="w-full md:w-[200px] h-12 bg-[#050505] border-gray-800 text-white">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>
@@ -209,7 +209,7 @@ export default function CatalogSection() {
               transition={{ delay: index * 0.05 }}
             >
               <Link to={`${createPageUrl('ProductDetail')}?id=${product.id}`}>
-                <div className="group bg-[#0a0a0a] rounded-2xl border border-gray-800 overflow-hidden hover:border-cyan-500/50 hover:-translate-y-1 transition-all duration-300">
+                <div className="group bg-[#050505] rounded-2xl border border-gray-800 overflow-hidden hover:border-cyan-500/50 hover:-translate-y-1 transition-all duration-300">
                   <div className="relative aspect-square bg-gray-900 p-6 flex items-center justify-center overflow-hidden">
                     <img 
                       src={product.image} 

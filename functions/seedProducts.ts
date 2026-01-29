@@ -8,7 +8,6 @@ const productsData = [
     description: 'Paste-type root canal sealer and filler based on pozzolan cement. Excellent physical and biological properties of MTA.',
     image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/379589678_image.png',
     popular: true,
-    itemCode: 'BIO-001',
     images: [
       'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/379589678_image.png',
     ],
@@ -40,7 +39,6 @@ const productsData = [
     description: 'Cordless Gutta Percha Cutter. Features interchangeable tips (0.5mm, 1.2mm, 2.0mm) for precise sizing and clean cuts.',
     image: 'https://kdentalsupplies.com/cdn/shop/files/GP-CUT-_-Fit-1_de2c8b15-4775-44fe-a2b6-f05c5e08ce48.jpg?v=1752124007&width=600',
     popular: false,
-    itemCode: 'INST-002',
     images: [
       'https://kdentalsupplies.com/cdn/shop/files/GP-CUT-_-Fit-1_de2c8b15-4775-44fe-a2b6-f05c5e08ce48.jpg?v=1752124007&width=600',
     ],
@@ -70,7 +68,6 @@ const productsData = [
     description: 'Cordless Passive Ultrasonic Irrigation. 30,000 vibrations/sec with flexible 90° bendable tips for curved canals.',
     image: 'https://kdentalsupplies.com/cdn/shop/files/UCONE-1_74a6c9ab-0980-4277-8c6d-b81e124cde28.jpg?v=1752124058&width=600',
     popular: true,
-    itemCode: 'ENDO-003',
     images: [
       'https://kdentalsupplies.com/cdn/shop/files/UCONE-1_74a6c9ab-0980-4277-8c6d-b81e124cde28.jpg?v=1752124058&width=600',
     ],
@@ -102,7 +99,6 @@ const productsData = [
     description: 'High-performance curing light with 1,200 mW/cm² intensity. Features 3s/5s modes and built-in light guides.',
     image: 'https://dowelldentalproducts.com/cdn/shop/files/EPCUREW.png?v=1728590132&width=800',
     popular: false,
-    itemCode: 'CURE-004',
     images: [
       'https://dowelldentalproducts.com/cdn/shop/files/EPCUREW.png?v=1728590132&width=800',
     ],
@@ -132,7 +128,6 @@ const productsData = [
     description: 'Compact and lightweight curing light. Available in Black, White, and Green. Perfect for quick procedures.',
     image: 'https://kdentalsupplies.com/cdn/shop/files/black.jpg?v=1752123906&width=416',
     popular: false,
-    itemCode: 'CURE-005',
     images: [
       'https://kdentalsupplies.com/cdn/shop/files/black.jpg?v=1752123906&width=416',
     ],
@@ -162,7 +157,6 @@ const productsData = [
     description: 'LED Transilluminator for detecting fractures, caries, and root canal orifices. Compact and battery operated.',
     image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/388efd2cf_image.png',
     popular: false,
-    itemCode: 'DIAG-006',
     images: [
       'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/388efd2cf_image.png',
     ],
@@ -192,7 +186,6 @@ const productsData = [
     description: 'Replacement metal tip for UC ONE ultrasonic irrigation system. Durable and autoclavable.',
     image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/a9c9658c0_image.png',
     popular: false,
-    itemCode: 'ACC-007',
     images: [
       'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/a9c9658c0_image.png',
     ],
@@ -222,7 +215,6 @@ const productsData = [
     description: 'Disposable plastic tips for UC ONE. Flexible design for curved canals. 50 pcs/pack.',
     image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/8e30013bb_image.png',
     popular: false,
-    itemCode: 'ACC-008',
     images: [
       'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/6916a1244818477a36fdb44c/8e30013bb_image.png',
     ],
@@ -256,18 +248,21 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Unauthorized - Admin only' }, { status: 403 });
     }
 
-    // Delete all existing products
+    // Check if products already exist
     const existing = await base44.asServiceRole.entities.Product.list();
-    for (const product of existing) {
-      await base44.asServiceRole.entities.Product.delete(product.id);
+    if (existing.length > 0) {
+      return Response.json({ 
+        message: 'Products already seeded', 
+        count: existing.length 
+      });
     }
 
-    // Bulk create new products
+    // Bulk create products
     await base44.asServiceRole.entities.Product.bulkCreate(productsData);
 
     return Response.json({ 
       success: true, 
-      message: 'Products wiped and re-seeded successfully',
+      message: 'Products seeded successfully',
       count: productsData.length 
     });
   } catch (error) {
