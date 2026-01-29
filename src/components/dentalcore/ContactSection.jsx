@@ -250,7 +250,7 @@ export default function ContactSection() {
 
         {/* Footer */}
         <div className="mt-20 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
-          © {new Date().getFullYear()} Dental Core Supplies. UC CUT by EPDENT. All rights reserved.
+          © {new Date().getFullYear()} Dental Core Instruments LLC. UC CUT by EPDENT. All rights reserved.
         </div>
       </div>
     </section>

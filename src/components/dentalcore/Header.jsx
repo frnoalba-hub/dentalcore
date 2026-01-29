@@ -50,7 +50,7 @@ export default function Header() {
             {/* Logo */}
             <a href="#" className="flex items-center">
               <span className="text-xl md:text-2xl font-bold text-white tracking-tight">
-                <span className="text-cyan-400">Dental</span> Core Supplies
+                <span className="text-cyan-400">Dental</span> Core Instruments LLC
               </span>
             </a>
 

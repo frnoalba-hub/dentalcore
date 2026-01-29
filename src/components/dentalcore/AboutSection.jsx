@@ -19,7 +19,7 @@ export default function AboutSection() {
         >
           <span className="text-cyan-400 font-semibold tracking-wider text-sm uppercase mb-2 block">Our Story</span>
           <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-            About Dental Core Supplies
+            About Dental Core Instruments LLC
           </h2>
           <div className="w-20 h-1.5 bg-cyan-500 mx-auto rounded-full" />
         </motion.div>
@@ -35,7 +35,7 @@ export default function AboutSection() {
           <div className="p-10 lg:p-14 bg-gray-900 rounded-3xl border border-gray-800">
             <div className="relative z-10 space-y-6 text-center max-w-3xl mx-auto">
               <p className="text-xl lg:text-2xl text-gray-300 leading-relaxed font-light">
-                Dental Core Supplies is a <span className="text-white font-medium">dentist-focused distributor</span> based in California. 
+                Dental Core Instruments LLC is a <span className="text-white font-medium">dentist-focused distributor</span> based in California. 
                 We are dedicated to bringing practical, high-value innovations like the 
                 <span className="text-cyan-400 font-medium"> UC CUT by EPDENT</span> directly to local dental practices.
               </p>

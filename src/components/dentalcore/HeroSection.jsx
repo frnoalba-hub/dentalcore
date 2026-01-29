@@ -78,7 +78,7 @@ export default function HeroSection() {
                   <div>
                     <p className="text-sm text-gray-500 font-medium uppercase tracking-wider">Unit Only</p>
                     <div className="flex items-baseline gap-2">
-                      <span className="text-3xl font-bold text-white">$699</span>
+                      <span className="text-3xl font-bold text-white">$599</span>
                     </div>
                     <p className="text-xs text-gray-500 mt-1">Includes unit + 1 tip</p>
                   </div>
