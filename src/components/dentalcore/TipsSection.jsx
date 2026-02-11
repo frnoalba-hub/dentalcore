@@ -1,194 +1,75 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ZoomIn, Tag, Info } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Info } from 'lucide-react';
 
 const tips = [
-  {
-    id: 'bovie',
-    name: 'SB Tip (Bovie)',
-    itemCode: '1006-4',
-    description: 'Gum cautery & gingivectomy',
-    details: 'Specialized for precise soft-tissue cauterization and controlled gingivectomy procedures. Ideal for hemostasis and tissue management.',
-    image: 'https://usdentaloutlet.com/cdn/shop/files/sb-tip.png?v=1751916971',
-    price: '$160.00',
-  },
-  {
-    id: '90-tip',
-    name: '#90 Tip (Small Metal)',
-    itemCode: '1006-2',
-    description: 'For posterior teeth',
-    details: 'Small metal tip designed for posterior teeth. Reusable and autoclavable stainless steel.',
-    image: 'https://cdn.shopify.com/s/files/1/0699/5378/1926/files/UC_CUT_90_Metal_Tip.webp?v=1753651035',
-    price: '$160.00',
-  },
-  {
-    id: '110-tip',
-    name: '#110 Tip (Large Metal)',
-    itemCode: '1006-3',
-    description: 'For anterior teeth',
-    details: 'Large metal tip designed for anterior teeth. Reusable and autoclavable stainless steel.',
-    image: 'https://usdentaloutlet.com/cdn/shop/files/uc-cut-110.jpg?v=1751916973',
-    price: '$160.00',
-  },
-  {
-    id: 'b2',
-    name: 'B2 Tip',
-    itemCode: '1006-8',
-    description: 'Gutta-percha cutting',
-    details: 'Combines localized heat and sonic vibration to cut gutta-percha cleanly and efficiently without pulling the cone from the canal.',
-    image: 'https://usdentaloutlet.com/cdn/shop/files/uc-cut-b2-metal.png?v=1751916972',
-    price: '$160.00',
-  },
-  {
-    id: 'b8',
-    name: 'B8 Tip (Ball)',
-    itemCode: '1006-7',
-    description: 'Ball tip for precision work',
-    details: 'Ball-shaped green tip for specialized precision work and controlled heat application.',
-    image: 'https://usdentaloutlet.com/cdn/shop/files/UC-CUT-TIP-B8.png?v=1751916973',
-    price: '$160.00',
-  },
-  {
-    id: 'f-tip',
-    name: 'F Tip',
-    itemCode: '1006-5',
-    description: 'Vertical condensation / down-packing',
-    details: 'Designed for effective vertical condensation during obturation. Provides controlled compaction of gutta-percha in the canal.',
-    image: 'https://tricountydental.com/cdn/shop/files/uccutfTip_cae217dd-dbad-48c1-a1d5-81cdba86fcbb.webp?v=1757619032',
-    price: '$160.00',
-  },
-  {
-    id: 'fm-tip',
-    name: 'FM Tip',
-    itemCode: '1006-6',
-    description: 'Vertical condensation / down-packing',
-    details: 'Alternative geometry for down-packing procedures, offering versatility in obturation technique based on canal anatomy.',
-    image: 'https://tricountydental.com/cdn/shop/files/uccutfTip_cae217dd-dbad-48c1-a1d5-81cdba86fcbb.webp?v=1757619032',
-    price: '$160.00',
-  },
-  {
-    id: 'stand',
-    name: 'Tip Stand',
-    itemCode: '1006-9',
-    description: 'Storage for tips',
-    details: 'Convenient tip stand for organized storage and easy access to your UC CUT tips during procedures.',
-    image: 'https://cdn.shopify.com/s/files/1/0699/5378/1926/files/UC_CUT_Tip_Stand.webp?v=1753651036',
-    price: '$200.00',
-  },
+  { id: 'bovie', name: 'SB Tip (Bovie)', itemCode: '1006-4', description: 'Gum cautery & gingivectomy', details: 'Specialized for precise soft-tissue cauterization and controlled gingivectomy procedures.', image: 'https://usdentaloutlet.com/cdn/shop/files/sb-tip.png?v=1751916971', price: '$160' },
+  { id: '90-tip', name: '#90 Tip', itemCode: '1006-2', description: 'For posterior teeth', details: 'Small metal tip for posterior teeth. Reusable and autoclavable stainless steel.', image: 'https://cdn.shopify.com/s/files/1/0699/5378/1926/files/UC_CUT_90_Metal_Tip.webp?v=1753651035', price: '$160' },
+  { id: '110-tip', name: '#110 Tip', itemCode: '1006-3', description: 'For anterior teeth', details: 'Large metal tip for anterior teeth. Reusable and autoclavable stainless steel.', image: 'https://usdentaloutlet.com/cdn/shop/files/uc-cut-110.jpg?v=1751916973', price: '$160' },
+  { id: 'b2', name: 'B2 Tip', itemCode: '1006-8', description: 'Gutta-percha cutting', details: 'Combines heat and sonic vibration for clean, efficient GP cutting.', image: 'https://usdentaloutlet.com/cdn/shop/files/uc-cut-b2-metal.png?v=1751916972', price: '$160' },
+  { id: 'b8', name: 'B8 Tip (Ball)', itemCode: '1006-7', description: 'Ball tip for precision', details: 'Ball-shaped tip for specialized precision work and controlled heat application.', image: 'https://usdentaloutlet.com/cdn/shop/files/UC-CUT-TIP-B8.png?v=1751916973', price: '$160' },
+  { id: 'f-tip', name: 'F Tip', itemCode: '1006-5', description: 'Vertical condensation', details: 'For effective vertical condensation during obturation.', image: 'https://tricountydental.com/cdn/shop/files/uccutfTip_cae217dd-dbad-48c1-a1d5-81cdba86fcbb.webp?v=1757619032', price: '$160' },
+  { id: 'fm-tip', name: 'FM Tip', itemCode: '1006-6', description: 'Down-packing', details: 'Alternative geometry for down-packing based on canal anatomy.', image: 'https://tricountydental.com/cdn/shop/files/uccutfTip_cae217dd-dbad-48c1-a1d5-81cdba86fcbb.webp?v=1757619032', price: '$160' },
+  { id: 'stand', name: 'Tip Stand', itemCode: '1006-9', description: 'Organized storage', details: 'Convenient stand for tip organization during procedures.', image: 'https://cdn.shopify.com/s/files/1/0699/5378/1926/files/UC_CUT_Tip_Stand.webp?v=1753651036', price: '$200' },
 ];
 
 export default function TipsSection() {
-  const [selectedTip, setSelectedTip] = useState(null);
+  const [selected, setSelected] = useState(null);
 
   return (
-    <section id="tips" className="relative py-32 px-6 lg:px-12 bg-[#0a0a0a]">
-      <div className="container mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
-        >
-          <span className="text-cyan-400 font-semibold tracking-wider text-sm uppercase mb-2 block">Accessories</span>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-            Specialized Tips
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto font-light">
-            Interchangeable tips for every clinical scenario. All available with introductory pricing.
-          </p>
+    <section id="tips" className="relative py-28 px-6 lg:px-12 bg-[#0e1319]">
+      <div className="container mx-auto max-w-6xl">
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+          <span className="text-amber-400/70 font-semibold tracking-[0.2em] text-[11px] uppercase mb-3 block">Accessories</span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white/90 tracking-tight mb-3">Specialized Tips</h2>
+          <p className="text-base text-white/30 max-w-xl mx-auto">Interchangeable tips for every clinical scenario.</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
-          {tips.map((tip, index) => (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+          {tips.map((tip, i) => (
             <motion.div
               key={tip.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ delay: index * 0.05, duration: 0.5 }}
-              onClick={() => setSelectedTip(selectedTip?.id === tip.id ? null : tip)}
-              className={`group cursor-pointer relative bg-gray-900 rounded-3xl p-6 border transition-all duration-300 ${
-                selectedTip?.id === tip.id 
-                  ? 'border-cyan-500 ring-2 ring-cyan-500/20 shadow-xl scale-[1.02] z-10' 
-                  : 'border-gray-800 hover:border-cyan-500/50 hover:shadow-lg hover:-translate-y-1'
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.04 }}
+              onClick={() => setSelected(selected?.id === tip.id ? null : tip)}
+              className={`group cursor-pointer bg-white/[0.02] rounded-xl p-4 border transition-all duration-300 ${
+                selected?.id === tip.id ? 'border-amber-500/40 bg-amber-500/[0.04] ring-1 ring-amber-500/15' : 'border-white/[0.05] hover:border-amber-500/15'
               }`}
             >
-              <div className="aspect-square bg-gray-800 rounded-2xl mb-6 p-4 flex items-center justify-center overflow-hidden relative">
-                {tip.image ? (
-                  <img src={tip.image} alt={tip.name} className="w-full h-full object-contain" />
-                ) : (
-                  <ZoomIn className="w-10 h-10 text-gray-600" />
-                )}
-                <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-sm px-2 py-1 rounded-lg text-xs font-bold text-cyan-400 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                  View
-                </div>
+              <div className="aspect-square bg-white/[0.03] rounded-lg mb-3 p-3 flex items-center justify-center">
+                <img src={tip.image} alt={tip.name} className="w-full h-full object-contain" />
               </div>
-
-              <h3 className="text-lg font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">
-                {tip.name}
-              </h3>
-              <p className="text-sm text-gray-400 mb-4 line-clamp-2">
-                {tip.description}
-              </p>
-              
-              <div className="flex items-center justify-between pt-4 border-t border-gray-800">
-                <div>
-                  <span className="block text-lg font-bold text-cyan-400">{tip.price}</span>
-                  {tip.msrp && <span className="block text-xs text-gray-500 line-through">MSRP {tip.msrp}</span>}
-                </div>
-                <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center group-hover:bg-cyan-500/10 transition-colors">
-                  <Info className="w-4 h-4 text-gray-500 group-hover:text-cyan-400" />
-                </div>
+              <h3 className="text-sm font-semibold text-white/80 mb-0.5 group-hover:text-amber-300/80 transition-colors truncate">{tip.name}</h3>
+              <p className="text-[11px] text-white/25 mb-2 truncate">{tip.description}</p>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-bold text-amber-400/80">{tip.price}</span>
+                <Info className="w-3.5 h-3.5 text-white/15 group-hover:text-amber-400/50 transition-colors" />
               </div>
             </motion.div>
           ))}
         </div>
 
         <AnimatePresence>
-          {selectedTip && (
-            <motion.div
-              initial={{ opacity: 0, y: 20, height: 0 }}
-              animate={{ opacity: 1, y: 0, height: 'auto' }}
-              exit={{ opacity: 0, y: 20, height: 0 }}
-              className="overflow-hidden"
-            >
-              <div className="bg-gray-900 rounded-[2rem] border border-cyan-500/30 shadow-2xl p-8 lg:p-12 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-bl-full -mr-20 -mt-20" />
-                
-                <div className="grid lg:grid-cols-3 gap-12 relative z-10">
+          {selected && (
+            <motion.div initial={{ opacity: 0, y: 12, height: 0 }} animate={{ opacity: 1, y: 0, height: 'auto' }} exit={{ opacity: 0, y: 12, height: 0 }} className="overflow-hidden">
+              <div className="bg-white/[0.025] rounded-2xl border border-amber-500/20 p-8 lg:p-10">
+                <div className="grid lg:grid-cols-3 gap-10">
                   <div className="lg:col-span-1">
-                    <div className="aspect-square bg-gray-800 rounded-2xl p-8 flex items-center justify-center border border-gray-700">
-                      {selectedTip.image && (
-                        <img src={selectedTip.image} alt={selectedTip.name} className="w-full h-full object-contain" />
-                      )}
+                    <div className="aspect-square bg-white/[0.03] rounded-xl p-6 flex items-center justify-center border border-white/[0.05]">
+                      <img src={selected.image} alt={selected.name} className="w-full h-full object-contain" />
                     </div>
                   </div>
-                  
-                  <div className="lg:col-span-2 space-y-8">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-4 mb-4">
-                        <h3 className="text-3xl font-bold text-white">{selectedTip.name}</h3>
-                        <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 text-sm font-bold rounded-full border border-cyan-500/30">
-                          {selectedTip.itemCode}
-                        </span>
-                      </div>
-                      <p className="text-xl text-gray-300 leading-relaxed font-light">
-                        {selectedTip.details}
-                      </p>
+                  <div className="lg:col-span-2 flex flex-col justify-center">
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                      <h3 className="text-2xl font-bold text-white/90">{selected.name}</h3>
+                      <span className="px-2.5 py-0.5 bg-amber-500/10 text-amber-400/80 text-xs font-bold rounded-full border border-amber-500/20">{selected.itemCode}</span>
                     </div>
-
-                    <div className="flex items-center gap-12 p-6 bg-gray-800 rounded-2xl w-fit">
-                      <div>
-                        <p className="text-sm text-gray-400 font-medium uppercase tracking-wider mb-1">Our Price</p>
-                        <p className="text-4xl font-bold text-cyan-400">{selectedTip.price}</p>
-                      </div>
-                      <div className="h-12 w-px bg-gray-700" />
-                      <div>
-                        <p className="text-sm text-gray-400 font-medium uppercase tracking-wider mb-1">Retail Price</p>
-                        <p className="text-2xl font-bold text-gray-500 line-through">{selectedTip.msrp}</p>
-                      </div>
+                    <p className="text-base text-white/40 leading-relaxed mb-6">{selected.details}</p>
+                    <div className="p-4 bg-white/[0.02] rounded-xl border border-white/[0.05] w-fit">
+                      <p className="text-[10px] text-white/25 uppercase tracking-widest font-semibold mb-0.5">Price</p>
+                      <p className="text-3xl font-bold text-amber-400">{selected.price}</p>
                     </div>
                   </div>
                 </div>

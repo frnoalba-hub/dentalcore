@@ -18,8 +18,8 @@ export default function CatalogSection() {
   const [sortBy, setSortBy] = useState('popular');
   const [showFilters, setShowFilters] = useState(false);
   const { addItem, openCart } = useCartStore();
-  
-  const { data: products = [], isLoading, error } = useQuery({
+
+  const { data: products = [], isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: () => base44.entities.Product.list(),
   });
@@ -28,101 +28,48 @@ export default function CatalogSection() {
 
   const filteredAndSortedProducts = useMemo(() => {
     let filtered = products;
-
-    if (filter !== 'All') {
-      filtered = filtered.filter(p => p.category === filter);
-    }
-
+    if (filter !== 'All') filtered = filtered.filter(p => p.category === filter);
     if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(p => 
-        p.name.toLowerCase().includes(query) ||
-        p.description.toLowerCase().includes(query) ||
-        p.category.toLowerCase().includes(query)
-      );
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
     }
-
-    const sorted = [...filtered].sort((a, b) => {
+    return [...filtered].sort((a, b) => {
       switch (sortBy) {
-        case 'name-asc':
-          return a.name.localeCompare(b.name);
-        case 'name-desc':
-          return b.name.localeCompare(a.name);
-        case 'price-asc':
-          const priceA = parseFloat(a.price.replace(/[^0-9.]/g, '')) || 0;
-          const priceB = parseFloat(b.price.replace(/[^0-9.]/g, '')) || 0;
-          return priceA - priceB;
-        case 'price-desc':
-          const priceA2 = parseFloat(a.price.replace(/[^0-9.]/g, '')) || 0;
-          const priceB2 = parseFloat(b.price.replace(/[^0-9.]/g, '')) || 0;
-          return priceB2 - priceA2;
-        case 'popular':
-        default:
-          return (b.popular ? 1 : 0) - (a.popular ? 1 : 0);
+        case 'name-asc': return a.name.localeCompare(b.name);
+        case 'name-desc': return b.name.localeCompare(a.name);
+        case 'price-asc': return (parseFloat(a.price.replace(/[^0-9.]/g, '')) || 0) - (parseFloat(b.price.replace(/[^0-9.]/g, '')) || 0);
+        case 'price-desc': return (parseFloat(b.price.replace(/[^0-9.]/g, '')) || 0) - (parseFloat(a.price.replace(/[^0-9.]/g, '')) || 0);
+        default: return (b.popular ? 1 : 0) - (a.popular ? 1 : 0);
       }
     });
-
-    return sorted;
   }, [products, filter, searchQuery, sortBy]);
 
   const handleQuickAdd = (product, e) => {
     e.preventDefault();
     e.stopPropagation();
     addItem(product, 1);
-    toast.success(`Added ${product.name} to cart`, {
-      action: {
-        label: 'View Cart',
-        onClick: () => openCart(),
-      },
-    });
+    toast.success(`Added ${product.name} to cart`, { action: { label: 'View Cart', onClick: () => openCart() } });
   };
 
   return (
-    <section id="catalog" className="py-24 bg-[#0a0a0a]">
-      <div className="container mx-auto px-6 lg:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-cyan-400 font-semibold tracking-wider text-sm uppercase mb-2 block">
-            Complete Lineup
-          </span>
-          <h2 className="text-4xl font-bold text-white mb-6">
-            Innovative Dental Solutions
-          </h2>
-          <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-            Discover our full range of EPDENT products designed to enhance your clinical workflow.
-          </p>
+    <section id="catalog" className="py-28 bg-[#0c1117]">
+      <div className="container mx-auto px-6 lg:px-12 max-w-7xl">
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+          <span className="text-amber-400/70 font-semibold tracking-[0.2em] text-[11px] uppercase mb-3 block">Full Catalog</span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white/90 tracking-tight mb-3">Innovative Dental Solutions</h2>
+          <p className="text-base text-white/30 max-w-xl mx-auto">Discover the full range of EPDENT products.</p>
         </motion.div>
 
-        {/* Search and Filter Bar */}
-        <div className="max-w-5xl mx-auto mb-12">
-          <div className="flex flex-col md:flex-row gap-4">
+        {/* Filters */}
+        <div className="max-w-4xl mx-auto mb-10">
+          <div className="flex flex-col md:flex-row gap-3">
             <div className="flex-1 relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
-              <Input
-                type="text"
-                placeholder="Search products..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-12 h-12 bg-[#050505] border-gray-800 text-white focus:border-cyan-500"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery('')}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-300"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              )}
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-white/20" />
+              <Input type="text" placeholder="Search products..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="pl-10 h-11 bg-white/[0.03] border-white/[0.06] text-white placeholder:text-white/20 focus:border-amber-500/30 rounded-xl" />
+              {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/20 hover:text-white/50"><X className="w-4 h-4" /></button>}
             </div>
-
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-full md:w-[200px] h-12 bg-[#050505] border-gray-800 text-white">
-                <SelectValue placeholder="Sort by" />
-              </SelectTrigger>
+              <SelectTrigger className="w-full md:w-[180px] h-11 bg-white/[0.03] border-white/[0.06] text-white/60 rounded-xl"><SelectValue placeholder="Sort by" /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="popular">Most Popular</SelectItem>
                 <SelectItem value="name-asc">Name (A-Z)</SelectItem>
@@ -131,128 +78,65 @@ export default function CatalogSection() {
                 <SelectItem value="price-desc">Price (High-Low)</SelectItem>
               </SelectContent>
             </Select>
-
-            <Button
-              variant="outline"
-              onClick={() => setShowFilters(!showFilters)}
-              className="h-12 px-6 border-gray-800 md:hidden"
-            >
-              <SlidersHorizontal className="w-5 h-5 mr-2" />
-              Filters
+            <Button variant="outline" onClick={() => setShowFilters(!showFilters)} className="h-11 px-5 border-white/[0.06] bg-white/[0.03] md:hidden rounded-xl">
+              <SlidersHorizontal className="w-4 h-4 mr-2" />Filters
             </Button>
           </div>
 
           <AnimatePresence>
             {(showFilters || window.innerWidth >= 768) && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                className="overflow-hidden"
-              >
-                <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t border-gray-800">
+              <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
+                <div className="flex flex-wrap gap-2 mt-5 pt-5 border-t border-white/[0.04]">
                   {categories.map((cat) => (
-                    <button
-                      key={cat}
-                      onClick={() => setFilter(cat)}
-                      className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                        filter === cat
-                          ? 'bg-cyan-500 text-black'
-                          : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
-                      }`}
-                    >
-                      {cat}
-                    </button>
+                    <button key={cat} onClick={() => setFilter(cat)} className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all ${filter === cat ? 'bg-amber-500 text-[#0c1117]' : 'bg-white/[0.04] text-white/40 hover:bg-white/[0.06] hover:text-white/60'}`}>{cat}</button>
                   ))}
                 </div>
               </motion.div>
             )}
           </AnimatePresence>
 
-          <div className="mt-6 text-center text-sm text-gray-500">
-            Showing {filteredAndSortedProducts.length} of {products.length} products
-            {searchQuery && ` for "${searchQuery}"`}
-            {filter !== 'All' && ` in ${filter}`}
+          <div className="mt-4 text-center text-[11px] text-white/20">
+            {filteredAndSortedProducts.length} of {products.length} products
+            {searchQuery && ` for "${searchQuery}"`}{filter !== 'All' && ` in ${filter}`}
           </div>
         </div>
 
-        {/* Product Grid */}
+        {/* Grid */}
         {isLoading ? (
-          <div className="flex justify-center py-16">
-            <Loader2 className="w-8 h-8 animate-spin text-cyan-400" />
-          </div>
+          <div className="flex justify-center py-16"><Loader2 className="w-6 h-6 animate-spin text-amber-400/50" /></div>
         ) : filteredAndSortedProducts.length === 0 ? (
           <div className="text-center py-16">
-            <div className="w-20 h-20 bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Search className="w-10 h-10 text-gray-600" />
-            </div>
-            <h3 className="text-xl font-semibold text-white mb-2">No products found</h3>
-            <p className="text-gray-400 mb-6">Try adjusting your search or filters</p>
-            <Button
-              onClick={() => {
-                setSearchQuery('');
-                setFilter('All');
-              }}
-              variant="outline"
-              className="border-gray-700 hover:bg-gray-800"
-            >
-              Clear all filters
-            </Button>
+            <Search className="w-10 h-10 text-white/10 mx-auto mb-3" />
+            <h3 className="text-base font-semibold text-white/60 mb-1">No products found</h3>
+            <p className="text-sm text-white/25 mb-4">Try adjusting your search or filters</p>
+            <Button onClick={() => { setSearchQuery(''); setFilter('All'); }} variant="outline" className="border-white/[0.08] text-white/40 hover:bg-white/[0.04] text-xs">Clear filters</Button>
           </div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {filteredAndSortedProducts.map((product, index) => (
-            <motion.div
-              key={product.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-            >
-              <Link to={`${createPageUrl('ProductDetail')}?id=${product.id}`}>
-                <div className="group bg-[#050505] rounded-2xl border border-gray-800 overflow-hidden hover:border-cyan-500/50 hover:-translate-y-1 transition-all duration-300">
-                  <div className="relative aspect-square bg-gray-900 p-6 flex items-center justify-center overflow-hidden">
-                    <img 
-                      src={product.image} 
-                      alt={product.name}
-                      className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                    />
-                    {product.popular && (
-                      <div className="absolute top-3 left-3">
-                        <Badge className="bg-cyan-500 text-black border-0 font-bold">Popular</Badge>
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="p-6">
-                    <div className="flex items-start justify-between mb-2">
-                      <div>
-                        <p className="text-xs text-cyan-400 font-semibold uppercase tracking-wider mb-1">
-                          {product.category}
-                        </p>
-                        <h3 className="text-lg font-bold text-white leading-tight">
-                          {product.name}
-                        </h3>
-                      </div>
-                      <span className="font-bold text-white bg-gray-800 px-2 py-1 rounded-lg">
-                        {product.price}
-                      </span>
+              <motion.div key={product.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.03 }}>
+                <Link to={`${createPageUrl('ProductDetail')}?id=${product.id}`}>
+                  <div className="group bg-white/[0.02] rounded-xl border border-white/[0.05] overflow-hidden hover:border-amber-500/20 hover:-translate-y-0.5 transition-all duration-300">
+                    <div className="relative aspect-square bg-white/[0.02] p-5 flex items-center justify-center">
+                      <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
+                      {product.popular && <div className="absolute top-2.5 left-2.5"><Badge className="bg-amber-500 text-[#0c1117] border-0 font-bold text-[10px] px-2 py-0.5">Popular</Badge></div>}
                     </div>
-                    
-                    <p className="text-sm text-gray-400 mb-6 line-clamp-2">
-                      {product.description}
-                    </p>
-
-                    <Button 
-                      onClick={(e) => handleQuickAdd(product, e)}
-                      className="w-full bg-gray-800 border border-gray-700 text-white hover:border-cyan-500 hover:bg-cyan-500/10 font-semibold transition-all duration-300"
-                    >
-                      <ShoppingBag className="w-4 h-4 mr-2" />
-                      Quick Add
-                    </Button>
+                    <div className="p-5">
+                      <div className="flex items-start justify-between mb-1.5">
+                        <div className="min-w-0 flex-1 mr-2">
+                          <p className="text-[10px] text-amber-400/50 font-semibold uppercase tracking-wider mb-0.5">{product.category}</p>
+                          <h3 className="text-sm font-semibold text-white/80 leading-snug truncate">{product.name}</h3>
+                        </div>
+                        <span className="text-sm font-bold text-white/70 bg-white/[0.04] px-2 py-0.5 rounded-md flex-shrink-0">{product.price}</span>
+                      </div>
+                      <p className="text-xs text-white/25 mb-4 line-clamp-2 leading-relaxed">{product.description}</p>
+                      <Button onClick={(e) => handleQuickAdd(product, e)} className="w-full h-9 bg-white/[0.04] border border-white/[0.06] text-white/50 hover:border-amber-500/30 hover:bg-amber-500/[0.06] hover:text-amber-400/80 font-medium text-xs transition-all">
+                        <ShoppingBag className="w-3.5 h-3.5 mr-1.5" />Add to Cart
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            </motion.div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         )}

@@ -5,67 +5,37 @@ import { useContentStore } from '../store/contentStore';
 
 export default function AboutSection() {
   const { aboutContent } = useContentStore();
-
-  const iconMap = {
-    'Doctor-Focused': Heart,
-    'Personal Support': MessageCircle,
-    'Curated Excellence': Award,
-  };
+  const iconMap = { 'Doctor-Focused': Heart, 'Personal Support': MessageCircle, 'Curated Excellence': Award };
 
   return (
-    <section id="about" className="relative py-32 px-6 lg:px-12 bg-[#050505] overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-cyan-500/3 -skew-x-12 opacity-50 z-0" />
-
+    <section id="about" className="relative py-28 px-6 lg:px-12 bg-[#0c1117] overflow-hidden">
       <div className="container mx-auto max-w-5xl relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <span className="text-cyan-400 font-semibold tracking-wider text-sm uppercase mb-3 block">{aboutContent.tagline}</span>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-white tracking-tight">
-            {aboutContent.title}
-          </h2>
-          <div className="w-16 h-1 bg-gradient-to-r from-cyan-500 to-cyan-400 mx-auto rounded-full" />
+        <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
+          <span className="text-amber-400/70 font-semibold tracking-[0.2em] text-[11px] uppercase mb-3 block">{aboutContent.tagline}</span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-white/90 tracking-tight mb-4">{aboutContent.title}</h2>
+          <div className="w-12 h-0.5 bg-gradient-to-r from-amber-500 to-amber-400 mx-auto rounded-full" />
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.7 }}
-          className="relative mb-20"
-        >
-          <div className="p-10 lg:p-14 bg-gray-900/50 backdrop-blur-sm rounded-3xl border border-gray-800/60">
-            <div className="relative z-10 space-y-6 text-center max-w-3xl mx-auto">
-              {aboutContent.paragraphs.map((paragraph, idx) => (
-                <p key={idx} className={idx === 0 ? "text-xl lg:text-2xl text-gray-300 leading-relaxed font-light" : "text-lg text-gray-400 leading-relaxed"}>
-                  {paragraph}
-                </p>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="relative mb-16">
+          <div className="p-8 lg:p-12 bg-white/[0.02] rounded-2xl border border-white/[0.05]">
+            <div className="space-y-5 text-center max-w-2xl mx-auto">
+              {aboutContent.paragraphs.map((p, i) => (
+                <p key={i} className={i === 0 ? "text-lg text-white/45 leading-relaxed font-light" : "text-base text-white/30 leading-relaxed"}>{p}</p>
               ))}
             </div>
           </div>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-5">
           {aboutContent.values.map((item, i) => {
             const Icon = iconMap[item.title] || Heart;
             return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 + (i * 0.1), duration: 0.5 }}
-                className="group bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-800/60 hover:border-cyan-500/30 transition-all duration-300"
-              >
-                <div className="inline-flex p-4 bg-cyan-500/10 rounded-2xl mb-6 transition-colors duration-300 border border-cyan-500/20 group-hover:bg-cyan-500/15">
-                  <Icon className="w-7 h-7 text-cyan-400" />
+              <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.08 }} className="group bg-white/[0.02] p-7 rounded-2xl border border-white/[0.05] hover:border-amber-500/15 transition-all duration-300">
+                <div className="inline-flex p-3.5 bg-amber-500/[0.06] rounded-xl mb-5 border border-amber-500/10 group-hover:border-amber-500/20 transition-colors">
+                  <Icon className="w-6 h-6 text-amber-400/70" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
-                <p className="text-gray-400 leading-relaxed">{item.desc}</p>
+                <h3 className="text-base font-semibold mb-2 text-white/85">{item.title}</h3>
+                <p className="text-sm text-white/30 leading-relaxed">{item.desc}</p>
               </motion.div>
             );
           })}
