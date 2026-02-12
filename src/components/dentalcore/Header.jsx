@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Menu, X, Phone } from 'lucide-react';
+import { ShoppingBag, Menu, X, Phone, Mail } from 'lucide-react';
 import { companyInfo } from './productsData';
 import { useCartStore } from '../store/cartStore';
 
 const navLinks = [
-  { label: 'Catalog', id: 'catalog' },
+  { label: 'Products', id: 'catalog' },
   { label: 'Featured', id: 'featured' },
-  { label: 'Gallery', id: 'gallery' },
+  { label: 'Reviews', id: 'testimonials' },
   { label: 'About', id: 'about' },
   { label: 'Contact', id: 'contact' },
 ];
@@ -19,7 +19,7 @@ export default function Header() {
   const itemCount = getItemCount();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
@@ -32,62 +32,70 @@ export default function Header() {
 
   return (
     <>
+      {/* Top bar */}
+      <div className="bg-slate-900 text-white/70 text-xs hidden md:block">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center h-9">
+          <div className="flex items-center gap-5">
+            <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-1.5 hover:text-amber-400 transition-colors">
+              <Mail className="w-3 h-3" />
+              {companyInfo.email}
+            </a>
+            <a href={`tel:${companyInfo.phone}`} className="flex items-center gap-1.5 hover:text-amber-400 transition-colors">
+              <Phone className="w-3 h-3" />
+              {companyInfo.phone}
+            </a>
+          </div>
+          <span className="text-white/40">California-Based Dental Supplier</span>
+        </div>
+      </div>
+
+      {/* Main nav */}
       <header
-        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+        className={`sticky top-0 w-full z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-[#0c1117]/90 backdrop-blur-2xl border-b border-amber-500/5 shadow-xl shadow-black/20'
-            : 'bg-transparent'
+            ? 'bg-white/95 backdrop-blur-xl shadow-sm border-b border-gray-100'
+            : 'bg-white border-b border-gray-100'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="h-[72px] flex items-center justify-between">
+          <div className="h-16 flex items-center justify-between">
             {/* Logo */}
             <a href="#" className="flex items-center gap-3 group">
-              <div className="w-9 h-9 bg-gradient-to-br from-amber-400 to-amber-600 rounded-lg flex items-center justify-center font-black text-[#0c1117] text-base shadow-lg shadow-amber-500/20 group-hover:shadow-amber-500/40 transition-shadow">
+              <div className="w-10 h-10 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center font-black text-white text-lg shadow-lg shadow-amber-500/20">
                 D
               </div>
-              <div className="hidden sm:block">
-                <span className="text-[15px] font-semibold tracking-tight text-white/90">
+              <div>
+                <span className="text-base font-bold tracking-tight text-slate-900">
                   DENTAL CORE
                 </span>
-                <span className="block text-[9px] tracking-[0.3em] text-white/30 uppercase -mt-0.5 font-medium">
-                  Instruments
+                <span className="block text-[9px] tracking-[0.25em] text-slate-400 uppercase -mt-0.5 font-semibold">
+                  Instruments LLC
                 </span>
               </div>
             </a>
 
             {/* Desktop nav */}
-            <nav className="hidden lg:flex items-center gap-0.5">
+            <nav className="hidden lg:flex items-center gap-1">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className="px-3.5 py-2 text-[13px] font-medium text-white/40 hover:text-white/90 rounded-lg hover:bg-white/[0.04] transition-all duration-200"
+                  className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-50 transition-all"
                 >
                   {link.label}
                 </button>
               ))}
             </nav>
 
-            {/* Right side */}
-            <div className="flex items-center gap-2.5">
-              <a
-                href={`tel:${companyInfo.phone}`}
-                className="hidden md:flex items-center gap-1.5 text-[11px] text-white/30 hover:text-amber-400/80 transition-colors font-medium"
-              >
-                <Phone className="w-3 h-3" />
-                {companyInfo.phone}
-              </a>
-
-              <div className="w-px h-5 bg-white/10 hidden md:block mx-1" />
-
+            {/* Right */}
+            <div className="flex items-center gap-3">
               <button
                 onClick={openCart}
-                className="relative p-2.5 rounded-xl hover:bg-white/[0.06] transition-all"
+                className="relative p-2.5 rounded-xl hover:bg-slate-50 transition-all"
               >
-                <ShoppingBag className="w-[18px] h-[18px] text-white/50" />
+                <ShoppingBag className="w-5 h-5 text-slate-700" />
                 {itemCount > 0 && (
-                  <span className="absolute -top-0.5 -right-0.5 w-4.5 h-4.5 min-w-[18px] bg-amber-500 text-[#0c1117] text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
+                  <span className="absolute -top-0.5 -right-0.5 min-w-[18px] h-[18px] bg-amber-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center leading-none">
                     {itemCount}
                   </span>
                 )}
@@ -95,9 +103,9 @@ export default function Header() {
 
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2.5 rounded-xl hover:bg-white/[0.06] transition-all"
+                className="lg:hidden p-2.5 rounded-xl hover:bg-slate-50 transition-all"
               >
-                {mobileOpen ? <X className="w-5 h-5 text-white/60" /> : <Menu className="w-5 h-5 text-white/60" />}
+                {mobileOpen ? <X className="w-5 h-5 text-slate-700" /> : <Menu className="w-5 h-5 text-slate-700" />}
               </button>
             </div>
           </div>
@@ -111,19 +119,19 @@ export default function Header() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
-            className="fixed inset-x-0 top-[72px] z-40 bg-[#0c1117]/98 backdrop-blur-2xl border-b border-white/5 lg:hidden"
+            className="fixed inset-x-0 top-[64px] z-40 bg-white/98 backdrop-blur-xl border-b border-gray-200 lg:hidden shadow-lg"
           >
-            <nav className="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-0.5">
+            <nav className="max-w-7xl mx-auto px-6 py-3 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className="text-left px-4 py-3 text-white/60 hover:text-white hover:bg-white/[0.04] rounded-xl font-medium text-sm transition-all"
+                  className="text-left px-4 py-3 text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-xl font-medium text-sm transition-all"
                 >
                   {link.label}
                 </button>
               ))}
-              <a href={`tel:${companyInfo.phone}`} className="mt-3 flex items-center gap-2 px-4 py-3 text-amber-400/80 font-medium text-sm">
+              <a href={`tel:${companyInfo.phone}`} className="mt-2 flex items-center gap-2 px-4 py-3 text-amber-600 font-semibold text-sm">
                 <Phone className="w-4 h-4" />
                 {companyInfo.phone}
               </a>
