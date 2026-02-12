@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
@@ -6,7 +6,9 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Pencil, Upload, Loader2, Image as ImageIcon } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Pencil, Upload, Loader2, Image as ImageIcon, Search, X, Plus, Trash2, GripVertical } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function AdminProducts() {
@@ -14,12 +16,28 @@ export default function AdminProducts() {
   const [formData, setFormData] = useState({});
   const [uploading, setUploading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [categoryFilter, setCategoryFilter] = useState('all');
+  const [dragActive, setDragActive] = useState(false);
   const queryClient = useQueryClient();
 
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['admin-products'],
     queryFn: () => base44.entities.Product.list(),
   });
+
+  const categories = useMemo(() => ['all', ...new Set(products.map(p => p.category))], [products]);
+
+  const filteredProducts = useMemo(() => {
+    return products.filter(p => {
+      const matchesSearch = !searchQuery || 
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.category.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCategory = categoryFilter === 'all' || p.category === categoryFilter;
+      return matchesSearch && matchesCategory;
+    });
+  }, [products, searchQuery, categoryFilter]);
 
   const updateMutation = useMutation({
     mutationFn: ({ id, data }) => base44.entities.Product.update(id, data),
@@ -43,11 +61,37 @@ export default function AdminProducts() {
       price: product.price,
       description: product.description,
       image: product.image,
+      images: product.images || [],
+      variants: product.variants || [],
     });
     setDialogOpen(true);
   };
 
-  const handleImageUpload = async (e) => {
+  const handleImageUpload = async (files) => {
+    if (!files || files.length === 0) return;
+
+    setUploading(true);
+    try {
+      const uploadPromises = Array.from(files).map(file => 
+        base44.integrations.Core.UploadFile({ file })
+      );
+      const results = await Promise.all(uploadPromises);
+      const urls = results.map(r => r.file_url);
+      
+      setFormData(prev => ({
+        ...prev,
+        images: [...(prev.images || []), ...urls]
+      }));
+      
+      toast.success(`${urls.length} image(s) uploaded successfully`);
+    } catch (error) {
+      toast.error('Failed to upload images');
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleMainImageUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
@@ -55,12 +99,95 @@ export default function AdminProducts() {
     try {
       const result = await base44.integrations.Core.UploadFile({ file });
       setFormData({ ...formData, image: result.file_url });
-      toast.success('Image uploaded successfully');
+      toast.success('Main image uploaded');
     } catch (error) {
       toast.error('Failed to upload image');
     } finally {
       setUploading(false);
     }
+  };
+
+  const handleDrop = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragActive(false);
+    handleImageUpload(e.dataTransfer.files);
+  }, []);
+
+  const handleDrag = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") {
+      setDragActive(true);
+    } else if (e.type === "dragleave") {
+      setDragActive(false);
+    }
+  }, []);
+
+  const removeImage = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      images: prev.images.filter((_, i) => i !== index)
+    }));
+  };
+
+  const setPrimaryImage = (url) => {
+    setFormData(prev => ({
+      ...prev,
+      image: url
+    }));
+    toast.success('Primary image set');
+  };
+
+  const reorderImages = (fromIndex, toIndex) => {
+    setFormData(prev => {
+      const newImages = [...prev.images];
+      const [removed] = newImages.splice(fromIndex, 1);
+      newImages.splice(toIndex, 0, removed);
+      return { ...prev, images: newImages };
+    });
+  };
+
+  const addVariant = () => {
+    const newVariant = {
+      id: Date.now().toString(),
+      name: '',
+      sku: '',
+      price: formData.price,
+      options: {},
+      image: '',
+      stock: 0
+    };
+    setFormData(prev => ({
+      ...prev,
+      variants: [...(prev.variants || []), newVariant]
+    }));
+  };
+
+  const updateVariant = (index, field, value) => {
+    setFormData(prev => {
+      const newVariants = [...prev.variants];
+      newVariants[index] = { ...newVariants[index], [field]: value };
+      return { ...prev, variants: newVariants };
+    });
+  };
+
+  const updateVariantOption = (index, optionKey, optionValue) => {
+    setFormData(prev => {
+      const newVariants = [...prev.variants];
+      newVariants[index] = {
+        ...newVariants[index],
+        options: { ...newVariants[index].options, [optionKey]: optionValue }
+      };
+      return { ...prev, variants: newVariants };
+    });
+  };
+
+  const removeVariant = (index) => {
+    setFormData(prev => ({
+      ...prev,
+      variants: prev.variants.filter((_, i) => i !== index)
+    }));
   };
 
   const handleSave = () => {
@@ -84,11 +211,51 @@ export default function AdminProducts() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Product Management</h1>
-          <p className="text-gray-500 mt-1">Manage your product catalog and images</p>
+          <p className="text-gray-500 mt-1">Manage your product catalog, variants, and images</p>
         </div>
 
+        {/* Search and Filters */}
+        <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6">
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+            <Select value={categoryFilter} onValueChange={setCategoryFilter}>
+              <SelectTrigger className="w-full md:w-[200px]">
+                <SelectValue placeholder="Filter by category" />
+              </SelectTrigger>
+              <SelectContent>
+                {categories.map(cat => (
+                  <SelectItem key={cat} value={cat}>
+                    {cat === 'all' ? 'All Categories' : cat}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="mt-3 text-sm text-gray-500">
+            Showing {filteredProducts.length} of {products.length} products
+          </div>
+        </div>
+
+        {/* Products Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <div key={product.id} className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
               <div className="aspect-square bg-gray-100 relative">
                 {product.image ? (
@@ -105,106 +272,304 @@ export default function AdminProducts() {
                 <div className={`${product.image ? 'hidden' : 'flex'} absolute inset-0 items-center justify-center text-gray-400`}>
                   <ImageIcon className="w-16 h-16" />
                 </div>
+                {product.variants && product.variants.length > 0 && (
+                  <div className="absolute top-2 right-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+                    {product.variants.length} variants
+                  </div>
+                )}
               </div>
               <div className="p-4">
                 <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">{product.category}</div>
                 <h3 className="font-semibold text-gray-900 mb-1 line-clamp-1">{product.name}</h3>
                 <p className="text-sm text-gray-500 mb-3">{product.price}</p>
-                <Dialog open={dialogOpen && editingProduct?.id === product.id} onOpenChange={(open) => {
-                  setDialogOpen(open);
-                  if (!open) setEditingProduct(null);
-                }}>
-                  <DialogTrigger asChild>
-                    <Button onClick={() => handleEdit(product)} variant="outline" size="sm" className="w-full">
-                      <Pencil className="w-4 h-4 mr-2" />
-                      Edit Product
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-                    <DialogHeader>
-                      <DialogTitle>Edit Product</DialogTitle>
-                    </DialogHeader>
-                    <div className="space-y-4 py-4">
-                      <div>
-                        <Label>Product Image</Label>
-                        <div className="mt-2 space-y-3">
-                          {formData.image && (
-                            <div className="aspect-square w-full max-w-xs mx-auto bg-gray-100 rounded-lg overflow-hidden">
-                              <img src={formData.image} alt="Preview" className="w-full h-full object-contain p-4" />
-                            </div>
-                          )}
-                          <div className="flex items-center gap-2">
-                            <Input
-                              type="file"
-                              accept="image/*"
-                              onChange={handleImageUpload}
-                              disabled={uploading}
-                              className="flex-1"
-                            />
-                            {uploading && <Loader2 className="w-5 h-5 animate-spin text-gray-400" />}
-                          </div>
-                          <div className="text-xs text-gray-500">Or paste image URL below:</div>
-                          <Input
-                            value={formData.image || ''}
-                            onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-                            placeholder="https://example.com/image.jpg"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <Label>Product Name</Label>
-                        <Input
-                          value={formData.name || ''}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        />
-                      </div>
-
-                      <div>
-                        <Label>Category</Label>
-                        <Input
-                          value={formData.category || ''}
-                          onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                        />
-                      </div>
-
-                      <div>
-                        <Label>Price</Label>
-                        <Input
-                          value={formData.price || ''}
-                          onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                        />
-                      </div>
-
-                      <div>
-                        <Label>Description</Label>
-                        <Textarea
-                          value={formData.description || ''}
-                          onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                          rows={4}
-                        />
-                      </div>
-
-                      <div className="flex justify-end gap-2 pt-4">
-                        <Button variant="outline" onClick={() => setDialogOpen(false)}>Cancel</Button>
-                        <Button onClick={handleSave} disabled={updateMutation.isPending}>
-                          {updateMutation.isPending ? (
-                            <>
-                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                              Saving...
-                            </>
-                          ) : (
-                            'Save Changes'
-                          )}
-                        </Button>
-                      </div>
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                <Button onClick={() => handleEdit(product)} variant="outline" size="sm" className="w-full">
+                  <Pencil className="w-4 h-4 mr-2" />
+                  Edit Product
+                </Button>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Edit Dialog */}
+        <Dialog open={dialogOpen} onOpenChange={(open) => {
+          setDialogOpen(open);
+          if (!open) setEditingProduct(null);
+        }}>
+          <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle>Edit Product</DialogTitle>
+            </DialogHeader>
+            
+            <Tabs defaultValue="basic" className="w-full">
+              <TabsList className="grid w-full grid-cols-3">
+                <TabsTrigger value="basic">Basic Info</TabsTrigger>
+                <TabsTrigger value="images">Images</TabsTrigger>
+                <TabsTrigger value="variants">Variants</TabsTrigger>
+              </TabsList>
+
+              <TabsContent value="basic" className="space-y-4 mt-4">
+                <div>
+                  <Label>Main Image</Label>
+                  <div className="mt-2 space-y-3">
+                    {formData.image && (
+                      <div className="aspect-square w-full max-w-xs mx-auto bg-gray-100 rounded-lg overflow-hidden">
+                        <img src={formData.image} alt="Preview" className="w-full h-full object-contain p-4" />
+                      </div>
+                    )}
+                    <div className="flex items-center gap-2">
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleMainImageUpload}
+                        disabled={uploading}
+                        className="flex-1"
+                      />
+                      {uploading && <Loader2 className="w-5 h-5 animate-spin text-gray-400" />}
+                    </div>
+                    <Input
+                      value={formData.image || ''}
+                      onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                      placeholder="Or paste image URL"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <Label>Product Name</Label>
+                  <Input
+                    value={formData.name || ''}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <Label>Category</Label>
+                  <Input
+                    value={formData.category || ''}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <Label>Price</Label>
+                  <Input
+                    value={formData.price || ''}
+                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <Label>Description</Label>
+                  <Textarea
+                    value={formData.description || ''}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    rows={4}
+                  />
+                </div>
+              </TabsContent>
+
+              <TabsContent value="images" className="space-y-4 mt-4">
+                <div>
+                  <Label>Bulk Image Upload</Label>
+                  <div
+                    className={`mt-2 border-2 border-dashed rounded-lg p-8 text-center transition-colors ${
+                      dragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
+                    }`}
+                    onDragEnter={handleDrag}
+                    onDragLeave={handleDrag}
+                    onDragOver={handleDrag}
+                    onDrop={handleDrop}
+                  >
+                    <Upload className="w-12 h-12 mx-auto text-gray-400 mb-3" />
+                    <p className="text-sm text-gray-600 mb-2">
+                      Drag and drop images here, or click to select
+                    </p>
+                    <input
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      onChange={(e) => handleImageUpload(e.target.files)}
+                      className="hidden"
+                      id="bulk-upload"
+                    />
+                    <label htmlFor="bulk-upload">
+                      <Button type="button" variant="outline" size="sm" disabled={uploading} asChild>
+                        <span>
+                          {uploading ? (
+                            <>
+                              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                              Uploading...
+                            </>
+                          ) : (
+                            'Select Images'
+                          )}
+                        </span>
+                      </Button>
+                    </label>
+                  </div>
+                </div>
+
+                {formData.images && formData.images.length > 0 && (
+                  <div>
+                    <Label>Product Images ({formData.images.length})</Label>
+                    <div className="mt-2 grid grid-cols-2 md:grid-cols-3 gap-3">
+                      {formData.images.map((img, index) => (
+                        <div key={index} className="relative group aspect-square bg-gray-100 rounded-lg overflow-hidden border-2 border-transparent hover:border-blue-500">
+                          <img src={img} alt={`Product ${index + 1}`} className="w-full h-full object-contain p-2" />
+                          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                            <Button
+                              size="sm"
+                              variant="secondary"
+                              onClick={() => setPrimaryImage(img)}
+                              className="text-xs"
+                            >
+                              Set Primary
+                            </Button>
+                            <Button
+                              size="sm"
+                              variant="destructive"
+                              onClick={() => removeImage(index)}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
+                          {formData.image === img && (
+                            <div className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded">
+                              Primary
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </TabsContent>
+
+              <TabsContent value="variants" className="space-y-4 mt-4">
+                <div className="flex justify-between items-center">
+                  <Label>Product Variants</Label>
+                  <Button onClick={addVariant} size="sm">
+                    <Plus className="w-4 h-4 mr-2" />
+                    Add Variant
+                  </Button>
+                </div>
+
+                {formData.variants && formData.variants.length > 0 ? (
+                  <div className="space-y-4">
+                    {formData.variants.map((variant, index) => (
+                      <div key={variant.id} className="border border-gray-200 rounded-lg p-4 space-y-3">
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-sm font-semibold text-gray-700">Variant {index + 1}</span>
+                          <Button
+                            onClick={() => removeVariant(index)}
+                            size="sm"
+                            variant="ghost"
+                            className="text-red-500 hover:text-red-700"
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </Button>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-3">
+                          <div>
+                            <Label className="text-xs">Variant Name</Label>
+                            <Input
+                              value={variant.name}
+                              onChange={(e) => updateVariant(index, 'name', e.target.value)}
+                              placeholder="e.g., Large / Blue"
+                              size="sm"
+                            />
+                          </div>
+                          <div>
+                            <Label className="text-xs">SKU</Label>
+                            <Input
+                              value={variant.sku}
+                              onChange={(e) => updateVariant(index, 'sku', e.target.value)}
+                              placeholder="e.g., SKU-001"
+                              size="sm"
+                            />
+                          </div>
+                          <div>
+                            <Label className="text-xs">Price</Label>
+                            <Input
+                              value={variant.price}
+                              onChange={(e) => updateVariant(index, 'price', e.target.value)}
+                              placeholder="$99.99"
+                              size="sm"
+                            />
+                          </div>
+                          <div>
+                            <Label className="text-xs">Stock</Label>
+                            <Input
+                              type="number"
+                              value={variant.stock}
+                              onChange={(e) => updateVariant(index, 'stock', parseInt(e.target.value) || 0)}
+                              placeholder="0"
+                              size="sm"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <Label className="text-xs">Options (Size, Color, Material)</Label>
+                          <div className="grid grid-cols-3 gap-2 mt-1">
+                            <Input
+                              value={variant.options?.size || ''}
+                              onChange={(e) => updateVariantOption(index, 'size', e.target.value)}
+                              placeholder="Size"
+                              size="sm"
+                            />
+                            <Input
+                              value={variant.options?.color || ''}
+                              onChange={(e) => updateVariantOption(index, 'color', e.target.value)}
+                              placeholder="Color"
+                              size="sm"
+                            />
+                            <Input
+                              value={variant.options?.material || ''}
+                              onChange={(e) => updateVariantOption(index, 'material', e.target.value)}
+                              placeholder="Material"
+                              size="sm"
+                            />
+                          </div>
+                        </div>
+
+                        <div>
+                          <Label className="text-xs">Variant Image URL</Label>
+                          <Input
+                            value={variant.image}
+                            onChange={(e) => updateVariant(index, 'image', e.target.value)}
+                            placeholder="https://example.com/variant-image.jpg"
+                            size="sm"
+                          />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-8 text-gray-500">
+                    <p>No variants added yet. Click "Add Variant" to create one.</p>
+                  </div>
+                )}
+              </TabsContent>
+            </Tabs>
+
+            <div className="flex justify-end gap-2 pt-4 border-t">
+              <Button variant="outline" onClick={() => setDialogOpen(false)}>Cancel</Button>
+              <Button onClick={handleSave} disabled={updateMutation.isPending}>
+                {updateMutation.isPending ? (
+                  <>
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Saving...
+                  </>
+                ) : (
+                  'Save Changes'
+                )}
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </div>
   );
