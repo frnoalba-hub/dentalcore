@@ -38,8 +38,8 @@ export default function TipsSection() {
                 selected?.id === tip.id ? 'border-amber-500/40 bg-amber-500/[0.04] ring-1 ring-amber-500/15' : 'border-white/[0.05] hover:border-amber-500/15'
               }`}
             >
-              <div className="aspect-square bg-white/[0.03] rounded-lg mb-3 p-3 flex items-center justify-center">
-                <img src={tip.image} alt={tip.name} className="w-full h-full object-contain" />
+              <div className="aspect-square bg-[#0c1117] rounded-lg mb-3 p-3 flex items-center justify-center border border-white/[0.04]">
+                <img src={tip.image} alt={tip.name} className="w-full h-full object-contain brightness-95" />
               </div>
               <h3 className="text-sm font-semibold text-white/80 mb-0.5 group-hover:text-amber-300/80 transition-colors truncate">{tip.name}</h3>
               <p className="text-[11px] text-white/25 mb-2 truncate">{tip.description}</p>
@@ -57,8 +57,8 @@ export default function TipsSection() {
               <div className="bg-white/[0.025] rounded-2xl border border-amber-500/20 p-8 lg:p-10">
                 <div className="grid lg:grid-cols-3 gap-10">
                   <div className="lg:col-span-1">
-                    <div className="aspect-square bg-white/[0.03] rounded-xl p-6 flex items-center justify-center border border-white/[0.05]">
-                      <img src={selected.image} alt={selected.name} className="w-full h-full object-contain" />
+                    <div className="aspect-square bg-[#0c1117] rounded-xl p-6 flex items-center justify-center border border-white/[0.05]">
+                      <img src={selected.image} alt={selected.name} className="w-full h-full object-contain brightness-95" />
                     </div>
                   </div>
                   <div className="lg:col-span-2 flex flex-col justify-center">

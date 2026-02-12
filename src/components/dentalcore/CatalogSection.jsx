@@ -117,8 +117,8 @@ export default function CatalogSection() {
               <motion.div key={product.id} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.03 }}>
                 <Link to={`${createPageUrl('ProductDetail')}?id=${product.id}`}>
                   <div className="group bg-white/[0.02] rounded-xl border border-white/[0.05] overflow-hidden hover:border-amber-500/20 hover:-translate-y-0.5 transition-all duration-300">
-                    <div className="relative aspect-square bg-white/[0.02] p-5 flex items-center justify-center">
-                      <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500" />
+                    <div className="relative aspect-square bg-[#0c1117] p-5 flex items-center justify-center">
+                      <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 brightness-95" />
                       {product.popular && <div className="absolute top-2.5 left-2.5"><Badge className="bg-amber-500 text-[#0c1117] border-0 font-bold text-[10px] px-2 py-0.5">Popular</Badge></div>}
                     </div>
                     <div className="p-5">

@@ -48,12 +48,12 @@ export default function ProductShowcase() {
   const [idx, setIdx] = useState(0);
 
   const gallery = [
-    { id: 1, label: 'UC CUT Device', src: 'https://maruchiusa.com/cdn/shop/products/Black_2048x2048.png?v=1656021060', dark: true },
-    { id: 2, label: 'Side View', src: 'https://maruchiusa.com/cdn/shop/products/UC-CUT-side_2048x2048.png?v=1656021060', dark: true },
-    { id: 4, label: 'Tips Collection', src: 'https://tricountydental.com/cdn/shop/files/epdent-uccut-gutta-percha-cutting-devices-1006-4.jpg?v=1757618951', dark: false },
-    { id: 5, label: 'F Tip', src: 'https://tricountydental.com/cdn/shop/files/uccutfTip_cae217dd-dbad-48c1-a1d5-81cdba86fcbb.webp?v=1757619032', dark: true },
-    { id: 6, label: 'SB Bovie Tip', src: 'https://usdentaloutlet.com/cdn/shop/files/sb-tip.png?v=1751916971', dark: true },
-    { id: 8, label: 'Device in Use', src: 'https://usdentaloutlet.com/cdn/shop/files/uc-cut-3.jpg?v=1731621539', dark: false },
+    { id: 1, label: 'UC CUT Device', src: 'https://maruchiusa.com/cdn/shop/products/Black_2048x2048.png?v=1656021060' },
+    { id: 2, label: 'Side View', src: 'https://maruchiusa.com/cdn/shop/products/UC-CUT-side_2048x2048.png?v=1656021060' },
+    { id: 4, label: 'Tips Collection', src: 'https://tricountydental.com/cdn/shop/files/epdent-uccut-gutta-percha-cutting-devices-1006-4.jpg?v=1757618951' },
+    { id: 5, label: 'F Tip', src: 'https://tricountydental.com/cdn/shop/files/uccutfTip_cae217dd-dbad-48c1-a1d5-81cdba86fcbb.webp?v=1757619032' },
+    { id: 6, label: 'SB Bovie Tip', src: 'https://usdentaloutlet.com/cdn/shop/files/sb-tip.png?v=1751916971' },
+    { id: 8, label: 'Device in Use', src: 'https://usdentaloutlet.com/cdn/shop/files/uc-cut-3.jpg?v=1731621539' },
   ];
 
   const videos = [
@@ -85,7 +85,7 @@ export default function ProductShowcase() {
           {activeView === 'gallery' && (
             <motion.div key="gallery" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}>
               <div className="max-w-3xl mx-auto mb-6">
-                <div className={`relative aspect-[4/3] rounded-2xl border border-white/[0.06] overflow-hidden group cursor-pointer ${gallery[idx].dark ? 'bg-[#0c1117]' : 'bg-white'}`} onClick={() => setShowZoom(true)}>
+                <div className="relative aspect-[4/3] rounded-2xl border border-white/[0.06] overflow-hidden group cursor-pointer bg-[#0c1117]" onClick={() => setShowZoom(true)}>
                   <div className="absolute inset-0 flex items-center justify-center p-8">
                     <img src={gallery[idx].src} alt={gallery[idx].label} className="max-w-full max-h-full object-contain" />
                   </div>
@@ -99,7 +99,7 @@ export default function ProductShowcase() {
               <div className="flex justify-center gap-2 flex-wrap">
                 {gallery.map((img, i) => (
                   <button key={img.id} onClick={() => setIdx(i)} className={`w-14 h-14 rounded-lg border-2 overflow-hidden transition-all ${idx === i ? 'border-amber-500 ring-2 ring-amber-500/20' : 'border-white/[0.06] hover:border-white/15'}`}>
-                    <div className={`w-full h-full flex items-center justify-center p-0.5 ${img.dark ? 'bg-[#0e1319]' : 'bg-white'}`}><img src={img.src} alt={img.label} className="w-full h-full object-contain" /></div>
+                    <div className="w-full h-full flex items-center justify-center p-0.5 bg-[#0c1117]"><img src={img.src} alt={img.label} className="w-full h-full object-contain" /></div>
                   </button>
                 ))}
               </div>
