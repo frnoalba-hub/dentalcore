@@ -118,7 +118,19 @@ export default function CatalogSection() {
                 <Link to={`${createPageUrl('ProductDetail')}?id=${product.id}`}>
                   <div className="group bg-white/[0.02] rounded-xl border border-white/[0.05] overflow-hidden hover:border-amber-500/20 hover:-translate-y-0.5 transition-all duration-300">
                     <div className="relative aspect-square bg-[#0c1117] p-5 flex items-center justify-center">
-                      <img src={product.image} alt={product.name} className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 brightness-95" />
+                                                <img 
+                                                  src={product.image} 
+                                                  alt={product.name} 
+                                                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 brightness-95" 
+                                                  onError={(e) => {
+                                                    e.target.style.display = 'none';
+                                                    e.target.nextSibling.style.display = 'flex';
+                                                  }}
+                                                />
+                                                <div className="hidden w-full h-full items-center justify-center flex-col gap-2 text-white/20">
+                                                  <ShoppingBag className="w-12 h-12" />
+                                                  <span className="text-xs">{product.category}</span>
+                                                </div>
                       {product.popular && <div className="absolute top-2.5 left-2.5"><Badge className="bg-amber-500 text-[#0c1117] border-0 font-bold text-[10px] px-2 py-0.5">Popular</Badge></div>}
                     </div>
                     <div className="p-5">
