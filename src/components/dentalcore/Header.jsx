@@ -5,10 +5,9 @@ import { companyInfo } from './productsData';
 import { useCartStore } from '../store/cartStore';
 
 const navLinks = [
-  { label: 'Features', id: 'features' },
-  { label: 'How It Works', id: 'how-it-works' },
-  { label: 'Gallery', id: 'gallery' },
   { label: 'Catalog', id: 'catalog' },
+  { label: 'Featured', id: 'featured' },
+  { label: 'Gallery', id: 'gallery' },
   { label: 'About', id: 'about' },
   { label: 'Contact', id: 'contact' },
 ];
