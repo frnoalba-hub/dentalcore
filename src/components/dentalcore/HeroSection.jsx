@@ -11,7 +11,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-end pt-32 pb-12 bg-[#FDFDFD] border-b border-[#111]/10">
+    <section className="relative min-h-[100dvh] flex flex-col justify-end pt-[140px] pb-12 bg-[#FDFDFD] border-b border-[#111]/10">
       {/* Structural Grid Lines */}
       <div className="absolute inset-0 pointer-events-none flex justify-center opacity-10">
         <div className="w-full max-w-[1600px] h-full border-x border-[#111] grid grid-cols-2 md:grid-cols-4">

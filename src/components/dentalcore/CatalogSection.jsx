@@ -141,6 +141,11 @@ export default function CatalogSection() {
 
                     <div className="p-6 border-t border-[#111]/10 flex flex-col flex-1 justify-between bg-white">
                       <div>
+                        {product.promo && (
+                          <span className="inline-block text-[9px] font-bold uppercase tracking-widest bg-accent text-white px-2 py-0.5 mb-2">
+                            {product.promo}
+                          </span>
+                        )}
                         <h3 className="text-base font-semibold text-[#111] tracking-tight uppercase mb-2">
                           {dynamicT(product.name)}
                         </h3>
@@ -149,8 +154,17 @@ export default function CatalogSection() {
                         </p>
                       </div>
 
-                      <div className="mt-8 flex items-center justify-between">
-                        <p className="text-xl font-medium tracking-tight text-[#111]">{product.price}</p>
+                      <div className="mt-6 flex items-end justify-between">
+                        <div>
+                          {product.originalPrice && (
+                            <p className="text-xs text-[#111]/40 line-through mb-0.5">
+                              ${product.originalPrice.toFixed(2)}
+                            </p>
+                          )}
+                          <p className={`text-xl font-medium tracking-tight ${product.originalPrice ? 'text-accent' : 'text-[#111]'}`}>
+                            ${typeof product.price === 'number' ? product.price.toFixed(2) : product.price}
+                          </p>
+                        </div>
                         <span className="text-xs font-medium uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity">
                           {t('view_details')}
                         </span>

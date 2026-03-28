@@ -18,9 +18,10 @@ const images = {
 };
 
 // --- MASTER PRODUCT CATALOG ---
+// Pricing sourced from ApexDent Dealer Price List (Nov 2025)
 export const products = [
   // =========================================
-  // ENDODONTICS (System UC & Accessories)
+  // ENDODONTICS
   // =========================================
   {
     id: "1006-1",
@@ -28,7 +29,7 @@ export const products = [
     price: 599.00,
     category: "Endodontics",
     description: "The new standard in Gutta Percha removal. Cordless, Sonic, Precision.",
-    image: images.hero, // REAL PRODUCT IMAGE
+    image: images.hero,
     features: ["Cordless Operation", "Instant Heating (180°C)", "Sonic Vibration"],
     inStock: true,
     rating: 5.0
@@ -81,6 +82,16 @@ export const products = [
     description: "Rapid setting MTA for root repair and apicoectomy.",
     image: images.endo
   },
+  {
+    id: "TH-001",
+    name: "Stronic Touch & Heat",
+    price: 199.50,
+    originalPrice: 399.00,
+    promo: "Buy 2, Get 1 Free",
+    category: "Endodontics",
+    description: "Wireless obturation heating pen. Cordless, rechargeable, multiple tips.",
+    image: images.endo
+  },
 
   // =========================================
   // IMAGING & DIGITAL EQUIPMENT
@@ -90,6 +101,7 @@ export const products = [
     name: "iSuni Intraoral Scanner",
     price: 5999.00,
     originalPrice: 7599.00,
+    promo: "Intro Price — Limited to 500 units",
     category: "Equipment",
     description: "30-second full arch scans. 10μm accuracy. No subscription fees.",
     image: images.digital,
@@ -99,22 +111,25 @@ export const products = [
     id: "A1038",
     name: "iSuni Sensor (Size 1)",
     price: 1599.00,
+    originalPrice: 2499.00,
     category: "Equipment",
-    description: "Crystal clear CMOS imaging for Pedo/General use.",
+    description: "Crystal clear CMOS imaging for Pedo/General use. 24-month warranty.",
     image: images.digital
   },
   {
     id: "A1024",
     name: "iSuni Sensor (Size 2)",
     price: 1999.00,
+    originalPrice: 2999.00,
     category: "Equipment",
-    description: "Crystal clear CMOS imaging for Adult Bitewings.",
+    description: "Crystal clear CMOS imaging for Adult Bitewings. 24-month warranty.",
     image: images.digital
   },
   {
     id: "A1022",
     name: "iSuni Portable X-Ray",
     price: 2899.00,
+    originalPrice: 3999.00,
     category: "Equipment",
     description: "Lightweight, handheld X-ray generator. Shielded for safety.",
     image: images.digital
@@ -126,15 +141,19 @@ export const products = [
   {
     id: "A1004-V2",
     name: "AirPeak™ X600-S (KaVo Style)",
-    price: 399.00,
+    price: 333.33,
+    originalPrice: 599.00,
+    promo: "3 Handpieces + 1 Coupler for $1,000",
     category: "Handpieces",
-    description: "Titanium, Fiber Optic, Quattro Spray. 400,000 RPM.",
+    description: "Titanium, Fiber Optic, Quattro Spray. 400,000 RPM. 27W Power.",
     image: images.handpiece
   },
   {
     id: "A1005",
     name: "AirPeak™ X600-M (NSK Style)",
-    price: 399.00,
+    price: 333.33,
+    originalPrice: 599.00,
+    promo: "3 Handpieces + 1 Coupler for $1,000",
     category: "Handpieces",
     description: "Titanium, Fiber Optic, Quattro Spray. NSK Coupler compatible.",
     image: images.handpiece
@@ -142,7 +161,8 @@ export const products = [
   {
     id: "A1018",
     name: "AirPeak™ X600-45 (Surgical)",
-    price: 569.00,
+    price: 459.00,
+    originalPrice: 699.00,
     category: "Handpieces",
     description: "45-degree head for surgical access. Rear exhaust to prevent embolism.",
     image: images.handpiece
@@ -151,14 +171,18 @@ export const products = [
     id: "A1004-V3",
     name: "AirPeak™ X600-Micro (KaVo)",
     price: 499.00,
+    originalPrice: 699.00,
+    promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
-    description: "Ultra-mini head for pediatric and limited opening cases.",
+    description: "Ultra-mini head for pediatric and limited opening cases. 380–450k RPM.",
     image: images.handpiece
   },
   {
     id: "A1009B",
     name: "AirPeak™ G100-LA (Low Speed)",
-    price: 129.00,
+    price: 106.00,
+    originalPrice: 159.00,
+    promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "1:1 Contra Angle, Latch Type, Push Button.",
     image: images.handpiece
@@ -166,7 +190,9 @@ export const products = [
   {
     id: "A1012",
     name: "AirPeak™ G100-ST (Straight)",
-    price: 129.00,
+    price: 106.00,
+    originalPrice: 159.00,
+    promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "1:1 Straight Nose Cone for extraoral adjustments.",
     image: images.handpiece
@@ -186,7 +212,9 @@ export const products = [
   {
     id: "A1003",
     name: "iTesla™ G600-S (1:5 Red Band)",
-    price: 729.00,
+    price: 599.33,
+    originalPrice: 899.00,
+    promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Electric 1:5 increaser. Titanium body, DLC coating, Quattro Spray.",
     image: images.handpiece
@@ -194,7 +222,8 @@ export const products = [
   {
     id: "A1028",
     name: "iTesla™ G600-D (1:1 Blue Band)",
-    price: 479.00,
+    price: 399.00,
+    originalPrice: 599.00,
     category: "Handpieces",
     description: "Electric 1:1 direct drive. Internal water spray.",
     image: images.handpiece
@@ -202,19 +231,21 @@ export const products = [
   {
     id: "A1020",
     name: "iTesla™ G500-R20 (20:1 Implant)",
-    price: 599.00,
+    price: 499.00,
+    originalPrice: 799.00,
     category: "Handpieces",
     description: "20:1 Reduction for Implantology. External irrigation clip.",
     image: images.handpiece
   },
 
   // =========================================
-  // CLINICAL EQUIPMENT (Piezo & Maint.)
+  // CLINICAL EQUIPMENT
   // =========================================
   {
     id: "A1619",
     name: "STRONIC X150 Piezo Scaler",
     price: 799.00,
+    originalPrice: 1199.00,
     category: "Equipment",
     description: "Touch control ultrasonic unit. Endo/Perio/Scaling modes.",
     image: images.general
@@ -223,6 +254,8 @@ export const products = [
     id: "A1061",
     name: "STRONIC X300 Air Scaler",
     price: 466.00,
+    originalPrice: 699.00,
+    promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Fits KaVo coupler. 6000 Hz oscillation for gentle scaling.",
     image: images.handpiece
@@ -231,6 +264,8 @@ export const products = [
     id: "A1658",
     name: "AirPeak™ PRO200 Air Polisher",
     price: 446.00,
+    originalPrice: 669.00,
+    promo: "Buy 2, Get 1 Free",
     category: "Equipment",
     description: "Anti-clogging air polishing system. 360° swivel nozzle.",
     image: images.general
@@ -239,22 +274,17 @@ export const products = [
     id: "A1030",
     name: "McCare™ X Maintenance",
     price: 1399.00,
+    originalPrice: 1999.00,
     category: "Equipment",
     description: "Automated handpiece cleaning and lubrication. 4 Ports.",
     image: images.general
   },
   {
-    id: "TH-001",
-    name: "Stronic Touch & Heat",
-    price: 199.00,
-    category: "Endodontics",
-    description: "Wireless obturation heating pen with multiple tips.",
-    image: images.endo
-  },
-  {
     id: "IPR-001",
     name: "AirPeak Automatic IPR",
-    price: 199.00,
+    price: 199.33,
+    originalPrice: 299.00,
+    promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Ortho interproximal reduction handpiece with reciprocating motion.",
     image: images.handpiece
@@ -310,7 +340,9 @@ export const products = [
   {
     id: "M1042X",
     name: "ModuLite X Curing Light",
-    price: 699.00,
+    price: 466.00,
+    originalPrice: 699.00,
+    promo: "Buy 2, Get 1 Free",
     category: "Restorative",
     description: "Broadband LED (380-520nm) with detection mode. Aerospace aluminum.",
     image: images.general
@@ -335,6 +367,8 @@ export const products = [
     id: "M1001",
     name: "SureTact G3 Matrix Kit",
     price: 200.00,
+    originalPrice: 299.00,
+    promo: "Buy 2 Kits for $400",
     category: "Restorative",
     description: "Sectional matrix system. 100 matrices, 2 rings, forceps.",
     image: images.general
@@ -343,6 +377,8 @@ export const products = [
     id: "M1002",
     name: "SureTact G3 Rings (2pk)",
     price: 86.65,
+    originalPrice: 129.98,
+    promo: "Buy 2, Get 1 Free",
     category: "Restorative",
     description: "Universal NiTi rings with outstanding spring memory.",
     image: images.general
