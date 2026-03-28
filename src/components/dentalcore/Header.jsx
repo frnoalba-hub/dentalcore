@@ -45,7 +45,7 @@ export default function Header() {
               {companyInfo.phone}
             </a>
           </div>
-          <span className="text-white/40 font-medium tracking-[0.18em] uppercase">Authorized EPDENT Dealer</span>
+
         </div>
       </div>
 
