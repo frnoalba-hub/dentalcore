@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { useTranslation } from '@/lib/i18n';
 
 export default function HeroSection() {
+  const { t } = useTranslation();
+
   const scrollToCatalog = () => {
     const el = document.getElementById('catalog');
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -27,9 +30,9 @@ export default function HeroSection() {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="text-[12vw] xl:text-[140px] leading-[0.85] tracking-tighter font-semibold text-[#111] uppercase"
             >
-              Clinical
+              {t('clinical_precision')}
               <br />
-              Precision<span className="text-accent">.</span>
+              {t('clinical_precision_2')}<span className="text-accent">.</span>
             </motion.h1>
           </div>
           <div className="lg:col-span-4 flex flex-col justify-end pb-2 lg:pb-6">
@@ -39,7 +42,7 @@ export default function HeroSection() {
               transition={{ delay: 0.3 }}
               className="text-base lg:text-lg text-[#111]/70 leading-relaxed mb-10 max-w-sm font-body"
             >
-              Engineered for modern endodontics. Uncompromising quality for professionals who demand the absolute best in structural integrity.
+              {t('hero_desc')}
             </motion.p>
             <motion.button
               initial={{ opacity: 0 }}
@@ -48,7 +51,7 @@ export default function HeroSection() {
               onClick={scrollToCatalog}
               className="group flex items-center justify-between border-b border-[#111] pb-4 text-[#111] hover:text-accent hover:border-accent transition-colors w-full sm:w-[80%]"
             >
-              <span className="text-sm uppercase tracking-[0.15em] font-medium">Explore Collection</span>
+              <span className="text-sm uppercase tracking-[0.15em] font-medium">{t('explore_collection')}</span>
               <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </motion.button>
           </div>
@@ -58,7 +61,7 @@ export default function HeroSection() {
       {/* Ticker / Specs Bar */}
       <div className="w-full border-t border-[#111]/10 bg-[#FDFDFD] relative z-10">
         <div className="max-w-[1600px] mx-auto flex flex-wrap divide-x divide-[#111]/10 border-x border-[#111]/10 opacity-60">
-          {['ISO Certified', '1-Year Warranty', 'Next-Day Dispatch', 'Direct Clinical Support'].map((spec, i) => (
+          {[t('iso_certified'), t('warranty'), t('next_day'), t('clinical_support')].map((spec, i) => (
             <div key={i} className="px-6 py-4 flex-1 whitespace-nowrap">
               <span className="text-xs uppercase tracking-widest font-medium text-[#111]">{spec}</span>
             </div>

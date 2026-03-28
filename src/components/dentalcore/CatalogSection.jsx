@@ -6,10 +6,12 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { createPageUrl } from '../../utils';
 import { useCartStore } from '../store/cartStore';
+import { useTranslation } from '@/lib/i18n';
 
 export default function CatalogSection() {
   const [filter, setFilter] = useState('All');
   const { addItem, openCart } = useCartStore();
+  const { t, dynamicT } = useTranslation();
 
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['products'],
@@ -29,7 +31,7 @@ export default function CatalogSection() {
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
           <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="section-title mb-0">Index</h2>
+            <h2 className="section-title mb-0">{t('index')}</h2>
           </motion.div>
 
           <div className="flex flex-wrap gap-2">
@@ -43,7 +45,7 @@ export default function CatalogSection() {
                     : 'border-[#111]/10 text-[#111]/60 hover:border-[#111] hover:text-[#111]'
                 }`}
               >
-                {cat}
+                {cat === 'All' ? t('all') : dynamicT(cat)}
               </button>
             ))}
           </div>
@@ -62,12 +64,12 @@ export default function CatalogSection() {
                     <div className="relative aspect-square px-8 pb-8 pt-16 overflow-hidden">
                       <img
                         src={product.image}
-                        alt={product.name}
+                        alt={dynamicT(product.name)}
                         className="w-full h-full object-contain object-bottom mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute top-4 left-4 flex gap-2">
                         <span className="text-[10px] uppercase tracking-widest font-semibold text-[#111]/50 border border-[#111]/10 px-2 py-1 bg-white/80">
-                          {product.category}
+                          {dynamicT(product.category)}
                         </span>
                       </div>
                     </div>
@@ -75,17 +77,17 @@ export default function CatalogSection() {
                     <div className="p-6 border-t border-[#111]/10 flex flex-col flex-1 justify-between bg-white">
                       <div>
                         <h3 className="text-base font-semibold text-[#111] tracking-tight uppercase mb-2">
-                          {product.name}
+                          {dynamicT(product.name)}
                         </h3>
                         <p className="text-sm text-[#111]/60 font-body line-clamp-2 leading-relaxed">
-                          {product.description}
+                          {dynamicT(product.description)}
                         </p>
                       </div>
 
                       <div className="mt-8 flex items-center justify-between">
                         <p className="text-xl font-medium tracking-tight text-[#111]">{product.price}</p>
                         <span className="text-xs font-medium uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity">
-                          View Details
+                          {t('view_details')}
                         </span>
                       </div>
                     </div>

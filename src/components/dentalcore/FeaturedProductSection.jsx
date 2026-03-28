@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
+import { useTranslation } from '@/lib/i18n';
 
 export default function FeaturedProductSection() {
   const { addItem, openCart } = useCartStore();
+  const { t, dynamicT } = useTranslation();
 
   const product = {
     id: "1006-1",
@@ -32,11 +34,11 @@ export default function FeaturedProductSection() {
               transition={{ duration: 1 }}
               viewport={{ once: true }}
               src={product.image} 
-              alt={product.name} 
+              alt={dynamicT(product.name)} 
               className="w-full max-w-md object-contain drop-shadow-2xl" 
             />
             <div className="absolute top-6 left-6 border border-white/20 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-medium">
-              Flagship
+              {t('flagship')}
             </div>
           </div>
 
@@ -48,7 +50,7 @@ export default function FeaturedProductSection() {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl lg:text-6xl font-medium tracking-tighter uppercase mb-6 leading-[1.1]">
-                {product.name}
+                {dynamicT(product.name)}
               </h2>
               
               <div className="flex items-baseline gap-4 mb-8 pb-8 border-b border-white/10">
@@ -56,14 +58,14 @@ export default function FeaturedProductSection() {
               </div>
 
               <p className="text-lg text-white/60 font-body leading-relaxed mb-10 max-w-md">
-                {product.description}
+                {dynamicT(product.description)}
               </p>
 
               <ul className="space-y-4 mb-12">
                 {product.features.map((feature, i) => (
                   <li key={i} className="flex gap-4 text-sm font-body text-white/80 border-b border-white/10 pb-4">
                     <span className="text-accent font-medium tracking-widest">0{i + 1}</span>
-                    {feature}
+                    {dynamicT(feature)}
                   </li>
                 ))}
               </ul>
@@ -72,7 +74,7 @@ export default function FeaturedProductSection() {
                 onClick={() => { addItem(product, 1); openCart(); }}
                 className="group w-full flex items-center justify-between border border-white p-5 hover:bg-white hover:text-[#111] transition-colors"
               >
-                <span className="text-sm uppercase tracking-[0.2em] font-medium">Acquire Unit</span>
+                <span className="text-sm uppercase tracking-[0.2em] font-medium">{t('acquire_unit')}</span>
                 <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </button>
             </motion.div>

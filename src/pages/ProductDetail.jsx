@@ -5,6 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { createPageUrl } from '../utils';
 import { useCartStore } from '../components/store/cartStore';
+import { useTranslation } from '@/lib/i18n';
 
 export default function ProductDetail() {
   const params = new URLSearchParams(window.location.search);
@@ -12,6 +13,7 @@ export default function ProductDetail() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { addItem, openCart } = useCartStore();
+  const { t, dynamicT } = useTranslation();
 
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['products'],
@@ -21,21 +23,21 @@ export default function ProductDetail() {
   const product = products.find(p => p.id === productId);
   const allImages = product ? [product.image, ...(product.images || [])].filter(Boolean) : [];
 
-  if (isLoading) return <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center text-sm uppercase tracking-widest">Loading...</div>;
+  if (isLoading) return <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center text-sm uppercase tracking-widest">{t('loading')}</div>;
   if (!product) return <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center">Not Found</div>;
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] pt-24 pb-24">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <Link to={createPageUrl('Home')} className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-[#111]/50 hover:text-[#111] mb-12">
-          <ArrowLeft className="w-4 h-4" /> Back to Index
+          <ArrowLeft className="w-4 h-4" /> {t('back_to_index')}
         </Link>
 
         <div className="grid lg:grid-cols-2 gap-16 border-t border-[#111]/10 pt-12">
           {/* Images */}
           <div className="flex flex-col gap-4">
             <div className="aspect-square border border-[#111]/10 p-12 flex items-center justify-center bg-white mix-blend-multiply">
-              <img src={allImages[selectedImage]} alt={product.name} className="w-full h-full object-contain" />
+              <img src={allImages[selectedImage]} alt={dynamicT(product.name)} className="w-full h-full object-contain" />
             </div>
             {allImages.length > 1 && (
               <div className="grid grid-cols-4 gap-4">
@@ -50,11 +52,11 @@ export default function ProductDetail() {
 
           {/* Details */}
           <div>
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent block mb-4">{product.category}</span>
-            <h1 className="text-4xl lg:text-5xl font-medium tracking-tighter uppercase text-[#111] mb-6">{product.name}</h1>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent block mb-4">{dynamicT(product.category)}</span>
+            <h1 className="text-4xl lg:text-5xl font-medium tracking-tighter uppercase text-[#111] mb-6">{dynamicT(product.name)}</h1>
             <p className="text-3xl font-medium text-[#111] mb-8">{product.price}</p>
             
-            <p className="text-base text-[#111]/70 font-body leading-relaxed mb-12">{product.description}</p>
+            <p className="text-base text-[#111]/70 font-body leading-relaxed mb-12">{dynamicT(product.description)}</p>
 
             <div className="flex items-stretch gap-4 mb-16">
               <div className="flex items-center border border-[#111]">
@@ -66,7 +68,7 @@ export default function ProductDetail() {
                 onClick={() => { addItem(product, quantity); openCart(); }}
                 className="flex-1 bg-[#111] text-white flex items-center justify-between px-6 hover:bg-accent transition-colors"
               >
-                <span className="text-sm uppercase tracking-widest font-medium">Add to Requisition</span>
+                <span className="text-sm uppercase tracking-widest font-medium">{t('add_to_requisition')}</span>
                 <ArrowUpRight className="w-5 h-5" />
               </button>
             </div>
@@ -75,9 +77,9 @@ export default function ProductDetail() {
             <div className="border-t border-[#111]/10">
               {product.features?.length > 0 && (
                 <div className="py-6 border-b border-[#111]/10">
-                  <h3 className="text-xs uppercase tracking-[0.2em] font-bold mb-4">Core Specifications</h3>
+                  <h3 className="text-xs uppercase tracking-[0.2em] font-bold mb-4">{t('core_specifications')}</h3>
                   <ul className="space-y-2 font-body text-sm text-[#111]/70">
-                    {product.features.map((f, i) => <li key={i}>— {f}</li>)}
+                    {product.features.map((f, i) => <li key={i}>— {dynamicT(f)}</li>)}
                   </ul>
                 </div>
               )}

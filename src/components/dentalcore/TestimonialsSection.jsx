@@ -18,17 +18,21 @@ const testimonials = [
   },
 ];
 
+import { useTranslation } from '@/lib/i18n';
+
 export default function TestimonialsSection() {
+  const { t, dynamicT } = useTranslation();
+
   return (
     <section id="testimonials" className="py-24 bg-[#FDFDFD] border-b border-[#111]/10">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-        <h2 className="section-title mb-16">Clinical Feedback</h2>
+        <h2 className="section-title mb-16">{t('clinical_feedback')}</h2>
 
         <div className="grid md:grid-cols-3 border-t border-l border-[#111]/10">
           {testimonials.map((item, i) => (
             <div key={i} className="p-8 lg:p-12 border-r border-b border-[#111]/10 flex flex-col justify-between">
               <p className="text-xl lg:text-2xl text-[#111] leading-snug font-medium mb-16 tracking-tight">
-                "{item.text}"
+                "{dynamicT(item.text)}"
               </p>
               <div>
                 <p className="text-sm font-bold uppercase tracking-widest text-[#111]">{item.author}</p>
