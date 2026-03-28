@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ShoppingBag, Minus, Plus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCartStore } from '../store/cartStore';
+import { companyInfo } from '../dentalcore/productsData';
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, getTotal, getItemCount } = useCartStore();
@@ -57,8 +58,11 @@ export default function CartDrawer() {
                   <span className="text-sm text-gray-500 font-medium">Total</span>
                   <span className="text-xl font-bold text-slate-900">${getTotal().toFixed(2)}</span>
                 </div>
-                <Button className="w-full h-12 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold text-sm shadow-lg shadow-amber-500/20">
-                  Checkout
+                <Button 
+                  onClick={handleCheckout}
+                  className="w-full h-12 bg-amber-500 hover:bg-amber-400 text-slate-900 font-bold text-sm shadow-lg shadow-amber-500/20"
+                >
+                  Send Order via WhatsApp
                 </Button>
               </div>
             )}
