@@ -255,19 +255,17 @@ export default function AdminProducts() {
             </div>
             
             <Button onClick={async () => {
-              if (window.confirm('Are you sure you want to delete all ' + products.length + ' existing products?')) {
-                toast.loading('Wiping database...');
-                let delCount = 0;
-                for (const p of products) {
-                  try {
-                    await base44.entities.Product.delete(p.id);
-                    delCount++;
-                  } catch(e) { console.error('Failed to delete', p.id); }
-                }
-                toast.dismiss();
-                toast.success('Deleted ' + delCount + ' mock products');
-                queryClient.invalidateQueries(['admin-products']);
+              toast.loading('Wiping database...', { duration: 3000 });
+              let delCount = 0;
+              for (const p of products) {
+                try {
+                  await base44.entities.Product.delete(p.id);
+                  delCount++;
+                } catch(e) { console.error('Failed to delete', p.id); }
               }
+              toast.dismiss();
+              toast.success('Deleted ' + delCount + ' mock products');
+              queryClient.invalidateQueries(['admin-products']);
             }} variant="destructive" className="bg-red-600 hover:bg-red-700">
               <Trash2 className="w-4 h-4 mr-2" />
               Wipe Mock Data
