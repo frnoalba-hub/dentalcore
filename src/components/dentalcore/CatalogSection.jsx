@@ -134,12 +134,12 @@ export default function CatalogSection() {
                   <article className="group relative h-full overflow-hidden rounded-[28px] border border-slate-200/80 bg-white/95 shadow-[0_12px_40px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.10)]">
                     <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
-                    <div className="relative aspect-[1/1] overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/40 p-7">
+                    <div className="relative aspect-[1/1] overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/40 px-7 pb-6 pt-12">
                       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.08),transparent_35%)] opacity-70" />
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="relative z-10 w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.045]"
+                        className="relative z-10 w-full h-full object-contain object-top transition-transform duration-500 group-hover:scale-[1.03]"
                         onError={(e) => {
                           e.target.style.display = 'none';
                           if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
@@ -150,7 +150,7 @@ export default function CatalogSection() {
                         <span className="text-xs uppercase tracking-[0.2em]">{product.category}</span>
                       </div>
 
-                      <div className="absolute left-4 top-4 z-20 flex items-center gap-2">
+                      <div className="absolute left-4 top-3 z-20 flex items-center gap-2">
                         <Badge className="border border-slate-200/80 bg-white/90 text-slate-600 backdrop-blur-sm text-[10px] px-2.5 py-1 font-semibold uppercase tracking-[0.18em] shadow-sm">
                           {product.category}
                         </Badge>
