@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Search, X, Loader2, Grid3X3, List } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ShoppingBag, Search, X, Loader2, ArrowRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Button } from '@/components/ui/button';
@@ -127,53 +127,68 @@ export default function CatalogSection() {
             <Button onClick={() => { setSearchQuery(''); setFilter('All'); }} variant="outline" size="sm">Clear filters</Button>
           </div>
         ) : (
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredAndSortedProducts.map((product, index) => (
               <motion.div key={product.id} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.03 }}>
                 <Link to={`${createPageUrl('ProductDetail')}?id=${product.id}`}>
-                  <div className="group bg-white rounded-2xl border border-slate-200/80 overflow-hidden hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1 hover:border-blue-200 transition-all duration-300">
-                    {/* Image */}
-                    <div className="relative aspect-square bg-gradient-to-br from-slate-50 to-white p-6 flex items-center justify-center">
+                  <article className="group relative h-full overflow-hidden rounded-[28px] border border-slate-200/80 bg-white/95 shadow-[0_12px_40px_rgba(15,23,42,0.05)] transition-all duration-300 hover:-translate-y-1.5 hover:border-blue-200 hover:shadow-[0_24px_60px_rgba(15,23,42,0.10)]">
+                    <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-blue-200 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+                    <div className="relative aspect-[1/1] overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/40 p-7">
+                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.08),transparent_35%)] opacity-70" />
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+                        className="relative z-10 w-full h-full object-contain transition-transform duration-500 group-hover:scale-[1.045]"
                         onError={(e) => {
                           e.target.style.display = 'none';
                           if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
                         }}
                       />
-                      <div className="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-300">
+                      <div className="hidden relative z-10 w-full h-full items-center justify-center flex-col gap-2 text-slate-300">
                         <ShoppingBag className="w-12 h-12" />
-                        <span className="text-xs">{product.category}</span>
+                        <span className="text-xs uppercase tracking-[0.2em]">{product.category}</span>
                       </div>
-                      {product.popular && (
-                        <div className="absolute top-3 left-3">
-                          <Badge className="bg-blue-700 text-white border-0 font-bold text-[10px] px-2.5 py-1 shadow-lg shadow-blue-700/20">
+
+                      <div className="absolute left-4 top-4 z-20 flex items-center gap-2">
+                        <Badge className="border border-slate-200/80 bg-white/90 text-slate-600 backdrop-blur-sm text-[10px] px-2.5 py-1 font-semibold uppercase tracking-[0.18em] shadow-sm">
+                          {product.category}
+                        </Badge>
+                        {product.popular && (
+                          <Badge className="bg-slate-900 text-white border-0 font-semibold text-[10px] px-2.5 py-1 shadow-lg">
                             Popular
                           </Badge>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </div>
 
-                    {/* Info */}
-                    <div className="p-5 border-t border-slate-100">
-                      <p className="text-[10px] text-blue-600 font-semibold uppercase tracking-wider mb-1.5">{product.category}</p>
-                      <h3 className="text-sm font-semibold text-slate-900 leading-snug mb-1 line-clamp-2">{product.name}</h3>
-                      <p className="text-xs text-slate-400 mb-4 line-clamp-2">{product.description}</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-lg font-bold text-slate-900">{product.price}</span>
+                    <div className="flex h-[220px] flex-col justify-between border-t border-slate-100 px-5 pb-5 pt-4">
+                      <div>
+                        <h3 className="text-[15px] font-semibold tracking-[-0.02em] text-slate-900 leading-6 line-clamp-2 min-h-[3rem]">
+                          {product.name}
+                        </h3>
+                        <p className="mt-2 text-sm leading-6 text-slate-500 line-clamp-3 min-h-[4.5rem]">
+                          {product.description}
+                        </p>
+                      </div>
+
+                      <div className="mt-5 flex items-end justify-between gap-3">
+                        <div>
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">Price</p>
+                          <p className="mt-1 text-2xl font-bold tracking-[-0.03em] text-slate-900">{product.price}</p>
+                        </div>
                         <Button
                           onClick={(e) => handleQuickAdd(product, e)}
                           size="sm"
-                          className="bg-blue-700 hover:bg-blue-600 text-white text-xs h-9 px-4 rounded-lg shadow-sm shadow-blue-700/10"
+                          className="h-11 rounded-full border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm transition-all hover:border-blue-200 hover:bg-blue-50 hover:text-blue-800"
                         >
-                          <ShoppingBag className="w-3.5 h-3.5 mr-1.5" />
-                          Add
+                          <ShoppingBag className="w-4 h-4" />
+                          Quick Add
+                          <ArrowRight className="w-4 h-4 opacity-60 transition-transform duration-300 group-hover:translate-x-0.5" />
                         </Button>
                       </div>
                     </div>
-                  </div>
+                  </article>
                 </Link>
               </motion.div>
             ))}
