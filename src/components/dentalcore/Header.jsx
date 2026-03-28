@@ -7,9 +7,9 @@ import { useTranslation } from '@/lib/i18n';
 
 const promos = [
   'AirPeak™ Handpieces — 3 + 1 Coupler for $1,000',
-  'iSuni Intraoral Scanner — Save $1,600 · Intro Price',
   'iTesla G600-S — Buy 2, Get 1 Free',
   'ModuLite X Curing Light — Buy 2, Get 1 Free',
+  'OsseoSeal Bone Graft & Membrane — Now Available',
 ];
 
 export default function Header() {

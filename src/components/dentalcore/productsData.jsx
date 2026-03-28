@@ -11,58 +11,58 @@ export const companyInfo = {
 const resolveImage = (fileName) => {
   const base = import.meta.env.BASE_URL || '/';
   const prefix = base.endsWith('/') ? base : `${base}/`;
-  // encodeURIComponent for the filename to handle spaces/symbols gracefully
   return `${prefix}products/${encodeURIComponent(fileName)}`;
 };
 
 const img = {
+  // UC-CUT
   uccut:        resolveImage('UC_CUT_Gutta_Purcha_Cutter_INFO_1006-1.png'),
   uccut_tip90:  resolveImage('UC_CUT_Tip_#90_1006-2.png'),
   uccut_tip110: resolveImage('UC_CUT_Tip_#110_1006-3.png'),
   uccut_tips:   resolveImage('UC_CUT_Gutta_Purcha_Cutter_ALL_Tips.png'),
   uccut_bovie:  resolveImage('UC_CUT_Boive_Tip.png'),
+
+  // Endo
   ucone:        resolveImage('UC_ONE_Ultasonic_Irrigation_1002-1.png'),
   cutfit:       resolveImage('Cut_&_Fit_Gutta_Percha_Cutter_1005-1.jpg'),
   ep_plugger:   resolveImage('EP_PLUGGER_SET_1004-1.jpg'),
   ep_suction:   resolveImage('EP_SUCTION_1003-1.png'),
   endoseal:     resolveImage('ENDOSEAL_MTA-1.png'),
   endocem:      resolveImage('ENDOCE_MTA_ROOT_REPAIR_MTA_3.webp'),
-  
+
+  // AirPeak
   ap_kavo:      resolveImage('AIRPEAK_A1004-V2.jpg'),
   ap_nsk:       resolveImage('AIRPEAK_A1005.jpg'),
   ap_45:        resolveImage('AIRPEAK_A1018.jpg'),
   ap_micro:     resolveImage('AIRPEAK_A1004-V2.jpg'),
   ap_low_la:    resolveImage('AIRPEAK_A1009B.jpg'),
   ap_low_st:    resolveImage('AIRPEAK_A1012.jpg'),
-  
+
+  // iTesla
   it_g600s:     resolveImage('ITESLA_A1003.webp'),
   it_g600d:     resolveImage('ITESLA_A1028.webp'),
   it_implant:   resolveImage('ITESLA_A1020.jpg'),
   it_motor:     resolveImage('ITESLA_U_A1003.webp'),
-  
+
+  // Curing / Lights
   ep_cure:      resolveImage('EP_CURE_White_1007-1.png'),
   ep_light:     resolveImage('EP_CURE_MINI_White_1008-1.png'),
-  
+
+  // Biomaterials
   osseo_allo:   resolveImage('OSSEOSEAL_OS_0.5CC.webp'),
   osseo_mem:    resolveImage('OSSEOSEAL_Collagen_Membrane_OS1520.webp'),
   osteogen:     resolveImage('OSTEOGEN_10x20_OSTEO.webp'),
   ora_aid:      resolveImage('ORA_AID_RED_ORA20.webp'),
   collagen:     resolveImage('CURAGEN_COLL_WOUND_DRESSING_HP10.jpg'),
 
-  // Equipment that have actual pictures but the filenames didn't perfectly match product IDs previously
+  // Equipment with real photos
   stronic300:   resolveImage('AIRPEAK_A1016.jpg'),
   air_polish:   resolveImage('AIRPEAK_A1017.jpg'),
   ipr:          resolveImage('AIRPEAK_A1043.jpg'),
 
-  // Fallback to aesthetic placeholders since we don't have real photos yet
+  // Placeholders (no real photos yet)
   touch_heat:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   modulite:     'https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop',
-  // iSuni equipment — using the standard resolveImage after moving files locally
-  isuni_scan:   resolveImage('isuni_1.webp'),
-  isuni_sensor: resolveImage('isuni_1.webp'),
-  isuni_xray:   resolveImage('isuni3.webp'),
-
-  // Equipment placeholders for items we still don't have photos for
   mccareX:      'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   stronic150:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   suretact:     'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
@@ -83,6 +83,7 @@ export const products = [
     category: "Endodontics",
     description: "The new standard in Gutta Percha removal. Cordless, Sonic, Precision.",
     image: img.uccut,
+    images: [img.uccut, img.uccut_tips, img.uccut_tip90, img.uccut_tip110, img.uccut_bovie],
     features: ["Cordless Operation", "Instant Heating (180°C)", "Sonic Vibration"],
     inStock: true,
     rating: 5.0
@@ -145,73 +146,19 @@ export const products = [
     description: "Wireless obturation heating pen. Cordless, rechargeable, multiple tips.",
     image: img.touch_heat
   },
-  // Accessories
+  // UC-CUT Replacement Tips (grouped)
   {
-    id: "1006-2",
-    name: "UC-CUT Tip #90",
+    id: "1006-TIPS",
+    name: "UC-CUT Replacement Tips",
     price: 140.00,
     category: "Accessories",
-    description: "Small Metal Posterior Tip for UC-CUT.",
-    image: img.uccut_tip90
-  },
-  {
-    id: "1006-3",
-    name: "UC-CUT Tip #110",
-    price: 140.00,
-    category: "Accessories",
-    description: "Large Metal Anterior Tip for UC-CUT.",
-    image: img.uccut_tip110
-  },
-
-  // =========================================
-  // IMAGING & DIGITAL EQUIPMENT
-  // =========================================
-  {
-    id: "S1001",
-    name: "iSuni Intraoral Scanner",
-    price: 5999.00,
-    originalPrice: 7599.00,
-    promo: "Intro Price — Limited to 500 units",
-    category: "Equipment",
-    description: "30-second full arch scans. 10μm accuracy. No subscription fees.",
-    image: img.isuni_scan,
-    specs: { "Accuracy": "10μm", "Depth": "20mm", "AI": "Smart Filtering" }
-  },
-  {
-    id: "ISUNI-SENSORS",
-    name: "iSuni Sensor Series",
-    price: 1599.00,
-    originalPrice: 2499.00,
-    category: "Equipment",
-    description: "Thinnest in the market at 4.4mm. Durable cable endures 100N pull force. 25 lp/mm crystal clear CMOS imaging.",
-    image: img.isuni_sensor,
-    images: [
-      resolveImage('isuni_1.webp'),
-      resolveImage('isuni3.webp'),
-      resolveImage('isuni_4.webp'),
-      resolveImage('isuni6.webp'),
-      resolveImage('17341645630822_.pic.webp'),
-      resolveImage('17351645630822_.pic.webp'),
-      resolveImage('17361645630822_.pic.jpg'),
-      resolveImage('test_test_2025-06-06_12.35.24.webp'),
-      resolveImage('test_test_2025-06-06_12.35.46.webp'),
-      resolveImage('test_test_2025-06-06_12.36.27.webp'),
-      resolveImage('test_test_2025-06-06_12.36.48.webp')
-    ],
+    description: "Metal replacement tips for UC-CUT Sonic GP Cutter. Available in multiple styles.",
+    image: img.uccut_tips,
+    images: [img.uccut_tips, img.uccut_tip90, img.uccut_tip110, img.uccut_bovie],
     variants: [
-      { id: "A1038", name: "Size 0 (Pedo)", price: 1599.00, originalPrice: 2499.00 },
-      { id: "A1023", name: "Size 1 (Universal)", price: 1599.00, originalPrice: 2499.00 },
-      { id: "A1024", name: "Size 2 (Adult)", price: 1999.00, originalPrice: 2999.00 }
+      { id: "1006-2", name: "Tip #90 (Small Posterior)", price: 140.00 },
+      { id: "1006-3", name: "Tip #110 (Large Anterior)", price: 140.00 },
     ]
-  },
-  {
-    id: "A1022",
-    name: "iSuni Portable X-Ray",
-    price: 2899.00,
-    originalPrice: 3999.00,
-    category: "Equipment",
-    description: "Lightweight, handheld X-ray generator. Shielded for safety.",
-    image: img.isuni_xray
   },
 
   // =========================================
@@ -373,20 +320,17 @@ export const products = [
   // BIOMATERIALS
   // =========================================
   {
-    id: "OS-ALLO",
-    name: "OsseoSeal Allograft (0.5cc)",
+    id: "OS-SEAL",
+    name: "OsseoSeal Bone Graft & Membrane",
     price: 68.00,
     category: "Surgical",
-    description: "Mineralized Cortical/Cancellous Bone Graft (250-1000um).",
-    image: img.osseo_allo
-  },
-  {
-    id: "OS-MEM",
-    name: "OsseoSeal Membrane (15x20)",
-    price: 70.00,
-    category: "Surgical",
-    description: "Resorbable Porcine Collagen Membrane.",
-    image: img.osseo_mem
+    description: "Mineralized Allograft and Resorbable Collagen Membrane for guided bone regeneration.",
+    image: img.osseo_allo,
+    images: [img.osseo_allo, img.osseo_mem],
+    variants: [
+      { id: "OS-ALLO", name: "Allograft 0.5cc", price: 68.00 },
+      { id: "OS-MEM", name: "Membrane 15x20", price: 70.00 },
+    ]
   },
   {
     id: "OSTEO-PLUG",
