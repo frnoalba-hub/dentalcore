@@ -27,34 +27,41 @@ const img = {
   ep_suction:   resolveImage('EP_SUCTION_1003-1.png'),
   endoseal:     resolveImage('ENDOSEAL_MTA-1.png'),
   endocem:      resolveImage('ENDOCE_MTA_ROOT_REPAIR_MTA_3.webp'),
-  touch_heat:   resolveImage('UC_CUT_Boive_Tip.png'),
+  
   ap_kavo:      resolveImage('AIRPEAK_A1004-V2.jpg'),
   ap_nsk:       resolveImage('AIRPEAK_A1005.jpg'),
   ap_45:        resolveImage('AIRPEAK_A1018.jpg'),
   ap_micro:     resolveImage('AIRPEAK_A1004-V2.jpg'),
   ap_low_la:    resolveImage('AIRPEAK_A1009B.jpg'),
   ap_low_st:    resolveImage('AIRPEAK_A1012.jpg'),
+  
   it_g600s:     resolveImage('ITESLA_A1003.webp'),
   it_g600d:     resolveImage('ITESLA_A1028.webp'),
   it_implant:   resolveImage('ITESLA_A1020.jpg'),
   it_motor:     resolveImage('ITESLA_U_A1003.webp'),
+  
   ep_cure:      resolveImage('EP_CURE_White_1007-1.png'),
-  ep_light:     resolveImage('EP_LIGHT_1001-1_U1.png'),
-  modulite:     resolveImage('EP_CURE_White_Black.png'),
+  ep_light:     resolveImage('EP_CURE_MINI_White_1008-1.png'),
+  
   osseo_allo:   resolveImage('OSSEOSEAL_OS_0.5CC.webp'),
   osseo_mem:    resolveImage('OSSEOSEAL_Collagen_Membrane_OS1520.webp'),
   osteogen:     resolveImage('OSTEOGEN_10x20_OSTEO.webp'),
   ora_aid:      resolveImage('ORA_AID_RED_ORA20.webp'),
   collagen:     resolveImage('CURAGEN_COLL_WOUND_DRESSING_HP10.jpg'),
-  // Equipment (fallback to aesthetic placeholders since we don't have real photos yet)
+
+  // Equipment that have actual pictures but the filenames didn't perfectly match product IDs previously
+  stronic300:   resolveImage('AIRPEAK_A1016.jpg'),
+  air_polish:   resolveImage('AIRPEAK_A1017.jpg'),
+  ipr:          resolveImage('AIRPEAK_A1043.jpg'),
+
+  // Fallback to aesthetic placeholders since we don't have real photos yet
+  touch_heat:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
+  modulite:     'https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop',
   isuni_scan:   'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop',
   isuni_sensor: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop',
   isuni_xray:   'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop',
   mccareX:      'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   stronic150:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
-  stronic300:   'https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop',
-  air_polish:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
-  ipr:          'https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop',
   suretact:     'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   suretact_r:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
 };
@@ -351,7 +358,7 @@ export const products = [
   },
 
   // =========================================
-  // BIOMATERIALS / SURGICAL
+  // BIOMATERIALS
   // =========================================
   {
     id: "OS-ALLO",
