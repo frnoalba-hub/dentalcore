@@ -96,7 +96,7 @@ export const translations = {
     
     clinical_precision: 'Clinical',
     clinical_precision_2: 'Precision',
-    hero_desc: 'Engineered for modern endodontics. Uncompromising quality for professionals who demand the absolute best in structural integrity.',
+    hero_desc: 'Engineered for modern dentistry. Uncompromising quality for professionals who demand the absolute best.',
     explore_collection: 'Explore Collection',
     iso_certified: 'ISO Certified',
     warranty: '1-Year Warranty',
@@ -143,7 +143,7 @@ export const translations = {
 
     clinical_precision: 'Precisión',
     clinical_precision_2: 'Clínica',
-    hero_desc: 'Diseñado para la endodoncia moderna. Calidad intransigente para profesionales que exigen lo mejor en integridad estructural.',
+    hero_desc: 'Diseñado para la odontología moderna. Calidad intransigente para profesionales que exigen lo mejor.',
     explore_collection: 'Explorar Colección',
     iso_certified: 'Certificado ISO',
     warranty: '1 Año de Garantía',
