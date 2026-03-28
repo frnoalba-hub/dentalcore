@@ -1,10 +1,10 @@
 // --- COMPANY CONFIGURATION ---
 export const companyInfo = {
-  companyName: "Dental Core Instruments LLC",
+  companyName: "Dental Core Supply LLC",
   email: "frno.alba@gmail.com",
   address: "", // Hidden for privacy
   phone: "(626) 214-6598",
-  logoText: "DENTALCORE"
+  logoText: "DENTAL CORE SUPPLY"
 };
 
 // --- STOCK IMAGES (Hosted Online for Stability) ---

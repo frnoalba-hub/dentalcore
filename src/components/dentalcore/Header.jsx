@@ -52,7 +52,7 @@ export default function Header() {
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group shrink-0">
             <span className="text-xl font-bold tracking-tighter uppercase text-[#111]">
-              Dental Core<span className="text-accent">.</span>
+              Dental Core Supply<span className="text-accent">.</span>
             </span>
           </a>
 
