@@ -1,10 +1,18 @@
 // --- COMPANY CONFIGURATION ---
 export const companyInfo = {
+<<<<<<< HEAD
   companyName: "Dental Core Supply LLC",
   email: "frno.alba@gmail.com",
   address: "", // Hidden for privacy
   phone: "(626) 214-6598",
   logoText: "DENTAL CORE SUPPLY"
+=======
+  companyName: "Coretix",
+  email: "frno.alba@gmail.com",
+  address: "", // Hidden for privacy
+  phone: "(626) 214-6598",
+  logoText: "CORETIX"
+>>>>>>> 17e24df (chore: pivot master brand to Coretix for clean brand architecture)
 };
 
 // --- STOCK IMAGES (Hosted Online for Stability) ---

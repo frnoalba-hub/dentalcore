@@ -1,15 +1,20 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Search, Loader2 } from 'lucide-react';
+import { Search, Loader2, Plus, X } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { createPageUrl } from '../../utils';
 import { useCartStore } from '../store/cartStore';
+<<<<<<< HEAD
 import { useTranslation } from '@/lib/i18n';
+=======
+import { toast } from 'sonner';
+>>>>>>> 17e24df (chore: pivot master brand to Coretix for clean brand architecture)
 
 export default function CatalogSection() {
   const [filter, setFilter] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const { addItem, openCart } = useCartStore();
   const { t, dynamicT } = useTranslation();
 
@@ -23,8 +28,26 @@ export default function CatalogSection() {
   const filteredProducts = useMemo(() => {
     let filtered = products;
     if (filter !== 'All') filtered = filtered.filter(p => p.category === filter);
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+      filtered = filtered.filter(p => 
+        p.name.toLowerCase().includes(q) || 
+        p.description?.toLowerCase().includes(q) || 
+        p.category?.toLowerCase().includes(q) ||
+        p.id?.toLowerCase().includes(q)
+      );
+    }
     return [...filtered].sort((a, b) => (b.popular ? 1 : 0) - (a.popular ? 1 : 0));
-  }, [products, filter]);
+  }, [products, filter, searchQuery]);
+
+  const handleQuickAdd = (product, e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addItem(product, 1);
+    toast.success(`Added ${product.name}`, { 
+      action: { label: 'View Cart', onClick: () => openCart() }
+    });
+  };
 
   return (
     <section id="catalog" className="py-24 bg-[#FDFDFD]">
@@ -34,6 +57,7 @@ export default function CatalogSection() {
             <h2 className="section-title mb-0">{t('index')}</h2>
           </motion.div>
 
+<<<<<<< HEAD
           <div className="flex flex-wrap gap-2">
             {categories.map((cat) => (
               <button
@@ -48,17 +72,70 @@ export default function CatalogSection() {
                 {cat === 'All' ? t('all') : dynamicT(cat)}
               </button>
             ))}
+=======
+          <div className="flex flex-col gap-4">
+            {/* Search */}
+            <div className="relative">
+              <Search className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-[#111]/40" />
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full md:w-[280px] bg-transparent border-b border-[#111]/20 focus:border-[#111] pl-6 pr-8 py-2 text-sm font-body text-[#111] placeholder:text-[#111]/30 outline-none transition-colors"
+              />
+              {searchQuery && (
+                <button onClick={() => setSearchQuery('')} className="absolute right-0 top-1/2 -translate-y-1/2 text-[#111]/40 hover:text-[#111]">
+                  <X className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+
+            {/* Category filters */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setFilter(cat)}
+                  className={`px-5 py-2 text-xs font-medium uppercase tracking-widest transition-colors border ${
+                    filter === cat
+                      ? 'border-[#111] bg-[#111] text-white'
+                      : 'border-[#111]/10 text-[#111]/60 hover:border-[#111] hover:text-[#111]'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+>>>>>>> 17e24df (chore: pivot master brand to Coretix for clean brand architecture)
           </div>
+        </div>
+
+        {/* Results count */}
+        <div className="text-xs uppercase tracking-widest text-[#111]/40 font-medium mb-6">
+          {filteredProducts.length} {filteredProducts.length === 1 ? 'item' : 'items'}
+          {filter !== 'All' && ` in ${filter}`}
+          {searchQuery && ` matching "${searchQuery}"`}
         </div>
 
         {isLoading ? (
           <div className="flex justify-center py-32 border border-[#111]/10">
             <Loader2 className="w-8 h-8 animate-spin text-[#111]" />
           </div>
+        ) : filteredProducts.length === 0 ? (
+          <div className="py-24 text-center border border-[#111]/10">
+            <p className="text-sm text-[#111]/50 font-body mb-4">No products found.</p>
+            <button 
+              onClick={() => { setSearchQuery(''); setFilter('All'); }}
+              className="text-xs uppercase tracking-widest font-medium text-accent hover:text-[#111] transition-colors"
+            >
+              Clear Filters
+            </button>
+          </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-t border-l border-[#111]/10">
             {filteredProducts.map((product, index) => (
-              <motion.div key={product.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.05 }}>
+              <motion.div key={product.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.03 }}>
                 <Link to={`${createPageUrl('ProductDetail')}?id=${product.id}`}>
                   <article className="group relative h-full flex flex-col bg-[#FDFDFD] border-r border-b border-[#111]/10 hover:bg-[#F5F5F5] transition-colors">
                     <div className="relative aspect-square px-8 pb-8 pt-16 overflow-hidden">
@@ -72,6 +149,14 @@ export default function CatalogSection() {
                           {dynamicT(product.category)}
                         </span>
                       </div>
+                      {/* Quick Add button on hover */}
+                      <button
+                        onClick={(e) => handleQuickAdd(product, e)}
+                        className="absolute bottom-4 right-4 w-10 h-10 bg-[#111] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-accent transition-all duration-200"
+                        title="Quick add to cart"
+                      >
+                        <Plus className="w-4 h-4" />
+                      </button>
                     </div>
 
                     <div className="p-6 border-t border-[#111]/10 flex flex-col flex-1 justify-between bg-white">

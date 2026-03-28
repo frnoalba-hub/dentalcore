@@ -3,7 +3,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, Menu, X, ArrowUpRight } from 'lucide-react';
 import { companyInfo } from './productsData';
 import { useCartStore } from '../store/cartStore';
+<<<<<<< HEAD
 import { useTranslation } from '@/lib/i18n';
+=======
+
+const navLinks = [
+  { label: 'Catalog', id: 'catalog' },
+  { label: 'Featured', id: 'featured' },
+  { label: 'Reviews', id: 'testimonials' },
+  { label: 'About', id: 'about' },
+  { label: 'Contact', id: 'contact' },
+];
+>>>>>>> 17e24df (chore: pivot master brand to Coretix for clean brand architecture)
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -51,8 +62,13 @@ export default function Header() {
         <div className="h-20 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group shrink-0">
+<<<<<<< HEAD
             <span className="text-xl font-bold tracking-tighter uppercase text-[#111]">
               Dental Core Supply<span className="text-accent">.</span>
+=======
+            <span className="text-xl font-bold tracking-widest uppercase text-[#111]">
+              CORETIX<span className="text-accent">.</span>
+>>>>>>> 17e24df (chore: pivot master brand to Coretix for clean brand architecture)
             </span>
           </a>
 

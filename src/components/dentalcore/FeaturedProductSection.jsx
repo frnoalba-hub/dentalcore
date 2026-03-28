@@ -74,7 +74,11 @@ export default function FeaturedProductSection() {
                 onClick={() => { addItem(product, 1); openCart(); }}
                 className="group w-full flex items-center justify-between border border-white p-5 hover:bg-white hover:text-[#111] transition-colors"
               >
+<<<<<<< HEAD
                 <span className="text-sm uppercase tracking-[0.2em] font-medium">{t('acquire_unit')}</span>
+=======
+                <span className="text-sm uppercase tracking-[0.2em] font-medium">Add to Cart</span>
+>>>>>>> 17e24df (chore: pivot master brand to Coretix for clean brand architecture)
                 <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </button>
             </motion.div>
