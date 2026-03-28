@@ -176,11 +176,20 @@ export const products = [
   },
   {
     id: "A1038",
+    name: "iSuni Sensor (Size 0 - Pedo)",
+    price: 1599.00,
+    originalPrice: 2499.00,
+    category: "Equipment",
+    description: "Thinnest in the market at 4.4mm. Durable cable endures 100N pull force. 25 lp/mm crystal clear CMOS imaging.",
+    image: img.isuni_sensor
+  },
+  {
+    id: "A1023",
     name: "iSuni Sensor (Size 1)",
     price: 1599.00,
     originalPrice: 2499.00,
     category: "Equipment",
-    description: "Crystal clear CMOS imaging for Pedo/General use. 24-month warranty.",
+    description: "Thinnest in the market at 4.4mm. Durable cable endures 100N pull force. 25 lp/mm crystal clear CMOS imaging.",
     image: img.isuni_sensor
   },
   {
@@ -189,7 +198,7 @@ export const products = [
     price: 1999.00,
     originalPrice: 2999.00,
     category: "Equipment",
-    description: "Crystal clear CMOS imaging for Adult Bitewings. 24-month warranty.",
+    description: "Thinnest in the market at 4.4mm. Durable cable endures 100N pull force. 25 lp/mm crystal clear CMOS imaging.",
     image: img.isuni_sensor
   },
   {
