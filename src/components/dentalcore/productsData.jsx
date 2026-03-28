@@ -7,14 +7,48 @@ export const companyInfo = {
   logoText: "CORETIX"
 };
 
-// --- STOCK IMAGES (Hosted Online for Stability) ---
-const images = {
-  hero: "https://kdentalsupplies.com/cdn/shop/files/UC-CUT_Heat_Vibration_Sonic_GP_Cutter_4_colors.jpg?v=1710953457",
-  endo: "https://images.unsplash.com/photo-1599423300746-b62505752f7e?q=80&w=1000&auto=format&fit=crop",
-  digital: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop",
-  handpiece: "https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop",
-  surgical: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1000&auto=format&fit=crop",
-  general: "https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop"
+// --- REAL PRODUCT IMAGES (local /public/products/) ---
+const img = {
+  uccut:        '/products/UC_CUT_Gutta_Purcha_Cutter_INFO_1006-1.png',
+  uccut_tip90:  '/products/UC_CUT_Tip_#90_1006-2.png',
+  uccut_tip110: '/products/UC_CUT_Tip_#110_1006-3.png',
+  uccut_tips:   '/products/UC_CUT_Gutta_Purcha_Cutter_ALL_Tips.png',
+  uccut_bovie:  '/products/UC_CUT_Boive_Tip.png',
+  ucone:        '/products/UC_ONE_Ultasonic_Irrigation_1002-1.png',
+  cutfit:       '/products/Cut_&_Fit_Gutta_Percha_Cutter_1005-1.jpg',
+  ep_plugger:   '/products/EP_PLUGGER_SET_1004-1.jpg',
+  ep_suction:   '/products/EP_SUCTION_1003-1.png',
+  endoseal:     '/products/ENDOSEAL_MTA-1.png',
+  endocem:      '/products/ENDOCE_MTA_ROOT_REPAIR_MTA_3.webp',
+  touch_heat:   '/products/UC_CUT_Boive_Tip.png',
+  ap_kavo:      '/products/AIRPEAK_A1004-V2.jpg',
+  ap_nsk:       '/products/AIRPEAK_A1005.jpg',
+  ap_45:        '/products/AIRPEAK_A1018.jpg',
+  ap_micro:     '/products/AIRPEAK_A1004-V2.jpg',
+  ap_low_la:    '/products/AIRPEAK_A1009B.jpg',
+  ap_low_st:    '/products/AIRPEAK_A1012.jpg',
+  it_g600s:     '/products/ITESLA_A1003.webp',
+  it_g600d:     '/products/ITESLA_A1028.webp',
+  it_implant:   '/products/ITESLA_A1020.jpg',
+  it_motor:     '/products/ITESLA_U_A1003.webp',
+  ep_cure:      '/products/EP_CURE_White_1007-1.png',
+  ep_light:     '/products/EP_LIGHT_1001-1_U1.png',
+  modulite:     '/products/EP_CURE_White_Black.png',
+  osseo_allo:   '/products/OSSEOSEAL_OS_0.5CC.webp',
+  osseo_mem:    '/products/OSSEOSEAL_Collagen_Membrane_OS1520.webp',
+  osteogen:     '/products/OSTEOGEN_10x20_OSTEO.webp',
+  ora_aid:      '/products/ORA_AID_RED_ORA20.webp',
+  collagen:     '/products/CURAGEN_COLL_WOUND_DRESSING_HP10.jpg',
+  isuni_scan:   '/products/UC_ONE_UNIT_INFO.png',
+  isuni_sensor: '/products/UC_ONE_Metal_Endo-Irrigation-Tip_1002-3.jpg',
+  isuni_xray:   '/products/UC_ONE_Metal_Tip_1002-5.png',
+  mccareX:      '/products/AIRPEAK_A1043.jpg',
+  stronic150:   '/products/ENDOSEAL_MTA-1.png',
+  stronic300:   '/products/AIRPEAK_A1016.jpg',
+  air_polish:   '/products/AIRPEAK_A1017.jpg',
+  ipr:          '/products/AIRPEAK_A1043.jpg',
+  suretact:     '/products/EP_PLUGGER_SET_CLOSEUP_1004-1.webp',
+  suretact_r:   '/products/EP_PLUGGER_SET_1004-1.jpg',
 };
 
 // --- MASTER PRODUCT CATALOG ---
@@ -29,7 +63,7 @@ export const products = [
     price: 599.00,
     category: "Endodontics",
     description: "The new standard in Gutta Percha removal. Cordless, Sonic, Precision.",
-    image: images.hero,
+    image: img.uccut,
     features: ["Cordless Operation", "Instant Heating (180°C)", "Sonic Vibration"],
     inStock: true,
     rating: 5.0
@@ -40,7 +74,7 @@ export const products = [
     price: 599.00,
     category: "Endodontics",
     description: "Cordless ultrasonic irrigation for superior canal cleaning.",
-    image: images.endo
+    image: img.ucone
   },
   {
     id: "1005-1",
@@ -48,7 +82,7 @@ export const products = [
     price: 80.00,
     category: "Endodontics",
     description: "Reliable cordless GP cutter with interchangeable tips.",
-    image: images.endo
+    image: img.cutfit
   },
   {
     id: "1004-1",
@@ -56,7 +90,7 @@ export const products = [
     price: 120.00,
     category: "Endodontics",
     description: "Ergonomic gutta percha plugger kit (FM/M and ML/L).",
-    image: images.endo
+    image: img.ep_plugger
   },
   {
     id: "1003-1",
@@ -64,7 +98,7 @@ export const products = [
     price: 60.00,
     category: "Endodontics",
     description: "Micro-suction tips for drying canals. Includes 2 adapters + 5 tips.",
-    image: images.endo
+    image: img.ep_suction
   },
   {
     id: "MTA-1",
@@ -72,7 +106,7 @@ export const products = [
     price: 90.00,
     category: "Endodontics",
     description: "Bioactive bioceramic root canal sealer. High radiopacity.",
-    image: images.endo
+    image: img.endoseal
   },
   {
     id: "MTA-3",
@@ -80,7 +114,7 @@ export const products = [
     price: 90.00,
     category: "Endodontics",
     description: "Rapid setting MTA for root repair and apicoectomy.",
-    image: images.endo
+    image: img.endocem
   },
   {
     id: "TH-001",
@@ -90,7 +124,24 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Endodontics",
     description: "Wireless obturation heating pen. Cordless, rechargeable, multiple tips.",
-    image: images.endo
+    image: img.touch_heat
+  },
+  // Accessories
+  {
+    id: "1006-2",
+    name: "UC-CUT Tip #90",
+    price: 140.00,
+    category: "Accessories",
+    description: "Small Metal Posterior Tip for UC-CUT.",
+    image: img.uccut_tip90
+  },
+  {
+    id: "1006-3",
+    name: "UC-CUT Tip #110",
+    price: 140.00,
+    category: "Accessories",
+    description: "Large Metal Anterior Tip for UC-CUT.",
+    image: img.uccut_tip110
   },
 
   // =========================================
@@ -104,7 +155,7 @@ export const products = [
     promo: "Intro Price — Limited to 500 units",
     category: "Equipment",
     description: "30-second full arch scans. 10μm accuracy. No subscription fees.",
-    image: images.digital,
+    image: img.isuni_scan,
     specs: { "Accuracy": "10μm", "Depth": "20mm", "AI": "Smart Filtering" }
   },
   {
@@ -114,7 +165,7 @@ export const products = [
     originalPrice: 2499.00,
     category: "Equipment",
     description: "Crystal clear CMOS imaging for Pedo/General use. 24-month warranty.",
-    image: images.digital
+    image: img.isuni_sensor
   },
   {
     id: "A1024",
@@ -123,7 +174,7 @@ export const products = [
     originalPrice: 2999.00,
     category: "Equipment",
     description: "Crystal clear CMOS imaging for Adult Bitewings. 24-month warranty.",
-    image: images.digital
+    image: img.isuni_sensor
   },
   {
     id: "A1022",
@@ -132,7 +183,7 @@ export const products = [
     originalPrice: 3999.00,
     category: "Equipment",
     description: "Lightweight, handheld X-ray generator. Shielded for safety.",
-    image: images.digital
+    image: img.isuni_xray
   },
 
   // =========================================
@@ -146,7 +197,7 @@ export const products = [
     promo: "3 Handpieces + 1 Coupler for $1,000",
     category: "Handpieces",
     description: "Titanium, Fiber Optic, Quattro Spray. 400,000 RPM. 27W Power.",
-    image: images.handpiece
+    image: img.ap_kavo
   },
   {
     id: "A1005",
@@ -156,7 +207,7 @@ export const products = [
     promo: "3 Handpieces + 1 Coupler for $1,000",
     category: "Handpieces",
     description: "Titanium, Fiber Optic, Quattro Spray. NSK Coupler compatible.",
-    image: images.handpiece
+    image: img.ap_nsk
   },
   {
     id: "A1018",
@@ -165,7 +216,7 @@ export const products = [
     originalPrice: 699.00,
     category: "Handpieces",
     description: "45-degree head for surgical access. Rear exhaust to prevent embolism.",
-    image: images.handpiece
+    image: img.ap_45
   },
   {
     id: "A1004-V3",
@@ -175,7 +226,7 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Ultra-mini head for pediatric and limited opening cases. 380–450k RPM.",
-    image: images.handpiece
+    image: img.ap_micro
   },
   {
     id: "A1009B",
@@ -185,7 +236,7 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "1:1 Contra Angle, Latch Type, Push Button.",
-    image: images.handpiece
+    image: img.ap_low_la
   },
   {
     id: "A1012",
@@ -195,7 +246,7 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "1:1 Straight Nose Cone for extraoral adjustments.",
-    image: images.handpiece
+    image: img.ap_low_st
   },
 
   // =========================================
@@ -207,7 +258,7 @@ export const products = [
     price: 1299.00,
     category: "Equipment",
     description: "Brushless micromotor with integrated Endo function. 3.0 N.cm torque.",
-    image: images.handpiece
+    image: img.it_motor
   },
   {
     id: "A1003",
@@ -217,7 +268,7 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Electric 1:5 increaser. Titanium body, DLC coating, Quattro Spray.",
-    image: images.handpiece
+    image: img.it_g600s
   },
   {
     id: "A1028",
@@ -226,7 +277,7 @@ export const products = [
     originalPrice: 599.00,
     category: "Handpieces",
     description: "Electric 1:1 direct drive. Internal water spray.",
-    image: images.handpiece
+    image: img.it_g600d
   },
   {
     id: "A1020",
@@ -235,7 +286,7 @@ export const products = [
     originalPrice: 799.00,
     category: "Handpieces",
     description: "20:1 Reduction for Implantology. External irrigation clip.",
-    image: images.handpiece
+    image: img.it_implant
   },
 
   // =========================================
@@ -248,7 +299,7 @@ export const products = [
     originalPrice: 1199.00,
     category: "Equipment",
     description: "Touch control ultrasonic unit. Endo/Perio/Scaling modes.",
-    image: images.general
+    image: img.stronic150
   },
   {
     id: "A1061",
@@ -258,7 +309,7 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Fits KaVo coupler. 6000 Hz oscillation for gentle scaling.",
-    image: images.handpiece
+    image: img.stronic300
   },
   {
     id: "A1658",
@@ -268,7 +319,7 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Equipment",
     description: "Anti-clogging air polishing system. 360° swivel nozzle.",
-    image: images.general
+    image: img.air_polish
   },
   {
     id: "A1030",
@@ -277,7 +328,7 @@ export const products = [
     originalPrice: 1999.00,
     category: "Equipment",
     description: "Automated handpiece cleaning and lubrication. 4 Ports.",
-    image: images.general
+    image: img.mccareX
   },
   {
     id: "IPR-001",
@@ -287,11 +338,11 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Ortho interproximal reduction handpiece with reciprocating motion.",
-    image: images.handpiece
+    image: img.ipr
   },
 
   // =========================================
-  // BIOMATERIALS
+  // BIOMATERIALS / SURGICAL
   // =========================================
   {
     id: "OS-ALLO",
@@ -299,7 +350,7 @@ export const products = [
     price: 68.00,
     category: "Surgical",
     description: "Mineralized Cortical/Cancellous Bone Graft (250-1000um).",
-    image: images.surgical
+    image: img.osseo_allo
   },
   {
     id: "OS-MEM",
@@ -307,7 +358,7 @@ export const products = [
     price: 70.00,
     category: "Surgical",
     description: "Resorbable Porcine Collagen Membrane.",
-    image: images.surgical
+    image: img.osseo_mem
   },
   {
     id: "OSTEO-PLUG",
@@ -315,7 +366,7 @@ export const products = [
     price: 549.00,
     category: "Surgical",
     description: "Resorbable Bone Grafting Plug (10/Box).",
-    image: images.surgical
+    image: img.osteogen
   },
   {
     id: "ORA-20",
@@ -323,7 +374,7 @@ export const products = [
     price: 90.00,
     category: "Surgical",
     description: "Intraoral protective dressing. 15mm x 25mm (20 Pack).",
-    image: images.surgical
+    image: img.ora_aid
   },
   {
     id: "HELI-1",
@@ -331,7 +382,7 @@ export const products = [
     price: 110.00,
     category: "Surgical",
     description: "Resorbable collagen sponge for hemostasis (10/Box).",
-    image: images.surgical
+    image: img.collagen
   },
 
   // =========================================
@@ -345,7 +396,7 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Restorative",
     description: "Broadband LED (380-520nm) with detection mode. Aerospace aluminum.",
-    image: images.general
+    image: img.modulite
   },
   {
     id: "1007-1",
@@ -353,7 +404,7 @@ export const products = [
     price: 599.00,
     category: "Restorative",
     description: "High-intensity LED curing light. 1-sec cure capability.",
-    image: images.general
+    image: img.ep_cure
   },
   {
     id: "1008-1",
@@ -361,7 +412,7 @@ export const products = [
     price: 160.00,
     category: "Restorative",
     description: "Diagnostic light for crack detection.",
-    image: images.general
+    image: img.ep_light
   },
   {
     id: "M1001",
@@ -371,7 +422,7 @@ export const products = [
     promo: "Buy 2 Kits for $400",
     category: "Restorative",
     description: "Sectional matrix system. 100 matrices, 2 rings, forceps.",
-    image: images.general
+    image: img.suretact
   },
   {
     id: "M1002",
@@ -381,6 +432,6 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Restorative",
     description: "Universal NiTi rings with outstanding spring memory.",
-    image: images.general
+    image: img.suretact_r
   }
 ];
