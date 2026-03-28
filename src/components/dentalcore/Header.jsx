@@ -85,12 +85,6 @@ export default function Header() {
                   {link.label}
                 </button>
               ))}
-              <a
-                href="/AdminProducts"
-                className="px-4 py-2 text-sm font-bold text-amber-600 hover:text-amber-700 bg-amber-50 rounded-lg transition-all ml-4"
-              >
-                Admin Panel
-              </a>
             </nav>
 
             {/* Right */}
@@ -137,12 +131,6 @@ export default function Header() {
                   {link.label}
                 </button>
               ))}
-              <a
-                href="/AdminProducts"
-                className="text-left px-4 py-3 text-amber-700 bg-amber-50 hover:bg-amber-100 rounded-xl font-bold text-sm transition-all"
-              >
-                Admin Panel
-              </a>
               <a href={`tel:${companyInfo.phone}`} className="mt-2 flex items-center gap-2 px-4 py-3 text-amber-600 font-semibold text-sm">
                 <Phone className="w-4 h-4" />
                 {companyInfo.phone}
