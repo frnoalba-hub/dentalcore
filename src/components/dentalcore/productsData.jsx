@@ -1,18 +1,10 @@
 // --- COMPANY CONFIGURATION ---
 export const companyInfo = {
-<<<<<<< HEAD
-  companyName: "Dental Core Supply LLC",
-  email: "frno.alba@gmail.com",
-  address: "", // Hidden for privacy
-  phone: "(626) 214-6598",
-  logoText: "DENTAL CORE SUPPLY"
-=======
   companyName: "Coretix",
   email: "frno.alba@gmail.com",
   address: "", // Hidden for privacy
   phone: "(626) 214-6598",
   logoText: "CORETIX"
->>>>>>> 17e24df (chore: pivot master brand to Coretix for clean brand architecture)
 };
 
 // --- STOCK IMAGES (Hosted Online for Stability) ---
@@ -353,26 +345,6 @@ export const products = [
     price: 86.65,
     category: "Restorative",
     description: "Universal NiTi rings with outstanding spring memory.",
-    image: images.general
-  },
-
-  // =========================================
-  // ACCESSORIES
-  // =========================================
-  {
-    id: "1006-2",
-    name: "UC-CUT Tip #90",
-    price: 140.00,
-    category: "Accessories",
-    description: "Small Metal Posterior Tip for UC-CUT.",
-    image: images.general
-  },
-  {
-    id: "1006-3",
-    name: "UC-CUT Tip #110",
-    price: 140.00,
-    category: "Accessories",
-    description: "Large Metal Anterior Tip for UC-CUT.",
     image: images.general
   }
 ];

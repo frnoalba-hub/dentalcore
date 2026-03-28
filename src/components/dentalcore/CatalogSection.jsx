@@ -6,11 +6,8 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { createPageUrl } from '../../utils';
 import { useCartStore } from '../store/cartStore';
-<<<<<<< HEAD
 import { useTranslation } from '@/lib/i18n';
-=======
 import { toast } from 'sonner';
->>>>>>> 17e24df (chore: pivot master brand to Coretix for clean brand architecture)
 
 export default function CatalogSection() {
   const [filter, setFilter] = useState('All');
@@ -45,7 +42,7 @@ export default function CatalogSection() {
     e.stopPropagation();
     addItem(product, 1);
     toast.success(`Added ${product.name}`, { 
-      action: { label: 'View Cart', onClick: () => openCart() }
+      action: { label: t('view_cart') || 'View Cart', onClick: () => openCart() }
     });
   };
 
@@ -57,29 +54,13 @@ export default function CatalogSection() {
             <h2 className="section-title mb-0">{t('index')}</h2>
           </motion.div>
 
-<<<<<<< HEAD
-          <div className="flex flex-wrap gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat)}
-                className={`px-5 py-2 text-xs font-medium uppercase tracking-widest transition-colors border ${
-                  filter === cat
-                    ? 'border-[#111] bg-[#111] text-white'
-                    : 'border-[#111]/10 text-[#111]/60 hover:border-[#111] hover:text-[#111]'
-                }`}
-              >
-                {cat === 'All' ? t('all') : dynamicT(cat)}
-              </button>
-            ))}
-=======
           <div className="flex flex-col gap-4">
             {/* Search */}
             <div className="relative">
               <Search className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-[#111]/40" />
               <input
                 type="text"
-                placeholder="Search products..."
+                placeholder={t('search_products') || "Search products..."}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full md:w-[280px] bg-transparent border-b border-[#111]/20 focus:border-[#111] pl-6 pr-8 py-2 text-sm font-body text-[#111] placeholder:text-[#111]/30 outline-none transition-colors"
@@ -103,11 +84,10 @@ export default function CatalogSection() {
                       : 'border-[#111]/10 text-[#111]/60 hover:border-[#111] hover:text-[#111]'
                   }`}
                 >
-                  {cat}
+                  {cat === 'All' ? t('all') : dynamicT(cat)}
                 </button>
               ))}
             </div>
->>>>>>> 17e24df (chore: pivot master brand to Coretix for clean brand architecture)
           </div>
         </div>
 
@@ -124,7 +104,7 @@ export default function CatalogSection() {
           </div>
         ) : filteredProducts.length === 0 ? (
           <div className="py-24 text-center border border-[#111]/10">
-            <p className="text-sm text-[#111]/50 font-body mb-4">No products found.</p>
+            <p className="text-sm text-[#111]/50 font-body mb-4">{t('no_items') || "No products found."}</p>
             <button 
               onClick={() => { setSearchQuery(''); setFilter('All'); }}
               className="text-xs uppercase tracking-widest font-medium text-accent hover:text-[#111] transition-colors"
