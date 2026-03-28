@@ -8,6 +8,7 @@ import { createPageUrl } from '../../utils';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
 import { toast } from 'sonner';
+import { products as localProducts } from './productsData';
 
 export default function CatalogSection() {
   const [filter, setFilter] = useState('All');
@@ -15,10 +16,18 @@ export default function CatalogSection() {
   const { addItem, openCart } = useCartStore();
   const { t, dynamicT } = useTranslation();
 
-  const { data: products = [], isLoading } = useQuery({
+  const { data: apiProducts = [], isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: () => base44.entities.Product.list(),
   });
+
+  // Use local products as primary (they have promo pricing).
+  // Merge in any extra products from the API that aren't already local.
+  const products = useMemo(() => {
+    const localIds = new Set(localProducts.map(p => p.id));
+    const apiOnly = apiProducts.filter(p => !localIds.has(p.id));
+    return [...localProducts, ...apiOnly];
+  }, [apiProducts]);
 
   const categories = ['All', ...new Set(products.map(p => p.category))];
 
@@ -34,7 +43,7 @@ export default function CatalogSection() {
         p.id?.toLowerCase().includes(q)
       );
     }
-    return [...filtered].sort((a, b) => (b.popular ? 1 : 0) - (a.popular ? 1 : 0));
+    return [...filtered].sort((a, b) => (b.originalPrice ? 1 : 0) - (a.originalPrice ? 1 : 0));
   }, [products, filter, searchQuery]);
 
   const handleQuickAdd = (product, e) => {
