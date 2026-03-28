@@ -46,16 +46,17 @@ const img = {
   osteogen:     resolveImage('OSTEOGEN_10x20_OSTEO.webp'),
   ora_aid:      resolveImage('ORA_AID_RED_ORA20.webp'),
   collagen:     resolveImage('CURAGEN_COLL_WOUND_DRESSING_HP10.jpg'),
-  isuni_scan:   resolveImage('UC_ONE_UNIT_INFO.png'),
-  isuni_sensor: resolveImage('UC_ONE_Metal_Endo-Irrigation-Tip_1002-3.jpg'),
-  isuni_xray:   resolveImage('UC_ONE_Metal_Tip_1002-5.png'),
-  mccareX:      resolveImage('AIRPEAK_A1043.jpg'),
-  stronic150:   resolveImage('ENDOSEAL_MTA-1.png'),
-  stronic300:   resolveImage('AIRPEAK_A1016.jpg'),
-  air_polish:   resolveImage('AIRPEAK_A1017.jpg'),
-  ipr:          resolveImage('AIRPEAK_A1043.jpg'),
-  suretact:     resolveImage('EP_PLUGGER_SET_CLOSEUP_1004-1.webp'),
-  suretact_r:   resolveImage('EP_PLUGGER_SET_1004-1.jpg'),
+  // Equipment (fallback to aesthetic placeholders since we don't have real photos yet)
+  isuni_scan:   'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop',
+  isuni_sensor: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop',
+  isuni_xray:   'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop',
+  mccareX:      'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
+  stronic150:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
+  stronic300:   'https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop',
+  air_polish:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
+  ipr:          'https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop',
+  suretact:     'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
+  suretact_r:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
 };
 
 
