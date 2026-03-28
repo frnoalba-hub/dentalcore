@@ -59,11 +59,11 @@ export default function CatalogSection() {
               <motion.div key={product.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.05 }}>
                 <Link to={`${createPageUrl('ProductDetail')}?id=${product.id}`}>
                   <article className="group relative h-full flex flex-col bg-[#FDFDFD] border-r border-b border-[#111]/10 hover:bg-[#F5F5F5] transition-colors">
-                    <div className="relative aspect-square p-8 overflow-hidden">
+                    <div className="relative aspect-square px-8 pb-8 pt-16 overflow-hidden">
                       <img
                         src={product.image}
                         alt={product.name}
-                        className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-contain object-bottom mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
                       />
                       <div className="absolute top-4 left-4 flex gap-2">
                         <span className="text-[10px] uppercase tracking-widest font-semibold text-[#111]/50 border border-[#111]/10 px-2 py-1 bg-white/80">
