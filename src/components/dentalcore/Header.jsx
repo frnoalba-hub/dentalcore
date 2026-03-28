@@ -24,6 +24,17 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileOpen]);
+
   const scrollTo = (id) => {
     setMobileOpen(false);
     const el = document.getElementById(id);
@@ -103,9 +114,9 @@ export default function Header() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="fixed inset-x-0 top-20 z-40 bg-[#FDFDFD] border-b border-[#111]/10 lg:hidden"
+            className="fixed inset-x-0 top-20 bottom-0 z-40 bg-[#FDFDFD] lg:hidden overflow-y-auto"
           >
-            <nav className="flex flex-col p-6 gap-6">
+            <nav className="flex flex-col p-6 gap-6 min-h-full">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
@@ -115,7 +126,7 @@ export default function Header() {
                   {link.label}
                 </button>
               ))}
-              <div className="mt-8 pt-8 border-t border-[#111]/10 flex flex-col gap-4">
+              <div className="mt-auto pt-8 border-t border-[#111]/10 flex flex-col gap-4">
                 <button
                   onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
                   className="text-left text-2xl font-medium tracking-tighter uppercase text-[#111] flex gap-2"
