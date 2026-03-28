@@ -65,7 +65,7 @@ const img = {
   modulite:     'https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop',
   // iSuni equipment — using resolveSuniImage to correctly hit /product_images/Suni/
   isuni_scan:   resolveSuniImage('isuni_1.webp'),
-  isuni_sensor: resolveSuniImage('iSuni_2.webp'),
+  isuni_sensor: resolveSuniImage('isuni_1.webp'),
   isuni_xray:   resolveSuniImage('isuni3.webp'),
 
   // Equipment placeholders for items we still don't have photos for
