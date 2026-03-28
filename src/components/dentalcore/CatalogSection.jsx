@@ -51,37 +51,37 @@ export default function CatalogSection() {
   };
 
   return (
-    <section id="catalog" className="py-20 lg:py-28 bg-gray-50">
+    <section id="catalog" className="py-20 lg:py-28 bg-slate-50/50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
           <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <span className="text-amber-600 font-semibold tracking-[0.15em] text-xs uppercase mb-3 block">Full Catalog</span>
+            <span className="text-blue-600 font-semibold tracking-[0.15em] text-xs uppercase mb-3 block">Full Catalog</span>
             <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight mb-3">Our Products</h2>
-            <div className="w-16 h-1 bg-gradient-to-r from-amber-500 to-amber-400 mx-auto rounded-full" />
+            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto rounded-full" />
           </motion.div>
         </div>
 
         {/* Filters bar */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-8 shadow-sm">
+        <div className="bg-white rounded-2xl border border-slate-200 p-5 mb-8 shadow-sm">
           <div className="flex flex-col md:flex-row gap-3">
             <div className="flex-1 relative">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
               <Input
                 type="text"
                 placeholder="Search products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 h-11 border-gray-200 rounded-xl"
+                className="pl-10 h-11 border-slate-200 rounded-xl focus:border-blue-400 focus:ring-blue-400/20"
               />
               {searchQuery && (
-                <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
                   <X className="w-4 h-4" />
                 </button>
               )}
             </div>
             <Select value={sortBy} onValueChange={setSortBy}>
-              <SelectTrigger className="w-full md:w-[180px] h-11 border-gray-200 rounded-xl">
+              <SelectTrigger className="w-full md:w-[180px] h-11 border-slate-200 rounded-xl">
                 <SelectValue placeholder="Sort by" />
               </SelectTrigger>
               <SelectContent>
@@ -95,15 +95,15 @@ export default function CatalogSection() {
           </div>
 
           {/* Category pills */}
-          <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-gray-100">
+          <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-slate-100">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
                 className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all ${
                   filter === cat
-                    ? 'bg-slate-900 text-white shadow-sm'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    ? 'bg-blue-700 text-white shadow-sm shadow-blue-700/20'
+                    : 'bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-700'
                 }`}
               >
                 {cat}
@@ -111,19 +111,19 @@ export default function CatalogSection() {
             ))}
           </div>
 
-          <div className="mt-3 text-sm text-gray-400">
+          <div className="mt-3 text-sm text-slate-400">
             {filteredAndSortedProducts.length} of {products.length} products
           </div>
         </div>
 
         {/* Grid */}
         {isLoading ? (
-          <div className="flex justify-center py-20"><Loader2 className="w-8 h-8 animate-spin text-amber-500" /></div>
+          <div className="flex justify-center py-20"><Loader2 className="w-8 h-8 animate-spin text-blue-600" /></div>
         ) : filteredAndSortedProducts.length === 0 ? (
-          <div className="text-center py-20 bg-white rounded-2xl border border-gray-200">
-            <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-gray-700 mb-2">No products found</h3>
-            <p className="text-sm text-gray-400 mb-5">Try adjusting your search or filters</p>
+          <div className="text-center py-20 bg-white rounded-2xl border border-slate-200">
+            <Search className="w-12 h-12 text-slate-200 mx-auto mb-4" />
+            <h3 className="text-lg font-semibold text-slate-700 mb-2">No products found</h3>
+            <p className="text-sm text-slate-400 mb-5">Try adjusting your search or filters</p>
             <Button onClick={() => { setSearchQuery(''); setFilter('All'); }} variant="outline" size="sm">Clear filters</Button>
           </div>
         ) : (
@@ -131,9 +131,9 @@ export default function CatalogSection() {
             {filteredAndSortedProducts.map((product, index) => (
               <motion.div key={product.id} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.03 }}>
                 <Link to={`${createPageUrl('ProductDetail')}?id=${product.id}`}>
-                  <div className="group bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                  <div className="group bg-white rounded-2xl border border-slate-200/80 overflow-hidden hover:shadow-xl hover:shadow-slate-200/50 hover:-translate-y-1 hover:border-blue-200 transition-all duration-300">
                     {/* Image */}
-                    <div className="relative aspect-square bg-gray-50 p-6 flex items-center justify-center">
+                    <div className="relative aspect-square bg-gradient-to-br from-slate-50 to-white p-6 flex items-center justify-center">
                       <img
                         src={product.image}
                         alt={product.name}
@@ -143,13 +143,13 @@ export default function CatalogSection() {
                           if (e.target.nextSibling) e.target.nextSibling.style.display = 'flex';
                         }}
                       />
-                      <div className="hidden w-full h-full items-center justify-center flex-col gap-2 text-gray-300">
+                      <div className="hidden w-full h-full items-center justify-center flex-col gap-2 text-slate-300">
                         <ShoppingBag className="w-12 h-12" />
                         <span className="text-xs">{product.category}</span>
                       </div>
                       {product.popular && (
                         <div className="absolute top-3 left-3">
-                          <Badge className="bg-amber-500 text-white border-0 font-bold text-[10px] px-2.5 py-1 shadow-lg shadow-amber-500/20">
+                          <Badge className="bg-blue-700 text-white border-0 font-bold text-[10px] px-2.5 py-1 shadow-lg shadow-blue-700/20">
                             Popular
                           </Badge>
                         </div>
@@ -157,16 +157,16 @@ export default function CatalogSection() {
                     </div>
 
                     {/* Info */}
-                    <div className="p-5">
-                      <p className="text-[10px] text-amber-600 font-semibold uppercase tracking-wider mb-1">{product.category}</p>
+                    <div className="p-5 border-t border-slate-100">
+                      <p className="text-[10px] text-blue-600 font-semibold uppercase tracking-wider mb-1.5">{product.category}</p>
                       <h3 className="text-sm font-semibold text-slate-900 leading-snug mb-1 line-clamp-2">{product.name}</h3>
-                      <p className="text-xs text-gray-400 mb-4 line-clamp-2">{product.description}</p>
+                      <p className="text-xs text-slate-400 mb-4 line-clamp-2">{product.description}</p>
                       <div className="flex items-center justify-between">
                         <span className="text-lg font-bold text-slate-900">{product.price}</span>
                         <Button
                           onClick={(e) => handleQuickAdd(product, e)}
                           size="sm"
-                          className="bg-slate-900 hover:bg-slate-800 text-white text-xs h-9 px-4 rounded-lg shadow-sm"
+                          className="bg-blue-700 hover:bg-blue-600 text-white text-xs h-9 px-4 rounded-lg shadow-sm shadow-blue-700/10"
                         >
                           <ShoppingBag className="w-3.5 h-3.5 mr-1.5" />
                           Add
