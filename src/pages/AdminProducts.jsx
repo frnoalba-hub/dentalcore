@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Pencil, Upload, Loader2, Image as ImageIcon, Search, X, Plus, Trash2, GripVertical } from 'lucide-react';
 import { toast } from 'sonner';
+import fullCatalog from '../components/dentalcore/full_catalog.json';
 
 export default function AdminProducts() {
   const [editingProduct, setEditingProduct] = useState(null);
@@ -248,8 +249,37 @@ export default function AdminProducts() {
               </SelectContent>
             </Select>
           </div>
-          <div className="mt-3 text-sm text-gray-500">
-            Showing {filteredProducts.length} of {products.length} products
+          <div className="flex flex-col md:flex-row gap-3 mt-4 items-center">
+            <div className="text-sm text-gray-500 flex-1">
+              Showing {filteredProducts.length} of {products.length} products
+            </div>
+            {products.length === 0 && (
+              <Button onClick={async () => {
+                toast.loading('Importing catalog...');
+                let successCount = 0;
+                for (const p of fullCatalog) {
+                  try {
+                    await base44.entities.Product.create({
+                      name: p.name,
+                      category: p.category,
+                      price: '$' + p.price,
+                      description: p.description,
+                      image: p.image || '',
+                      stock: 100
+                    });
+                    successCount++;
+                  } catch (err) {
+                    console.error('Failed to import', p.name);
+                  }
+                }
+                toast.dismiss();
+                toast.success('Successfully imported ' + successCount + ' products');
+                queryClient.invalidateQueries(['admin-products']);
+              }} variant="outline" className="border-amber-500 text-amber-600">
+                <Upload className="w-4 h-4 mr-2" />
+                Seed {fullCatalog.length} Products from Excel
+              </Button>
+            )}
           </div>
         </div>
 
