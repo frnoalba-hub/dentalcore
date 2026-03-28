@@ -1,18 +1,40 @@
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Minus, Plus } from 'lucide-react';
+import { X, Minus, Plus, Loader2 } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
-import { companyInfo } from '../dentalcore/productsData';
+import { base44 } from '@/api/base44Client';
+import { toast } from 'sonner';
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, getTotal } = useCartStore();
+  const [isCheckingOut, setIsCheckingOut] = useState(false);
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (items.length === 0) return;
-    let message = `*REQUISITION DRAFT*\n\n`;
-    items.forEach(item => { message += `${item.quantity}x ${item.name}\n`; });
-    message += `\nTotal: $${getTotal().toFixed(2)}`;
-    const phoneNum = companyInfo.phone.replace(/[^0-9]/g, '');
-    window.open(`https://wa.me/1${phoneNum}?text=${encodeURIComponent(message)}`, '_blank');
+    
+    if (window.self !== window.top) {
+      toast.error('Checkout is disabled in the preview editor. Please publish your app and open it in a new tab to test payments.');
+      return;
+    }
+
+    setIsCheckingOut(true);
+    try {
+      const response = await base44.functions.invoke('createCheckoutSession', {
+        items,
+        origin: window.location.origin
+      });
+      
+      if (response.data.url) {
+        window.location.href = response.data.url;
+      } else if (response.data.error) {
+        toast.error(response.data.error);
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to initiate checkout. Please try again.');
+    } finally {
+      setIsCheckingOut(false);
+    }
   };
 
   return (
@@ -59,8 +81,19 @@ export default function CartDrawer() {
                   <span className="text-xs font-bold uppercase tracking-widest text-[#111]/50">Subtotal</span>
                   <span className="text-xl font-medium text-[#111]">${getTotal().toFixed(2)}</span>
                 </div>
-                <button onClick={handleCheckout} className="w-full bg-[#111] text-white py-4 text-sm font-medium uppercase tracking-widest hover:bg-accent transition-colors">
-                  Submit via WhatsApp
+                <button 
+                  onClick={handleCheckout} 
+                  disabled={isCheckingOut}
+                  className="w-full bg-[#111] text-white py-4 text-sm font-medium uppercase tracking-widest hover:bg-accent transition-colors flex items-center justify-center disabled:opacity-70 disabled:cursor-not-allowed"
+                >
+                  {isCheckingOut ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                      Processing...
+                    </>
+                  ) : (
+                    "Secure Checkout"
+                  )}
                 </button>
               </div>
             )}
