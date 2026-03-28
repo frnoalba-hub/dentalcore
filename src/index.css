@@ -3,19 +3,23 @@
 @tailwind utilities;
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap');
 
 @layer base {
-  body {
-    @apply bg-white text-slate-900 antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  :root {
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: 'Playfair Display', Georgia, serif;
   }
 
-  /* Smooth scrolling */
+  body {
+    @apply bg-white text-slate-900 antialiased;
+    font-family: var(--font-sans);
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
-  /* Better selection colors */
   ::selection {
     @apply bg-blue-100 text-blue-900;
   }
@@ -23,15 +27,16 @@
 
 @layer components {
   .section-label {
-    @apply text-blue-600 font-semibold tracking-[0.15em] text-xs uppercase mb-3 block;
+    @apply text-blue-600 font-semibold tracking-[0.2em] text-[11px] uppercase mb-4 block;
   }
 
   .section-title {
-    @apply text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight mb-3;
+    @apply text-3xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-4;
+    font-family: var(--font-display);
   }
 
   .section-divider {
-    @apply w-16 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto rounded-full;
+    @apply w-12 h-0.5 bg-blue-600 mx-auto;
   }
 }
 

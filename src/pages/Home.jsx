@@ -17,7 +17,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="antialiased selection:bg-amber-500/20 selection:text-amber-900">
+    <div className="antialiased">
       <Header />
       <HeroSection />
       <CatalogSection />

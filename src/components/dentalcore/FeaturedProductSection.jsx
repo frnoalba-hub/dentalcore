@@ -29,28 +29,21 @@ export default function FeaturedProductSection() {
   };
 
   return (
-    <section id="featured" className="relative py-24 lg:py-32 bg-white overflow-hidden">
-      {/* Subtle background accents */}
+    <section id="featured" className="relative py-28 lg:py-36 bg-white overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-blue-50/50 rounded-full blur-[180px]" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-50/40 rounded-full blur-[150px]" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Image */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative bg-gradient-to-br from-slate-50 to-slate-100 rounded-3xl border border-slate-200/80 p-12 lg:p-16 shadow-sm">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full drop-shadow-xl"
-              />
-              <div className="absolute top-5 left-5 px-3.5 py-1.5 bg-blue-700 text-white text-[10px] font-bold rounded-full uppercase tracking-wider shadow-lg shadow-blue-700/20">
+            <div className="relative bg-[#f8f8f6] rounded-3xl p-14 lg:p-20">
+              <img src={product.image} alt={product.name} className="w-full drop-shadow-lg" />
+              <div className="absolute top-5 left-5 px-3 py-1.5 bg-blue-600 text-white text-[10px] font-semibold rounded-full uppercase tracking-wider">
                 Best Seller
               </div>
             </div>
@@ -62,22 +55,23 @@ export default function FeaturedProductSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="text-blue-600 font-semibold tracking-[0.15em] text-xs uppercase mb-4 block">Featured Product</span>
+            <div className="w-10 h-0.5 bg-blue-600 mb-5" />
+            <span className="text-blue-600 font-semibold tracking-[0.2em] text-[11px] uppercase mb-6 block">Featured Product</span>
 
             <div className="flex items-center gap-1 mb-5">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-amber-500 fill-amber-500" />
+                <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
               ))}
-              <span className="text-xs text-slate-400 ml-2">5.0 Rating</span>
+              <span className="text-xs text-slate-400 ml-2 font-medium">5.0 Rating</span>
             </div>
 
-            <h3 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-3">{product.name}</h3>
-            <p className="text-base text-slate-500 mb-8 leading-relaxed">{product.description}</p>
+            <h3 className="font-display text-3xl lg:text-4xl font-bold text-slate-900 mb-4">{product.name}</h3>
+            <p className="text-base text-slate-500 mb-8 leading-relaxed font-light">{product.description}</p>
 
-            <div className="space-y-3 mb-8">
+            <div className="space-y-3 mb-10">
               {product.features.map((feature, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-500 mt-0.5 flex-shrink-0" />
+                  <CheckCircle2 className="w-4.5 h-4.5 text-emerald-500 mt-0.5 flex-shrink-0" />
                   <span className="text-sm text-slate-600">{feature}</span>
                 </div>
               ))}
@@ -90,24 +84,22 @@ export default function FeaturedProductSection() {
               )}
             </div>
 
-            <div className="flex flex-wrap gap-4">
-              <button
-                onClick={handleAddToCart}
-                className="group flex items-center gap-2.5 bg-blue-700 hover:bg-blue-600 text-white px-8 py-4 font-bold text-sm rounded-xl shadow-lg shadow-blue-700/20 hover:shadow-blue-600/40 transition-all duration-300"
-              >
-                <ShoppingBag className="w-4 h-4" />
-                ADD TO CART
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-              </button>
-            </div>
+            <button
+              onClick={handleAddToCart}
+              className="group flex items-center gap-3 bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 font-semibold text-sm rounded-full shadow-xl shadow-slate-900/10 hover:shadow-slate-900/20 transition-all duration-300"
+            >
+              <ShoppingBag className="w-4 h-4" />
+              Add to Cart
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+            </button>
 
-            <div className="flex items-center gap-6 mt-8 text-xs text-slate-400">
+            <div className="flex items-center gap-6 mt-8 text-xs text-slate-400 font-medium">
               <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-amber-500" />
+                <Zap className="w-3.5 h-3.5 text-amber-400" />
                 <span>Instant Heat</span>
               </div>
               <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-blue-500" />
+                <Shield className="w-3.5 h-3.5 text-blue-400" />
                 <span>1-Year Warranty</span>
               </div>
             </div>
