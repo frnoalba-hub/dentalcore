@@ -57,9 +57,12 @@ const img = {
   // Fallback to aesthetic placeholders since we don't have real photos yet
   touch_heat:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   modulite:     'https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop',
-  isuni_scan:   'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop',
-  isuni_sensor: 'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop',
-  isuni_xray:   'https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=2070&auto=format&fit=crop',
+  // iSuni equipment (mapping to explicitly saved files in the new Suni folder)
+  isuni_scan:   `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni_1.webp`,
+  isuni_sensor: `${import.meta.env.BASE_URL || '/'}product_images/Suni/iSuni_2.webp`,
+  isuni_xray:   `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni3.webp`,
+
+  // Equipment placeholders for items we still don't have photos for
   mccareX:      'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   stronic150:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   suretact:     'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
