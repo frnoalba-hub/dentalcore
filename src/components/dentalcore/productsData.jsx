@@ -15,6 +15,12 @@ const resolveImage = (fileName) => {
   return `${prefix}products/${encodeURIComponent(fileName)}`;
 };
 
+const resolveSuniImage = (fileName) => {
+  const base = import.meta.env.BASE_URL || '/';
+  const prefix = base.endsWith('/') ? base : `${base}/`;
+  return `${prefix}product_images/Suni/${encodeURIComponent(fileName)}`;
+};
+
 const img = {
   uccut:        resolveImage('UC_CUT_Gutta_Purcha_Cutter_INFO_1006-1.png'),
   uccut_tip90:  resolveImage('UC_CUT_Tip_#90_1006-2.png'),
@@ -57,10 +63,10 @@ const img = {
   // Fallback to aesthetic placeholders since we don't have real photos yet
   touch_heat:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   modulite:     'https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop',
-  // iSuni equipment (mapping to explicitly saved files in the new Suni folder)
-  isuni_scan:   `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni_1.webp`,
-  isuni_sensor: `${import.meta.env.BASE_URL || '/'}product_images/Suni/iSuni_2.webp`,
-  isuni_xray:   `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni3.webp`,
+  // iSuni equipment — using resolveSuniImage to correctly hit /product_images/Suni/
+  isuni_scan:   resolveSuniImage('isuni_1.webp'),
+  isuni_sensor: resolveSuniImage('iSuni_2.webp'),
+  isuni_xray:   resolveSuniImage('isuni3.webp'),
 
   // Equipment placeholders for items we still don't have photos for
   mccareX:      'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
@@ -186,17 +192,17 @@ export const products = [
     description: "Thinnest in the market at 4.4mm. Durable cable endures 100N pull force. 25 lp/mm crystal clear CMOS imaging.",
     image: img.isuni_sensor,
     images: [
-      `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni_1.webp`,
-      `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni3.webp`,
-      `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni_4.webp`,
-      `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni6.webp`,
-      `${import.meta.env.BASE_URL || '/'}product_images/Suni/17341645630822_.pic.webp`,
-      `${import.meta.env.BASE_URL || '/'}product_images/Suni/17351645630822_.pic.webp`,
-      `${import.meta.env.BASE_URL || '/'}product_images/Suni/17361645630822_.pic.jpg`,
-      `${import.meta.env.BASE_URL || '/'}product_images/Suni/test_test_2025-06-06_12.35.24.webp`,
-      `${import.meta.env.BASE_URL || '/'}product_images/Suni/test_test_2025-06-06_12.35.46.webp`,
-      `${import.meta.env.BASE_URL || '/'}product_images/Suni/test_test_2025-06-06_12.36.27.webp`,
-      `${import.meta.env.BASE_URL || '/'}product_images/Suni/test_test_2025-06-06_12.36.48.webp`
+      resolveSuniImage('isuni_1.webp'),
+      resolveSuniImage('isuni3.webp'),
+      resolveSuniImage('isuni_4.webp'),
+      resolveSuniImage('isuni6.webp'),
+      resolveSuniImage('17341645630822_.pic.webp'),
+      resolveSuniImage('17351645630822_.pic.webp'),
+      resolveSuniImage('17361645630822_.pic.jpg'),
+      resolveSuniImage('test_test_2025-06-06_12.35.24.webp'),
+      resolveSuniImage('test_test_2025-06-06_12.35.46.webp'),
+      resolveSuniImage('test_test_2025-06-06_12.36.27.webp'),
+      resolveSuniImage('test_test_2025-06-06_12.36.48.webp')
     ],
     variants: [
       { id: "A1038", name: "Size 0 (Pedo)", price: 1599.00, originalPrice: 2499.00 },
