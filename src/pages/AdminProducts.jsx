@@ -253,33 +253,51 @@ export default function AdminProducts() {
             <div className="text-sm text-gray-500 flex-1">
               Showing {filteredProducts.length} of {products.length} products
             </div>
-            {products.length === 0 && (
-              <Button onClick={async () => {
-                toast.loading('Importing catalog...');
-                let successCount = 0;
-                for (const p of fullCatalog) {
+            
+            <Button onClick={async () => {
+              if (window.confirm('Are you sure you want to delete all ' + products.length + ' existing products?')) {
+                toast.loading('Wiping database...');
+                let delCount = 0;
+                for (const p of products) {
                   try {
-                    await base44.entities.Product.create({
-                      name: p.name,
-                      category: p.category,
-                      price: '$' + p.price,
-                      description: p.description,
-                      image: p.image || '',
-                      stock: 100
-                    });
-                    successCount++;
-                  } catch (err) {
-                    console.error('Failed to import', p.name);
-                  }
+                    await base44.entities.Product.delete(p.id);
+                    delCount++;
+                  } catch(e) { console.error('Failed to delete', p.id); }
                 }
                 toast.dismiss();
-                toast.success('Successfully imported ' + successCount + ' products');
+                toast.success('Deleted ' + delCount + ' mock products');
                 queryClient.invalidateQueries(['admin-products']);
-              }} variant="outline" className="border-amber-500 text-amber-600">
-                <Upload className="w-4 h-4 mr-2" />
-                Seed {fullCatalog.length} Products from Excel
-              </Button>
-            )}
+              }
+            }} variant="destructive" className="bg-red-600 hover:bg-red-700">
+              <Trash2 className="w-4 h-4 mr-2" />
+              Wipe Mock Data
+            </Button>
+
+            <Button onClick={async () => {
+              toast.loading('Importing catalog...');
+              let successCount = 0;
+              for (const p of fullCatalog) {
+                try {
+                  await base44.entities.Product.create({
+                    name: p.name,
+                    category: p.category,
+                    price: '$' + p.price,
+                    description: p.description,
+                    image: p.image || '',
+                    stock: 100
+                  });
+                  successCount++;
+                } catch (err) {
+                  console.error('Failed to import', p.name);
+                }
+              }
+              toast.dismiss();
+              toast.success('Successfully imported ' + successCount + ' products');
+              queryClient.invalidateQueries(['admin-products']);
+            }} variant="outline" className="border-amber-500 text-amber-600">
+              <Upload className="w-4 h-4 mr-2" />
+              Seed {fullCatalog.length} Products from Excel
+            </Button>
           </div>
         </div>
 
