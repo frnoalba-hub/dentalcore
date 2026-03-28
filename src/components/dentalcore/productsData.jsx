@@ -185,6 +185,19 @@ export const products = [
     category: "Equipment",
     description: "Thinnest in the market at 4.4mm. Durable cable endures 100N pull force. 25 lp/mm crystal clear CMOS imaging.",
     image: img.isuni_sensor,
+    images: [
+      `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni_1.webp`,
+      `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni3.webp`,
+      `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni_4.webp`,
+      `${import.meta.env.BASE_URL || '/'}product_images/Suni/isuni6.webp`,
+      `${import.meta.env.BASE_URL || '/'}product_images/Suni/17341645630822_.pic.webp`,
+      `${import.meta.env.BASE_URL || '/'}product_images/Suni/17351645630822_.pic.webp`,
+      `${import.meta.env.BASE_URL || '/'}product_images/Suni/17361645630822_.pic.jpg`,
+      `${import.meta.env.BASE_URL || '/'}product_images/Suni/test_test_2025-06-06_12.35.24.webp`,
+      `${import.meta.env.BASE_URL || '/'}product_images/Suni/test_test_2025-06-06_12.35.46.webp`,
+      `${import.meta.env.BASE_URL || '/'}product_images/Suni/test_test_2025-06-06_12.36.27.webp`,
+      `${import.meta.env.BASE_URL || '/'}product_images/Suni/test_test_2025-06-06_12.36.48.webp`
+    ],
     variants: [
       { id: "A1038", name: "Size 0 (Pedo)", price: 1599.00, originalPrice: 2499.00 },
       { id: "A1023", name: "Size 1 (Universal)", price: 1599.00, originalPrice: 2499.00 },
