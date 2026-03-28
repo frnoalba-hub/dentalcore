@@ -24,27 +24,7 @@ const apexData = readExcel(apexPath) || [];
 
 const products = [];
 
-// Parse Dowell - assume row 0 is header
-for (let i = 1; i < dowellData.length; i++) {
-  const row = dowellData[i];
-  if (!row || row.length < 6) continue;
-  const id = row[0];
-  const category = row[1];
-  const desc = row[2];
-  let price = row[5]; // dealer price or MSRP? Let's use MSRP (index 4) for selling?
-  let msrp = row[4] || row[3];
-  if (!id || !desc) continue;
-  
-  products.push({
-    id: String(id),
-    name: desc.split(' ').slice(0, 4).join(' '),
-    category: String(category).toUpperCase(),
-    description: String(desc),
-    price: msrp || price,
-    image: '',
-    source: 'Dowell'
-  });
-}
+// Removed Dowell parse code per user request.
 
 // Parse Apex - assume row 0 is header
 for (let i = 1; i < apexData.length; i++) {
