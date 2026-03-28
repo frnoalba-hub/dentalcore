@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Search, Loader2, Plus, X } from 'lucide-react';
+import { Search, Loader2, Plus, X, Eye } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useCartStore } from '../store/cartStore';
@@ -137,13 +137,18 @@ export default function CatalogSection() {
                           {dynamicT(product.category)}
                         </span>
                       </div>
-                      {/* Quick Add button on hover */}
+                      {/* Quick Add / Options button on hover */}
                       <button
-                        onClick={(e) => handleQuickAdd(product, e)}
+                        onClick={(e) => {
+                          if (!product.variants?.length) {
+                            handleQuickAdd(product, e);
+                          }
+                          // If variants exist, do not prevent default, so the Link navigates naturally
+                        }}
                         className="absolute bottom-4 right-4 w-10 h-10 bg-[#111] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-accent transition-all duration-200"
-                        title="Quick add to cart"
+                        title={product.variants?.length > 0 ? "Select Options" : "Quick add to cart"}
                       >
-                        <Plus className="w-4 h-4" />
+                        {product.variants?.length > 0 ? <Eye className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
                       </button>
                     </div>
 
@@ -170,11 +175,12 @@ export default function CatalogSection() {
                             </p>
                           )}
                           <p className={`text-xl font-medium tracking-tight ${product.originalPrice ? 'text-accent' : 'text-[#111]'}`}>
+                            {product.variants?.length > 0 && <span className="text-sm">From </span>}
                             ${typeof product.price === 'number' ? product.price.toFixed(2) : product.price}
                           </p>
                         </div>
                         <span className="text-xs font-medium uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity">
-                          {t('view_details')}
+                          {product.variants?.length > 0 ? 'Select Option' : t('view_details')}
                         </span>
                       </div>
                     </div>

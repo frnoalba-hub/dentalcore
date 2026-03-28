@@ -79,7 +79,13 @@ export default function CartDrawer() {
                     </div>
                     <div className="flex-1">
                       <h3 className="text-sm font-medium uppercase tracking-tight text-[#111] mb-1 leading-tight">{dynamicT(item.name)}</h3>
-                      <p className="text-sm text-[#111] mb-3">{item.price}</p>
+                      <p className="text-sm text-[#111] mb-3">
+                        {typeof item.price === 'number' 
+                          ? `$${item.price.toFixed(2)}` 
+                          : typeof item.price === 'string' && item.price.startsWith('$') 
+                            ? item.price 
+                            : `$${item.price}`}
+                      </p>
                       <div className="flex items-center gap-4">
                         <div className="flex items-center border border-[#111]/20">
                           <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-8 flex items-center justify-center text-[#111]/60 hover:text-[#111] hover:bg-[#111]/5">-</button>

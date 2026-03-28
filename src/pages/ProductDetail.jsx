@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
@@ -30,15 +30,45 @@ export default function ProductDetail() {
   const product = allProducts.find(p => p.id === productId);
   const allImages = product ? [product.image, ...(product.images || [])].filter(Boolean) : [];
 
+  // Variant support
+  const [selectedVariant, setSelectedVariant] = useState(null);
+  
+  // Initialize variant when product loads
+
+  useEffect(() => {
+    if (product?.variants?.length > 0 && !selectedVariant) {
+      setSelectedVariant(product.variants[0]);
+    }
+  }, [product, selectedVariant]);
+
   const isProductLoading = isLoading && !localProducts.find(p => p.id === productId);
   if (isProductLoading) return <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center text-sm uppercase tracking-widest">{t('loading')}</div>;
   if (!product) return <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center">Not Found</div>;
 
-  const priceDisplay = product.originalPrice
-    ? `$${Number(product.price).toFixed(2)}`
-    : typeof product.price === 'number'
-    ? `$${product.price.toFixed(2)}`
-    : product.price;
+  // Resolve active price/originalPrice (from variant if selected, else from product)
+  const activePrice = selectedVariant ? selectedVariant.price : product.price;
+  const activeOriginal = selectedVariant ? selectedVariant.originalPrice : product.originalPrice;
+
+  const priceDisplay = activeOriginal
+    ? `$${Number(activePrice).toFixed(2)}`
+    : typeof activePrice === 'number'
+    ? `$${activePrice.toFixed(2)}`
+    : activePrice;
+
+  const handleAddToCart = () => {
+    const itemToAdd = selectedVariant 
+      ? { 
+          ...product, 
+          id: selectedVariant.id, 
+          name: `${product.name} - ${selectedVariant.name}`, 
+          price: selectedVariant.price,
+          originalPrice: selectedVariant.originalPrice
+        }
+      : product;
+      
+    addItem(itemToAdd, quantity);
+    openCart();
+  };
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] pt-24 pb-24">
@@ -68,18 +98,51 @@ export default function ProductDetail() {
           <div>
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent block mb-4">{dynamicT(product.category)}</span>
             <h1 className="text-4xl lg:text-5xl font-medium tracking-tighter uppercase text-[#111] mb-6">{dynamicT(product.name)}</h1>
-            <p className="text-3xl font-medium text-[#111] mb-8">{priceDisplay}</p>
+            <p className="text-3xl font-medium text-[#111] mb-8">
+              {priceDisplay}
+              {activeOriginal && (
+                <span className="text-xl text-[#111]/40 line-through ml-4">${Number(activeOriginal).toFixed(2)}</span>
+              )}
+            </p>
             
-            <p className="text-base text-[#111]/70 font-body leading-relaxed mb-12">{dynamicT(product.description)}</p>
+            <p className="text-base text-[#111]/70 font-body leading-relaxed mb-10">{dynamicT(product.description)}</p>
+
+            {/* Variants Selector */}
+            {product.variants?.length > 0 && (
+              <div className="mb-10">
+                <h3 className="text-xs uppercase tracking-[0.2em] font-bold mb-4">Select Option / Size</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {product.variants.map((v) => {
+                    const isSelected = selectedVariant?.id === v.id;
+                    return (
+                      <button
+                        key={v.id}
+                        onClick={() => setSelectedVariant(v)}
+                        className={`flex flex-col items-start p-4 border text-left transition-all ${
+                          isSelected 
+                            ? 'border-[#111] bg-[#111] text-white' 
+                            : 'border-[#111]/20 hover:border-[#111]/50 bg-white text-[#111]'
+                        }`}
+                      >
+                        <span className="text-sm font-semibold tracking-wide uppercase mb-1">{v.name}</span>
+                        <span className={`text-xs ${isSelected ? 'text-white/80' : 'text-[#111]/60'}`}>
+                          ${v.price.toFixed(2)}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             <div className="flex items-stretch gap-4 mb-16">
-              <div className="flex items-center border border-[#111]">
+              <div className="flex items-center border border-[#111] bg-white">
                 <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-12 h-12 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors">-</button>
                 <span className="w-12 text-center font-medium">{quantity}</span>
                 <button onClick={() => setQuantity(quantity + 1)} className="w-12 h-12 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors">+</button>
               </div>
               <button 
-                onClick={() => { addItem(product, quantity); openCart(); }}
+                onClick={handleAddToCart}
                 className="flex-1 bg-[#111] text-white flex items-center justify-between px-6 hover:bg-accent transition-colors"
               >
                 <span className="text-sm uppercase tracking-widest font-medium">{t('add_to_requisition')}</span>

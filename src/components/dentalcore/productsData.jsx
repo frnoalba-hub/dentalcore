@@ -178,31 +178,18 @@ export const products = [
     specs: { "Accuracy": "10μm", "Depth": "20mm", "AI": "Smart Filtering" }
   },
   {
-    id: "A1038",
-    name: "iSuni Sensor (Size 0 - Pedo)",
+    id: "ISUNI-SENSORS",
+    name: "iSuni Sensor Series",
     price: 1599.00,
     originalPrice: 2499.00,
     category: "Equipment",
     description: "Thinnest in the market at 4.4mm. Durable cable endures 100N pull force. 25 lp/mm crystal clear CMOS imaging.",
-    image: img.isuni_sensor
-  },
-  {
-    id: "A1023",
-    name: "iSuni Sensor (Size 1)",
-    price: 1599.00,
-    originalPrice: 2499.00,
-    category: "Equipment",
-    description: "Thinnest in the market at 4.4mm. Durable cable endures 100N pull force. 25 lp/mm crystal clear CMOS imaging.",
-    image: img.isuni_sensor
-  },
-  {
-    id: "A1024",
-    name: "iSuni Sensor (Size 2)",
-    price: 1999.00,
-    originalPrice: 2999.00,
-    category: "Equipment",
-    description: "Thinnest in the market at 4.4mm. Durable cable endures 100N pull force. 25 lp/mm crystal clear CMOS imaging.",
-    image: img.isuni_sensor
+    image: img.isuni_sensor,
+    variants: [
+      { id: "A1038", name: "Size 0 (Pedo)", price: 1599.00, originalPrice: 2499.00 },
+      { id: "A1023", name: "Size 1 (Universal)", price: 1599.00, originalPrice: 2499.00 },
+      { id: "A1024", name: "Size 2 (Adult)", price: 1999.00, originalPrice: 2999.00 }
+    ]
   },
   {
     id: "A1022",
