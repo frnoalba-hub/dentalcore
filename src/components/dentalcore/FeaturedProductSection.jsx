@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Shield, Star, CheckCircle2, ShoppingBag } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
-import { toast } from 'sonner';
 
 export default function FeaturedProductSection() {
   const { addItem, openCart } = useCartStore();
@@ -10,100 +9,75 @@ export default function FeaturedProductSection() {
     id: "1006-1",
     name: "UC-CUT (Sonic GP Cutter)",
     price: "$599",
-    originalPrice: "$699",
-    description: "The new standard in Gutta Percha removal. Cordless, Sonic, Precision.",
+    description: "The new standard in Gutta Percha removal. Cordless, Sonic, Precision. Eliminates cone pull-out with high-frequency sonic vibration.",
     image: "https://maruchiusa.com/cdn/shop/products/Black_2048x2048.png?v=1656021060",
     features: [
-      "Instant heating to 180°C in <1 second",
-      "Cordless operation — no wires, no hassle",
+      "Instant heating to 180°C in <1 sec",
+      "Cordless ergonomic geometry",
       "Sonic vibration prevents cone sticking",
-      "Ultra-lightweight at just 1.7 oz",
-      "Interchangeable autoclavable tips",
-      "1-Year manufacturer warranty"
+      "1.7 oz ultra-light chassis"
     ]
   };
 
-  const handleAddToCart = () => {
-    addItem({ ...product, price: product.price }, 1);
-    toast.success(`Added ${product.name} to cart`, { action: { label: 'View Cart', onClick: () => openCart() } });
-  };
-
   return (
-    <section id="featured" className="relative py-28 lg:py-36 bg-white overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
-
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative"
-          >
-            <div className="relative bg-[#f8f8f6] rounded-3xl p-14 lg:p-20">
-              <img src={product.image} alt={product.name} className="w-full drop-shadow-lg" />
-              <div className="absolute top-5 left-5 px-3 py-1.5 bg-blue-600 text-white text-[10px] font-semibold rounded-full uppercase tracking-wider">
-                Best Seller
-              </div>
+    <section id="featured" className="py-24 bg-[#111] text-white">
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-0 border border-white/10">
+          
+          {/* Image Side */}
+          <div className="relative p-12 lg:p-24 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 bg-white/5">
+            <motion.img 
+              initial={{ opacity: 0, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, filter: "blur(0px)" }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+              src={product.image} 
+              alt={product.name} 
+              className="w-full max-w-md object-contain drop-shadow-2xl" 
+            />
+            <div className="absolute top-6 left-6 border border-white/20 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-medium">
+              Flagship
             </div>
-          </motion.div>
+          </div>
 
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="w-10 h-0.5 bg-blue-600 mb-5" />
-            <span className="text-blue-600 font-semibold tracking-[0.2em] text-[11px] uppercase mb-6 block">Featured Product</span>
-
-            <div className="flex items-center gap-1 mb-5">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
-              ))}
-              <span className="text-xs text-slate-400 ml-2 font-medium">5.0 Rating</span>
-            </div>
-
-            <h3 className="font-display text-3xl lg:text-4xl font-bold text-slate-900 mb-4">{product.name}</h3>
-            <p className="text-base text-slate-500 mb-8 leading-relaxed font-light">{product.description}</p>
-
-            <div className="space-y-3 mb-10">
-              {product.features.map((feature, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4.5 h-4.5 text-emerald-500 mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-slate-600">{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex items-baseline gap-3 mb-8">
-              <span className="text-4xl font-bold text-slate-900">{product.price}</span>
-              {product.originalPrice && (
-                <span className="text-lg text-slate-300 line-through">{product.originalPrice}</span>
-              )}
-            </div>
-
-            <button
-              onClick={handleAddToCart}
-              className="group flex items-center gap-3 bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 font-semibold text-sm rounded-full shadow-xl shadow-slate-900/10 hover:shadow-slate-900/20 transition-all duration-300"
+          {/* Content Side */}
+          <div className="p-8 lg:p-16 flex flex-col justify-center">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
-              <ShoppingBag className="w-4 h-4" />
-              Add to Cart
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </button>
+              <h2 className="text-4xl lg:text-6xl font-medium tracking-tighter uppercase mb-6 leading-[1.1]">
+                {product.name}
+              </h2>
+              
+              <div className="flex items-baseline gap-4 mb-8 pb-8 border-b border-white/10">
+                <span className="text-3xl font-medium">{product.price}</span>
+              </div>
 
-            <div className="flex items-center gap-6 mt-8 text-xs text-slate-400 font-medium">
-              <div className="flex items-center gap-2">
-                <Zap className="w-3.5 h-3.5 text-amber-400" />
-                <span>Instant Heat</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Shield className="w-3.5 h-3.5 text-blue-400" />
-                <span>1-Year Warranty</span>
-              </div>
-            </div>
-          </motion.div>
+              <p className="text-lg text-white/60 font-body leading-relaxed mb-10 max-w-md">
+                {product.description}
+              </p>
+
+              <ul className="space-y-4 mb-12">
+                {product.features.map((feature, i) => (
+                  <li key={i} className="flex gap-4 text-sm font-body text-white/80 border-b border-white/10 pb-4">
+                    <span className="text-accent font-medium tracking-widest">0{i + 1}</span>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <button
+                onClick={() => { addItem(product, 1); openCart(); }}
+                className="group w-full flex items-center justify-between border border-white p-5 hover:bg-white hover:text-[#111] transition-colors"
+              >
+                <span className="text-sm uppercase tracking-[0.2em] font-medium">Acquire Unit</span>
+                <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              </button>
+            </motion.div>
+          </div>
+
         </div>
       </div>
     </section>

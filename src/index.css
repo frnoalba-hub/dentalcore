@@ -2,17 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-display: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 
   body {
-    @apply bg-white text-slate-900 antialiased;
+    @apply bg-[#FDFDFD] text-[#111111] antialiased;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-sans);
   }
 
@@ -21,36 +25,29 @@
   }
 
   ::selection {
-    @apply bg-blue-100 text-blue-900;
+    @apply bg-[#0047FF] text-white;
   }
 }
 
 @layer components {
   .section-label {
-    @apply text-blue-600 font-semibold tracking-[0.2em] text-[11px] uppercase mb-4 block;
+    @apply text-[#111] font-medium tracking-[0.1em] text-xs uppercase mb-6 block;
+    font-family: var(--font-sans);
   }
 
   .section-title {
-    @apply text-3xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-4;
-    font-family: var(--font-display);
-  }
-
-  .section-divider {
-    @apply w-12 h-0.5 bg-blue-600 mx-auto;
+    @apply text-4xl lg:text-6xl font-medium text-[#111] tracking-tighter mb-8 leading-[1.1] uppercase;
+    font-family: var(--font-sans);
   }
 }
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #111;
 }

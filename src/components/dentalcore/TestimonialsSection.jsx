@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { Star, Quote } from 'lucide-react';
 
 const testimonials = [
   {
@@ -21,29 +20,21 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section id="testimonials" className="py-24 lg:py-32 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-16">
-          <span className="section-label">Testimonials</span>
-          <h2 className="section-title">Trusted by Clinicians</h2>
-          <div className="section-divider mt-4" />
-        </motion.div>
+    <section id="testimonials" className="py-24 bg-[#FDFDFD] border-b border-[#111]/10">
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
+        <h2 className="section-title mb-16">Clinical Feedback</h2>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 border-t border-l border-[#111]/10">
           {testimonials.map((item, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.1 }}>
-              <div className="h-full bg-[#fafaf8] p-8 rounded-2xl border border-slate-100 hover:border-slate-200 hover:shadow-md transition-all duration-300 relative group">
-                <Quote className="w-7 h-7 text-slate-200 absolute top-7 right-7 group-hover:text-blue-200 transition-colors" />
-                <div className="mb-5 flex items-center gap-0.5">
-                  {[...Array(5)].map((_, idx) => <Star key={idx} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />)}
-                </div>
-                <p className="text-sm text-slate-600 leading-relaxed mb-6 font-light">"{item.text}"</p>
-                <div className="pt-5 border-t border-slate-200/50">
-                  <p className="text-sm font-semibold text-slate-900">{item.author}</p>
-                  <p className="text-xs text-slate-400 mt-0.5">{item.location}</p>
-                </div>
+            <div key={i} className="p-8 lg:p-12 border-r border-b border-[#111]/10 flex flex-col justify-between">
+              <p className="text-xl lg:text-2xl text-[#111] leading-snug font-medium mb-16 tracking-tight">
+                "{item.text}"
+              </p>
+              <div>
+                <p className="text-sm font-bold uppercase tracking-widest text-[#111]">{item.author}</p>
+                <p className="text-xs uppercase tracking-widest text-[#111]/50 mt-1">{item.location}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
