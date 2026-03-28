@@ -7,6 +7,26 @@ import { companyInfo } from '../dentalcore/productsData';
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, getTotal, getItemCount } = useCartStore();
 
+  const handleCheckout = () => {
+    if (items.length === 0) return;
+    
+    // Format cart items
+    let message = `*NEW ORDER FROM DENTAL CORE STORE*\n\n`;
+    items.forEach(item => {
+      message += `▪️ ${item.quantity}x ${item.name} (${item.id})\n`;
+    });
+    
+    message += `\n*Total Estimate:* $${getTotal().toFixed(2)}\n`;
+    message += `\n_Please confirm my order and send payment instructions._`;
+    
+    // Format phone number (remove everything except numbers)
+    const phoneNum = companyInfo.phone.replace(/[^0-9]/g, '');
+    
+    // Redirect to WhatsApp
+    const whatsappUrl = `https://wa.me/1${phoneNum}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
