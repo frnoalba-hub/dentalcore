@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { Search, Loader2, Plus, X } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { createPageUrl } from '../../utils';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
 import { toast } from 'sonner';
@@ -125,7 +124,7 @@ export default function CatalogSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-t border-l border-[#111]/10">
             {filteredProducts.map((product, index) => (
               <motion.div key={product.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.03 }}>
-                <Link to={`${createPageUrl('ProductDetail')}?id=${product.id}`}>
+                <Link to={`/ProductDetail?id=${product.id}`}>
                   <article className="group relative h-full flex flex-col bg-[#FDFDFD] border-r border-b border-[#111]/10 hover:bg-[#F5F5F5] transition-colors">
                     <div className="relative aspect-square px-8 pb-8 pt-16 overflow-hidden">
                       <img

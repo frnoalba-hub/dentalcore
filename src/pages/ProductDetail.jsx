@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { createPageUrl } from '../utils';
 import { useCartStore } from '../components/store/cartStore';
 import { useTranslation } from '@/lib/i18n';
+import { products as localProducts } from '../components/dentalcore/productsData';
 
 export default function ProductDetail() {
   const params = new URLSearchParams(window.location.search);
@@ -15,21 +15,35 @@ export default function ProductDetail() {
   const { addItem, openCart } = useCartStore();
   const { t, dynamicT } = useTranslation();
 
-  const { data: products = [], isLoading } = useQuery({
+  const { data: apiProducts = [], isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: () => base44.entities.Product.list(),
   });
 
-  const product = products.find(p => p.id === productId);
+  // Merge local + API products (local takes priority for promo pricing)
+  const allProducts = useMemo(() => {
+    const localIds = new Set(localProducts.map(p => p.id));
+    const apiOnly = apiProducts.filter(p => !localIds.has(p.id));
+    return [...localProducts, ...apiOnly];
+  }, [apiProducts]);
+
+  const product = allProducts.find(p => p.id === productId);
   const allImages = product ? [product.image, ...(product.images || [])].filter(Boolean) : [];
 
-  if (isLoading) return <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center text-sm uppercase tracking-widest">{t('loading')}</div>;
+  const isProductLoading = isLoading && !localProducts.find(p => p.id === productId);
+  if (isProductLoading) return <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center text-sm uppercase tracking-widest">{t('loading')}</div>;
   if (!product) return <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center">Not Found</div>;
+
+  const priceDisplay = product.originalPrice
+    ? `$${Number(product.price).toFixed(2)}`
+    : typeof product.price === 'number'
+    ? `$${product.price.toFixed(2)}`
+    : product.price;
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] pt-24 pb-24">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-        <Link to={createPageUrl('Home')} className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-[#111]/50 hover:text-[#111] mb-12">
+        <Link to="/" className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-[#111]/50 hover:text-[#111] mb-12">
           <ArrowLeft className="w-4 h-4" /> {t('back_to_index')}
         </Link>
 
@@ -54,7 +68,7 @@ export default function ProductDetail() {
           <div>
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent block mb-4">{dynamicT(product.category)}</span>
             <h1 className="text-4xl lg:text-5xl font-medium tracking-tighter uppercase text-[#111] mb-6">{dynamicT(product.name)}</h1>
-            <p className="text-3xl font-medium text-[#111] mb-8">{product.price}</p>
+            <p className="text-3xl font-medium text-[#111] mb-8">{priceDisplay}</p>
             
             <p className="text-base text-[#111]/70 font-body leading-relaxed mb-12">{dynamicT(product.description)}</p>
 
