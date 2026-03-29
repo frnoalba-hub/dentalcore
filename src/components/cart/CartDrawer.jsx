@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Minus, Plus, Loader2, Gift } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
-import { companyInfo } from '../dentalcore/productsData';
+
 import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
 import { useTranslation } from '@/lib/i18n';
@@ -18,28 +18,6 @@ export default function CartDrawer() {
   const subtotal = getTotal();
   const finalTotal = Math.max(0, subtotal - totalDiscount);
 
-  // WhatsApp fallback — always works, no Stripe setup needed
-  const handleWhatsAppCheckout = () => {
-    if (items.length === 0) return;
-    
-    let message = `*NEW ORDER — CORETIX*\n\n`;
-    items.forEach(item => {
-      message += `▪️ ${item.quantity}x ${item.name} (${item.id})\n`;
-    });
-    if (promos.length > 0) {
-      message += `\n*Promos Applied:*\n`;
-      promos.forEach(p => {
-        message += `  🎁 ${p.label}${p.discount > 0 ? ` (-$${p.discount.toFixed(2)})` : p.info ? ` (${p.info})` : ''}\n`;
-      });
-    }
-    message += `\n*Total:* $${finalTotal.toFixed(2)}\n`;
-    message += `\n_Please confirm availability and send invoice._`;
-    
-    const phoneNum = companyInfo.phone.replace(/[^0-9]/g, '');
-    window.open(`https://wa.me/1${phoneNum}?text=${encodeURIComponent(message)}`, '_blank');
-  };
-
-  // Stripe checkout — will work once keys are configured
   const handleStripeCheckout = async () => {
     if (items.length === 0) return;
     
@@ -63,7 +41,7 @@ export default function CartDrawer() {
       }
     } catch (error) {
       console.error(error);
-      toast.error('Online checkout unavailable. Use WhatsApp to place your order.');
+      toast.error('Checkout unavailable. Please try again.');
     } finally {
       setIsCheckingOut(false);
     }
@@ -166,15 +144,9 @@ export default function CartDrawer() {
                   <span className="text-xl font-medium text-[#111]">${finalTotal.toFixed(2)}</span>
                 </div>
                 <button 
-                  onClick={handleWhatsAppCheckout}
-                  className="w-full bg-[#111] text-white py-4 text-sm font-medium uppercase tracking-widest hover:bg-accent transition-colors flex items-center justify-center"
-                >
-                  Order via WhatsApp
-                </button>
-                <button 
                   onClick={handleStripeCheckout} 
                   disabled={isCheckingOut}
-                  className="w-full border border-[#111]/20 text-[#111] py-4 text-sm font-medium uppercase tracking-widest hover:bg-[#111] hover:text-white transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-[#111] text-white py-4 text-sm font-medium uppercase tracking-widest hover:bg-accent transition-colors flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isCheckingOut ? (
                     <>
