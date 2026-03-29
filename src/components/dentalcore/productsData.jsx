@@ -100,7 +100,8 @@ const img = {
   mccareX:      'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   stronic150:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   suretact:     'https://media.base44.com/images/public/6916a1244818477a36fdb44c/02065b400_M1001_720x1.png',
-  suretact_r:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
+  suretact_r:   'https://media.base44.com/images/public/6916a1244818477a36fdb44c/447ccae19_mfr-marksondentalsystems-suretactg3-universal-ring-blue-2pk-m1002.jpg',
+  suretact_r2:  'https://media.base44.com/images/public/6916a1244818477a36fdb44c/ad28fba4d_Screenshot_2025-12-26_134411_0d1e974e-a386-4eec-ac68-d6c44c21786c.png',
 };
 
 
@@ -451,6 +452,7 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Restorative",
     description: "Universal NiTi rings with outstanding spring memory.",
-    image: img.suretact_r
+    image: img.suretact_r,
+    images: [img.suretact_r, img.suretact_r2],
   }
 ];
