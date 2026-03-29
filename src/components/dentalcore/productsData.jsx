@@ -361,14 +361,7 @@ export const products = [
     description: "Two-in-one bone graft + collagen plug. Bioactive resorbable calcium apatite & bovine collagen. No membrane needed. Radiolucent day-of-surgery, radiopaque in 3–6 months. 10/Box.",
     image: img.osteogen
   },
-  {
-    id: "ORA-20",
-    name: "Ora-Aid Wound Dressing",
-    price: 90.00,
-    category: "Surgical",
-    description: "Intraoral protective dressing. 15mm × 25mm (20 Pack).",
-    image: img.ora_aid
-  },
+
   {
     id: "HELI-1",
     name: "Curagen™ Collagen Wound Dressing Plug",
