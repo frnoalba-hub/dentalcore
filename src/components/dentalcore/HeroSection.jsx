@@ -24,15 +24,27 @@ export default function HeroSection() {
       <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 flex-1 flex flex-col justify-end">
         <div className="grid lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-8">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="text-xs uppercase tracking-[0.2em] text-[#111]/40 font-medium mb-6"
+            >
+              Coretix Dental Supply
+            </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[12vw] xl:text-[140px] leading-[0.85] tracking-tighter font-semibold text-[#111] uppercase"
+              className="text-[11vw] xl:text-[130px] leading-[0.85] tracking-tighter font-semibold text-[#111] uppercase"
             >
-              {t('clinical_precision')}
+              Better
               <br />
-              {t('clinical_precision_2')}<span className="text-accent">.</span>
+              Tools<span className="text-accent">.</span>
+              <br />
+              Better
+              <br />
+              Care<span className="text-accent">.</span>
             </motion.h1>
           </div>
           <div className="lg:col-span-4 flex flex-col justify-end pb-2 lg:pb-6">
@@ -40,9 +52,9 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-base lg:text-lg text-[#111]/70 leading-relaxed mb-10 max-w-sm font-body"
+              className="text-base lg:text-lg text-[#111]/60 leading-relaxed mb-10 max-w-sm font-body"
             >
-              {t('hero_desc')}
+              Professional-grade dental instruments, handpieces, and biomaterials — shipped directly to your practice.
             </motion.p>
             <motion.button
               initial={{ opacity: 0 }}
@@ -51,7 +63,7 @@ export default function HeroSection() {
               onClick={scrollToCatalog}
               className="group flex items-center justify-between border-b border-[#111] pb-4 text-[#111] hover:text-accent hover:border-accent transition-colors w-full sm:w-[80%]"
             >
-              <span className="text-sm uppercase tracking-[0.15em] font-medium">{t('explore_collection')}</span>
+              <span className="text-sm uppercase tracking-[0.15em] font-medium">Shop the Catalog</span>
               <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </motion.button>
           </div>
