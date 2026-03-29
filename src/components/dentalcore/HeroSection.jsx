@@ -11,7 +11,11 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-end pt-[140px] pb-12 bg-[#FDFDFD] border-b border-[#111]/10">
+    <section className="relative min-h-[100dvh] flex flex-col justify-end pt-[140px] pb-12 bg-[#FDFDFD] border-b border-[#111]/10 overflow-hidden">
+      {/* Animated Glowing Orbs */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 animate-pulse pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-blue-400/5 rounded-full blur-[120px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+
       {/* Structural Grid Lines */}
       <div className="absolute inset-0 pointer-events-none flex justify-center opacity-10">
         <div className="w-full max-w-[1600px] h-full border-x border-[#111] grid grid-cols-2 md:grid-cols-4">
@@ -24,14 +28,15 @@ export default function HeroSection() {
       <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 flex-1 flex flex-col justify-end">
         <div className="grid lg:grid-cols-12 gap-8 items-end mb-12">
           <div className="lg:col-span-8">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="text-xs uppercase tracking-[0.2em] text-[#111]/40 font-medium mb-6"
+              className="inline-flex items-center gap-2 px-4 py-1.5 border border-[#111]/10 rounded-full bg-white mb-8 shadow-sm relative z-20"
             >
-              Coretix Dental Supply
-            </motion.p>
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="text-[10px] font-bold uppercase tracking-widest text-[#111]">Now shipping nationwide</span>
+            </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
