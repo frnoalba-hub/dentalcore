@@ -123,11 +123,11 @@ export const translations = {
     all_rights_reserved: 'All Rights Reserved',
 
     back_to_index: 'Back to Index',
-    add_to_requisition: 'Add to Requisition',
+    add_to_requisition: 'Add to Cart',
     core_specifications: 'Core Specifications',
 
-    active_requisition: 'Active Requisition',
-    no_items: 'No items in requisition.',
+    active_requisition: 'Your Cart',
+    no_items: 'Your cart is empty.',
     subtotal: 'Subtotal',
     secure_checkout: 'Secure Checkout',
     processing: 'Processing...',
@@ -170,11 +170,11 @@ export const translations = {
     all_rights_reserved: 'Todos los derechos reservados',
 
     back_to_index: 'Volver al Índice',
-    add_to_requisition: 'Agregar a la Requisición',
+    add_to_requisition: 'Agregar al Carrito',
     core_specifications: 'Especificaciones Principales',
 
-    active_requisition: 'Requisición Activa',
-    no_items: 'No hay artículos en la requisición.',
+    active_requisition: 'Tu Carrito',
+    no_items: 'Tu carrito está vacío.',
     subtotal: 'Subtotal',
     secure_checkout: 'Pago Seguro',
     processing: 'Procesando...',

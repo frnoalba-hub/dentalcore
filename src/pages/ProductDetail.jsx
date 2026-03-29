@@ -229,7 +229,7 @@ export default function ProductDetail() {
                 }`}
               >
                 <span className="text-xs uppercase tracking-widest font-medium">
-                  {added ? 'Added!' : product.variants?.length > 0 && !selectedVariant ? 'Select an Option' : t('add_to_requisition') || 'Add to Requisition'}
+                  {added ? 'Added!' : product.variants?.length > 0 && !selectedVariant ? 'Select an Option' : 'Add to Cart'}
                 </span>
                 {added ? <Check className="w-4 h-4" /> : <ArrowUpRight className="w-4 h-4" />}
               </button>
