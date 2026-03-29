@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useContentStore } from '../components/store/contentStore';
 import Header from '../components/dentalcore/Header';
-import HeroSection from '../components/dentalcore/HeroSection';
 import CatalogSection from '../components/dentalcore/CatalogSection';
 import FeaturedProductSection from '../components/dentalcore/FeaturedProductSection';
 import TestimonialsSection from '../components/dentalcore/TestimonialsSection';
@@ -19,7 +18,6 @@ export default function Home() {
   return (
     <div className="antialiased">
       <Header />
-      <HeroSection />
       <CatalogSection />
       <FeaturedProductSection />
       <TestimonialsSection />
