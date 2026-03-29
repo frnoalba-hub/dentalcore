@@ -19,7 +19,7 @@ Deno.serve(async (req) => {
           currency: 'usd',
           product_data: {
             name: item.name,
-            images: item.image ? [item.image] : [],
+            images: item.image && item.image.startsWith('http') ? [item.image] : [],
           },
           unit_amount: unitAmount,
         },
