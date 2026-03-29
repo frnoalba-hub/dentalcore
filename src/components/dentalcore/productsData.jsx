@@ -152,20 +152,7 @@ export const products = [
     description: "Wireless obturation heating pen. Cordless, rechargeable, multiple tips.",
     image: img.touch_heat
   },
-  // UC-CUT Replacement Tips (grouped)
-  {
-    id: "1006-TIPS",
-    name: "UC-CUT Replacement Tips",
-    price: 140.00,
-    category: "Accessories",
-    description: "Metal replacement tips for UC-CUT Sonic GP Cutter. Available in multiple styles.",
-    image: img.uccut_tips,
-    images: [img.uccut_tips, img.uccut_tip90, img.uccut_tip110, img.uccut_bovie],
-    variants: [
-      { id: "1006-2", name: "Tip #90 (Small Posterior)", price: 140.00 },
-      { id: "1006-3", name: "Tip #110 (Large Anterior)", price: 140.00 },
-    ]
-  },
+
 
   // =========================================
   // HANDPIECES: AirPeak (Air Driven)
