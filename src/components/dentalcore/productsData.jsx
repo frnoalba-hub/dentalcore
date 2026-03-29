@@ -61,9 +61,14 @@ const img = {
   ora_aid:      resolveImage('ORA_AID_RED_ORA20.webp'),
   collagen:     resolveImage('CURAGEN_COLL_WOUND_DRESSING_HP10.jpg'),
 
-  // Stronix X300 pics
+  // Stronix Touch & Heat pics
   stronic_tip:  'https://media.base44.com/images/public/6916a1244818477a36fdb44c/9e54afd0b_image.png',
   stronic_full: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/2cfbf012c_image.png',
+
+  // Stronix X300 pics
+  x300_1: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/7a41548a7_image.png',
+  x300_2: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/540ecc84d_image.png',
+  x300_3: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/af0c92809_image.png',
 
   // Stronix X150 pics
   x150_1: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/f8ddec0cf_image.png',
@@ -288,7 +293,8 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Fits KaVo coupler. 6000 Hz oscillation for gentle scaling.",
-    image: img.stronic300,
+    image: img.x300_1,
+    images: [img.x300_1, img.x300_2, img.x300_3],
   },
   {
     id: "A1658",
