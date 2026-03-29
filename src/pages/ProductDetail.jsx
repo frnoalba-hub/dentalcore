@@ -33,18 +33,20 @@ export default function ProductDetail() {
   }, [apiProducts]);
 
   const product = allProducts.find(p => p.id === productId);
-  const allImages = product ? [product.image, ...(product.images || [])].filter(Boolean) : [];
 
   // Variant support
   const [selectedVariant, setSelectedVariant] = useState(null);
-  
-  // Initialize variant when product loads
 
+  // Initialize variant when product loads
   useEffect(() => {
     if (product?.variants?.length > 0 && !selectedVariant) {
       setSelectedVariant(product.variants[0]);
     }
   }, [product, selectedVariant]);
+
+  // Active image: prefer variant image, fallback to gallery
+  const activeImage = selectedVariant?.image || product?.image;
+  const allImages = product ? [product.image, ...(product.images || [])].filter((img, i, arr) => img && arr.indexOf(img) === i) : [];
 
   const isProductLoading = isLoading && !localProducts.find(p => p.id === productId);
   if (isProductLoading) return <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center text-sm uppercase tracking-widest">{t('loading')}</div>;
@@ -86,7 +88,7 @@ export default function ProductDetail() {
           {/* Images */}
           <div className="flex flex-col gap-4">
             <div className="aspect-square border border-[#111]/10 p-12 flex items-center justify-center bg-white mix-blend-multiply">
-              <img src={allImages[selectedImage]} alt={dynamicT(product.name)} className="w-full h-full object-contain" />
+              <img src={selectedVariant?.image || allImages[selectedImage]} alt={dynamicT(product.name)} className="w-full h-full object-contain" />
             </div>
             {allImages.length > 1 && (
               <div className="grid grid-cols-4 gap-4">
@@ -121,8 +123,8 @@ export default function ProductDetail() {
                     const isSelected = selectedVariant?.id === v.id;
                     return (
                       <button
-                        key={v.id}
-                        onClick={() => setSelectedVariant(v)}
+                       key={v.id}
+                       onClick={() => { setSelectedVariant(v); setSelectedImage(0); }}
                         className={`flex flex-col items-start p-4 border text-left transition-all ${
                           isSelected 
                             ? 'border-[#111] bg-[#111] text-white' 
