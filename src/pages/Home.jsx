@@ -7,6 +7,8 @@ import TestimonialsSection from '../components/dentalcore/TestimonialsSection';
 import AboutSection from '../components/dentalcore/AboutSection';
 import ContactSection from '../components/dentalcore/ContactSection';
 import CartDrawer from '../components/cart/CartDrawer';
+import JsonLdSchema from '../components/seo/JsonLdSchema';
+import FaqJsonLd from '../components/seo/FaqJsonLd';
 
 export default function Home() {
   const { refreshContent } = useContentStore();
@@ -17,6 +19,8 @@ export default function Home() {
 
   return (
     <div className="antialiased">
+      <JsonLdSchema />
+      <FaqJsonLd />
       <Header />
       <CatalogSection />
       <FeaturedProductSection />
