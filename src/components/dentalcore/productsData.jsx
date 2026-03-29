@@ -106,7 +106,10 @@ const img = {
 
 
 // --- MASTER PRODUCT CATALOG ---
-// Pricing sourced from ApexDent Dealer Price List (Nov 2025)
+// Apex: Apexdent_price_list_*_dental_core.xlsx — Selling Price is column 5, MSRP column 3
+// (see generate_catalog.js: price = selling, fallback MSRP if selling empty).
+// Rule: No promo → set `price` to Apex Selling Price only; omit `originalPrice` and `promo`.
+// With promo → `price` = offer; `originalPrice` = compare-at (often MSRP / pre-bundle) for strikethrough.
 export const products = [
   // =========================================
   // ENDODONTICS
@@ -210,8 +213,7 @@ export const products = [
   {
     id: "A1018",
     name: "AirPeak™ X600-45 (Surgical)",
-    price: 459.00,
-    originalPrice: 699.00,
+    price: 569.00,
     category: "Handpieces",
     description: "Angled 45° surgical handpiece with rear exhaust to prevent air embolism. Designed for third molar access and oral surgery procedures.",
     image: img.ap_45
@@ -271,8 +273,7 @@ export const products = [
   {
     id: "A1028",
     name: "iTesla™ G600-D (1:1 Blue Band)",
-    price: 399.00,
-    originalPrice: 599.00,
+    price: 479.00,
     category: "Handpieces",
     description: "1:1 direct-drive electric contra angle with internal water spray. Versatile workhorse for restorative, prophy, and endo prep.",
     image: img.it_g600d
@@ -280,8 +281,7 @@ export const products = [
   {
     id: "A1020",
     name: "iTesla™ G500-R20 (20:1 Implant)",
-    price: 499.00,
-    originalPrice: 799.00,
+    price: 599.00,
     category: "Handpieces",
     description: "20:1 reduction implant handpiece with external irrigation clip. Precise torque delivery for implant placement and bone work.",
     image: img.it_implant

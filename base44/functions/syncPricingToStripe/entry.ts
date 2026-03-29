@@ -15,14 +15,14 @@ MTA-3,"Endocem MTA Root Repair",,$90.00
 TH-001,"Stronic Touch & Heat",,$199.50
 A1004-V2,"AirPeak™ X600-S (KaVo Style)",,$333.33
 A1005,"AirPeak™ X600-M (NSK Style)",,$333.33
-A1018,"AirPeak™ X600-45 (Surgical)",,$459.00
+A1018,"AirPeak™ X600-45 (Surgical)",,$569.00
 A1004-V3,"AirPeak™ X600-Micro (KaVo)",,$499.00
 A1009B,"AirPeak™ G100-LA (Low Speed)",,$106.00
 A1012,"AirPeak™ G100-ST (Straight)",,$106.00
 A1019,"iTesla Electric Motor System",,$1299.00
 A1003,"iTesla™ G600-S (1:5 Red Band)",,$599.33
-A1028,"iTesla™ G600-D (1:1 Blue Band)",,$399.00
-A1020,"iTesla™ G500-R20 (20:1 Implant)",,$499.00
+A1028,"iTesla™ G600-D (1:1 Blue Band)",,$479.00
+A1020,"iTesla™ G500-R20 (20:1 Implant)",,$599.00
 A1619,"STRONIC X150 Piezo Scaler",,$799.00
 A1061,"STRONIC X300 Air Scaler",,$466.00
 A1658,"AirPeak™ PRO200 Air Polisher",,$446.00
