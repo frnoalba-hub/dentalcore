@@ -91,9 +91,9 @@ export const products = [
     image: img.uccut,
     images: [
       resolveImage('UC_CUT_Gutta_Purcha_Cutter_INFO_1006-1.png'),
-      resolveImage('UC_Cut_-_Full_Device.jpg'),
+      resolveImage('UC Cut - Full Device.jpg'),
       resolveImage('UC_CUT_Gutta_Purcha_Cutter_Unit_1006-1_Close-up.jpg'),
-      resolveImage('UC_CUT_Gutta_Purcha_Cutter_Unit_Tip_1006-1.jpg'),
+      resolveImage('UC_CUT_Gutta_Purcha_Cutter_Unit+Tip_1006-1.jpg'),
       resolveImage('UC_CUT_Gutta_Purcha_Cutter_ALL_Tips.png'),
       resolveImage('UC_CUT_Stand_1006-9.png')
     ],
@@ -171,7 +171,7 @@ export const products = [
     image: img.endocem,
     images: [
       resolveImage('ENDOCE_MTA_ROOT_REPAIR_MTA_3.webp'),
-      resolveImage('ENDOCE_MTA_ROOT_REPAIR_MTA_3_(2).webp'),
+      resolveImage('ENDOCE_MTA_ROOT_REPAIR_MTA_3 (2).webp'),
       resolveImage('Endocempremix_1.webp'),
       resolveImage('Endocempremix_2.webp')
     ]
@@ -496,8 +496,8 @@ export const products = [
     images: [
       resolveImage('ORA_AID_RED_ORA20.webp'),
       resolveImage('ORA_AID_RED_INFO_ORA20.webp'),
-      resolveImage('ORA_AID_INFO_1.webp'),
-      resolveImage('ORA_AID_INFO_2.webp')
+      resolveImage('ORA_AID_INFO_#1.webp'),
+      resolveImage('ORA_AID_INFO_#2.webp')
     ]
   },
   {
