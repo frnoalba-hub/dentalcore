@@ -1,4 +1,4 @@
-// --- COMPANY CONFIGURATION ---
+﻿// --- COMPANY CONFIGURATION ---
 export const companyInfo = {
   companyName: "Coretix",
   email: "sales@dentalcoreinstruments.com",
@@ -48,7 +48,7 @@ const img = {
   ep_cure:      resolveImage('EP_CURE_White_1007-1.png'),
   ep_light:     resolveImage('EP_CURE_MINI_White_1008-1.png'),
 
-  // Biomaterials — OsseoSeal
+  // Biomaterials ΓÇö OsseoSeal
   osseo_syr_03: resolveImage('OSSEOSEAL_OS_0.3CC.jpg'),
   osseo_syr_05: resolveImage('OSSEOSEAL_OS_0.5CC.webp'),
   osseo_syr_10: resolveImage('OSSEOSEAL_2x0.5CC_OS_1.0CC.webp'),
@@ -56,7 +56,7 @@ const img = {
   osseo_pdr_50: resolveImage('OSSEOSEAL_OS_5.0CC.webp'),
   osseo_mem:    resolveImage('OSSEOSEAL_Collagen_Membrane_OS1520.webp'),
 
-  // Biomaterials — Other
+  // Biomaterials ΓÇö Other
   osteogen:     resolveImage('OSTEOGEN_10x20_OSTEO.webp'),
   ora_aid:      resolveImage('ORA_AID_RED_ORA20.webp'),
   collagen:     resolveImage('CURAGEN_COLL_WOUND_DRESSING_HP10.jpg'),
@@ -116,10 +116,10 @@ export const products = [
     name: "UC-CUT (Sonic GP Cutter)",
     price: 599.00,
     category: "Endodontics",
-    description: "Cordless sonic GP cutter with instant 180°C heating and vibration-assisted removal. Faster, cleaner obturation with interchangeable tips.",
+    description: "Cordless sonic GP cutter with instant 180┬░C heating and vibration-assisted removal. Faster, cleaner obturation with interchangeable tips.",
     image: img.uccut,
     images: [img.uccut, img.uccut_tips, img.uccut_tip90, img.uccut_tip110, img.uccut_bovie],
-    features: ["Cordless Operation", "Instant Heating (180°C)", "Sonic Vibration"],
+    features: ["Cordless Operation", "Instant Heating (180┬░C)", "Sonic Vibration"],
     inStock: true,
     rating: 5.0
   },
@@ -174,7 +174,7 @@ export const products = [
   {
     id: "TH-001",
     name: "Stronic Touch & Heat",
-    price: 399.00,
+    price: 199.50,
     originalPrice: 399.00,
     promo: "Buy 2, Get 1 Free",
     category: "Endodontics",
@@ -189,8 +189,8 @@ export const products = [
   // =========================================
   {
     id: "A1004-V2",
-    name: "AirPeak™ X600-S (KaVo Style)",
-    price: 399.00,
+    name: "AirPeakΓäó X600-S (KaVo Style)",
+    price: 333.33,
     originalPrice: 599.00,
     promo: "3 Handpieces + 1 Coupler for $1,000",
     category: "Handpieces",
@@ -199,8 +199,8 @@ export const products = [
   },
   {
     id: "A1005",
-    name: "AirPeak™ X600-M (NSK Style)",
-    price: 399.00,
+    name: "AirPeakΓäó X600-M (NSK Style)",
+    price: 333.33,
     originalPrice: 599.00,
     promo: "3 Handpieces + 1 Coupler for $1,000",
     category: "Handpieces",
@@ -209,26 +209,26 @@ export const products = [
   },
   {
     id: "A1018",
-    name: "AirPeak™ X600-45 (Surgical)",
+    name: "AirPeakΓäó X600-45 (Surgical)",
     price: 459.00,
     originalPrice: 699.00,
     category: "Handpieces",
-    description: "Angled 45° surgical handpiece with rear exhaust to prevent air embolism. Designed for third molar access and oral surgery procedures.",
+    description: "Angled 45┬░ surgical handpiece with rear exhaust to prevent air embolism. Designed for third molar access and oral surgery procedures.",
     image: img.ap_45
   },
   {
     id: "A1004-V3",
-    name: "AirPeak™ X600-Micro (KaVo)",
+    name: "AirPeakΓäó X600-Micro (KaVo)",
     price: 499.00,
     originalPrice: 699.00,
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
-    description: "Ultra-compact head for pediatric patients and limited-opening cases. 380–450K RPM with full fiber optic illumination.",
+    description: "Ultra-compact head for pediatric patients and limited-opening cases. 380ΓÇô450K RPM with full fiber optic illumination.",
     image: img.ap_micro
   },
   {
     id: "A1009B",
-    name: "AirPeak™ G100-LA (Low Speed)",
+    name: "AirPeakΓäó G100-LA (Low Speed)",
     price: 106.00,
     originalPrice: 159.00,
     promo: "Buy 2, Get 1 Free",
@@ -238,7 +238,7 @@ export const products = [
   },
   {
     id: "A1012",
-    name: "AirPeak™ G100-ST (Straight)",
+    name: "AirPeakΓäó G100-ST (Straight)",
     price: 106.00,
     originalPrice: 159.00,
     promo: "Buy 2, Get 1 Free",
@@ -255,13 +255,13 @@ export const products = [
     name: "iTesla Electric Motor System",
     price: 1299.00,
     category: "Equipment",
-    description: "Brushless electric motor with built-in endodontic mode and 3.0 N·cm torque control. Pairs with all iTesla attachments for a complete system.",
+    description: "Brushless electric motor with built-in endodontic mode and 3.0 N┬╖cm torque control. Pairs with all iTesla attachments for a complete system.",
     image: img.it_motor
   },
   {
     id: "A1003",
-    name: "iTesla™ G600-S (1:5 Red Band)",
-    price: 729.00,
+    name: "iTeslaΓäó G600-S (1:5 Red Band)",
+    price: 599.33,
     originalPrice: 899.00,
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
@@ -270,7 +270,7 @@ export const products = [
   },
   {
     id: "A1028",
-    name: "iTesla™ G600-D (1:1 Blue Band)",
+    name: "iTeslaΓäó G600-D (1:1 Blue Band)",
     price: 399.00,
     originalPrice: 599.00,
     category: "Handpieces",
@@ -279,7 +279,7 @@ export const products = [
   },
   {
     id: "A1020",
-    name: "iTesla™ G500-R20 (20:1 Implant)",
+    name: "iTeslaΓäó G500-R20 (20:1 Implant)",
     price: 499.00,
     originalPrice: 799.00,
     category: "Handpieces",
@@ -303,7 +303,7 @@ export const products = [
   {
     id: "A1061",
     name: "STRONIC X300 Air Scaler",
-    price: 699.00,
+    price: 466.00,
     originalPrice: 699.00,
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
@@ -313,28 +313,28 @@ export const products = [
   },
   {
     id: "A1658",
-    name: "AirPeak™ PRO200 Air Polisher",
-    price: 669.00,
+    name: "AirPeakΓäó PRO200 Air Polisher",
+    price: 446.00,
     originalPrice: 669.00,
     promo: "Buy 2, Get 1 Free",
     category: "Equipment",
-    description: "Air polishing handpiece with anti-clog design and 360° swivel nozzle. Fast biofilm removal for prophy, perio, and ortho patients.",
+    description: "Air polishing handpiece with anti-clog design and 360┬░ swivel nozzle. Fast biofilm removal for prophy, perio, and ortho patients.",
     image: img.air_polish
   },
   {
     id: "A1030",
-    name: "McCare™ X Maintenance",
+    name: "McCareΓäó X Maintenance",
     price: 1399.00,
     originalPrice: 1999.00,
     category: "Equipment",
-    description: "Automated 4-port handpiece maintenance station. Cleans, purges, and lubricates in one cycle — extends handpiece life and saves staff time.",
+    description: "Automated 4-port handpiece maintenance station. Cleans, purges, and lubricates in one cycle ΓÇö extends handpiece life and saves staff time.",
     image: img.mccare_1,
     images: [img.mccare_1, img.mccare_2, img.mccare_3, img.mccare_4],
   },
   {
     id: "IPR-001",
     name: "AirPeak Automatic IPR",
-    price: 249.00,
+    price: 199.33,
     originalPrice: 299.00,
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
@@ -350,13 +350,13 @@ export const products = [
     name: "OsseoSeal Prefilled Syringe",
     price: 48.00,
     category: "Surgical",
-    description: "Ready-to-use prefilled syringe of mineralized cortico-cancellous allograft (250–800µm). No mixing, no mess — direct delivery into the defect site.",
+    description: "Ready-to-use prefilled syringe of mineralized cortico-cancellous allograft (250ΓÇô800┬╡m). No mixing, no mess ΓÇö direct delivery into the defect site.",
     image: img.osseo_syr_03,
     images: [img.osseo_syr_03, img.osseo_syr_05, img.osseo_syr_10],
     variants: [
       { id: "OS_0.3cc", name: "0.3cc",           price: 48.00,  image: img.osseo_syr_03 },
       { id: "OS_0.5cc", name: "0.5cc",           price: 68.00,  image: img.osseo_syr_05 },
-      { id: "OS_1.0cc", name: "1.0cc (2×0.5cc)", price: 100.00, image: img.osseo_syr_10 },
+      { id: "OS_1.0cc", name: "1.0cc (2├ù0.5cc)", price: 100.00, image: img.osseo_syr_10 },
     ]
   },
   {
@@ -364,12 +364,12 @@ export const products = [
     name: "OsseoSeal Allograft Powder",
     price: 115.00,
     category: "Surgical",
-    description: "Mineralized cortico-cancellous allograft in bulk powder form (250–800µm). Cost-effective option for larger grafting cases and sinus lifts.",
+    description: "Mineralized cortico-cancellous allograft in bulk powder form (250ΓÇô800┬╡m). Cost-effective option for larger grafting cases and sinus lifts.",
     image: img.osseo_pdr_25,
     images: [img.osseo_pdr_25, img.osseo_pdr_50],
     variants: [
       { id: "OS_2.5cc", name: "2.5cc",           price: 115.00, image: img.osseo_pdr_25 },
-      { id: "OS_5.0cc", name: "5cc (2×2.5cc)",   price: 200.00, image: img.osseo_pdr_50 },
+      { id: "OS_5.0cc", name: "5cc (2├ù2.5cc)",   price: 200.00, image: img.osseo_pdr_50 },
     ]
   },
   {
@@ -381,23 +381,23 @@ export const products = [
     image: img.osseo_mem,
     images: [img.osseo_mem],
     variants: [
-      { id: "OS1520", name: "15×20 mm", price: 75.00,  image: img.osseo_mem },
-      { id: "OS2030", name: "20×30 mm", price: 110.00, image: img.osseo_mem },
-      { id: "OS3040", name: "30×40 mm", price: 150.00, image: img.osseo_mem },
+      { id: "OS1520", name: "15├ù20 mm", price: 75.00,  image: img.osseo_mem },
+      { id: "OS2030", name: "20├ù30 mm", price: 110.00, image: img.osseo_mem },
+      { id: "OS3040", name: "30├ù40 mm", price: 150.00, image: img.osseo_mem },
     ]
   },
   {
     id: "OSTEO-PLUG",
-    name: "OsteoGen Plug 10×20mm (Large)",
+    name: "OsteoGen Plug 10├ù20mm (Large)",
     price: 549.00,
     category: "Surgical",
-    description: "Combined bone graft and collagen plug — no separate membrane needed. Bioactive calcium apatite turns radiopaque in 3–6 months, confirming regeneration. 10/Box.",
+    description: "Combined bone graft and collagen plug ΓÇö no separate membrane needed. Bioactive calcium apatite turns radiopaque in 3ΓÇô6 months, confirming regeneration. 10/Box.",
     image: img.osteogen
   },
 
   {
     id: "HELI-1",
-    name: "Curagen™ Collagen Wound Dressing Plug",
+    name: "CuragenΓäó Collagen Wound Dressing Plug",
     price: 110.00,
     category: "Surgical",
     description: "Non-crosslinked collagen plug for extraction sites. Controls bleeding, promotes clot stabilization, and resorbs in ~4 weeks. 10/Box.",
@@ -410,11 +410,11 @@ export const products = [
   {
     id: "M1042X",
     name: "ModuLite X Curing Light",
-    price: 699.00,
+    price: 466.00,
     originalPrice: 699.00,
     promo: "Buy 2, Get 1 Free",
     category: "Restorative",
-    description: "Broadband LED curing light (380–520nm) with built-in resin detection mode. Aerospace-grade aluminum body, lightweight and balanced.",
+    description: "Broadband LED curing light (380ΓÇô520nm) with built-in resin detection mode. Aerospace-grade aluminum body, lightweight and balanced.",
     image: img.modulite_4,
     images: [img.modulite_4, img.modulite_1, img.modulite_2, img.modulite_3, img.modulite_5, img.modulite_6],
   },
@@ -447,7 +447,7 @@ export const products = [
   {
     id: "M1002",
     name: "SureTact G3 Rings (2pk)",
-    price: 129.98,
+    price: 86.65,
     originalPrice: 129.98,
     promo: "Buy 2, Get 1 Free",
     category: "Restorative",
