@@ -62,7 +62,8 @@ function buildItemListSchema() {
 
 function buildProductSchemas() {
   return products.slice(0, 20).map((p) => {
-    const price = typeof p.price === 'number' ? p.price : parseFloat(String(p.price).replace(/[^0-9.]/g, ''));
+    const basePrice = p.originalPrice || p.price;
+    const price = typeof basePrice === 'number' ? basePrice : parseFloat(String(basePrice).replace(/[^0-9.]/g, ''));
     
     const reviews = p.reviews || [];
     const ratingCount = reviews.length > 0 ? reviews.length : 1;
