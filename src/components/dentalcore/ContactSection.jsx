@@ -27,7 +27,7 @@ export default function ContactSection() {
           </div>
           <div className="py-8 pl-0 md:pl-8 border-b md:border-b-0 border-white/10">
             <span className="text-xs text-white/40 uppercase tracking-widest block mb-4">{t('headquarters')}</span>
-            <p className="text-lg font-medium text-white/80">California, USA</p>
+            <p className="text-lg font-medium text-white/80">{companyInfo.address}</p>
           </div>
         </div>
 
