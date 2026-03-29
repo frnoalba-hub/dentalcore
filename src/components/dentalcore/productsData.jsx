@@ -61,9 +61,14 @@ const img = {
   ora_aid:      resolveImage('ORA_AID_RED_ORA20.webp'),
   collagen:     resolveImage('CURAGEN_COLL_WOUND_DRESSING_HP10.jpg'),
 
-  // Stronix pics
+  // Stronix X300 pics
   stronic_tip:  'https://media.base44.com/images/public/6916a1244818477a36fdb44c/9e54afd0b_image.png',
   stronic_full: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/2cfbf012c_image.png',
+
+  // Stronix X150 pics
+  x150_1: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/f8ddec0cf_image.png',
+  x150_2: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/15a5cee16_image.png',
+  x150_3: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/60dcd5577_image.png',
 
   // Equipment with real photos
   stronic300:   resolveImage('AIRPEAK_A1016.jpg'),
@@ -271,8 +276,8 @@ export const products = [
     originalPrice: 1199.00,
     category: "Equipment",
     description: "Touch control ultrasonic unit. Endo/Perio/Scaling modes.",
-    image: img.stronic_full,
-    images: [img.stronic_full, img.stronic_tip],
+    image: img.x150_1,
+    images: [img.x150_1, img.x150_2, img.x150_3],
   },
   {
     id: "A1061",
