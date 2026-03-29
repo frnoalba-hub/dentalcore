@@ -88,7 +88,47 @@ export function calculatePromos(items) {
   }
 
   const totalDiscount = promos.reduce((s, p) => s + p.discount, 0);
-  return { promos, totalDiscount };
+
+  // --- Promo hints: items close to unlocking a deal ---
+  const hints = [];
+
+  // B2G1: if they have 1 or 2 of a qualifying item, hint to add more
+  b2g1Items.forEach(item => {
+    const remainder = item.quantity % 3;
+    if (remainder > 0) {
+      const needed = 3 - remainder;
+      const unitPrice = parsePrice(item.price);
+      hints.push({
+        message: `Add ${needed} more ${item.name} to get 1 free (save $${unitPrice.toFixed(0)})`,
+        action: { id: item.id, name: item.name, price: item.price, image: item.image, quantity: needed },
+      });
+    }
+  });
+
+  // B2G1: if they have items NOT yet in cart but ARE in B2G1 set, skip (too noisy)
+
+  // AirPeak bundle: if they have 1 or 2 AirPeak handpieces, hint to add more
+  if (totalAirpeakQty > 0 && totalAirpeakQty % 3 !== 0) {
+    const needed = 3 - (totalAirpeakQty % 3);
+    // Suggest the first AirPeak item in cart
+    const sampleItem = airpeakItems[0];
+    if (sampleItem) {
+      hints.push({
+        message: `Add ${needed} more AirPeak™ handpiece${needed > 1 ? 's' : ''} to unlock 3 + Coupler for $1,000`,
+        action: { id: sampleItem.id, name: sampleItem.name, price: sampleItem.price, image: sampleItem.image, quantity: needed },
+      });
+    }
+  }
+
+  // SureTact Kit: if they have 1, hint to add another
+  if (kitItem && kitItem.quantity % 2 !== 0) {
+    hints.push({
+      message: `Add 1 more SureTact G3 Kit to get 2 for $400`,
+      action: { id: kitItem.id, name: kitItem.name, price: kitItem.price, image: kitItem.image, quantity: 1 },
+    });
+  }
+
+  return { promos, totalDiscount, hints };
 }
 
 function parsePrice(price) {

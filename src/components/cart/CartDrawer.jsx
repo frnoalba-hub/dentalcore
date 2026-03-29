@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Minus, Plus, Loader2 } from 'lucide-react';
+import { X, Minus, Plus, Loader2, Gift } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
 import { companyInfo } from '../dentalcore/productsData';
 import { base44 } from '@/api/base44Client';
@@ -13,7 +13,8 @@ export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, getTotal, getItemCount } = useCartStore();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const { t, dynamicT } = useTranslation();
-  const { promos, totalDiscount } = calculatePromos(items);
+  const { promos, totalDiscount, hints } = calculatePromos(items);
+  const { addItem } = useCartStore();
   const subtotal = getTotal();
   const finalTotal = Math.max(0, subtotal - totalDiscount);
 
@@ -111,6 +112,27 @@ export default function CartDrawer() {
                 ))
               )}
             </div>
+
+            {/* Promo hints — add items to unlock deals */}
+            {hints.length > 0 && items.length > 0 && (
+              <div className="px-6 pb-2 space-y-2">
+                {hints.map((hint, i) => (
+                  <div key={i} className="flex items-center gap-3 bg-accent/5 border border-accent/20 rounded-lg p-3">
+                    <Gift className="w-4 h-4 text-accent flex-shrink-0" />
+                    <span className="text-[11px] text-[#111]/70 font-body leading-tight flex-1">{hint.message}</span>
+                    <button
+                      onClick={() => {
+                        addItem(hint.action, hint.action.quantity);
+                        toast.success('Added to cart!');
+                      }}
+                      className="text-[10px] font-bold uppercase tracking-wider text-accent bg-accent/10 hover:bg-accent/20 px-3 py-1.5 rounded transition-colors whitespace-nowrap"
+                    >
+                      + Add
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
 
             {items.length > 0 && (
               <div className="p-6 border-t border-[#111]/10 bg-white space-y-3">
