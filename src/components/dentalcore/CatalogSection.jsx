@@ -195,21 +195,26 @@ export default function CatalogSection() {
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-t border-l border-[#111]/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
             {filteredProducts.map((product, index) => (
-              <motion.div key={product.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.03 }}>
+              <motion.div key={product.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.03 }}>
                 <Link to={`/product?id=${product.id}`} className="cursor-pointer block">
-                  <article className="group relative h-full flex flex-col bg-[#FDFDFD] border-r border-b border-[#111]/10 hover:bg-[#F5F5F5] transition-colors">
-                    <div className="relative aspect-square px-8 pb-8 pt-16 overflow-hidden">
+                  <article className="group relative h-full flex flex-col bg-white border border-[#111]/10 rounded-2xl overflow-hidden hover:shadow-xl hover:border-[#111]/20 transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative aspect-square px-8 pb-8 pt-16 bg-[#F8F9FA]">
                       <img
                         src={product.image}
                         alt={dynamicT(product.name)}
                         className="w-full h-full object-contain object-bottom mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute top-4 left-4 flex gap-2">
-                        <span className="text-[10px] uppercase tracking-widest font-semibold text-[#111]/50 border border-[#111]/10 px-2 py-1 bg-white/80">
+                      <div className="absolute top-4 left-4 flex flex-col gap-2 items-start">
+                        <span className="text-[10px] uppercase tracking-widest font-semibold text-[#111] border border-[#111]/10 px-2.5 py-1 bg-white/90 backdrop-blur-sm rounded-full shadow-sm">
                           {dynamicT(product.category)}
                         </span>
+                        {product.promo && (
+                          <span className="text-[10px] font-bold uppercase tracking-widest bg-accent text-white px-2.5 py-1 rounded-full shadow-sm">
+                            {product.promo}
+                          </span>
+                        )}
                       </div>
                       {/* Quick Add button on hover */}
                       <button
@@ -222,21 +227,16 @@ export default function CatalogSection() {
                             setQuickViewProduct(product);
                           }
                         }}
-                        className="absolute bottom-4 right-4 w-10 h-10 bg-[#111] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-accent transition-all duration-200"
+                        className="absolute bottom-4 right-4 w-11 h-11 bg-white text-[#111] border border-[#111]/10 rounded-full shadow-lg flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-[#111] hover:text-white hover:scale-110 transition-all duration-300"
                         title={product.variants?.length > 0 ? "Select Options" : "Quick add to cart"}
                       >
-                        {product.variants?.length > 0 ? <Eye className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                        {product.variants?.length > 0 ? <Eye className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                       </button>
                     </div>
 
-                    <div className="p-6 border-t border-[#111]/10 flex flex-col flex-1 justify-between bg-white">
+                    <div className="p-6 flex flex-col flex-1 justify-between bg-white">
                       <div>
-                        {product.promo && (
-                          <span className="inline-block text-[9px] font-bold uppercase tracking-widest bg-accent text-white px-2 py-0.5 mb-2">
-                            {product.promo}
-                          </span>
-                        )}
-                        <h3 className="text-base font-semibold text-[#111] tracking-tight uppercase mb-2">
+                        <h3 className="text-lg font-semibold text-[#111] tracking-tight leading-snug mb-2 group-hover:text-accent transition-colors">
                           {dynamicT(product.name)}
                         </h3>
                         <p className="text-sm text-[#111]/60 font-body line-clamp-2 leading-relaxed">
@@ -244,21 +244,21 @@ export default function CatalogSection() {
                         </p>
                       </div>
 
-                      <div className="mt-6 flex items-end justify-between">
+                      <div className="mt-8 flex items-end justify-between">
                         <div>
                           {product.originalPrice && (
-                            <p className="text-xs text-[#111]/40 line-through mb-0.5">
+                            <p className="text-xs text-[#111]/40 line-through mb-1">
                               ${typeof product.originalPrice === 'number' ? product.originalPrice.toFixed(2) : product.originalPrice}
                             </p>
                           )}
-                          <p className={`text-xl font-medium tracking-tight ${product.originalPrice ? 'text-accent' : 'text-[#111]'}`}>
-                            {product.variants?.length > 0 && <span className="text-sm">From </span>}
+                          <p className={`text-xl font-bold tracking-tight ${product.originalPrice ? 'text-accent' : 'text-[#111]'}`}>
+                            {product.variants?.length > 0 && <span className="text-sm font-medium text-[#111]/50 mr-1">From </span>}
                             {typeof product.price === 'number' ? `$${product.price.toFixed(2)}` : (String(product.price).startsWith('$') ? product.price : `$${product.price}`)}
                           </p>
                         </div>
-                        <span className="text-xs font-medium uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity">
-                          {product.variants?.length > 0 ? 'Select Option' : t('view_details')}
-                        </span>
+                        <div className="w-8 h-8 rounded-full bg-[#111]/5 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:bg-accent/10 transition-all duration-300">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-accent"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+                        </div>
                       </div>
                     </div>
                   </article>
