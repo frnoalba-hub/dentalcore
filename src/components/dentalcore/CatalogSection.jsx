@@ -8,10 +8,12 @@ import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
 import { toast } from 'sonner';
 import { products as localProducts } from './productsData';
+import ProductQuickView from './ProductQuickView';
 
 export default function CatalogSection() {
   const [filter, setFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
+  const [quickViewProduct, setQuickViewProduct] = useState(null);
   const { addItem, openCart } = useCartStore();
   const { t, dynamicT } = useTranslation();
 
@@ -60,7 +62,8 @@ export default function CatalogSection() {
         p.name.toLowerCase().includes(q) || 
         p.description?.toLowerCase().includes(q) || 
         p.category?.toLowerCase().includes(q) ||
-        p.id?.toLowerCase().includes(q)
+        p.id?.toLowerCase().includes(q) ||
+        p.features?.some(f => f.toLowerCase().includes(q))
       );
     }
     return [...filtered].sort((a, b) => (b.originalPrice ? 1 : 0) - (a.originalPrice ? 1 : 0));
@@ -146,7 +149,7 @@ export default function CatalogSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-t border-l border-[#111]/10">
             {filteredProducts.map((product, index) => (
               <motion.div key={product.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.03 }}>
-                <Link to={`/ProductDetail?id=${product.id}`}>
+                <div className="cursor-pointer" onClick={() => setQuickViewProduct(product)}>
                   <article className="group relative h-full flex flex-col bg-[#FDFDFD] border-r border-b border-[#111]/10 hover:bg-[#F5F5F5] transition-colors">
                     <div className="relative aspect-square px-8 pb-8 pt-16 overflow-hidden">
                       <img
@@ -159,13 +162,15 @@ export default function CatalogSection() {
                           {dynamicT(product.category)}
                         </span>
                       </div>
-                      {/* Quick Add / Options button on hover */}
+                      {/* Quick Add button on hover */}
                       <button
                         onClick={(e) => {
+                          e.stopPropagation();
                           if (!product.variants?.length) {
                             handleQuickAdd(product, e);
+                          } else {
+                            setQuickViewProduct(product);
                           }
-                          // If variants exist, do not prevent default, so the Link navigates naturally
                         }}
                         className="absolute bottom-4 right-4 w-10 h-10 bg-[#111] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-accent transition-all duration-200"
                         title={product.variants?.length > 0 ? "Select Options" : "Quick add to cart"}
@@ -207,12 +212,17 @@ export default function CatalogSection() {
                       </div>
                     </div>
                   </article>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </div>
         )}
       </div>
+
+      {/* Quick View Modal */}
+      {quickViewProduct && (
+        <ProductQuickView product={quickViewProduct} onClose={() => setQuickViewProduct(null)} />
+      )}
     </section>
   );
 }
