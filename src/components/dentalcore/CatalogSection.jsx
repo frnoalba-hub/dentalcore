@@ -26,12 +26,18 @@ export default function CatalogSection() {
     'Allograft / Osseoseal Membrane',
     'Allograft',
     'Osseoseal',
+    'Wound Dressing',
+    'Collagen Dressing',
+    'Osteogen Plug',
   ]);
 
   const products = useMemo(() => {
     const localIds = new Set(localProducts.map(p => p.id));
+    const localNames = new Set(localProducts.map(p => p.name.toLowerCase()));
     const apiOnly = apiProducts.filter(p =>
-      !localIds.has(p.id) && !SUPPRESSED_API_CATEGORIES.has(p.category)
+      !localIds.has(p.id) &&
+      !SUPPRESSED_API_CATEGORIES.has(p.category) &&
+      !localNames.has(p.name?.toLowerCase())
     );
     return [...localProducts, ...apiOnly];
   }, [apiProducts]);

@@ -24,11 +24,21 @@ export default function ProductDetail() {
   // Exclude individual items consolidated into variant cards locally.
   const allProducts = useMemo(() => {
     const localIds = new Set(localProducts.map(p => p.id));
+    const localNames = new Set(localProducts.map(p => p.name.toLowerCase()));
     const consolidatedVariantIds = new Set();
     localProducts.forEach(p => {
       if (p.variants) p.variants.forEach(v => consolidatedVariantIds.add(v.id));
     });
-    const apiOnly = apiProducts.filter(p => !localIds.has(p.id) && !consolidatedVariantIds.has(p.id));
+    const SUPPRESSED_API_CATEGORIES = new Set([
+      'Allograft / Osseoseal Membrane', 'Allograft', 'Osseoseal',
+      'Wound Dressing', 'Collagen Dressing', 'Osteogen Plug',
+    ]);
+    const apiOnly = apiProducts.filter(p =>
+      !localIds.has(p.id) &&
+      !consolidatedVariantIds.has(p.id) &&
+      !SUPPRESSED_API_CATEGORIES.has(p.category) &&
+      !localNames.has(p.name?.toLowerCase())
+    );
     return [...localProducts, ...apiOnly];
   }, [apiProducts]);
 
