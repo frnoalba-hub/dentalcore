@@ -75,6 +75,12 @@ const img = {
   x150_2: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/15a5cee16_image.png',
   x150_3: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/60dcd5577_image.png',
 
+  // McCare X pics
+  mccare_1: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/e88c82b35_AC6112_3_720x.png',
+  mccare_2: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/80f1ad737_AC6112_5_720x.png',
+  mccare_3: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/bac065e32_AC6112_6.png',
+  mccare_4: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/23b103ace_AC6112_7_720x.png',
+
   // Equipment with real photos
   stronic300:   resolveImage('AIRPEAK_A1016.jpg'),
   air_polish:   resolveImage('AIRPEAK_A1017.jpg'),
@@ -313,7 +319,8 @@ export const products = [
     originalPrice: 1999.00,
     category: "Equipment",
     description: "Automated handpiece cleaning and lubrication. 4 Ports.",
-    image: img.mccareX
+    image: img.mccare_1,
+    images: [img.mccare_1, img.mccare_2, img.mccare_3, img.mccare_4],
   },
   {
     id: "IPR-001",
