@@ -78,53 +78,54 @@ export default function CatalogSection() {
   return (
     <section id="catalog" className="py-24 bg-[#FDFDFD]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-          <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <h2 className="section-title mb-0">{t('index')}</h2>
-          </motion.div>
 
-          <div className="flex flex-col gap-4">
-            {/* Search */}
-            <div className="relative">
-              <Search className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-[#111]/40" />
-              <input
-                type="text"
-                placeholder={t('search_products') || "Search products..."}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full md:w-[280px] bg-transparent border-b border-[#111]/20 focus:border-[#111] pl-6 pr-8 py-2 text-sm font-body text-[#111] placeholder:text-[#111]/30 outline-none transition-colors"
-              />
-              {searchQuery && (
-                <button onClick={() => setSearchQuery('')} className="absolute right-0 top-1/2 -translate-y-1/2 text-[#111]/40 hover:text-[#111]">
-                  <X className="w-4 h-4" />
-                </button>
-              )}
-            </div>
+        {/* Header */}
+        <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+          <h2 className="section-title mb-2">{t('index')}</h2>
+          <p className="text-sm text-[#111]/50 font-body">Professional dental supplies, equipment & biomaterials.</p>
+        </motion.div>
 
-            {/* Category filters */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setFilter(cat)}
-                  className={`px-5 py-2 text-xs font-medium uppercase tracking-widest transition-colors border ${
-                    filter === cat
-                      ? 'border-[#111] bg-[#111] text-white'
-                      : 'border-[#111]/10 text-[#111]/60 hover:border-[#111] hover:text-[#111]'
-                  }`}
-                >
-                  {cat === 'All' ? t('all') : dynamicT(cat)}
-                </button>
-              ))}
-            </div>
+        {/* Category Tabs — full width prominent row */}
+        <div className="border-t border-b border-[#111]/10 mb-8 overflow-x-auto">
+          <div className="flex min-w-max">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={`px-6 py-4 text-xs font-semibold uppercase tracking-widest transition-all border-b-2 whitespace-nowrap ${
+                  filter === cat
+                    ? 'border-[#111] text-[#111]'
+                    : 'border-transparent text-[#111]/40 hover:text-[#111] hover:border-[#111]/30'
+                }`}
+              >
+                {cat === 'All' ? t('all') || 'All' : dynamicT(cat)}
+              </button>
+            ))}
           </div>
         </div>
 
-        {/* Results count */}
-        <div className="text-xs uppercase tracking-widest text-[#111]/40 font-medium mb-6">
-          {filteredProducts.length} {filteredProducts.length === 1 ? 'item' : 'items'}
-          {filter !== 'All' && ` in ${filter}`}
-          {searchQuery && ` matching "${searchQuery}"`}
+        {/* Search + Results row */}
+        <div className="flex items-center justify-between mb-8 gap-4 flex-wrap">
+          <div className="text-xs uppercase tracking-widest text-[#111]/40 font-medium">
+            {filteredProducts.length} {filteredProducts.length === 1 ? 'item' : 'items'}
+            {filter !== 'All' && ` — ${filter}`}
+            {searchQuery && ` matching "${searchQuery}"`}
+          </div>
+          <div className="relative">
+            <Search className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-[#111]/40" />
+            <input
+              type="text"
+              placeholder={t('search_products') || "Search products..."}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full md:w-[260px] bg-transparent border-b border-[#111]/20 focus:border-[#111] pl-6 pr-8 py-2 text-sm font-body text-[#111] placeholder:text-[#111]/30 outline-none transition-colors"
+            />
+            {searchQuery && (
+              <button onClick={() => setSearchQuery('')} className="absolute right-0 top-1/2 -translate-y-1/2 text-[#111]/40 hover:text-[#111]">
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </div>
         </div>
 
         {isLoading ? (
