@@ -9,11 +9,17 @@ import { useTranslation } from '@/lib/i18n';
 import { toast } from 'sonner';
 import { products as localProducts } from './productsData';
 import ProductQuickView from './ProductQuickView';
+import CatalogFilters, { PRICE_RANGES, SUB_CATEGORIES } from './CatalogFilters';
 
 export default function CatalogSection() {
   const [filter, setFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [quickViewProduct, setQuickViewProduct] = useState(null);
+  const [advancedFilters, setAdvancedFilters] = useState({
+    priceRange: 0,
+    subCategory: '',
+    availability: 'all',
+  });
   const { addItem, openCart } = useCartStore();
   const { t, dynamicT } = useTranslation();
 
@@ -53,9 +59,21 @@ export default function CatalogSection() {
 
   const categories = ['All', ...new Set(products.map(p => p.category))];
 
+  const activeFilterCount = useMemo(() => {
+    let count = 0;
+    if (advancedFilters.priceRange !== 0) count++;
+    if (advancedFilters.subCategory) count++;
+    if (advancedFilters.availability !== 'all') count++;
+    return count;
+  }, [advancedFilters]);
+
   const filteredProducts = useMemo(() => {
     let filtered = products;
+
+    // Category tab
     if (filter !== 'All') filtered = filtered.filter(p => p.category === filter);
+
+    // Search
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
       filtered = filtered.filter(p => 
@@ -66,8 +84,36 @@ export default function CatalogSection() {
         p.features?.some(f => f.toLowerCase().includes(q))
       );
     }
+
+    // Price range
+    if (advancedFilters.priceRange !== 0) {
+      const range = PRICE_RANGES[advancedFilters.priceRange];
+      filtered = filtered.filter(p => {
+        const price = typeof p.price === 'number' ? p.price : parseFloat(String(p.price).replace(/[^0-9.]/g, ''));
+        return price >= range.min && price < range.max;
+      });
+    }
+
+    // Availability
+    if (advancedFilters.availability === 'sale') {
+      filtered = filtered.filter(p => p.originalPrice || p.promo);
+    } else if (advancedFilters.availability === 'new') {
+      filtered = filtered.filter(p => p.inStock !== false && !p.originalPrice);
+    }
+
+    // Sub-category (keyword match)
+    if (advancedFilters.subCategory) {
+      const sub = SUB_CATEGORIES.find(s => s.label === advancedFilters.subCategory);
+      if (sub) {
+        filtered = filtered.filter(p => {
+          const text = `${p.name} ${p.description || ''} ${(p.features || []).join(' ')}`.toLowerCase();
+          return sub.keywords.some(kw => text.includes(kw));
+        });
+      }
+    }
+
     return [...filtered].sort((a, b) => (b.originalPrice ? 1 : 0) - (a.originalPrice ? 1 : 0));
-  }, [products, filter, searchQuery]);
+  }, [products, filter, searchQuery, advancedFilters]);
 
   const handleQuickAdd = (product, e) => {
     e.preventDefault();
@@ -107,6 +153,9 @@ export default function CatalogSection() {
           </div>
         </div>
 
+        {/* Advanced Filters */}
+        <CatalogFilters filters={advancedFilters} onChange={setAdvancedFilters} activeCount={activeFilterCount} />
+
         {/* Search + Results row */}
         <div className="flex items-center justify-between mb-8 gap-4 flex-wrap">
           <div className="text-xs uppercase tracking-widest text-[#111]/40 font-medium">
@@ -139,7 +188,7 @@ export default function CatalogSection() {
           <div className="py-24 text-center border border-[#111]/10">
             <p className="text-sm text-[#111]/50 font-body mb-4">{t('no_items') || "No products found."}</p>
             <button 
-              onClick={() => { setSearchQuery(''); setFilter('All'); }}
+              onClick={() => { setSearchQuery(''); setFilter('All'); setAdvancedFilters({ priceRange: 0, subCategory: '', availability: 'all' }); }}
               className="text-xs uppercase tracking-widest font-medium text-accent hover:text-[#111] transition-colors"
             >
               Clear Filters
