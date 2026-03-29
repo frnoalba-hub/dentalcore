@@ -85,7 +85,7 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Create Stripe products for new items
+    // Create Stripe products AND add new items to database
     const stripeProducts = [];
     for (const item of stripeCreates) {
       const product = await stripe.products.create({
@@ -97,6 +97,15 @@ Deno.serve(async (req) => {
         product: product.id,
         unit_amount: Math.round(parseFloat(item.price) * 100),
         currency: 'usd'
+      });
+      
+      // Also add to Product database
+      await base44.asServiceRole.entities.Product.create({
+        name: item.name,
+        price: item.price,
+        category: 'Dental Equipment',
+        description: `${item.name} - SKU: ${item.sku}`,
+        image: 'https://via.placeholder.com/300?text=Product'
       });
       
       stripeProducts.push({ sku: item.sku, name: item.name, stripeProductId: product.id, stripePriceId: price.id });
