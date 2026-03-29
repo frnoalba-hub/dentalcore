@@ -21,16 +21,18 @@ export default function CatalogSection() {
   });
 
   // Use local products as primary (they have promo pricing).
-  // Merge in any extra products from the API that aren't already local.
-  // Exclude individual items that are consolidated into variant cards locally.
+  // Suppress API products whose category is fully covered by a local consolidated card.
+  const SUPPRESSED_API_CATEGORIES = new Set([
+    'Allograft / Osseoseal Membrane',
+    'Allograft',
+    'Osseoseal',
+  ]);
+
   const products = useMemo(() => {
     const localIds = new Set(localProducts.map(p => p.id));
-    // Collect variant IDs from local products so we suppress them from the API
-    const consolidatedVariantIds = new Set();
-    localProducts.forEach(p => {
-      if (p.variants) p.variants.forEach(v => consolidatedVariantIds.add(v.id));
-    });
-    const apiOnly = apiProducts.filter(p => !localIds.has(p.id) && !consolidatedVariantIds.has(p.id));
+    const apiOnly = apiProducts.filter(p =>
+      !localIds.has(p.id) && !SUPPRESSED_API_CATEGORIES.has(p.category)
+    );
     return [...localProducts, ...apiOnly];
   }, [apiProducts]);
 
