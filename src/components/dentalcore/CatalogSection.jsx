@@ -149,7 +149,7 @@ export default function CatalogSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-t border-l border-[#111]/10">
             {filteredProducts.map((product, index) => (
               <motion.div key={product.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.03 }}>
-                <div className="cursor-pointer" onClick={() => setQuickViewProduct(product)}>
+                <Link to={`/product?id=${product.id}`} className="cursor-pointer block">
                   <article className="group relative h-full flex flex-col bg-[#FDFDFD] border-r border-b border-[#111]/10 hover:bg-[#F5F5F5] transition-colors">
                     <div className="relative aspect-square px-8 pb-8 pt-16 overflow-hidden">
                       <img
@@ -165,6 +165,7 @@ export default function CatalogSection() {
                       {/* Quick Add button on hover */}
                       <button
                         onClick={(e) => {
+                          e.preventDefault();
                           e.stopPropagation();
                           if (!product.variants?.length) {
                             handleQuickAdd(product, e);
@@ -212,7 +213,7 @@ export default function CatalogSection() {
                       </div>
                     </div>
                   </article>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>

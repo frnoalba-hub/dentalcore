@@ -10,6 +10,7 @@ import PageNotFound from './lib/PageNotFound';
 import OrderTracking from './pages/OrderTracking';
 import AdminOrders from './pages/AdminOrders';
 import AdminDashboard from './pages/AdminDashboard';
+import ProductDetail from './pages/ProductDetail';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 
@@ -63,6 +64,7 @@ const AuthenticatedApp = () => {
           }
         />
       ))}
+      <Route path="/product" element={<ProductDetail />} />
       <Route path="/track-order" element={<OrderTracking />} />
       <Route path="/admin/orders" element={<AdminOrders />} />
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
