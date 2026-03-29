@@ -111,13 +111,6 @@ export default function Header() {
 
             {/* Right side */}
             <div className="flex items-center gap-5">
-              <button
-                onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
-                className="hidden xl:flex text-xs font-bold tracking-widest uppercase text-[#111]/50 hover:text-[#111] transition-colors border border-[#111]/15 px-2.5 py-1"
-              >
-                {lang === 'en' ? 'ES' : 'EN'}
-              </button>
-
               <Link
                 to="/track-order"
                 className="hidden xl:flex items-center gap-1 text-xs font-semibold tracking-widest uppercase text-[#111]/50 hover:text-[#111] transition-colors"
@@ -184,14 +177,6 @@ export default function Header() {
                   Track Order
                 </Link>
                 <div className="mt-auto pt-8 border-t border-[#111]/10 flex flex-col gap-4">
-                  <button
-                    onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
-                    className="text-left text-xl font-medium tracking-tighter uppercase text-[#111] flex gap-2"
-                  >
-                    <span className={lang === 'en' ? 'text-accent' : 'text-[#111]/40'}>EN</span>
-                    {' / '}
-                    <span className={lang === 'es' ? 'text-accent' : 'text-[#111]/40'}>ES</span>
-                  </button>
                   <a href={`tel:${companyInfo.phone}`} className="text-sm uppercase tracking-wide text-[#111]/60 mt-4">
                     {companyInfo.phone}
                   </a>
