@@ -200,13 +200,13 @@ export default function CatalogSection() {
               <motion.div key={product.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.03 }}>
                 <Link to={`/product?id=${product.id}`} className="cursor-pointer block">
                   <article className="group relative h-full flex flex-col bg-white border border-[#111]/10 rounded-2xl overflow-hidden hover:shadow-xl hover:border-[#111]/20 transition-all duration-300 transform hover:-translate-y-1">
-                    <div className="relative aspect-square px-8 pb-8 pt-16 bg-[#F8F9FA]">
+                    <div className="relative aspect-square px-8 py-8 bg-[#F8F9FA]">
                       <img
                         src={product.image}
                         alt={dynamicT(product.name)}
-                        className="w-full h-full object-contain object-bottom mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
+                        className="w-full h-full object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute top-4 left-4 flex flex-col gap-2 items-start">
+                      <div className="absolute bottom-4 left-4 flex flex-col gap-2 items-start">
                         <span className="text-[10px] uppercase tracking-widest font-semibold text-[#111] border border-[#111]/10 px-2.5 py-1 bg-white/90 backdrop-blur-sm rounded-full shadow-sm">
                           {dynamicT(product.category)}
                         </span>
