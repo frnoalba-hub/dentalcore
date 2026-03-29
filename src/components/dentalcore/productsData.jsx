@@ -116,7 +116,7 @@ export const products = [
     name: "UC-CUT (Sonic GP Cutter)",
     price: 599.00,
     category: "Endodontics",
-    description: "The new standard in Gutta Percha removal. Cordless, Sonic, Precision.",
+    description: "Cordless sonic GP cutter with instant 180°C heating and vibration-assisted removal. Faster, cleaner obturation with interchangeable tips.",
     image: img.uccut,
     images: [img.uccut, img.uccut_tips, img.uccut_tip90, img.uccut_tip110, img.uccut_bovie],
     features: ["Cordless Operation", "Instant Heating (180°C)", "Sonic Vibration"],
@@ -128,7 +128,7 @@ export const products = [
     name: "UC-ONE (Ultrasonic Irrigation)",
     price: 599.00,
     category: "Endodontics",
-    description: "Cordless ultrasonic irrigation for superior canal cleaning.",
+    description: "Cordless ultrasonic irrigator that activates solution deep into canal anatomy. Eliminates biofilm and debris for predictable endodontic outcomes.",
     image: img.ucone
   },
   {
@@ -136,7 +136,7 @@ export const products = [
     name: "GP Cut & Fit (Standard)",
     price: 80.00,
     category: "Endodontics",
-    description: "Reliable cordless GP cutter with interchangeable tips.",
+    description: "Affordable cordless GP cutter for everyday obturation. Quick-change tips, lightweight design, and reliable heating every time.",
     image: img.cutfit
   },
   {
@@ -144,7 +144,7 @@ export const products = [
     name: "EP Plugger Set",
     price: 120.00,
     category: "Endodontics",
-    description: "Ergonomic gutta percha plugger kit (FM/M and ML/L).",
+    description: "Two-piece ergonomic plugger set (FM/M and ML/L) for warm vertical condensation. Comfortable grip, precise tip control.",
     image: img.ep_plugger
   },
   {
@@ -152,7 +152,7 @@ export const products = [
     name: "EP Suction System",
     price: 60.00,
     category: "Endodontics",
-    description: "Micro-suction tips for drying canals. Includes 2 adapters + 5 tips.",
+    description: "Micro-suction system for canal drying during endo procedures. Comes with 2 adapters and 5 disposable tips for immediate use.",
     image: img.ep_suction
   },
   {
@@ -160,7 +160,7 @@ export const products = [
     name: "Endoseal MTA Sealer",
     price: 90.00,
     category: "Endodontics",
-    description: "Bioactive bioceramic root canal sealer. High radiopacity.",
+    description: "Premixed bioceramic sealer with high radiopacity and bioactive properties. Self-setting, hydrophilic, and ideal for single-cone obturation.",
     image: img.endoseal
   },
   {
@@ -168,7 +168,7 @@ export const products = [
     name: "Endocem MTA Root Repair",
     price: 90.00,
     category: "Endodontics",
-    description: "Rapid setting MTA for root repair and apicoectomy.",
+    description: "Fast-setting MTA cement for root-end fills, perforation repair, and pulp capping. Sets in minutes with excellent sealing ability.",
     image: img.endocem
   },
   {
@@ -178,7 +178,7 @@ export const products = [
     originalPrice: 399.00,
     promo: "Buy 2, Get 1 Free",
     category: "Endodontics",
-    description: "Wireless obturation heating pen. Cordless, rechargeable, multiple tips.",
+    description: "Cordless rechargeable heat pen for warm vertical obturation. Multiple tip sizes included. Lightweight and ready to use out of the box.",
     image: img.stronic_full,
     images: [img.stronic_full, img.stronic_tip],
   },
@@ -194,7 +194,7 @@ export const products = [
     originalPrice: 599.00,
     promo: "3 Handpieces + 1 Coupler for $1,000",
     category: "Handpieces",
-    description: "Titanium, Fiber Optic, Quattro Spray. 400,000 RPM. 27W Power.",
+    description: "Premium titanium high-speed handpiece with fiber optics and quad-port spray. 400K RPM, 27W output. KaVo MULTIflex compatible.",
     image: img.ap_kavo
   },
   {
@@ -204,7 +204,7 @@ export const products = [
     originalPrice: 599.00,
     promo: "3 Handpieces + 1 Coupler for $1,000",
     category: "Handpieces",
-    description: "Titanium, Fiber Optic, Quattro Spray. NSK Coupler compatible.",
+    description: "Titanium high-speed turbine with fiber optics and quad spray. Same performance as the KaVo model, built for NSK coupler systems.",
     image: img.ap_nsk
   },
   {
@@ -213,7 +213,7 @@ export const products = [
     price: 459.00,
     originalPrice: 699.00,
     category: "Handpieces",
-    description: "45-degree head for surgical access. Rear exhaust to prevent embolism.",
+    description: "Angled 45° surgical handpiece with rear exhaust to prevent air embolism. Designed for third molar access and oral surgery procedures.",
     image: img.ap_45
   },
   {
@@ -223,7 +223,7 @@ export const products = [
     originalPrice: 699.00,
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
-    description: "Ultra-mini head for pediatric and limited opening cases. 380–450k RPM.",
+    description: "Ultra-compact head for pediatric patients and limited-opening cases. 380–450K RPM with full fiber optic illumination.",
     image: img.ap_micro
   },
   {
@@ -233,7 +233,7 @@ export const products = [
     originalPrice: 159.00,
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
-    description: "1:1 Contra Angle, Latch Type, Push Button.",
+    description: "1:1 latch-type contra angle with push-button bur release. Smooth, quiet operation for restorative and prophy work.",
     image: img.ap_low_la
   },
   {
@@ -243,7 +243,7 @@ export const products = [
     originalPrice: 159.00,
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
-    description: "1:1 Straight Nose Cone for extraoral adjustments.",
+    description: "1:1 straight nose cone for lab work, extraoral adjustments, and acrylic trimming. Durable stainless construction.",
     image: img.ap_low_st
   },
 
@@ -255,7 +255,7 @@ export const products = [
     name: "iTesla Electric Motor System",
     price: 1299.00,
     category: "Equipment",
-    description: "Brushless micromotor with integrated Endo function. 3.0 N.cm torque.",
+    description: "Brushless electric motor with built-in endodontic mode and 3.0 N·cm torque control. Pairs with all iTesla attachments for a complete system.",
     image: img.it_motor
   },
   {
@@ -265,7 +265,7 @@ export const products = [
     originalPrice: 899.00,
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
-    description: "Electric 1:5 increaser. Titanium body, DLC coating, Quattro Spray.",
+    description: "1:5 speed-increasing electric handpiece with DLC-coated titanium body and quad spray. Exceptional cutting power and visibility.",
     image: img.it_g600s
   },
   {
@@ -274,7 +274,7 @@ export const products = [
     price: 399.00,
     originalPrice: 599.00,
     category: "Handpieces",
-    description: "Electric 1:1 direct drive. Internal water spray.",
+    description: "1:1 direct-drive electric contra angle with internal water spray. Versatile workhorse for restorative, prophy, and endo prep.",
     image: img.it_g600d
   },
   {
@@ -283,7 +283,7 @@ export const products = [
     price: 499.00,
     originalPrice: 799.00,
     category: "Handpieces",
-    description: "20:1 Reduction for Implantology. External irrigation clip.",
+    description: "20:1 reduction implant handpiece with external irrigation clip. Precise torque delivery for implant placement and bone work.",
     image: img.it_implant
   },
 
@@ -296,7 +296,7 @@ export const products = [
     price: 799.00,
     originalPrice: 1199.00,
     category: "Equipment",
-    description: "Touch control ultrasonic unit. Endo/Perio/Scaling modes.",
+    description: "Touchscreen piezo ultrasonic scaler with dedicated Endo, Perio, and Scaling modes. Auto-frequency tuning for consistent tip performance.",
     image: img.x150_1,
     images: [img.x150_1, img.x150_2, img.x150_3],
   },
@@ -307,7 +307,7 @@ export const products = [
     originalPrice: 699.00,
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
-    description: "Fits KaVo coupler. 6000 Hz oscillation for gentle scaling.",
+    description: "Air-driven scaler that connects directly to your KaVo coupler. 6,000 Hz oscillation for comfortable, efficient scaling without a separate unit.",
     image: img.x300_1,
     images: [img.x300_1, img.x300_2, img.x300_3],
   },
@@ -318,7 +318,7 @@ export const products = [
     originalPrice: 669.00,
     promo: "Buy 2, Get 1 Free",
     category: "Equipment",
-    description: "Anti-clogging air polishing system. 360° swivel nozzle.",
+    description: "Air polishing handpiece with anti-clog design and 360° swivel nozzle. Fast biofilm removal for prophy, perio, and ortho patients.",
     image: img.air_polish
   },
   {
@@ -327,7 +327,7 @@ export const products = [
     price: 1399.00,
     originalPrice: 1999.00,
     category: "Equipment",
-    description: "Automated handpiece cleaning and lubrication. 4 Ports.",
+    description: "Automated 4-port handpiece maintenance station. Cleans, purges, and lubricates in one cycle — extends handpiece life and saves staff time.",
     image: img.mccare_1,
     images: [img.mccare_1, img.mccare_2, img.mccare_3, img.mccare_4],
   },
@@ -338,7 +338,7 @@ export const products = [
     originalPrice: 299.00,
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
-    description: "Ortho interproximal reduction handpiece with reciprocating motion.",
+    description: "Reciprocating IPR handpiece for precise interproximal enamel reduction. Essential for aligner cases and orthodontic finishing.",
     image: img.ipr
   },
 
@@ -350,7 +350,7 @@ export const products = [
     name: "OsseoSeal Prefilled Syringe",
     price: 48.00,
     category: "Surgical",
-    description: "Mineralized Cortico-Cancellous Bone Graft, 250–800 microns. Ready-to-use prefilled syringe.",
+    description: "Ready-to-use prefilled syringe of mineralized cortico-cancellous allograft (250–800µm). No mixing, no mess — direct delivery into the defect site.",
     image: img.osseo_syr_03,
     images: [img.osseo_syr_03, img.osseo_syr_05, img.osseo_syr_10],
     variants: [
@@ -364,7 +364,7 @@ export const products = [
     name: "OsseoSeal Allograft Powder",
     price: 115.00,
     category: "Surgical",
-    description: "Mineralized Cortico-Cancellous Allograft Powder, 250–800 microns. Bulk jar format.",
+    description: "Mineralized cortico-cancellous allograft in bulk powder form (250–800µm). Cost-effective option for larger grafting cases and sinus lifts.",
     image: img.osseo_pdr_25,
     images: [img.osseo_pdr_25, img.osseo_pdr_50],
     variants: [
@@ -377,7 +377,7 @@ export const products = [
     name: "OsseoSeal Collagen Membrane",
     price: 75.00,
     category: "Surgical",
-    description: "Resorbable porcine collagen membrane for guided bone regeneration.",
+    description: "Resorbable porcine collagen membrane for guided bone regeneration. Easy to handle, conforms well to defects, and maintains barrier function during healing.",
     image: img.osseo_mem,
     images: [img.osseo_mem],
     variants: [
@@ -391,7 +391,7 @@ export const products = [
     name: "OsteoGen Plug 10×20mm (Large)",
     price: 549.00,
     category: "Surgical",
-    description: "Two-in-one bone graft + collagen plug. Bioactive resorbable calcium apatite & bovine collagen. No membrane needed. Radiolucent day-of-surgery, radiopaque in 3–6 months. 10/Box.",
+    description: "Combined bone graft and collagen plug — no separate membrane needed. Bioactive calcium apatite turns radiopaque in 3–6 months, confirming regeneration. 10/Box.",
     image: img.osteogen
   },
 
@@ -400,7 +400,7 @@ export const products = [
     name: "Curagen™ Collagen Wound Dressing Plug",
     price: 110.00,
     category: "Surgical",
-    description: "Porous, absorbent non-crosslinked bovine Achilles tendon collagen plug (10×20mm). Ideal for extraction sites and oral surgery. Stops bleeding, reduces post-op discomfort. 4-week resorption. 10/Box.",
+    description: "Non-crosslinked collagen plug for extraction sites. Controls bleeding, promotes clot stabilization, and resorbs in ~4 weeks. 10/Box.",
     image: img.collagen
   },
 
@@ -414,7 +414,7 @@ export const products = [
     originalPrice: 699.00,
     promo: "Buy 2, Get 1 Free",
     category: "Restorative",
-    description: "Broadband LED (380-520nm) with detection mode. Aerospace aluminum.",
+    description: "Broadband LED curing light (380–520nm) with built-in resin detection mode. Aerospace-grade aluminum body, lightweight and balanced.",
     image: img.modulite_4,
     images: [img.modulite_4, img.modulite_1, img.modulite_2, img.modulite_3, img.modulite_5, img.modulite_6],
   },
@@ -423,7 +423,7 @@ export const products = [
     name: "EP CURE",
     price: 599.00,
     category: "Restorative",
-    description: "High-intensity LED curing light. 1-sec cure capability.",
+    description: "High-intensity LED curing light with 1-second cure capability. Reduces chair time without compromising depth of cure.",
     image: img.ep_cure
   },
   {
@@ -431,7 +431,7 @@ export const products = [
     name: "EP Light Transilluminator",
     price: 160.00,
     category: "Restorative",
-    description: "Diagnostic light for crack detection.",
+    description: "Compact diagnostic transilluminator for detecting cracks, fracture lines, and caries. A quick chairside diagnostic tool.",
     image: img.ep_light
   },
   {
@@ -441,7 +441,7 @@ export const products = [
     originalPrice: 299.00,
     promo: "Buy 2 Kits for $400",
     category: "Restorative",
-    description: "Sectional matrix system. 100 matrices, 2 rings, forceps.",
+    description: "Complete sectional matrix kit: 100 assorted matrices, 2 NiTi rings, and ring forceps. Everything you need for tight, anatomical Class II restorations.",
     image: img.suretact
   },
   {
@@ -451,7 +451,7 @@ export const products = [
     originalPrice: 129.98,
     promo: "Buy 2, Get 1 Free",
     category: "Restorative",
-    description: "Universal NiTi rings with outstanding spring memory.",
+    description: "Replacement NiTi rings with strong spring-back memory. Universal fit for most sectional matrix systems. 2-pack.",
     image: img.suretact_r,
     images: [img.suretact_r, img.suretact_r2],
   }
