@@ -1,9 +1,9 @@
 // --- COMPANY CONFIGURATION ---
 export const companyInfo = {
   companyName: "Coretix",
-  email: "frno.alba@gmail.com",
-  address: "", // Hidden for privacy
-  phone: "(626) 214-6598",
+  email: "sales@dentalcoreinstruments.com",
+  address: "",
+  phone: "(626) 268-3946",
   logoText: "CORETIX"
 };
 
