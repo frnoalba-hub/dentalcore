@@ -2,22 +2,23 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, Menu, X, ArrowUpRight, ChevronRight, Package } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { companyInfo } from './productsData';
+import { companyInfo, products as localProducts } from './productsData';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
+import { toast } from 'sonner';
 
 const promos = [
-  'AirPeak™ Handpieces — 3 + 1 Coupler for $1,000',
-  'iTesla G600-S — Buy 2, Get 1 Free',
-  'ModuLite X Curing Light — Buy 2, Get 1 Free',
-  'OsseoSeal Bone Graft & Membrane — Now Available',
+  { text: 'AirPeak™ Handpieces — 3 + 1 Coupler for $1,000', productId: 'A1004-V2', qty: 3 },
+  { text: 'iTesla G600-S — Buy 2, Get 1 Free', productId: 'A1003', qty: 2 },
+  { text: 'ModuLite X Curing Light — Buy 2, Get 1 Free', productId: 'M1042X', qty: 2 },
+  { text: 'OsseoSeal Bone Graft & Membrane — Now Available', productId: 'OS-SEAL-SYR', qty: 1 },
 ];
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [promoIndex, setPromoIndex] = useState(0);
-  const { openCart, getItemCount } = useCartStore();
+  const { openCart, getItemCount, addItem } = useCartStore();
   const { t, lang, setLang } = useTranslation();
 
   const navLinks = [
@@ -66,9 +67,17 @@ export default function Header() {
             className="text-[10px] font-medium uppercase tracking-[0.15em] flex items-center gap-2"
           >
             <span className="text-accent">●</span>
-            {promos[promoIndex]}
+            {promos[promoIndex].text}
             <button
-              onClick={() => scrollTo('catalog')}
+              onClick={() => {
+                const promo = promos[promoIndex];
+                const product = localProducts.find(p => p.id === promo.productId);
+                if (product) {
+                  addItem(product, promo.qty);
+                  openCart();
+                  toast.success(`Added ${product.name} to cart`);
+                }
+              }}
               className="underline underline-offset-2 opacity-60 hover:opacity-100 transition-opacity flex items-center gap-0.5"
             >
               Shop <ChevronRight className="w-3 h-3" />
