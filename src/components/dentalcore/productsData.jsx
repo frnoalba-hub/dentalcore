@@ -60,6 +60,8 @@ const img = {
 
   // Fallback to aesthetic placeholders since we don't have real photos yet
   touch_heat:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
+  stronic_full: 'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
+  stronic_tip:  'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   modulite:     'https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop',
   // iSuni equipment — using the standard resolveImage after moving files locally
   isuni_scan:   resolveImage('isuni_1.webp'),
