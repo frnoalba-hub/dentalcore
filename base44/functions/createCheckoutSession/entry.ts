@@ -5,14 +5,13 @@ const stripe = new Stripe(Deno.env.get("STRIPE_SECRET_KEY"));
 
 Deno.serve(async (req) => {
   try {
-    const { items, origin } = await req.json();
+    const { items, origin, promos } = await req.json();
 
     if (!items || items.length === 0) {
       return Response.json({ error: 'No items provided' }, { status: 400 });
     }
 
     const line_items = items.map(item => {
-      // Parse price (e.g. "$599" or "$599.00" -> 59900 cents)
       const rawPrice = typeof item.price === 'number' ? item.price : parseFloat(String(item.price).replace(/[^0-9.]/g, ''));
       const unitAmount = Math.round(rawPrice * 100);
       return {
@@ -20,7 +19,7 @@ Deno.serve(async (req) => {
           currency: 'usd',
           product_data: {
             name: item.name,
-            images: [item.image],
+            images: item.image ? [item.image] : [],
           },
           unit_amount: unitAmount,
         },
@@ -28,16 +27,34 @@ Deno.serve(async (req) => {
       };
     });
 
-    const session = await stripe.checkout.sessions.create({
+    // Add promo discount line items (negative amounts not supported, use coupons)
+    const discounts = [];
+    const totalDiscount = (promos || []).reduce((s, p) => s + (p.discount || 0), 0);
+    if (totalDiscount > 0) {
+      const promoLabels = promos.filter(p => p.discount > 0).map(p => p.label).join(', ');
+      const coupon = await stripe.coupons.create({
+        amount_off: Math.round(totalDiscount * 100),
+        currency: 'usd',
+        name: promoLabels || 'Promotional Discount',
+        duration: 'once',
+      });
+      discounts.push({ coupon: coupon.id });
+    }
+
+    const sessionParams = {
       payment_method_types: ['card'],
       line_items,
       mode: 'payment',
       success_url: `${origin}?checkout=success`,
       cancel_url: `${origin}?checkout=cancel`,
       metadata: {
-        base44_app_id: Deno.env.get("BASE44_APP_ID")
+        base44_app_id: Deno.env.get("BASE44_APP_ID"),
+        promos: JSON.stringify(promos || []),
       }
-    });
+    };
+    if (discounts.length > 0) sessionParams.discounts = discounts;
+
+    const session = await stripe.checkout.sessions.create(sessionParams);
 
     return Response.json({ url: session.url });
   } catch (error) {

@@ -6,11 +6,16 @@ import { companyInfo } from '../dentalcore/productsData';
 import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
 import { useTranslation } from '@/lib/i18n';
+import { calculatePromos } from '../store/promoEngine';
+import { Tag } from 'lucide-react';
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, getTotal, getItemCount } = useCartStore();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const { t, dynamicT } = useTranslation();
+  const { promos, totalDiscount } = calculatePromos(items);
+  const subtotal = getTotal();
+  const finalTotal = Math.max(0, subtotal - totalDiscount);
 
   // WhatsApp fallback — always works, no Stripe setup needed
   const handleWhatsAppCheckout = () => {
@@ -20,7 +25,13 @@ export default function CartDrawer() {
     items.forEach(item => {
       message += `▪️ ${item.quantity}x ${item.name} (${item.id})\n`;
     });
-    message += `\n*Subtotal:* $${getTotal().toFixed(2)}\n`;
+    if (promos.length > 0) {
+      message += `\n*Promos Applied:*\n`;
+      promos.forEach(p => {
+        message += `  🎁 ${p.label}${p.discount > 0 ? ` (-$${p.discount.toFixed(2)})` : p.info ? ` (${p.info})` : ''}\n`;
+      });
+    }
+    message += `\n*Total:* $${finalTotal.toFixed(2)}\n`;
     message += `\n_Please confirm availability and send invoice._`;
     
     const phoneNum = companyInfo.phone.replace(/[^0-9]/g, '');
@@ -40,7 +51,8 @@ export default function CartDrawer() {
     try {
       const response = await base44.functions.invoke('createCheckoutSession', {
         items,
-        origin: window.location.origin
+        origin: window.location.origin,
+        promos,
       });
       
       if (response.data.url) {
@@ -102,9 +114,34 @@ export default function CartDrawer() {
 
             {items.length > 0 && (
               <div className="p-6 border-t border-[#111]/10 bg-white space-y-3">
+                {/* Promos */}
+                {promos.length > 0 && (
+                  <div className="space-y-2 mb-3 pb-3 border-b border-[#111]/10">
+                    {promos.map((p, i) => (
+                      <div key={i} className="flex items-start justify-between gap-2">
+                        <div className="flex items-center gap-1.5">
+                          <Tag className="w-3 h-3 text-accent flex-shrink-0" />
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-accent leading-tight">{p.label}</span>
+                        </div>
+                        {p.discount > 0 ? (
+                          <span className="text-xs font-bold text-green-600 whitespace-nowrap">-${p.discount.toFixed(2)}</span>
+                        ) : p.info ? (
+                          <span className="text-[10px] text-green-600 whitespace-nowrap">{p.info}</span>
+                        ) : null}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {totalDiscount > 0 && (
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs text-[#111]/40 uppercase tracking-widest">Subtotal</span>
+                    <span className="text-sm text-[#111]/40 line-through">${subtotal.toFixed(2)}</span>
+                  </div>
+                )}
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#111]/50">{t('subtotal')}</span>
-                  <span className="text-xl font-medium text-[#111]">${getTotal().toFixed(2)}</span>
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#111]/50">{totalDiscount > 0 ? 'Total' : (t('subtotal') || 'Subtotal')}</span>
+                  <span className="text-xl font-medium text-[#111]">${finalTotal.toFixed(2)}</span>
                 </div>
                 <button 
                   onClick={handleWhatsAppCheckout}
