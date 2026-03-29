@@ -13,7 +13,8 @@ Deno.serve(async (req) => {
 
     const line_items = items.map(item => {
       // Parse price (e.g. "$599" or "$599.00" -> 59900 cents)
-      const unitAmount = Math.round(parseFloat(item.price.replace(/[^0-9.]/g, '')) * 100);
+      const rawPrice = typeof item.price === 'number' ? item.price : parseFloat(String(item.price).replace(/[^0-9.]/g, ''));
+      const unitAmount = Math.round(rawPrice * 100);
       return {
         price_data: {
           currency: 'usd',
