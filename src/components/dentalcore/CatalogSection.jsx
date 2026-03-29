@@ -31,14 +31,21 @@ export default function CatalogSection() {
     'Osteogen Plug',
   ]);
 
+  const SUPPRESSED_API_KEYWORDS = ['osteogen', 'curagen', 'heliplug', 'heli-plug', 'collagen wound'];
+
+
   const products = useMemo(() => {
     const localIds = new Set(localProducts.map(p => p.id));
     const localNames = new Set(localProducts.map(p => p.name.toLowerCase()));
-    const apiOnly = apiProducts.filter(p =>
-      !localIds.has(p.id) &&
-      !SUPPRESSED_API_CATEGORIES.has(p.category) &&
-      !localNames.has(p.name?.toLowerCase())
-    );
+    const apiOnly = apiProducts.filter(p => {
+      const nameLower = p.name?.toLowerCase() || '';
+      return (
+        !localIds.has(p.id) &&
+        !SUPPRESSED_API_CATEGORIES.has(p.category) &&
+        !localNames.has(nameLower) &&
+        !SUPPRESSED_API_KEYWORDS.some(kw => nameLower.includes(kw))
+      );
+    });
     return [...localProducts, ...apiOnly];
   }, [apiProducts]);
 

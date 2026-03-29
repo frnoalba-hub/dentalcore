@@ -33,12 +33,17 @@ export default function ProductDetail() {
       'Allograft / Osseoseal Membrane', 'Allograft', 'Osseoseal',
       'Wound Dressing', 'Collagen Dressing', 'Osteogen Plug',
     ]);
-    const apiOnly = apiProducts.filter(p =>
-      !localIds.has(p.id) &&
-      !consolidatedVariantIds.has(p.id) &&
-      !SUPPRESSED_API_CATEGORIES.has(p.category) &&
-      !localNames.has(p.name?.toLowerCase())
-    );
+    const SUPPRESSED_KEYWORDS = ['osteogen', 'curagen', 'heliplug', 'heli-plug', 'collagen wound'];
+    const apiOnly = apiProducts.filter(p => {
+      const nameLower = p.name?.toLowerCase() || '';
+      return (
+        !localIds.has(p.id) &&
+        !consolidatedVariantIds.has(p.id) &&
+        !SUPPRESSED_API_CATEGORIES.has(p.category) &&
+        !localNames.has(nameLower) &&
+        !SUPPRESSED_KEYWORDS.some(kw => nameLower.includes(kw))
+      );
+    });
     return [...localProducts, ...apiOnly];
   }, [apiProducts]);
 
