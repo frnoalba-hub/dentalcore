@@ -86,6 +86,14 @@ const img = {
   air_polish:   resolveImage('AIRPEAK_A1017.jpg'),
   ipr:          resolveImage('AIRPEAK_A1043.jpg'),
 
+  // ModuLite X pics
+  modulite_1: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/285d74861_83c9bf7f86d8ae091418cab83f82240e.png',
+  modulite_2: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/28a58be11_4995b8de42e71d815af77249c0c38d75.png',
+  modulite_3: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/a1ca4d5bc_dc360f1692f48ff793557ddcfa32240b.png',
+  modulite_4: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/8d72dc006_def6a6f696628ef3679ab45fb8b33864.png',
+  modulite_5: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/d527ceacd_ea54e9bd80034d762511a77784dca835.png',
+  modulite_6: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/1262b5a4b_1d5a02e010f4a34cd79047c9031f0fad.png',
+
   // Placeholders (no real photos yet)
   touch_heat:   'https://images.unsplash.com/photo-1516549655169-df83a0833860?q=80&w=1000&auto=format&fit=crop',
   modulite:     'https://images.unsplash.com/photo-1583912267670-65755dd82a2d?q=80&w=1000&auto=format&fit=crop',
@@ -406,7 +414,8 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Restorative",
     description: "Broadband LED (380-520nm) with detection mode. Aerospace aluminum.",
-    image: img.modulite
+    image: img.modulite_4,
+    images: [img.modulite_4, img.modulite_1, img.modulite_2, img.modulite_3, img.modulite_5, img.modulite_6],
   },
   {
     id: "1007-1",
