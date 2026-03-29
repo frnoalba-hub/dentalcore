@@ -61,6 +61,10 @@ const img = {
   ora_aid:      resolveImage('ORA_AID_RED_ORA20.webp'),
   collagen:     resolveImage('CURAGEN_COLL_WOUND_DRESSING_HP10.jpg'),
 
+  // Stronix pics
+  stronic_tip:  'https://media.base44.com/images/public/6916a1244818477a36fdb44c/9e54afd0b_image.png',
+  stronic_full: 'https://media.base44.com/images/public/6916a1244818477a36fdb44c/2cfbf012c_image.png',
+
   // Equipment with real photos
   stronic300:   resolveImage('AIRPEAK_A1016.jpg'),
   air_polish:   resolveImage('AIRPEAK_A1017.jpg'),
@@ -267,7 +271,8 @@ export const products = [
     originalPrice: 1199.00,
     category: "Equipment",
     description: "Touch control ultrasonic unit. Endo/Perio/Scaling modes.",
-    image: img.stronic150
+    image: img.stronic_full,
+    images: [img.stronic_full, img.stronic_tip],
   },
   {
     id: "A1061",
@@ -277,7 +282,8 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Fits KaVo coupler. 6000 Hz oscillation for gentle scaling.",
-    image: img.stronic300
+    image: img.stronic_full,
+    images: [img.stronic_full, img.stronic_tip, img.stronic300],
   },
   {
     id: "A1658",
