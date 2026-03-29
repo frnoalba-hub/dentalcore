@@ -4,12 +4,20 @@ const SITE_URL = 'https://www.dentalcoreinstruments.com';
 
 function buildOrganizationSchema() {
   return {
-    "@type": "Organization",
+    "@type": ["MedicalBusiness", "Organization"],
     "@id": `${SITE_URL}/#organization`,
     "name": companyInfo.companyName,
     "url": SITE_URL,
+    "logo": "https://base44.com/logo_v2.svg",
     "email": companyInfo.email,
     "telephone": companyInfo.phone,
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": companyInfo.phone,
+      "contactType": "customer service",
+      "email": companyInfo.email,
+      "availableLanguage": "English"
+    },
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "2108 N St Ste N",
