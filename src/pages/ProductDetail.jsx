@@ -21,9 +21,14 @@ export default function ProductDetail() {
   });
 
   // Merge local + API products (local takes priority for promo pricing)
+  // Exclude individual items consolidated into variant cards locally.
   const allProducts = useMemo(() => {
     const localIds = new Set(localProducts.map(p => p.id));
-    const apiOnly = apiProducts.filter(p => !localIds.has(p.id));
+    const consolidatedVariantIds = new Set();
+    localProducts.forEach(p => {
+      if (p.variants) p.variants.forEach(v => consolidatedVariantIds.add(v.id));
+    });
+    const apiOnly = apiProducts.filter(p => !localIds.has(p.id) && !consolidatedVariantIds.has(p.id));
     return [...localProducts, ...apiOnly];
   }, [apiProducts]);
 

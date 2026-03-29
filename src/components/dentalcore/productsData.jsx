@@ -48,9 +48,15 @@ const img = {
   ep_cure:      resolveImage('EP_CURE_White_1007-1.png'),
   ep_light:     resolveImage('EP_CURE_MINI_White_1008-1.png'),
 
-  // Biomaterials
-  osseo_allo:   resolveImage('OSSEOSEAL_OS_0.5CC.webp'),
+  // Biomaterials — OsseoSeal
+  osseo_syr_03: resolveImage('OSSEOSEAL_OS_0.3CC.jpg'),
+  osseo_syr_05: resolveImage('OSSEOSEAL_OS_0.5CC.webp'),
+  osseo_syr_10: resolveImage('OSSEOSEAL_2x0.5CC_OS_1.0CC.webp'),
+  osseo_pdr_25: resolveImage('OSSEOSEAL_OS_2.5CC.webp'),
+  osseo_pdr_50: resolveImage('OSSEOSEAL_OS_5.0CC.webp'),
   osseo_mem:    resolveImage('OSSEOSEAL_Collagen_Membrane_OS1520.webp'),
+
+  // Biomaterials — Other
   osteogen:     resolveImage('OSTEOGEN_10x20_OSTEO.webp'),
   ora_aid:      resolveImage('ORA_AID_RED_ORA20.webp'),
   collagen:     resolveImage('CURAGEN_COLL_WOUND_DRESSING_HP10.jpg'),
@@ -322,14 +328,20 @@ export const products = [
   {
     id: "OS-SEAL",
     name: "OsseoSeal Bone Graft & Membrane",
-    price: 68.00,
+    price: 48.00,
     category: "Surgical",
-    description: "Mineralized Allograft and Resorbable Collagen Membrane for guided bone regeneration.",
-    image: img.osseo_allo,
-    images: [img.osseo_allo, img.osseo_mem],
+    description: "Complete bone regeneration line — prefilled syringes, allograft powders, and resorbable collagen membranes.",
+    image: img.osseo_syr_05,
+    images: [img.osseo_syr_05, img.osseo_syr_03, img.osseo_syr_10, img.osseo_pdr_25, img.osseo_pdr_50, img.osseo_mem],
     variants: [
-      { id: "OS-ALLO", name: "Allograft 0.5cc", price: 68.00 },
-      { id: "OS-MEM", name: "Membrane 15x20", price: 70.00 },
+      { id: "OS_0.3cc",  name: "Syringe 0.3cc",     price: 48.00 },
+      { id: "OS_0.5cc",  name: "Syringe 0.5cc",     price: 68.00 },
+      { id: "OS_1.0cc",  name: "Syringe 1.0cc (2×0.5cc)", price: 100.00 },
+      { id: "OS_2.5cc",  name: "Powder 2.5cc",      price: 115.00 },
+      { id: "OS_5.0cc",  name: "Powder 5cc (2×2.5cc)", price: 200.00 },
+      { id: "OS1520",    name: "Membrane 15×20",     price: 75.00 },
+      { id: "OS2030",    name: "Membrane 20×30",     price: 110.00 },
+      { id: "OS3040",    name: "Membrane 30×40",     price: 150.00 },
     ]
   },
   {
