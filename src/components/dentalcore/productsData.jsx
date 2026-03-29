@@ -355,10 +355,10 @@ export const products = [
   },
   {
     id: "OSTEO-PLUG",
-    name: "OsteoGen Plug (Large)",
+    name: "OsteoGen Plug 10×20mm (Large)",
     price: 549.00,
     category: "Surgical",
-    description: "Resorbable Bone Grafting Plug (10/Box).",
+    description: "Two-in-one bone graft + collagen plug. Bioactive resorbable calcium apatite & bovine collagen. No membrane needed. Radiolucent day-of-surgery, radiopaque in 3–6 months. 10/Box.",
     image: img.osteogen
   },
   {
@@ -366,15 +366,15 @@ export const products = [
     name: "Ora-Aid Wound Dressing",
     price: 90.00,
     category: "Surgical",
-    description: "Intraoral protective dressing. 15mm x 25mm (20 Pack).",
+    description: "Intraoral protective dressing. 15mm × 25mm (20 Pack).",
     image: img.ora_aid
   },
   {
     id: "HELI-1",
-    name: "Collagen Wound Dressing",
+    name: "Curagen™ Collagen Wound Dressing Plug",
     price: 110.00,
     category: "Surgical",
-    description: "Resorbable collagen sponge for hemostasis (10/Box).",
+    description: "Porous, absorbent non-crosslinked bovine Achilles tendon collagen plug (10×20mm). Ideal for extraction sites and oral surgery. Stops bleeding, reduces post-op discomfort. 4-week resorption. 10/Box.",
     image: img.collagen
   },
 
