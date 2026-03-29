@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Menu, X, ArrowUpRight, ChevronRight } from 'lucide-react';
+import { ShoppingBag, Menu, X, ArrowUpRight, ChevronRight, Package } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { companyInfo } from './productsData';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
@@ -117,6 +118,13 @@ export default function Header() {
                 {lang === 'en' ? 'ES' : 'EN'}
               </button>
 
+              <Link
+                to="/track-order"
+                className="hidden xl:flex items-center gap-1 text-xs font-semibold tracking-widest uppercase text-[#111]/50 hover:text-[#111] transition-colors"
+              >
+                <Package className="w-3.5 h-3.5" /> Track Order
+              </Link>
+
               <a
                 href={`mailto:${companyInfo.email}`}
                 className="hidden xl:flex items-center gap-1 text-xs font-semibold tracking-widest uppercase text-[#111]/50 hover:text-[#111] transition-colors"
@@ -168,6 +176,13 @@ export default function Header() {
                     {link.label}
                   </button>
                 ))}
+                <Link
+                  to="/track-order"
+                  onClick={() => setMobileOpen(false)}
+                  className="text-3xl font-semibold tracking-tighter uppercase text-[#111] text-left hover:text-accent transition-colors"
+                >
+                  Track Order
+                </Link>
                 <div className="mt-auto pt-8 border-t border-[#111]/10 flex flex-col gap-4">
                   <button
                     onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
