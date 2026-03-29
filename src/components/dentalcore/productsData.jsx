@@ -181,8 +181,9 @@ export const products = [
     originalPrice: 399.00,
     promo: "Buy 2, Get 1 Free",
     category: "Endodontics",
-    description: "Wireless obturation heating pen. Cordless, rechargeable, multiple tips.",
-    image: img.touch_heat
+    description: "Cordless sonic GP cutter with instant 180°C heating and vibration-assisted removal. Faster, cleaner obturation with interchangeable tips.",
+    image: img.stronic_full,
+    images: [img.stronic_full, img.stronic_tip],
   },
   // Accessories
   {
@@ -218,11 +219,11 @@ export const products = [
   },
   {
     id: "ISUNI-SENSORS",
-    name: "iSuni Sensor Series",
+    name: "iSuni Sensor Series (Different Sizes)",
     price: 1599.00,
     originalPrice: 2499.00,
     category: "Equipment",
-    description: "Thinnest in the market at 4.4mm. Durable cable endures 100N pull force. 25 lp/mm crystal clear CMOS imaging.",
+    description: "Thinnest in the market at 4.4mm. Durable cable endures 100N pull force. 25 lp/mm crystal clear CMOS imaging. Available in multiple sizes for pediatric to adult patients.",
     image: img.isuni_sensor,
     images: [
       resolveImage('isuni_1.webp'),
@@ -238,7 +239,7 @@ export const products = [
       resolveImage('test_test_2025-06-06_12.36.48.webp')
     ],
     variants: [
-      { id: "A1038", name: "Size 0 (Pedo)", price: 1599.00, originalPrice: 2499.00 },
+      { id: "A1038", name: "Size 0 (Pediatric)", price: 1599.00, originalPrice: 2499.00 },
       { id: "A1023", name: "Size 1 (Universal)", price: 1599.00, originalPrice: 2499.00 },
       { id: "A1024", name: "Size 2 (Adult)", price: 1999.00, originalPrice: 2999.00 }
     ]
