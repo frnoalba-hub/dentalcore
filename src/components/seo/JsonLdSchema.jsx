@@ -46,6 +46,20 @@ function buildWebSiteSchema() {
   };
 }
 
+function buildItemListSchema() {
+  return {
+    "@type": "ItemList",
+    "@id": `${SITE_URL}/#catalog`,
+    "name": "Dentalcore Instruments Catalog",
+    "description": "Browse our full selection of premium dental handpieces, endodontics, and surgical instruments.",
+    "itemListElement": products.slice(0, 20).map((p, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `${SITE_URL}/product/${p.id}`
+    }))
+  };
+}
+
 function buildProductSchemas() {
   return products.slice(0, 20).map((p) => {
     const price = typeof p.price === 'number' ? p.price : parseFloat(String(p.price).replace(/[^0-9.]/g, ''));
@@ -58,8 +72,9 @@ function buildProductSchemas() {
 
     const schema = {
       "@type": "Product",
+      "@id": `${SITE_URL}/product/${p.id}`,
       "name": p.name,
-      "description": p.description,
+      "description": p.promo ? `${p.description} Current Promotion: ${p.promo}.` : p.description,
       "image": p.image,
       "category": p.category,
       "sku": p.id,
@@ -73,7 +88,9 @@ function buildProductSchemas() {
         "priceCurrency": "USD",
         "price": price.toFixed(2),
         "availability": "https://schema.org/InStock",
-        "seller": { "@id": `${SITE_URL}/#organization` }
+        "seller": { "@id": `${SITE_URL}/#organization` },
+        "itemCondition": "https://schema.org/NewCondition",
+        ...(p.promo && { "description": `Special Offer: ${p.promo}` })
       },
       "aggregateRating": {
         "@type": "AggregateRating",
@@ -120,6 +137,7 @@ export default function JsonLdSchema() {
   const graph = [
     buildOrganizationSchema(),
     buildWebSiteSchema(),
+    buildItemListSchema(),
     ...buildProductSchemas()
   ];
 

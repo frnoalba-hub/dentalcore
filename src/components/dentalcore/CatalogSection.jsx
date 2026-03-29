@@ -211,8 +211,12 @@ export default function CatalogSection() {
                           {dynamicT(product.category)}
                         </span>
                         {product.promo && (
-                          <span className="text-[10px] font-bold uppercase tracking-widest bg-accent text-white px-2.5 py-1 rounded-full shadow-sm">
+                          <span 
+                            aria-label={`Current Promotion: ${product.promo}`}
+                            className="text-[10px] font-bold uppercase tracking-widest bg-accent text-white px-2.5 py-1 rounded-full shadow-sm"
+                          >
                             {product.promo}
+                            <span className="sr-only"> (Special Offer)</span>
                           </span>
                         )}
                       </div>

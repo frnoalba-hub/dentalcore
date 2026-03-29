@@ -103,8 +103,12 @@ export default function ProductQuickView({ product, onClose }) {
               </h2>
 
               {product.promo && (
-                <span className="inline-block self-start text-[9px] font-bold uppercase tracking-widest bg-accent text-white px-2 py-0.5 mb-3">
+                <span 
+                  aria-label={`Current Promotion: ${product.promo}`}
+                  className="inline-block self-start text-[9px] font-bold uppercase tracking-widest bg-accent text-white px-2 py-0.5 mb-3"
+                >
                   {product.promo}
+                  <span className="sr-only"> (Special Offer)</span>
                 </span>
               )}
 

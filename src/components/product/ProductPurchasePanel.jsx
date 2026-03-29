@@ -28,8 +28,12 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
       <div className="flex items-center gap-3 mb-5">
         <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent bg-accent/5 px-3 py-1.5 rounded-full">{dynamicT(product.category)}</span>
         {product.promo && (
-          <span className="text-[10px] font-bold uppercase tracking-widest bg-accent text-white px-3 py-1.5 rounded-full shadow-sm">
+          <span 
+            aria-label={`Current Promotion: ${product.promo}`}
+            className="text-[10px] font-bold uppercase tracking-widest bg-accent text-white px-3 py-1.5 rounded-full shadow-sm"
+          >
             {product.promo}
+            <span className="sr-only"> (Special Offer)</span>
           </span>
         )}
       </div>
