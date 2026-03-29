@@ -52,7 +52,7 @@ export const useCartStore = create(
       getTotal: () => {
         const items = get().items;
         return items.reduce((total, item) => {
-          const price = parseFloat(item.price.replace(/[^0-9.]/g, '')) || 0;
+          const price = typeof item.price === 'number' ? item.price : (parseFloat(String(item.price).replace(/[^0-9.]/g, '')) || 0);
           return total + price * item.quantity;
         }, 0);
       },
