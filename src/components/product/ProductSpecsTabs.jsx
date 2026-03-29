@@ -39,28 +39,26 @@ export default function ProductSpecsTabs({ product }) {
 
       {/* Content */}
       {active === 'Features' && hasFeatures && (
-        <div className="grid sm:grid-cols-2 gap-4 max-w-3xl mt-6">
+        <div className="grid sm:grid-cols-2 gap-4 max-w-3xl">
           {product.features.map((f, i) => (
-            <div key={i} className="flex items-start gap-4 p-5 rounded-2xl border border-[#111]/5 bg-[#F8F9FA] hover:bg-white hover:shadow-sm hover:border-[#111]/10 transition-all duration-300">
-              <div className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <span className="text-accent font-bold text-xs">—</span>
-              </div>
-              <span className="text-sm font-body text-[#111]/80 leading-relaxed font-medium">{dynamicT(f)}</span>
+            <div key={i} className="flex items-start gap-3 p-4 border border-[#111]/10 bg-white">
+              <span className="text-accent font-bold text-lg leading-none mt-0.5">—</span>
+              <span className="text-sm font-body text-[#111]/80 leading-relaxed">{dynamicT(f)}</span>
             </div>
           ))}
         </div>
       )}
 
       {active === 'Specifications' && hasSpecs && (
-        <div className="max-w-2xl mt-6">
-          <div className="divide-y divide-[#111]/10 border border-[#111]/10 rounded-2xl overflow-hidden shadow-sm">
+        <div className="max-w-2xl">
+          <div className="divide-y divide-[#111]/10 border border-[#111]/10">
             {Object.entries(product.specs).map(([key, val]) => (
-              <div key={key} className="flex items-center bg-white hover:bg-[#F8F9FA] transition-colors duration-200">
-                <div className="w-1/3 px-6 py-5 bg-[#F8F9FA] border-r border-[#111]/5">
-                  <p className="text-[11px] uppercase tracking-widest font-bold text-[#111]/50">{key}</p>
+              <div key={key} className="flex items-center bg-white">
+                <div className="w-1/3 px-5 py-4 bg-[#F5F5F5] border-r border-[#111]/10">
+                  <p className="text-[11px] uppercase tracking-widest font-bold text-[#111]/60">{key}</p>
                 </div>
-                <div className="flex-1 px-6 py-5">
-                  <p className="text-sm text-[#111] font-semibold">{val}</p>
+                <div className="flex-1 px-5 py-4">
+                  <p className="text-sm text-[#111] font-medium">{val}</p>
                 </div>
               </div>
             ))}
@@ -69,26 +67,24 @@ export default function ProductSpecsTabs({ product }) {
       )}
 
       {active === 'Reviews' && hasReviews && (
-        <div className="space-y-4 max-w-2xl mt-6">
+        <div className="space-y-6 max-w-2xl">
           {product.reviews.map((r, i) => (
-            <div key={i} className="border border-[#111]/5 p-6 rounded-2xl bg-white shadow-sm hover:shadow-md transition-shadow duration-300">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-full bg-[#111]/5 text-[#111] flex items-center justify-center text-sm font-bold uppercase shadow-sm">
+            <div key={i} className="border border-[#111]/10 p-6 bg-white">
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 bg-[#111] text-white flex items-center justify-center text-xs font-bold uppercase">
                     {r.author?.[0] || '?'}
                   </div>
-                  <div>
-                    <span className="block text-sm font-bold text-[#111] leading-none">{r.author}</span>
-                    {r.date && <span className="block text-[10px] text-[#111]/40 mt-1 uppercase tracking-widest">{r.date}</span>}
-                  </div>
+                  <span className="text-sm font-semibold text-[#111]">{r.author}</span>
                 </div>
-                <div className="flex gap-1">
+                <div className="flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, s) => (
-                    <span key={s} className={`text-sm drop-shadow-sm ${s < (r.rating || 5) ? 'text-accent' : 'text-[#111]/10'}`}>★</span>
+                    <span key={s} className={`text-xs ${s < (r.rating || 5) ? 'text-accent' : 'text-[#111]/20'}`}>★</span>
                   ))}
                 </div>
               </div>
-              <p className="text-sm text-[#111]/70 font-body leading-relaxed pl-14">{r.text}</p>
+              <p className="text-sm text-[#111]/70 font-body leading-relaxed">{r.text}</p>
+              {r.date && <p className="text-[10px] text-[#111]/30 mt-3 uppercase tracking-widest">{r.date}</p>}
             </div>
           ))}
         </div>

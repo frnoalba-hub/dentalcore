@@ -30,23 +30,15 @@ export default function TestimonialsSection() {
 
         <div className="grid md:grid-cols-3 border-t border-l border-[#111]/10">
           {testimonials.map((item, i) => (
-            <motion.div 
-              key={i} 
-              whileHover={{ backgroundColor: '#F5F5F5' }}
-              transition={{ duration: 0.3 }}
-              className="group p-8 lg:p-12 border-r border-b border-[#111]/10 flex flex-col justify-between cursor-default"
-            >
-              <div>
-                <span className="text-5xl text-accent/20 font-serif leading-none block mb-4">"</span>
-                <p className="text-xl lg:text-2xl text-[#111] leading-snug font-medium mb-16 tracking-tight group-hover:text-accent transition-colors duration-300">
-                  {dynamicT(item.text)}
-                </p>
-              </div>
+            <div key={i} className="p-8 lg:p-12 border-r border-b border-[#111]/10 flex flex-col justify-between">
+              <p className="text-xl lg:text-2xl text-[#111] leading-snug font-medium mb-16 tracking-tight">
+                "{dynamicT(item.text)}"
+              </p>
               <div>
                 <p className="text-sm font-bold uppercase tracking-widest text-[#111]">{item.author}</p>
                 <p className="text-xs uppercase tracking-widest text-[#111]/50 mt-1">{item.location}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

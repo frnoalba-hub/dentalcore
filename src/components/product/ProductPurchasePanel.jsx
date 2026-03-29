@@ -25,20 +25,16 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
   return (
     <div className="flex flex-col">
       {/* Category + promo badge */}
-      <div className="flex items-center gap-3 mb-5">
-        <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent bg-accent/5 px-3 py-1.5 rounded-full">{dynamicT(product.category)}</span>
+      <div className="flex items-center gap-3 mb-4">
+        <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">{dynamicT(product.category)}</span>
         {product.promo && (
-          <span 
-            aria-label={`Current Promotion: ${product.promo}`}
-            className="text-[10px] font-bold uppercase tracking-widest bg-accent text-white px-3 py-1.5 rounded-full shadow-sm"
-          >
+          <span className="text-[10px] font-bold uppercase tracking-widest bg-accent text-white px-2 py-1">
             {product.promo}
-            <span className="sr-only"> (Special Offer)</span>
           </span>
         )}
       </div>
 
-      <h1 className="text-3xl lg:text-5xl font-semibold tracking-tighter text-[#111] mb-6 leading-[1.1]">
+      <h1 className="text-3xl lg:text-4xl font-medium tracking-tighter uppercase text-[#111] mb-6 leading-[1.1]">
         {dynamicT(product.name)}
       </h1>
 
@@ -62,21 +58,21 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
       {product.variants?.length > 0 && (
         <div className="mb-8">
           <h3 className="text-xs uppercase tracking-[0.2em] font-bold text-[#111] mb-3">Select Option</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {product.variants.map((v) => {
               const isSelected = selectedVariant?.id === v.id;
               return (
                 <button
                   key={v.id}
                   onClick={() => setSelectedVariant(v)}
-                  className={`flex flex-col items-start p-4 rounded-xl border text-left transition-all duration-200 ${
+                  className={`flex flex-col items-start p-3 border text-left transition-all ${
                     isSelected
-                      ? 'border-[#111] bg-[#111] text-white shadow-md'
-                      : 'border-[#111]/10 hover:border-[#111]/30 hover:shadow-sm bg-white text-[#111]'
+                      ? 'border-[#111] bg-[#111] text-white'
+                      : 'border-[#111]/15 hover:border-[#111]/40 bg-white text-[#111]'
                   }`}
                 >
                   <span className="text-xs font-semibold tracking-wide uppercase">{v.name}</span>
-                  <span className={`text-xs mt-1 font-medium ${isSelected ? 'text-white/80' : 'text-accent'}`}>
+                  <span className={`text-xs mt-0.5 ${isSelected ? 'text-white/70' : 'text-[#111]/50'}`}>
                     ${Number(v.price).toFixed(2)}
                   </span>
                 </button>
@@ -87,41 +83,39 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
       )}
 
       {/* Quantity + Add to Cart */}
-      <div className="flex items-stretch gap-4 mb-10">
-        <div className="flex items-center border border-[#111]/20 bg-white rounded-xl overflow-hidden shadow-sm">
-          <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-12 h-14 flex items-center justify-center hover:bg-[#F5F5F5] transition-colors text-lg text-[#111]/60 hover:text-[#111]">−</button>
-          <span className="w-12 text-center text-sm font-semibold">{quantity}</span>
-          <button onClick={() => setQuantity(quantity + 1)} className="w-12 h-14 flex items-center justify-center hover:bg-[#F5F5F5] transition-colors text-lg text-[#111]/60 hover:text-[#111]">+</button>
+      <div className="flex items-stretch gap-3 mb-8">
+        <div className="flex items-center border border-[#111] bg-white">
+          <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-12 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-sm">−</button>
+          <span className="w-10 text-center text-sm font-medium">{quantity}</span>
+          <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-12 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-sm">+</button>
         </div>
         <button
           onClick={handleAddToCart}
           disabled={product.variants?.length > 0 && !selectedVariant}
-          className={`flex-1 flex items-center justify-center gap-3 px-8 h-14 rounded-xl transition-all duration-300 text-sm font-bold uppercase tracking-widest shadow-lg ${
+          className={`flex-1 flex items-center justify-between px-6 h-12 transition-all text-sm font-medium uppercase tracking-widest ${
             added
-              ? 'bg-green-600 text-white shadow-green-600/20'
-              : 'bg-[#111] text-white hover:bg-accent hover:shadow-accent/20 disabled:opacity-50 disabled:cursor-not-allowed hover:-translate-y-0.5'
+              ? 'bg-green-600 text-white'
+              : 'bg-[#111] text-white hover:bg-accent disabled:opacity-40 disabled:cursor-not-allowed'
           }`}
         >
           <span>
-            {added ? 'Added to Cart!' : product.variants?.length > 0 && !selectedVariant ? 'Select an Option' : 'Add to Cart'}
+            {added ? 'Added!' : product.variants?.length > 0 && !selectedVariant ? 'Select an Option' : 'Add to Cart'}
           </span>
-          {added ? <Check className="w-5 h-5" /> : <ArrowUpRight className="w-5 h-5" />}
+          {added ? <Check className="w-4 h-4" /> : <ArrowUpRight className="w-4 h-4" />}
         </button>
       </div>
 
       {/* Trust badges */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-3 gap-3">
         {[
           { icon: Truck, label: 'Free Shipping', sub: 'Orders over $500' },
           { icon: Shield, label: 'Warranty', sub: '2-Year Coverage' },
           { icon: RotateCcw, label: 'Easy Returns', sub: '30-Day Policy' },
         ].map(({ icon: Icon, label, sub }) => (
-          <div key={label} className="flex flex-col items-center text-center p-4 rounded-xl border border-[#111]/5 bg-[#F8F9FA] hover:bg-white hover:shadow-sm hover:border-[#111]/10 transition-all duration-300">
-            <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center mb-3 shadow-sm border border-[#111]/5">
-              <Icon className="w-4 h-4 text-accent" strokeWidth={2} />
-            </div>
+          <div key={label} className="flex flex-col items-center text-center p-3 border border-[#111]/10 bg-white">
+            <Icon className="w-4 h-4 text-[#111]/40 mb-1.5" strokeWidth={1.5} />
             <span className="text-[10px] font-bold uppercase tracking-widest text-[#111]">{label}</span>
-            <span className="text-[10px] text-[#111]/50 mt-1 font-medium">{sub}</span>
+            <span className="text-[9px] text-[#111]/40 mt-0.5">{sub}</span>
           </div>
         ))}
       </div>

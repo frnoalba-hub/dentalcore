@@ -39,13 +39,12 @@ export default function AboutSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="group relative bg-[#F5F5F5] flex items-center justify-center p-16 lg:p-24 border-b lg:border-b-0 lg:border-r border-[#111]/10 min-h-[400px] overflow-hidden"
+            className="relative bg-[#F5F5F5] flex items-center justify-center p-16 lg:p-24 border-b lg:border-b-0 lg:border-r border-[#111]/10 min-h-[400px]"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
             <img
               src={product.image}
               alt="UC-CUT Sonic GP Cutter"
-              className="w-full max-w-sm object-contain mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
+              className="w-full max-w-sm object-contain mix-blend-multiply"
             />
             <div className="absolute top-6 left-6">
               <span className="text-[10px] font-bold uppercase tracking-widest border border-[#111]/20 px-3 py-1.5 bg-white text-[#111]">

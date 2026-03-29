@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { companyInfo } from './productsData';
 import { useTranslation } from '@/lib/i18n';
-import NewsletterSignup from './NewsletterSignup';
 
 export default function ContactSection() {
   const { t } = useTranslation();
@@ -32,11 +31,7 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-white/10 max-w-lg">
-          <NewsletterSignup />
-        </div>
-
-        <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/30 uppercase tracking-widest font-medium">
+        <div className="mt-24 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/30 uppercase tracking-widest font-medium">
           <p>© {new Date().getFullYear()} {companyInfo.companyName}</p>
           <p>{t('all_rights_reserved')}</p>
         </div>
