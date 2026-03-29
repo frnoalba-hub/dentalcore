@@ -159,7 +159,8 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Endodontics",
     description: "Wireless obturation heating pen. Cordless, rechargeable, multiple tips.",
-    image: img.touch_heat
+    image: img.stronic_full,
+    images: [img.stronic_full, img.stronic_tip],
   },
 
 
@@ -287,8 +288,7 @@ export const products = [
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Fits KaVo coupler. 6000 Hz oscillation for gentle scaling.",
-    image: img.stronic_full,
-    images: [img.stronic_full, img.stronic_tip, img.stronic300],
+    image: img.stronic300,
   },
   {
     id: "A1658",
