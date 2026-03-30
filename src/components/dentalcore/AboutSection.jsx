@@ -22,7 +22,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="py-24 bg-[#FDFDFD] border-b border-[#111]/10">
+    <section id="about" className="py-24 bg-[#FDFDFD] border-b border-[#111]/10 scroll-mt-[100px]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
 
         {/* Section label */}

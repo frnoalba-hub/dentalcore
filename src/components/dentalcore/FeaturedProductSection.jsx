@@ -22,7 +22,7 @@ export default function FeaturedProductSection() {
   };
 
   return (
-    <section id="featured" className="py-24 bg-[#111] text-white">
+    <section id="featured" className="py-24 bg-[#111] text-white scroll-mt-[100px]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-0 border border-white/10">
           

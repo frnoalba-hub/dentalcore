@@ -79,7 +79,7 @@ export default function CatalogSection() {
   };
 
   return (
-    <section id="catalog" className="py-24 bg-[#FDFDFD]">
+    <section id="catalog" className="py-24 bg-[#FDFDFD] scroll-mt-[100px]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
 
         {/* Header */}
