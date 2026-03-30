@@ -95,15 +95,15 @@ export default function CatalogSection() {
         </motion.div>
 
         {/* Category Tabs */}
-        <div className="border-t border-b border-[#111]/10 mb-8 overflow-x-auto scrollbar-none">
+        <div className="border-b border-[#111]/10 mb-8 overflow-x-auto scrollbar-none">
           <div className="flex min-w-max">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-5 py-4 text-[10px] font-bold uppercase tracking-[0.15em] transition-all border-b-2 whitespace-nowrap ${
+                className={`px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] transition-all border-b-2 whitespace-nowrap ${
                   filter === cat
-                    ? 'border-[#111] text-[#111] bg-[#111]/[0.02]'
+                    ? 'border-accent text-[#111]'
                     : 'border-transparent text-[#111]/35 hover:text-[#111] hover:border-[#111]/20'
                 }`}
               >
