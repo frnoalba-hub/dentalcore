@@ -348,6 +348,11 @@ export const products = [
     description: "Ready-to-use prefilled syringe of mineralized cortico-cancellous allograft (250–800µm). No mixing, no mess — direct delivery into the defect site.",
     image: img.osseo_syr_03,
     images: [img.osseo_syr_03, img.osseo_syr_05, img.osseo_syr_10],
+    variants: [
+      { id: "OS_0.3cc", name: "0.3cc",           price: 48.00,  image: img.osseo_syr_03 },
+      { id: "OS_0.5cc", name: "0.5cc",           price: 68.00,  image: img.osseo_syr_05 },
+      { id: "OS_1.0cc", name: "1.0cc (2×0.5cc)", price: 100.00, image: img.osseo_syr_10 },
+    ]
   },
   {
     id: "OS-SEAL-PDR",
@@ -357,6 +362,10 @@ export const products = [
     description: "Mineralized cortico-cancellous allograft in bulk powder form (250–800µm). Cost-effective option for larger grafting cases and sinus lifts.",
     image: img.osseo_pdr_25,
     images: [img.osseo_pdr_25, img.osseo_pdr_50],
+    variants: [
+      { id: "OS_2.5cc", name: "2.5cc",           price: 115.00, image: img.osseo_pdr_25 },
+      { id: "OS_5.0cc", name: "5cc (2×2.5cc)",   price: 200.00, image: img.osseo_pdr_50 },
+    ]
   },
   {
     id: "OS-SEAL-MEM",
@@ -366,6 +375,11 @@ export const products = [
     description: "Resorbable porcine collagen membrane for guided bone regeneration. Easy to handle, conforms well to defects, and maintains barrier function during healing.",
     image: img.osseo_mem,
     images: [img.osseo_mem],
+    variants: [
+      { id: "OS1520", name: "15×20 mm", price: 75.00,  image: img.osseo_mem },
+      { id: "OS2030", name: "20×30 mm", price: 110.00, image: img.osseo_mem },
+      { id: "OS3040", name: "30×40 mm", price: 150.00, image: img.osseo_mem },
+    ]
   },
   {
     id: "OSTEO-PLUG",

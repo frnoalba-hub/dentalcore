@@ -33,7 +33,7 @@ export default function CatalogSection() {
     'Osteogen Plug',
   ]);
 
-  const SUPPRESSED_API_KEYWORDS = ['osteogen', 'curagen', 'heliplug', 'heli-plug', 'collagen wound'];
+  const SUPPRESSED_API_KEYWORDS = ['osteogen', 'curagen', 'heliplug', 'heli-plug', 'collagen wound', '0.3cc', '0.5cc', '1.0cc', '2.5cc', '5cc', '15x20', '20x30', '30x40', '15×20', '20×30', '30×40'];
 
 
   const products = useMemo(() => {
