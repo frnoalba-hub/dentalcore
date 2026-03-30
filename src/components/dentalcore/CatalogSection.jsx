@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Search, Loader2, Plus, X, Eye } from 'lucide-react';
+import { Search, Loader2, Plus, X, Eye, ArrowUpRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useCartStore } from '../store/cartStore';
@@ -83,22 +83,28 @@ export default function CatalogSection() {
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
 
         {/* Header */}
-        <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
-          <h2 className="section-title mb-2">{t('index')}</h2>
-          <p className="text-sm text-[#111]/50 font-body">Professional dental supplies, equipment & biomaterials.</p>
+        <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.25em] text-[#111]/35 font-semibold mb-3 flex items-center gap-3">
+              <span className="inline-block w-6 h-px bg-[#111]/30" />
+              {t('catalog') || 'Catalog'}
+            </p>
+            <h2 className="section-title mb-1">{t('index')}</h2>
+            <p className="text-sm text-[#111]/40 font-body">Professional dental supplies, equipment & biomaterials.</p>
+          </div>
         </motion.div>
 
-        {/* Category Tabs — full width prominent row */}
-        <div className="border-t border-b border-[#111]/10 mb-8 overflow-x-auto">
+        {/* Category Tabs */}
+        <div className="border-t border-b border-[#111]/10 mb-8 overflow-x-auto scrollbar-none">
           <div className="flex min-w-max">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-6 py-4 text-xs font-semibold uppercase tracking-widest transition-all border-b-2 whitespace-nowrap ${
+                className={`px-5 py-4 text-[10px] font-bold uppercase tracking-[0.15em] transition-all border-b-2 whitespace-nowrap ${
                   filter === cat
-                    ? 'border-[#111] text-[#111]'
-                    : 'border-transparent text-[#111]/40 hover:text-[#111] hover:border-[#111]/30'
+                    ? 'border-[#111] text-[#111] bg-[#111]/[0.02]'
+                    : 'border-transparent text-[#111]/35 hover:text-[#111] hover:border-[#111]/20'
                 }`}
               >
                 {cat === 'All' ? t('all') || 'All' : dynamicT(cat)}
@@ -150,68 +156,69 @@ export default function CatalogSection() {
             {filteredProducts.map((product, index) => (
               <motion.div key={product.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.03 }}>
                 <Link to={`/product?id=${product.id}`} className="cursor-pointer block">
-                  <article className="group relative h-full flex flex-col bg-[#FDFDFD] border-r border-b border-[#111]/10 hover:bg-[#F5F5F5] transition-colors">
-                    <div className="relative aspect-square px-8 pb-8 pt-16 overflow-hidden">
-                      <img
-                        src={product.image}
-                        alt={dynamicT(product.name)}
-                        className="w-full h-full object-contain object-bottom mix-blend-multiply transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute top-4 left-4 flex gap-2">
-                        <span className="text-[10px] uppercase tracking-widest font-semibold text-[#111]/50 border border-[#111]/10 px-2 py-1 bg-white/80">
-                          {dynamicT(product.category)}
-                        </span>
-                      </div>
-                      {/* Quick Add button on hover */}
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          if (!product.variants?.length) {
-                            handleQuickAdd(product, e);
-                          } else {
-                            setQuickViewProduct(product);
-                          }
-                        }}
-                        className="absolute bottom-4 right-4 w-10 h-10 bg-[#111] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-accent transition-all duration-200"
-                        title={product.variants?.length > 0 ? "Select Options" : "Quick add to cart"}
-                      >
-                        {product.variants?.length > 0 ? <Eye className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
-                      </button>
-                    </div>
+                  <article className="group relative h-full flex flex-col bg-white border-r border-b border-[#111]/10 hover:border-[#111]/20 transition-all duration-300">
+                   <div className="relative aspect-square px-8 pb-8 pt-14 overflow-hidden bg-[#FAFAFA] group-hover:bg-[#F5F5F5] transition-colors duration-300">
+                     <img
+                       src={product.image}
+                       alt={dynamicT(product.name)}
+                       className="w-full h-full object-contain object-bottom mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.07]"
+                     />
+                     <div className="absolute top-3 left-3 flex gap-1.5">
+                       <span className="text-[9px] uppercase tracking-[0.12em] font-bold text-[#111]/40 border border-[#111]/10 px-2 py-1 bg-white/90 backdrop-blur-sm">
+                         {dynamicT(product.category)}
+                       </span>
+                     </div>
+                     {/* Quick Add button on hover */}
+                     <button
+                       onClick={(e) => {
+                         e.preventDefault();
+                         e.stopPropagation();
+                         if (!product.variants?.length) {
+                           handleQuickAdd(product, e);
+                         } else {
+                           setQuickViewProduct(product);
+                         }
+                       }}
+                       className="absolute bottom-3 right-3 w-9 h-9 bg-[#111] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-accent transition-all duration-200 shadow-lg"
+                       title={product.variants?.length > 0 ? "Select Options" : "Quick add to cart"}
+                     >
+                       {product.variants?.length > 0 ? <Eye className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+                     </button>
+                   </div>
 
-                    <div className="p-6 border-t border-[#111]/10 flex flex-col flex-1 justify-between bg-white">
-                      <div>
-                        {product.promo && (
-                          <span className="inline-block text-[9px] font-bold uppercase tracking-widest bg-accent text-white px-2 py-0.5 mb-2">
-                            {product.promo}
-                          </span>
-                        )}
-                        <h3 className="text-base font-semibold text-[#111] tracking-tight uppercase mb-2">
-                          {dynamicT(product.name)}
-                        </h3>
-                        <p className="text-sm text-[#111]/60 font-body line-clamp-2 leading-relaxed">
-                          {dynamicT(product.description)}
-                        </p>
-                      </div>
+                   <div className="p-5 border-t border-[#111]/10 flex flex-col flex-1 justify-between">
+                     <div>
+                       {product.promo && (
+                         <span className="inline-block text-[9px] font-bold uppercase tracking-[0.12em] bg-accent text-white px-2 py-0.5 mb-2.5">
+                           {product.promo}
+                         </span>
+                       )}
+                       <h3 className="text-sm font-bold text-[#111] tracking-tight uppercase mb-1.5 leading-snug">
+                         {dynamicT(product.name)}
+                       </h3>
+                       <p className="text-xs text-[#111]/50 font-body line-clamp-2 leading-relaxed">
+                         {dynamicT(product.description)}
+                       </p>
+                     </div>
 
-                      <div className="mt-6 flex items-end justify-between">
-                        <div>
-                          {product.originalPrice && (
-                            <p className="text-xs text-[#111]/40 line-through mb-0.5">
-                              ${typeof product.originalPrice === 'number' ? product.originalPrice.toFixed(2) : product.originalPrice}
-                            </p>
-                          )}
-                          <p className={`text-xl font-medium tracking-tight ${product.originalPrice ? 'text-accent' : 'text-[#111]'}`}>
-                            {product.variants?.length > 0 && <span className="text-sm">From </span>}
-                            {typeof product.price === 'number' ? `$${product.price.toFixed(2)}` : (String(product.price).startsWith('$') ? product.price : `$${product.price}`)}
-                          </p>
-                        </div>
-                        <span className="text-xs font-medium uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity">
-                          {product.variants?.length > 0 ? 'Select Option' : t('view_details')}
-                        </span>
-                      </div>
-                    </div>
+                     <div className="mt-5 pt-4 border-t border-[#111]/8 flex items-center justify-between">
+                       <div>
+                         {product.originalPrice && (
+                           <p className="text-[10px] text-[#111]/35 line-through mb-0.5">
+                             ${typeof product.originalPrice === 'number' ? product.originalPrice.toFixed(2) : product.originalPrice}
+                           </p>
+                         )}
+                         <p className={`text-lg font-semibold tracking-tight ${product.originalPrice ? 'text-accent' : 'text-[#111]'}`}>
+                           {product.variants?.length > 0 && <span className="text-xs font-medium mr-0.5">From </span>}
+                           {typeof product.price === 'number' ? `$${product.price.toFixed(2)}` : (String(product.price).startsWith('$') ? product.price : `$${product.price}`)}
+                         </p>
+                       </div>
+                       <span className="text-[10px] font-bold uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                         {product.variants?.length > 0 ? 'Options' : t('view_details')}
+                         <ArrowUpRight className="w-3 h-3" />
+                       </span>
+                     </div>
+                   </div>
                   </article>
                 </Link>
               </motion.div>
