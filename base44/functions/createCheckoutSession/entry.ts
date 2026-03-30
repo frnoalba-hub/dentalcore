@@ -12,19 +12,21 @@ Deno.serve(async (req) => {
     }
 
     const line_items = items.map(item => {
-      const rawPrice = typeof item.price === 'number' ? item.price : parseFloat(String(item.price).replace(/[^0-9.]/g, ''));
-      const unitAmount = Math.round(rawPrice * 100);
-      return {
-        price_data: {
-          currency: 'usd',
-          product_data: {
-            name: item.name,
-            images: item.image ? [item.image] : [],
-          },
-          unit_amount: unitAmount,
+    const rawPrice = typeof item.price === 'number' ? item.price : parseFloat(String(item.price).replace(/[^0-9.]/g, ''));
+    const unitAmount = Math.round(rawPrice * 100);
+    // Stripe requires absolute HTTPS URLs for images — filter out relative/local paths
+    const validImage = item.image && item.image.startsWith('https://') ? [item.image] : [];
+    return {
+      price_data: {
+        currency: 'usd',
+        product_data: {
+          name: item.name,
+          images: validImage,
         },
-        quantity: item.quantity,
-      };
+        unit_amount: unitAmount,
+      },
+      quantity: item.quantity,
+    };
     });
 
     // Add promo discount line items (negative amounts not supported, use coupons)
