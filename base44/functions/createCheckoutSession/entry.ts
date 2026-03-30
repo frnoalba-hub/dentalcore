@@ -43,10 +43,23 @@ Deno.serve(async (req) => {
       discounts.push({ coupon: coupon.id });
     }
 
+    // Calculate subtotal to determine shipping
+    const subtotal = items.reduce((sum, item) => {
+      const rawPrice = typeof item.price === 'number' ? item.price : parseFloat(String(item.price).replace(/[^0-9.]/g, ''));
+      return sum + rawPrice * item.quantity;
+    }, 0);
+    const promoDiscount = (promos || []).reduce((s, p) => s + (p.discount || 0), 0);
+    const discountedSubtotal = subtotal - promoDiscount;
+    const freeShipping = discountedSubtotal >= 500;
+
     const sessionParams = {
       payment_method_types: ['card'],
       line_items,
       mode: 'payment',
+      shipping_address_collection: { allowed_countries: ['US', 'CA'] },
+      shipping_options: freeShipping
+        ? [{ shipping_rate_data: { type: 'fixed_amount', fixed_amount: { amount: 0, currency: 'usd' }, display_name: 'Free Shipping', delivery_estimate: { minimum: { unit: 'business_day', value: 3 }, maximum: { unit: 'business_day', value: 7 } } } }]
+        : [{ shipping_rate_data: { type: 'fixed_amount', fixed_amount: { amount: 1500, currency: 'usd' }, display_name: 'Standard Shipping', delivery_estimate: { minimum: { unit: 'business_day', value: 3 }, maximum: { unit: 'business_day', value: 7 } } } }],
       success_url: `${origin}?checkout=success`,
       cancel_url: `${origin}?checkout=cancel`,
       metadata: {
