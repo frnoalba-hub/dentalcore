@@ -106,10 +106,10 @@ const img = {
 
 
 // --- MASTER PRODUCT CATALOG ---
-// Apex: Apexdent_price_list_*_dental_core.xlsx — Selling Price is column 5, MSRP column 3
-// (see generate_catalog.js: price = selling, fallback MSRP if selling empty).
-// Rule: No promo → set `price` to Apex Selling Price only; omit `originalPrice` and `promo`.
-// With promo → `price` = offer; `originalPrice` = compare-at (often MSRP / pre-bundle) for strikethrough.
+// Apex: Apexdent_price_list_*_dental_core.xlsx — MSRP col 3, Selling col 5 (see generate_catalog.js).
+// Rule: No `promo` → `price` = Apex selling only; no `originalPrice` (clean list price).
+// With `promo` → `price` = promotional sell; `originalPrice` = Apex MSRP when that SKU exists in the sheet
+// (otherwise a single explicit list price you set by hand — never duplicate `price` as fake MSRP).
 export const products = [
   // =========================================
   // ENDODONTICS
@@ -178,7 +178,6 @@ export const products = [
     id: "TH-001",
     name: "Stronic Touch & Heat",
     price: 399.00,
-    originalPrice: 399.00,
     promo: "Buy 2, Get 1 Free",
     category: "Endodontics",
     description: "Cordless rechargeable heat pen for warm vertical obturation. Multiple tip sizes included. Lightweight and ready to use out of the box.",
@@ -294,7 +293,6 @@ export const products = [
     id: "A1619",
     name: "STRONIC X150 Piezo Scaler",
     price: 799.00,
-    originalPrice: 1199.00,
     category: "Equipment",
     description: "Touchscreen piezo ultrasonic scaler with dedicated Endo, Perio, and Scaling modes. Auto-frequency tuning for consistent tip performance.",
     image: img.x150_1,
@@ -304,7 +302,6 @@ export const products = [
     id: "A1061",
     name: "STRONIC X300 Air Scaler",
     price: 699.00,
-    originalPrice: 699.00,
     promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Air-driven scaler that connects directly to your KaVo coupler. 6,000 Hz oscillation for comfortable, efficient scaling without a separate unit.",
@@ -315,7 +312,6 @@ export const products = [
     id: "A1658",
     name: "AirPeak™ PRO200 Air Polisher",
     price: 669.00,
-    originalPrice: 669.00,
     promo: "Buy 2, Get 1 Free",
     category: "Equipment",
     description: "Air polishing handpiece with anti-clog design and 360° swivel nozzle. Fast biofilm removal for prophy, perio, and ortho patients.",
@@ -325,7 +321,6 @@ export const products = [
     id: "A1030",
     name: "McCare™ X Maintenance",
     price: 1399.00,
-    originalPrice: 1999.00,
     category: "Equipment",
     description: "Automated 4-port handpiece maintenance station. Cleans, purges, and lubricates in one cycle — extends handpiece life and saves staff time.",
     image: img.mccare_1,
@@ -353,11 +348,6 @@ export const products = [
     description: "Ready-to-use prefilled syringe of mineralized cortico-cancellous allograft (250–800µm). No mixing, no mess — direct delivery into the defect site.",
     image: img.osseo_syr_03,
     images: [img.osseo_syr_03, img.osseo_syr_05, img.osseo_syr_10],
-    variants: [
-      { id: "OS_0.3cc", name: "0.3cc",           price: 48.00,  image: img.osseo_syr_03 },
-      { id: "OS_0.5cc", name: "0.5cc",           price: 68.00,  image: img.osseo_syr_05 },
-      { id: "OS_1.0cc", name: "1.0cc (2×0.5cc)", price: 100.00, image: img.osseo_syr_10 },
-    ]
   },
   {
     id: "OS-SEAL-PDR",
@@ -367,10 +357,6 @@ export const products = [
     description: "Mineralized cortico-cancellous allograft in bulk powder form (250–800µm). Cost-effective option for larger grafting cases and sinus lifts.",
     image: img.osseo_pdr_25,
     images: [img.osseo_pdr_25, img.osseo_pdr_50],
-    variants: [
-      { id: "OS_2.5cc", name: "2.5cc",           price: 115.00, image: img.osseo_pdr_25 },
-      { id: "OS_5.0cc", name: "5cc (2×2.5cc)",   price: 200.00, image: img.osseo_pdr_50 },
-    ]
   },
   {
     id: "OS-SEAL-MEM",
@@ -380,11 +366,6 @@ export const products = [
     description: "Resorbable porcine collagen membrane for guided bone regeneration. Easy to handle, conforms well to defects, and maintains barrier function during healing.",
     image: img.osseo_mem,
     images: [img.osseo_mem],
-    variants: [
-      { id: "OS1520", name: "15×20 mm", price: 75.00,  image: img.osseo_mem },
-      { id: "OS2030", name: "20×30 mm", price: 110.00, image: img.osseo_mem },
-      { id: "OS3040", name: "30×40 mm", price: 150.00, image: img.osseo_mem },
-    ]
   },
   {
     id: "OSTEO-PLUG",
@@ -411,7 +392,6 @@ export const products = [
     id: "M1042X",
     name: "ModuLite X Curing Light",
     price: 699.00,
-    originalPrice: 699.00,
     promo: "Buy 2, Get 1 Free",
     category: "Restorative",
     description: "Broadband LED curing light (380–520nm) with built-in resin detection mode. Aerospace-grade aluminum body, lightweight and balanced.",
@@ -448,7 +428,6 @@ export const products = [
     id: "M1002",
     name: "SureTact G3 Rings (2pk)",
     price: 129.98,
-    originalPrice: 129.98,
     promo: "Buy 2, Get 1 Free",
     category: "Restorative",
     description: "Replacement NiTi rings with strong spring-back memory. Universal fit for most sectional matrix systems. 2-pack.",
