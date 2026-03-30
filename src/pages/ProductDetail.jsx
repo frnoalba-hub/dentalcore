@@ -11,6 +11,7 @@ import ProductImageGallery from '../components/product/ProductImageGallery';
 import ProductPurchasePanel from '../components/product/ProductPurchasePanel';
 import ProductSpecsTabs from '../components/product/ProductSpecsTabs';
 import RelatedProducts from '../components/product/RelatedProducts';
+import ProductJsonLd from '../components/seo/ProductJsonLd';
 
 const SUPPRESSED_API_CATEGORIES = new Set([
   'Allograft / Osseoseal Membrane', 'Allograft', 'Osseoseal',
@@ -90,6 +91,7 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-[#FDFDFD]">
+      <ProductJsonLd product={product} allImages={allImages} />
       <Header />
       <CartDrawer />
 
