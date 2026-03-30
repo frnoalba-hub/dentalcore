@@ -16,7 +16,12 @@ const SUPPRESSED_API_CATEGORIES = new Set([
   'Allograft / Osseoseal Membrane', 'Allograft', 'Osseoseal',
   'Wound Dressing', 'Collagen Dressing', 'Osteogen Plug',
 ]);
-const SUPPRESSED_KEYWORDS = ['osteogen', 'curagen', 'heliplug', 'heli-plug', 'collagen wound'];
+const SUPPRESSED_KEYWORDS = [
+  'osteogen', 'curagen', 'heliplug', 'heli-plug', 'collagen wound',
+  '0.3cc', '0.5cc', '1.0cc', '2.5cc', '5cc',
+  '15x20', '20x30', '30x40', '15×20', '20×30', '30×40',
+  '20 x 30', '30 x 40',
+];
 
 export default function ProductDetail() {
   const params = new URLSearchParams(window.location.search);
@@ -36,14 +41,16 @@ export default function ProductDetail() {
     localProducts.forEach(p => {
       if (p.variants) p.variants.forEach(v => consolidatedVariantIds.add(v.id));
     });
-    const apiOnly = apiProducts.filter(p => {
+    const apiOnly = apiProducts.filter((p) => {
       const nameLower = p.name?.toLowerCase() || '';
+      const descLower = (p.description || '').toLowerCase();
+      const haystack = `${nameLower} ${descLower}`;
       return (
         !localIds.has(p.id) &&
         !consolidatedVariantIds.has(p.id) &&
         !SUPPRESSED_API_CATEGORIES.has(p.category) &&
         !localNames.has(nameLower) &&
-        !SUPPRESSED_KEYWORDS.some(kw => nameLower.includes(kw))
+        !SUPPRESSED_KEYWORDS.some((kw) => haystack.includes(kw))
       );
     });
     return [...localProducts, ...apiOnly];
