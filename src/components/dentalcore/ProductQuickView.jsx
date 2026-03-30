@@ -14,13 +14,20 @@ export default function ProductQuickView({ product, onClose }) {
     product.variants?.length ? product.variants[0] : null
   );
 
-  const images = product.images?.length ? product.images : [product.image];
+  const images = (product.images?.length ? product.images : [product.image]).filter(Boolean);
   const activePrice = selectedVariant?.price ?? product.price;
   const displayPrice = typeof activePrice === 'number' ? `$${activePrice.toFixed(2)}` : `$${activePrice}`;
 
   const handleAdd = () => {
     const cartItem = selectedVariant
-      ? { ...product, price: selectedVariant.price, name: `${product.name} — ${selectedVariant.name}`, variantId: selectedVariant.id }
+      ? {
+          ...product,
+          id: selectedVariant.id,
+          name: `${product.name} — ${selectedVariant.name}`,
+          price: selectedVariant.price,
+          originalPrice: selectedVariant.originalPrice,
+          image: selectedVariant.image || product.image,
+        }
       : product;
     addItem(cartItem, quantity);
     toast.success(`Added ${quantity}x ${cartItem.name}`, {
@@ -59,11 +66,15 @@ export default function ProductQuickView({ product, onClose }) {
             {/* Image Gallery */}
             <div className="bg-[#F5F5F5] p-8 flex flex-col items-center">
               <div className="relative w-full aspect-square flex items-center justify-center">
+                {images.length > 0 ? (
                 <img
                   src={images[currentImage]}
                   alt={dynamicT(product.name)}
                   className="max-w-full max-h-full object-contain mix-blend-multiply"
                 />
+                ) : (
+                  <span className="text-xs uppercase tracking-widest text-[#111]/30">No image</span>
+                )}
                 {images.length > 1 && (
                   <>
                     <button onClick={prevImage} className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 bg-white border border-[#111]/10 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors">

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShoppingBag, Menu, X, ArrowUpRight, ChevronRight, Package } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { companyInfo, products as localProducts } from './productsData';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
@@ -20,6 +20,8 @@ export default function Header() {
   const [promoIndex, setPromoIndex] = useState(0);
   const { openCart, getItemCount, addItem } = useCartStore();
   const { t, lang, setLang } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const navLinks = [
     { label: t('catalog'), id: 'catalog' },
@@ -49,6 +51,10 @@ export default function Header() {
 
   const scrollTo = (id) => {
     setMobileOpen(false);
+    if (location.pathname !== '/') {
+      navigate({ pathname: '/', hash: `#${id}` });
+      return;
+    }
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -98,11 +104,11 @@ export default function Header() {
           <div className="h-16 flex items-center justify-between">
 
             {/* Logo */}
-            <a href="#" className="flex items-center gap-2 group shrink-0">
+            <Link to="/" className="flex items-center gap-2 group shrink-0" onClick={() => setMobileOpen(false)}>
               <span className="text-lg font-bold tracking-widest uppercase text-[#111] group-hover:text-accent transition-colors duration-300">
                 CORETIX<span className="text-accent group-hover:text-[#111] transition-colors duration-300">.</span>
               </span>
-            </a>
+            </Link>
 
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">

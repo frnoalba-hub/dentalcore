@@ -14,7 +14,14 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
 
   const handleAddToCart = () => {
     const itemToAdd = selectedVariant
-      ? { ...product, id: selectedVariant.id, name: `${product.name} — ${selectedVariant.name}`, price: selectedVariant.price, originalPrice: selectedVariant.originalPrice }
+      ? {
+          ...product,
+          id: selectedVariant.id,
+          name: `${product.name} — ${selectedVariant.name}`,
+          price: selectedVariant.price,
+          originalPrice: selectedVariant.originalPrice,
+          image: selectedVariant.image || product.image,
+        }
       : product;
     addItem(itemToAdd, quantity);
     setAdded(true);

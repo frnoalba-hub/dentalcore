@@ -11,16 +11,20 @@ export default function ProductImageGallery({ images, productName, selectedVaria
     <div className="flex flex-col gap-4">
       {/* Main image */}
       <motion.div
-        key={activeImage}
+        key={activeImage || 'placeholder'}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className="aspect-square bg-white border border-[#111]/10 flex items-center justify-center p-8 lg:p-12"
       >
-        <img
-          src={activeImage}
-          alt={productName}
-          className="w-full h-full object-contain mix-blend-multiply"
-        />
+        {activeImage ? (
+          <img
+            src={activeImage}
+            alt={productName}
+            className="w-full h-full object-contain mix-blend-multiply"
+          />
+        ) : (
+          <span className="text-xs uppercase tracking-widest text-[#111]/30 text-center px-6">No product image</span>
+        )}
       </motion.div>
 
       {/* Thumbnails */}

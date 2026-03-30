@@ -1,5 +1,41 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '@/lib/i18n';
+import { ImageOff } from 'lucide-react';
+
+function RelatedProductCard({ product: p, dynamicT }) {
+  const [broken, setBroken] = useState(false);
+  const hasSrc = Boolean(p.image && String(p.image).trim());
+  const showPlaceholder = !hasSrc || broken;
+
+  return (
+    <Link to={`/product?id=${p.id}`} className="block h-full min-h-0">
+      <div className="bg-white group p-6 flex flex-col gap-4 hover:bg-[#F5F5F5] transition-colors h-full">
+        <div className="aspect-square flex items-center justify-center bg-[#FAFAFA] border border-[#111]/5">
+          {showPlaceholder ? (
+            <div className="flex flex-col items-center gap-2 text-[#111]/25 px-4 text-center">
+              <ImageOff className="w-8 h-8" strokeWidth={1.25} aria-hidden />
+              <span className="text-[10px] uppercase tracking-widest">Image soon</span>
+            </div>
+          ) : (
+            <img
+              src={p.image}
+              alt={dynamicT(p.name)}
+              className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500"
+              onError={() => setBroken(true)}
+            />
+          )}
+        </div>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-tight text-[#111] line-clamp-2 mb-1">{dynamicT(p.name)}</p>
+          <p className="text-xs text-[#111]/50 font-medium">
+            {typeof p.price === 'number' ? `$${p.price.toFixed(2)}` : p.price}
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 export default function RelatedProducts({ products, currentCategory }) {
   const { dynamicT } = useTranslation();
@@ -11,20 +47,8 @@ export default function RelatedProducts({ products, currentCategory }) {
         More in {dynamicT(currentCategory)}
       </h2>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px border border-[#111]/10 bg-[#111]/10">
-        {products.map(p => (
-          <Link key={p.id} to={`/product?id=${p.id}`}>
-            <div className="bg-white group p-6 flex flex-col gap-4 hover:bg-[#F5F5F5] transition-colors h-full">
-              <div className="aspect-square flex items-center justify-center">
-                <img src={p.image} alt={dynamicT(p.name)} className="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-tight text-[#111] line-clamp-2 mb-1">{dynamicT(p.name)}</p>
-                <p className="text-xs text-[#111]/50 font-medium">
-                  {typeof p.price === 'number' ? `$${p.price.toFixed(2)}` : p.price}
-                </p>
-              </div>
-            </div>
-          </Link>
+        {products.map((p) => (
+          <RelatedProductCard key={p.id} product={p} dynamicT={dynamicT} />
         ))}
       </div>
     </div>

@@ -191,7 +191,7 @@ export default function CatalogSection() {
                            setQuickViewProduct(product);
                          }
                        }}
-                       className="absolute bottom-3 right-3 w-9 h-9 bg-[#111] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-accent transition-all duration-200 shadow-lg"
+                       className="absolute bottom-3 right-3 z-10 w-9 h-9 bg-[#111] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-accent transition-all duration-200 shadow-lg pointer-events-none group-hover:pointer-events-auto"
                        title={product.variants?.length > 0 ? "Select Options" : "Quick add to cart"}
                      >
                        {product.variants?.length > 0 ? <Eye className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
