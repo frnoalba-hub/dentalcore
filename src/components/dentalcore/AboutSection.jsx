@@ -1,43 +1,67 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
-import { ArrowUpRight, Zap, Wind, Thermometer } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
+import { products as catalog } from './productsData';
 
-const specs = [
-  { label: 'Heating Time', value: '<1 sec', icon: Thermometer },
-  { label: 'Temperature', value: '180°C', icon: Zap },
-  { label: 'Technology', value: 'Sonic', icon: Wind },
-  { label: 'Warranty', value: '2 Years', icon: null },
+/** About spotlight: biomaterials (local images + catalog pricing). Featured above = handpieces. */
+const ABOUT_PRODUCT_ID = 'OS-SEAL-SYR';
+
+const bioSpecs = [
+  { label: 'Graft type', value: 'Cortico-cancellous' },
+  { label: 'Particle size', value: '250–800 µm' },
+  { label: 'Form', value: 'Prefilled syringe' },
+  { label: 'Volumes', value: '0.3 – 1.0 cc' },
 ];
 
 export default function AboutSection() {
   const { addItem, openCart } = useCartStore();
-  const { t } = useTranslation();
+  const { t, dynamicT } = useTranslation();
 
-  const product = {
-    id: "1006-1",
-    name: "UC-CUT (Sonic GP Cutter)",
-    price: "$599",
-    image: "https://kdentalsupplies.com/cdn/shop/files/UC-CUT_Heat_Vibration_Sonic_GP_Cutter_4_colors.jpg?v=1710953457",
+  const product = catalog.find((p) => p.id === ABOUT_PRODUCT_ID);
+  if (!product) return null;
+
+  const defaultVariant = product.variants?.[0];
+  const handleAdd = () => {
+    if (defaultVariant) {
+      addItem(
+        {
+          ...product,
+          id: defaultVariant.id,
+          name: `${product.name} — ${defaultVariant.name}`,
+          price: defaultVariant.price,
+          image: defaultVariant.image || product.image,
+        },
+        1
+      );
+    } else {
+      addItem(product, 1);
+    }
+    openCart();
   };
+
+  const addLabelPrice =
+    defaultVariant != null
+      ? `$${Number(defaultVariant.price).toFixed(2)}`
+      : typeof product.price === 'number'
+        ? `$${product.price.toFixed(2)}`
+        : product.price;
 
   return (
     <section id="about" className="py-24 lg:py-28 bg-[#FDFDFD] border-b border-[#111]/10 scroll-mt-[100px]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-
         <div className="mb-12 lg:mb-14 max-w-2xl">
           <p className="text-[10px] uppercase tracking-[0.25em] text-[#111]/35 font-semibold mb-3 flex items-center gap-3">
             <span className="inline-block w-6 h-px bg-[#111]/30" />
-            New Arrival
+            Biomaterials
           </p>
           <p className="text-sm text-[#111]/40 font-body leading-relaxed">
-            UC-CUT brings sonic vibration and instant heat together for predictable GP removal and soft-tissue work.
+            OsseoSeal mineralized allograft and membranes — same line as our site promos, priced for clinical volume.
           </p>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-0 border border-[#111]/10 rounded-card overflow-hidden shadow-card bg-white">
-          
-          {/* Left: Product Image */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -47,17 +71,16 @@ export default function AboutSection() {
           >
             <img
               src={product.image}
-              alt="UC-CUT Sonic GP Cutter"
+              alt={dynamicT(product.name)}
               className="w-full max-w-sm object-contain mix-blend-multiply"
             />
             <div className="absolute top-6 left-6">
               <span className="text-[10px] font-bold uppercase tracking-widest border border-[#111]/20 rounded-sm px-3 py-1.5 bg-white/95 text-[#111] shadow-card">
-                Featured
+                OsseoSeal™
               </span>
             </div>
           </motion.div>
 
-          {/* Right: Product Info */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -66,52 +89,52 @@ export default function AboutSection() {
             className="p-8 lg:p-16 flex flex-col justify-between"
           >
             <div>
-              <h2 className="text-4xl lg:text-5xl font-semibold tracking-tighter uppercase text-[#111] leading-[1.05] mb-4">
-                UC-CUT<span className="text-accent">.</span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tighter uppercase text-[#111] leading-[1.08] mb-4">
+                {dynamicT(product.name)}
               </h2>
               <p className="text-sm uppercase tracking-widest text-[#111]/40 mb-8 font-medium">
-                Sonic GP Cutter — by EPDENT
+                Mineralized allograft — syringe delivery
               </p>
 
               <p className="text-lg text-[#111]/70 font-body leading-relaxed mb-10 max-w-md">
-                The new standard in Gutta Percha removal. Cordless, sonic vibration eliminates cone pull-out while instant 180°C heating delivers a clean, precise cut every time.
+                {dynamicT(product.description)}
               </p>
 
-              {/* Spec boxes */}
               <div className="grid grid-cols-2 border-t border-l border-[#111]/10 mb-10">
-                {specs.map((spec, i) => (
+                {bioSpecs.map((spec, i) => (
                   <div key={i} className="border-b border-r border-[#111]/10 p-5">
                     <p className="text-xs uppercase tracking-widest text-[#111]/40 mb-1 font-medium">{spec.label}</p>
-                    <p className="text-2xl font-semibold tracking-tight text-[#111]">{spec.value}</p>
+                    <p className="text-xl sm:text-2xl font-semibold tracking-tight text-[#111] leading-tight">{spec.value}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* CTA */}
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 type="button"
-                onClick={() => { addItem(product, 1); openCart(); }}
-                className="group flex-1 flex items-center justify-between border border-[#111] rounded-sm bg-[#111] text-white px-6 py-4 text-sm font-medium uppercase tracking-widest shadow-card hover:bg-accent hover:border-accent hover:shadow-card-hover active:scale-[0.99] transition-all"
+                onClick={handleAdd}
+                className="group flex-1 flex items-center justify-between gap-3 border border-[#111] rounded-sm bg-[#111] text-white px-6 py-4 text-sm font-medium uppercase tracking-widest shadow-card hover:bg-accent hover:border-accent hover:shadow-card-hover active:scale-[0.99] transition-all"
               >
-                <span>Add to Cart — $599</span>
-                <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <span className="text-left">
+                  {t('add_to_requisition')} — {addLabelPrice}
+                  {defaultVariant ? (
+                    <span className="block text-[10px] font-normal normal-case tracking-normal text-white/75 mt-1.5">
+                      Starts at {defaultVariant.name}; all sizes on product page
+                    </span>
+                  ) : null}
+                </span>
+                <ArrowUpRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  const el = document.getElementById('catalog');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="flex-1 sm:flex-none border border-[#111]/20 rounded-sm text-[#111] px-6 py-4 text-sm font-medium uppercase tracking-widest hover:bg-[#111]/5 hover:border-[#111]/35 transition-colors"
+              <Link
+                to={`/product?id=${encodeURIComponent(product.id)}`}
+                className="flex flex-1 sm:flex-none items-center justify-center border border-[#111]/20 rounded-sm text-[#111] px-6 py-4 text-sm font-medium uppercase tracking-widest hover:bg-[#111]/5 hover:border-[#111]/35 transition-colors text-center"
               >
-                View All Endo
-              </button>
+                {t('view_details')}
+              </Link>
             </div>
           </motion.div>
         </div>
-
       </div>
     </section>
   );
