@@ -91,7 +91,7 @@ export default function CatalogSection() {
   };
 
   return (
-    <section id="catalog" className="py-24 bg-[#FDFDFD] scroll-mt-[100px]">
+    <section id="catalog" className="py-24 lg:py-28 bg-[#FDFDFD] scroll-mt-[100px]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
 
         {/* Header */}
@@ -111,9 +111,10 @@ export default function CatalogSection() {
           <div className="flex min-w-max">
             {categories.map((cat) => (
               <button
+                type="button"
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] transition-all border-b-2 whitespace-nowrap ${
+                className={`px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] transition-all border-b-2 whitespace-nowrap rounded-t-sm ${
                   filter === cat
                     ? 'border-accent text-[#111]'
                     : 'border-transparent text-[#111]/35 hover:text-[#111] hover:border-[#111]/20'
@@ -142,7 +143,7 @@ export default function CatalogSection() {
               className="w-full md:w-[260px] bg-transparent border-b border-[#111]/20 focus:border-[#111] pl-6 pr-8 py-2 text-sm font-body text-[#111] placeholder:text-[#111]/30 outline-none transition-colors"
             />
             {searchQuery && (
-              <button onClick={() => setSearchQuery('')} className="absolute right-0 top-1/2 -translate-y-1/2 text-[#111]/40 hover:text-[#111]">
+              <button type="button" onClick={() => setSearchQuery('')} className="absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded-sm text-[#111]/40 hover:text-[#111] hover:bg-[#111]/5">
                 <X className="w-4 h-4" />
               </button>
             )}
@@ -150,15 +151,16 @@ export default function CatalogSection() {
         </div>
 
         {isLoading ? (
-          <div className="flex justify-center py-32 border border-[#111]/10">
+          <div className="flex justify-center py-32 border border-[#111]/10 rounded-card bg-white shadow-card">
             <Loader2 className="w-8 h-8 animate-spin text-[#111]" />
           </div>
         ) : filteredProducts.length === 0 ? (
-          <div className="py-24 text-center border border-[#111]/10">
+          <div className="py-24 text-center border border-[#111]/10 rounded-card bg-white shadow-card">
             <p className="text-sm text-[#111]/50 font-body mb-4">{t('no_items') || "No products found."}</p>
-            <button 
+            <button
+              type="button"
               onClick={() => { setSearchQuery(''); setFilter('All'); }}
-              className="text-xs uppercase tracking-widest font-medium text-accent hover:text-[#111] transition-colors"
+              className="text-xs uppercase tracking-widest font-medium text-accent hover:text-[#111] transition-colors px-4 py-2 border border-[#111]/15 hover:border-[#111]/30 rounded-sm"
             >
               Clear Filters
             </button>
@@ -167,9 +169,12 @@ export default function CatalogSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-t border-l border-[#111]/10">
             {filteredProducts.map((product, index) => (
               <motion.div key={product.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.03 }}>
-                <Link to={`/product?id=${product.id}`} className="cursor-pointer block">
-                  <article className="group relative h-full flex flex-col bg-white border-r border-b border-[#111]/10 hover:border-[#111]/20 transition-all duration-300">
-                   <div className="relative aspect-square px-8 pb-8 pt-14 overflow-hidden bg-[#FAFAFA] group-hover:bg-[#F5F5F5] transition-colors duration-300">
+                <Link
+                  to={`/product?id=${product.id}`}
+                  className="group/link block h-full rounded-card focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDFDFD]"
+                >
+                  <article className="group relative h-full flex flex-col bg-white border-r border-b border-[#111]/10 shadow-card transition-all duration-300 hover:border-[#111]/25 hover:shadow-card-hover hover:-translate-y-0.5">
+                   <div className="relative aspect-square px-8 pb-8 pt-14 overflow-hidden bg-gradient-to-b from-[#FAFAFA] to-[#F2F2F2] group-hover:from-[#F5F5F5] group-hover:to-[#EBEBEB] transition-all duration-300">
                      <img
                        src={product.image}
                        alt={dynamicT(product.name)}
@@ -182,6 +187,7 @@ export default function CatalogSection() {
                      </div>
                      {/* Quick Add button on hover */}
                      <button
+                       type="button"
                        onClick={(e) => {
                          e.preventDefault();
                          e.stopPropagation();
@@ -191,7 +197,7 @@ export default function CatalogSection() {
                            setQuickViewProduct(product);
                          }
                        }}
-                       className="absolute bottom-3 right-3 z-10 w-9 h-9 bg-[#111] text-white flex items-center justify-center opacity-0 group-hover:opacity-100 hover:bg-accent transition-all duration-200 shadow-lg pointer-events-none group-hover:pointer-events-auto"
+                       className="absolute bottom-3 right-3 z-10 w-9 h-9 bg-[#111] text-white flex items-center justify-center rounded-sm opacity-0 group-hover:opacity-100 hover:bg-accent active:scale-95 transition-all duration-200 shadow-card-hover pointer-events-none group-hover:pointer-events-auto"
                        title={product.variants?.length > 0 ? "Select Options" : "Quick add to cart"}
                      >
                        {product.variants?.length > 0 ? <Eye className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}

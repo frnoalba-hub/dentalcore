@@ -96,19 +96,19 @@ export default function ProductDetail() {
       <CartDrawer />
 
       {/* Breadcrumb */}
-      <div className="pt-[100px] border-b border-[#111]/10 px-6 lg:px-12">
-        <div className="max-w-[1400px] mx-auto flex items-center gap-3 text-xs uppercase tracking-widest text-[#111]/40 py-4">
-          <Link to="/#catalog" className="hover:text-[#111] transition-colors flex items-center gap-1">
-            <ArrowLeft className="w-3 h-3" /> Catalog
+      <div className="pt-[100px] border-b border-[#111]/10 px-6 lg:px-12 bg-white/60 shadow-card backdrop-blur-sm">
+        <div className="max-w-[1600px] mx-auto flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] sm:text-xs uppercase tracking-widest text-[#111]/45 py-4 sm:py-5">
+          <Link to="/#catalog" className="hover:text-[#111] text-[#111]/55 font-semibold transition-colors flex items-center gap-1 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2">
+            <ArrowLeft className="w-3 h-3 shrink-0" /> Catalog
           </Link>
-          <span>/</span>
-          <span className="text-accent">{dynamicT(product.category)}</span>
-          <span>/</span>
-          <span className="text-[#111] truncate max-w-[200px]">{dynamicT(product.name)}</span>
+          <span className="text-[#111]/20 hidden sm:inline" aria-hidden>/</span>
+          <span className="text-accent font-semibold">{dynamicT(product.category)}</span>
+          <span className="text-[#111]/20 hidden sm:inline" aria-hidden>/</span>
+          <span className="text-[#111] font-medium truncate max-w-[min(100%,220px)] sm:max-w-[320px]">{dynamicT(product.name)}</span>
         </div>
       </div>
 
-      <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-16">
+      <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-16">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
           {/* Left: Image Gallery */}
           <ProductImageGallery

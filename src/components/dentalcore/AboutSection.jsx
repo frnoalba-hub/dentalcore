@@ -22,16 +22,20 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="py-24 bg-[#FDFDFD] border-b border-[#111]/10 scroll-mt-[100px]">
+    <section id="about" className="py-24 lg:py-28 bg-[#FDFDFD] border-b border-[#111]/10 scroll-mt-[100px]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
 
-        {/* Section label */}
-        <div className="flex items-center gap-4 mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-accent">New Arrival</span>
-          <div className="h-px flex-1 bg-[#111]/10" />
+        <div className="mb-12 lg:mb-14 max-w-2xl">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-[#111]/35 font-semibold mb-3 flex items-center gap-3">
+            <span className="inline-block w-6 h-px bg-[#111]/30" />
+            New Arrival
+          </p>
+          <p className="text-sm text-[#111]/40 font-body leading-relaxed">
+            UC-CUT brings sonic vibration and instant heat together for predictable GP removal and soft-tissue work.
+          </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-0 border border-[#111]/10">
+        <div className="grid lg:grid-cols-2 gap-0 border border-[#111]/10 rounded-card overflow-hidden shadow-card bg-white">
           
           {/* Left: Product Image */}
           <motion.div
@@ -39,7 +43,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="relative bg-[#F5F5F5] flex items-center justify-center p-16 lg:p-24 border-b lg:border-b-0 lg:border-r border-[#111]/10 min-h-[400px]"
+            className="relative bg-gradient-to-b from-[#F5F5F5] to-[#EBEBEB] flex items-center justify-center p-16 lg:p-24 border-b lg:border-b-0 lg:border-r border-[#111]/10 min-h-[400px]"
           >
             <img
               src={product.image}
@@ -47,7 +51,7 @@ export default function AboutSection() {
               className="w-full max-w-sm object-contain mix-blend-multiply"
             />
             <div className="absolute top-6 left-6">
-              <span className="text-[10px] font-bold uppercase tracking-widest border border-[#111]/20 px-3 py-1.5 bg-white text-[#111]">
+              <span className="text-[10px] font-bold uppercase tracking-widest border border-[#111]/20 rounded-sm px-3 py-1.5 bg-white/95 text-[#111] shadow-card">
                 Featured
               </span>
             </div>
@@ -87,18 +91,20 @@ export default function AboutSection() {
             {/* CTA */}
             <div className="flex flex-col sm:flex-row gap-3">
               <button
+                type="button"
                 onClick={() => { addItem(product, 1); openCart(); }}
-                className="group flex-1 flex items-center justify-between border border-[#111] bg-[#111] text-white px-6 py-4 text-sm font-medium uppercase tracking-widest hover:bg-accent hover:border-accent transition-colors"
+                className="group flex-1 flex items-center justify-between border border-[#111] rounded-sm bg-[#111] text-white px-6 py-4 text-sm font-medium uppercase tracking-widest shadow-card hover:bg-accent hover:border-accent hover:shadow-card-hover active:scale-[0.99] transition-all"
               >
                 <span>Add to Cart — $599</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
               <button
+                type="button"
                 onClick={() => {
                   const el = document.getElementById('catalog');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="flex-1 sm:flex-none border border-[#111]/20 text-[#111] px-6 py-4 text-sm font-medium uppercase tracking-widest hover:bg-[#111]/5 transition-colors"
+                className="flex-1 sm:flex-none border border-[#111]/20 rounded-sm text-[#111] px-6 py-4 text-sm font-medium uppercase tracking-widest hover:bg-[#111]/5 hover:border-[#111]/35 transition-colors"
               >
                 View All Endo
               </button>

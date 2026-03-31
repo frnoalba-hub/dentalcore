@@ -22,9 +22,19 @@ export default function FeaturedProductSection() {
   };
 
   return (
-    <section id="featured" className="py-24 bg-[#111] text-white scroll-mt-[100px]">
+    <section id="featured" className="py-24 lg:py-28 bg-[#111] text-white scroll-mt-[100px] border-b border-white/10">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-0 border border-white/10">
+        <div className="mb-12 lg:mb-14 max-w-2xl">
+          <p className="text-[10px] uppercase tracking-[0.25em] text-white/35 font-semibold mb-3 flex items-center gap-3">
+            <span className="inline-block w-6 h-px bg-white/25" />
+            {t('featured') || 'Featured'}
+          </p>
+          <p className="text-sm text-white/45 font-body leading-relaxed">
+            Flagship clinical hardware engineered for speed, control, and everyday reliability.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-0 border border-white/10 rounded-card overflow-hidden shadow-modal bg-[#141414]">
           
           {/* Image Side */}
           <div className="relative p-12 lg:p-24 flex items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 bg-white/5">
@@ -37,7 +47,7 @@ export default function FeaturedProductSection() {
               alt={dynamicT(product.name)} 
               className="w-full max-w-md object-contain drop-shadow-2xl" 
             />
-            <div className="absolute top-6 left-6 border border-white/20 px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-medium">
+            <div className="absolute top-6 left-6 border border-white/20 rounded-sm px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-medium bg-[#111]/40 backdrop-blur-sm">
               {t('flagship')}
             </div>
           </div>
@@ -71,8 +81,9 @@ export default function FeaturedProductSection() {
               </ul>
 
               <button
+                type="button"
                 onClick={() => { addItem(product, 1); openCart(); }}
-                className="group w-full flex items-center justify-between border border-white p-5 hover:bg-white hover:text-[#111] transition-colors"
+                className="group w-full flex items-center justify-between border border-white/90 rounded-sm p-5 shadow-card hover:bg-white hover:text-[#111] hover:shadow-card-hover active:scale-[0.99] transition-all"
               >
                 <span className="text-sm uppercase tracking-[0.2em] font-medium">{t('acquire_unit') || 'Add to Cart'}</span>
                 <ArrowUpRight className="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />

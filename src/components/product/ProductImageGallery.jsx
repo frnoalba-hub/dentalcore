@@ -14,7 +14,7 @@ export default function ProductImageGallery({ images, productName, selectedVaria
         key={activeImage || 'placeholder'}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="aspect-square bg-white border border-[#111]/10 flex items-center justify-center p-8 lg:p-12"
+        className="aspect-square bg-gradient-to-b from-white to-[#F7F7F7] border border-[#111]/10 rounded-card shadow-card flex items-center justify-center p-8 lg:p-12"
       >
         {activeImage ? (
           <img
@@ -32,12 +32,13 @@ export default function ProductImageGallery({ images, productName, selectedVaria
         <div className="grid grid-cols-5 gap-2">
           {allImages.map((img, idx) => (
             <button
+              type="button"
               key={idx}
               onClick={() => setSelectedIndex(idx)}
-              className={`aspect-square bg-white border p-2 transition-all ${
+              className={`aspect-square bg-white border rounded-sm p-2 transition-all ${
                 selectedIndex === idx && !selectedVariant?.image
-                  ? 'border-[#111] ring-1 ring-[#111]'
-                  : 'border-[#111]/10 hover:border-[#111]/40'
+                  ? 'border-accent ring-2 ring-accent/35 ring-offset-2 ring-offset-[#FDFDFD]'
+                  : 'border-[#111]/10 hover:border-[#111]/40 hover:shadow-card'
               }`}
             >
               <img src={img} alt="" className="w-full h-full object-contain mix-blend-multiply" />

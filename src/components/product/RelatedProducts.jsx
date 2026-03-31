@@ -9,9 +9,9 @@ function RelatedProductCard({ product: p, dynamicT }) {
   const showPlaceholder = !hasSrc || broken;
 
   return (
-    <Link to={`/product?id=${p.id}`} className="block h-full min-h-0">
-      <div className="bg-white group p-6 flex flex-col gap-4 hover:bg-[#F5F5F5] transition-colors h-full">
-        <div className="aspect-square flex items-center justify-center bg-[#FAFAFA] border border-[#111]/5">
+    <Link to={`/product?id=${p.id}`} className="block h-full min-h-0 rounded-card focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDFDFD]">
+      <div className="bg-white group p-6 flex flex-col gap-4 h-full transition-all duration-300 hover:bg-[#FAFAFA] hover:shadow-card-hover border border-transparent hover:border-[#111]/10">
+        <div className="aspect-square flex items-center justify-center bg-gradient-to-b from-[#FAFAFA] to-[#F0F0F0] border border-[#111]/8 rounded-card shadow-card group-hover:shadow-card-hover transition-shadow">
           {showPlaceholder ? (
             <div className="flex flex-col items-center gap-2 text-[#111]/25 px-4 text-center">
               <ImageOff className="w-8 h-8" strokeWidth={1.25} aria-hidden />

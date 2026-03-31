@@ -46,25 +46,25 @@ export default function ProductQuickView({ product, onClose }) {
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
-        className="fixed inset-0 bg-[#111]/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 bg-[#111]/50 backdrop-blur-sm z-[70] flex items-center justify-center p-4"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto border border-[#111]/10 shadow-2xl"
+          className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto overflow-x-hidden border border-[#111]/10 rounded-card shadow-modal"
         >
           {/* Close */}
-          <div className="sticky top-0 z-10 flex justify-end p-4 bg-white/80 backdrop-blur-sm">
-            <button onClick={onClose} className="w-8 h-8 flex items-center justify-center text-[#111]/50 hover:text-[#111]">
+          <div className="sticky top-0 z-10 flex justify-end items-center min-h-[52px] px-4 border-b border-[#111]/10 bg-white/95 backdrop-blur-sm">
+            <button type="button" onClick={onClose} aria-label="Close" className="p-2 rounded-sm text-[#111]/50 hover:text-[#111] hover:bg-[#111]/5 transition-colors">
               <X className="w-5 h-5" />
             </button>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
             {/* Image Gallery */}
-            <div className="bg-[#F5F5F5] p-8 flex flex-col items-center">
+            <div className="bg-gradient-to-b from-[#F5F5F5] to-[#EEEEEE] p-8 flex flex-col items-center border-b md:border-b-0 md:border-r border-[#111]/10">
               <div className="relative w-full aspect-square flex items-center justify-center">
                 {images.length > 0 ? (
                 <img
@@ -77,10 +77,10 @@ export default function ProductQuickView({ product, onClose }) {
                 )}
                 {images.length > 1 && (
                   <>
-                    <button onClick={prevImage} className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 bg-white border border-[#111]/10 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors">
+                    <button type="button" onClick={prevImage} className="absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-[#111]/15 rounded-sm shadow-card flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors">
                       <ChevronLeft className="w-4 h-4" />
                     </button>
-                    <button onClick={nextImage} className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 bg-white border border-[#111]/10 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors">
+                    <button type="button" onClick={nextImage} className="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-[#111]/15 rounded-sm shadow-card flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors">
                       <ChevronRight className="w-4 h-4" />
                     </button>
                   </>
@@ -91,10 +91,11 @@ export default function ProductQuickView({ product, onClose }) {
                 <div className="flex gap-2 mt-4 overflow-x-auto">
                   {images.map((img, i) => (
                     <button
+                      type="button"
                       key={i}
                       onClick={() => setCurrentImage(i)}
-                      className={`w-14 h-14 flex-shrink-0 border-2 p-1 transition-colors ${
-                        i === currentImage ? 'border-[#111]' : 'border-[#111]/10 hover:border-[#111]/30'
+                      className={`w-14 h-14 flex-shrink-0 border-2 p-1 rounded-sm transition-all ${
+                        i === currentImage ? 'border-[#111] ring-2 ring-accent/35 ring-offset-2 ring-offset-[#F5F5F5]' : 'border-[#111]/10 hover:border-[#111]/30'
                       }`}
                     >
                       <img src={img} alt="" className="w-full h-full object-contain mix-blend-multiply" />
@@ -142,6 +143,7 @@ export default function ProductQuickView({ product, onClose }) {
                   <div className="flex flex-wrap gap-2">
                     {product.variants.map((v) => (
                       <button
+                        type="button"
                         key={v.id}
                         onClick={() => {
                           setSelectedVariant(v);
@@ -150,10 +152,10 @@ export default function ProductQuickView({ product, onClose }) {
                             if (idx !== -1) setCurrentImage(idx);
                           }
                         }}
-                        className={`px-4 py-2 text-xs font-medium uppercase tracking-wider border transition-colors ${
+                        className={`px-4 py-2 text-xs font-medium uppercase tracking-wider border rounded-sm transition-all ${
                           selectedVariant?.id === v.id
-                            ? 'border-[#111] bg-[#111] text-white'
-                            : 'border-[#111]/20 text-[#111] hover:border-[#111]/50'
+                            ? 'border-[#111] bg-[#111] text-white shadow-card ring-2 ring-accent/25 ring-offset-2 ring-offset-white'
+                            : 'border-[#111]/20 text-[#111] hover:border-[#111]/45 hover:bg-[#111]/[0.03]'
                         }`}
                       >
                         {v.name} — ${v.price?.toFixed(2)}
@@ -164,7 +166,7 @@ export default function ProductQuickView({ product, onClose }) {
               )}
 
               {/* Price + Add to Cart */}
-              <div className="mt-auto pt-6 border-t border-[#111]/10">
+              <div className="mt-auto pt-6 border-t border-[#111]/10 bg-[#FDFDFD]/80">
                 <div className="flex items-end gap-3 mb-4">
                   {product.originalPrice && !selectedVariant && (
                     <span className="text-sm text-[#111]/40 line-through">
@@ -177,18 +179,19 @@ export default function ProductQuickView({ product, onClose }) {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center border border-[#111]/20">
-                    <button onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="w-10 h-10 flex items-center justify-center hover:bg-[#111]/5">
+                  <div className="flex items-center border border-[#111]/20 rounded-sm overflow-hidden bg-white">
+                    <button type="button" onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="w-10 h-10 flex items-center justify-center hover:bg-[#111]/5 transition-colors">
                       <Minus className="w-3 h-3" />
                     </button>
                     <span className="w-10 text-center text-sm font-medium">{quantity}</span>
-                    <button onClick={() => setQuantity((q) => q + 1)} className="w-10 h-10 flex items-center justify-center hover:bg-[#111]/5">
+                    <button type="button" onClick={() => setQuantity((q) => q + 1)} className="w-10 h-10 flex items-center justify-center hover:bg-[#111]/5 transition-colors">
                       <Plus className="w-3 h-3" />
                     </button>
                   </div>
                   <button
+                    type="button"
                     onClick={handleAdd}
-                    className="flex-1 bg-[#111] text-white py-3 text-xs font-semibold uppercase tracking-widest hover:bg-accent transition-colors flex items-center justify-center gap-2"
+                    className="flex-1 bg-[#111] text-white py-3 text-xs font-semibold uppercase tracking-widest rounded-sm shadow-card hover:bg-accent hover:shadow-card-hover active:scale-[0.99] transition-all flex items-center justify-center gap-2"
                   >
                     <ShoppingCart className="w-4 h-4" />
                     Add to Cart

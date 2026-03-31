@@ -70,12 +70,13 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
               const isSelected = selectedVariant?.id === v.id;
               return (
                 <button
+                  type="button"
                   key={v.id}
                   onClick={() => setSelectedVariant(v)}
-                  className={`flex flex-col items-start p-3 border text-left transition-all ${
+                  className={`flex flex-col items-start p-3 border rounded-sm text-left transition-all ${
                     isSelected
-                      ? 'border-[#111] bg-[#111] text-white'
-                      : 'border-[#111]/15 hover:border-[#111]/40 bg-white text-[#111]'
+                      ? 'border-[#111] bg-[#111] text-white shadow-card ring-2 ring-accent/30 ring-offset-2 ring-offset-[#FDFDFD]'
+                      : 'border-[#111]/15 hover:border-[#111]/40 bg-white text-[#111] hover:shadow-card'
                   }`}
                 >
                   <span className="text-xs font-semibold tracking-wide uppercase">{v.name}</span>
@@ -91,18 +92,19 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
 
       {/* Quantity + Add to Cart */}
       <div className="flex items-stretch gap-3 mb-8">
-        <div className="flex items-center border border-[#111] bg-white">
-          <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-12 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-sm">−</button>
+        <div className="flex items-center border border-[#111] bg-white rounded-sm overflow-hidden shadow-card">
+          <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-12 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-sm">−</button>
           <span className="w-10 text-center text-sm font-medium">{quantity}</span>
-          <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-12 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-sm">+</button>
+          <button type="button" onClick={() => setQuantity(quantity + 1)} className="w-10 h-12 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-sm">+</button>
         </div>
         <button
+          type="button"
           onClick={handleAddToCart}
           disabled={product.variants?.length > 0 && !selectedVariant}
-          className={`flex-1 flex items-center justify-between px-6 h-12 transition-all text-sm font-medium uppercase tracking-widest ${
+          className={`flex-1 flex items-center justify-between px-6 h-12 rounded-sm transition-all text-sm font-medium uppercase tracking-widest shadow-card active:scale-[0.99] disabled:active:scale-100 ${
             added
-              ? 'bg-green-600 text-white'
-              : 'bg-[#111] text-white hover:bg-accent disabled:opacity-40 disabled:cursor-not-allowed'
+              ? 'bg-green-600 text-white shadow-card-hover'
+              : 'bg-[#111] text-white hover:bg-accent hover:shadow-card-hover disabled:opacity-45 disabled:cursor-not-allowed disabled:shadow-none'
           }`}
         >
           <span>
@@ -119,7 +121,7 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
           { icon: Shield, label: 'Warranty', sub: '2-Year Coverage' },
           { icon: RotateCcw, label: 'Easy Returns', sub: '30-Day Policy' },
         ].map(({ icon: Icon, label, sub }) => (
-          <div key={label} className="flex flex-col items-center text-center p-3 border border-[#111]/10 bg-white">
+          <div key={label} className="flex flex-col items-center text-center p-3 border border-[#111]/10 bg-white rounded-card shadow-card">
             <Icon className="w-4 h-4 text-[#111]/40 mb-1.5" strokeWidth={1.5} />
             <span className="text-[10px] font-bold uppercase tracking-widest text-[#111]">{label}</span>
             <span className="text-[9px] text-[#111]/40 mt-0.5">{sub}</span>

@@ -24,21 +24,24 @@ export default function TestimonialsSection() {
   const { t, dynamicT } = useTranslation();
 
   return (
-    <section id="testimonials" className="py-24 bg-[#111] border-b border-white/10 scroll-mt-[100px]">
+    <section id="testimonials" className="py-24 lg:py-28 bg-[#0d0d0d] border-b border-white/10 scroll-mt-[100px]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-        <div className="flex items-end justify-between mb-16">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.25em] text-white/30 font-semibold mb-3 flex items-center gap-3">
-              <span className="inline-block w-6 h-px bg-white/20" />
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14 lg:mb-16">
+          <div className="max-w-3xl">
+            <p className="text-[10px] uppercase tracking-[0.25em] text-white/35 font-semibold mb-3 flex items-center gap-3">
+              <span className="inline-block w-6 h-px bg-white/25" />
               {t('clinical_feedback') || 'Clinical Feedback'}
             </p>
             <h2 className="text-4xl lg:text-6xl font-medium tracking-tighter uppercase text-white leading-[1.05]">
               What Clinicians<br /><span className="text-white/40">Are Saying</span>
             </h2>
+            <p className="text-sm text-white/40 font-body mt-4 max-w-xl leading-relaxed">
+              Real-world feedback from specialists using Coretix-class systems in practice.
+            </p>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-px bg-white/10">
+        <div className="grid md:grid-cols-3 gap-px bg-white/10 rounded-card overflow-hidden border border-white/10 shadow-modal">
           {testimonials.map((item, i) => (
             <motion.div
               key={i}
@@ -46,7 +49,7 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-8 lg:p-10 bg-[#111] flex flex-col justify-between min-h-[260px] hover:bg-white/[0.03] transition-colors"
+              className="p-8 lg:p-10 bg-[#111] flex flex-col justify-between min-h-[260px] hover:bg-white/[0.05] transition-colors duration-300"
             >
               <p className="text-lg lg:text-xl text-white/80 leading-snug font-medium mb-10 tracking-tight">
                 "{dynamicT(item.text)}"

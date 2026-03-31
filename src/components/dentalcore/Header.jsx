@@ -62,7 +62,7 @@ export default function Header() {
   return (
     <>
       {/* Promo announcement bar */}
-      <div className="fixed top-0 w-full z-50 bg-[#111] text-white h-9 flex items-center justify-center overflow-hidden">
+      <div className="fixed top-0 w-full z-50 bg-[#111] text-white h-9 flex items-center justify-center overflow-hidden border-b border-white/10 shadow-sm">
         <AnimatePresence mode="wait">
           <motion.p
             key={promoIndex}
@@ -84,7 +84,7 @@ export default function Header() {
                   toast.success(`Added ${product.name} to cart`);
                 }
               }}
-              className="underline underline-offset-2 opacity-60 hover:opacity-100 transition-opacity flex items-center gap-0.5"
+              className="underline underline-offset-4 opacity-70 hover:opacity-100 hover:text-accent transition-all flex items-center gap-0.5 rounded-sm px-1 -mx-1"
             >
               Shop <ChevronRight className="w-3 h-3" />
             </button>
@@ -96,7 +96,7 @@ export default function Header() {
       <header
         className={`fixed top-9 w-full z-50 transition-all duration-300 ${
           scrolled
-            ? 'bg-[#FDFDFD]/95 backdrop-blur-md border-b border-[#111]/10 shadow-sm'
+            ? 'bg-[#FDFDFD]/95 backdrop-blur-md border-b border-[#111]/10 shadow-card'
             : 'bg-[#FDFDFD] border-b border-[#111]/10'
         }`}
       >
@@ -116,10 +116,11 @@ export default function Header() {
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className="text-xs font-semibold tracking-widest uppercase text-[#111]/50 hover:text-[#111] transition-colors relative group"
+                  type="button"
+                  className="text-xs font-semibold tracking-widest uppercase text-[#111]/55 hover:text-[#111] transition-colors relative group py-1"
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent group-hover:w-full transition-all duration-300" />
+                  <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out" />
                 </button>
               ))}
             </nav>
@@ -141,8 +142,9 @@ export default function Header() {
               </a>
 
               <button
+                type="button"
                 onClick={openCart}
-                className="relative flex items-center gap-2 text-[#111] hover:text-accent transition-colors"
+                className="relative flex items-center gap-2 text-[#111] hover:text-accent transition-colors rounded-sm px-2 py-1.5 -mr-1 hover:bg-[#111]/[0.04] active:bg-[#111]/[0.07]"
               >
                 <span className="text-xs font-semibold tracking-widest uppercase hidden sm:block">Cart</span>
                 <div className="relative">
@@ -156,8 +158,11 @@ export default function Header() {
               </button>
 
               <button
+                type="button"
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden text-[#111]"
+                aria-expanded={mobileOpen}
+                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                className="lg:hidden text-[#111] p-2 -mr-2 rounded-sm hover:bg-[#111]/[0.04] active:bg-[#111]/[0.07] transition-colors"
               >
                 {mobileOpen ? <X className="w-5 h-5" strokeWidth={1.5} /> : <Menu className="w-5 h-5" strokeWidth={1.5} />}
               </button>
@@ -168,13 +173,24 @@ export default function Header() {
         {/* Mobile menu */}
         <AnimatePresence>
           {mobileOpen && (
+            <>
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="fixed inset-x-0 top-[100px] bottom-0 z-40 bg-[#FDFDFD] lg:hidden overflow-y-auto border-t border-[#111]/10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-x-0 top-[100px] bottom-0 z-[55] bg-[#111]/25 backdrop-blur-[2px] lg:hidden"
+              onClick={() => setMobileOpen(false)}
+              aria-hidden
+            />
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 24 }}
+              transition={{ type: 'spring', damping: 28, stiffness: 320 }}
+              className="fixed inset-x-0 top-[100px] bottom-0 z-[56] bg-[#FDFDFD] lg:hidden overflow-y-auto border-t border-[#111]/10 shadow-drawer"
             >
-              <nav className="flex flex-col p-8 gap-8 min-h-full">
+              <nav className="flex flex-col p-8 gap-8 min-h-full max-w-lg">
                 {navLinks.map((link) => (
                   <button
                     key={link.id}
@@ -201,6 +217,7 @@ export default function Header() {
                 </div>
               </nav>
             </motion.div>
+            </>
           )}
         </AnimatePresence>
       </header>

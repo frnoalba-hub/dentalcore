@@ -21,11 +21,12 @@ export default function ProductSpecsTabs({ product }) {
       <div className="flex border-b border-[#111]/10 mb-8 overflow-x-auto">
         {tabs.map(tab => (
           <button
+            type="button"
             key={tab}
             onClick={() => setActive(tab)}
-            className={`px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] transition-all border-b-2 whitespace-nowrap ${
+            className={`px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] transition-all border-b-2 whitespace-nowrap rounded-t-sm ${
               active === tab
-                ? 'border-[#111] text-[#111]'
+                ? 'border-accent text-[#111]'
                 : 'border-transparent text-[#111]/40 hover:text-[#111]'
             }`}
           >
@@ -41,7 +42,7 @@ export default function ProductSpecsTabs({ product }) {
       {active === 'Features' && hasFeatures && (
         <div className="grid sm:grid-cols-2 gap-4 max-w-3xl">
           {product.features.map((f, i) => (
-            <div key={i} className="flex items-start gap-3 p-4 border border-[#111]/10 bg-white">
+            <div key={i} className="flex items-start gap-3 p-4 border border-[#111]/10 bg-white rounded-card shadow-card">
               <span className="text-accent font-bold text-lg leading-none mt-0.5">—</span>
               <span className="text-sm font-body text-[#111]/80 leading-relaxed">{dynamicT(f)}</span>
             </div>
@@ -69,7 +70,7 @@ export default function ProductSpecsTabs({ product }) {
       {active === 'Reviews' && hasReviews && (
         <div className="space-y-6 max-w-2xl">
           {product.reviews.map((r, i) => (
-            <div key={i} className="border border-[#111]/10 p-6 bg-white">
+            <div key={i} className="border border-[#111]/10 rounded-card shadow-card p-6 bg-white">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-3">
                   <div className="w-8 h-8 bg-[#111] text-white flex items-center justify-center text-xs font-bold uppercase">
