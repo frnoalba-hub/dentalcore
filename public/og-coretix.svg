@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Coretix">
+  <rect width="1200" height="630" fill="#ffffff" />
+  <g transform="translate(600 318)">
+    <text
+      text-anchor="middle"
+      y="0"
+      dominant-baseline="alphabetic"
+      fill="#111111"
+      font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+      font-size="112"
+      font-weight="800"
+      letter-spacing="-0.04em"
+    >CORETIX</text>
+    <!-- Square “period” after wordmark; x tuned for ~112px bold caps -->
+    <rect x="226" y="-78" width="22" height="22" fill="#0047FF" />
+  </g>
+</svg>
