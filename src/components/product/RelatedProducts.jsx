@@ -4,11 +4,13 @@ import { ImageOff, Plus } from 'lucide-react';
 import { useTranslation } from '@/lib/i18n';
 import { useCartStore } from '../store/cartStore';
 import { toast } from 'sonner';
+import { getCatalogProductImage } from '../dentalcore/productsData';
 
 function RelatedProductCard({ product: p, dynamicT, t }) {
   const [broken, setBroken] = useState(false);
   const { addItem, openCart } = useCartStore();
-  const hasSrc = Boolean(p.image && String(p.image).trim());
+  const imgSrc = getCatalogProductImage(p);
+  const hasSrc = Boolean(imgSrc && String(imgSrc).trim());
   const showPlaceholder = !hasSrc || broken;
   const hasVariants = Boolean(p.variants?.length);
   const productUrl = `/product?id=${encodeURIComponent(p.id)}`;
@@ -16,7 +18,7 @@ function RelatedProductCard({ product: p, dynamicT, t }) {
   const handleQuickAdd = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    addItem(p, 1);
+    addItem({ ...p, image: imgSrc }, 1);
     toast.success(`${dynamicT(p.name)} added`, {
       action: { label: t('cart') || 'Cart', onClick: () => openCart() },
     });
@@ -37,7 +39,7 @@ function RelatedProductCard({ product: p, dynamicT, t }) {
             </div>
           ) : (
             <img
-              src={p.image}
+              src={imgSrc}
               alt={dynamicT(p.name)}
               className="h-full w-full object-contain p-2 mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
               onError={() => setBroken(true)}

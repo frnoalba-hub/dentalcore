@@ -4,6 +4,7 @@ import { X, ChevronLeft, ChevronRight, Plus, Minus, ShoppingCart } from 'lucide-
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
 import { toast } from 'sonner';
+import { getCatalogProductImage } from './productsData';
 
 export default function ProductQuickView({ product, onClose }) {
   const { addItem, openCart } = useCartStore();
@@ -14,7 +15,8 @@ export default function ProductQuickView({ product, onClose }) {
     product.variants?.length ? product.variants[0] : null
   );
 
-  const images = (product.images?.length ? product.images : [product.image]).filter(Boolean);
+  const hero = getCatalogProductImage(product);
+  const images = (product.images?.length ? product.images : [hero]).filter(Boolean);
   const activePrice = selectedVariant?.price ?? product.price;
   const displayPrice = typeof activePrice === 'number' ? `$${activePrice.toFixed(2)}` : `$${activePrice}`;
 
@@ -26,7 +28,7 @@ export default function ProductQuickView({ product, onClose }) {
           name: `${product.name} — ${selectedVariant.name}`,
           price: selectedVariant.price,
           originalPrice: selectedVariant.originalPrice,
-          image: selectedVariant.image || product.image,
+          image: selectedVariant.image || hero,
         }
       : product;
     addItem(cartItem, quantity);

@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useTranslation } from '@/lib/i18n';
-import { products as localProducts } from '../components/dentalcore/productsData';
+import { products as localProducts, getCatalogProductImage, isDuplicateApiCatalogRow } from '../components/dentalcore/productsData';
 import Header from '../components/dentalcore/Header';
 import CartDrawer from '../components/cart/CartDrawer';
 import ProductImageGallery from '../components/product/ProductImageGallery';
@@ -45,19 +45,28 @@ export default function ProductDetail() {
     const apiOnly = apiProducts.filter((p) => {
       const nameLower = p.name?.toLowerCase() || '';
       const descLower = (p.description || '').toLowerCase();
-      const haystack = `${nameLower} ${descLower}`;
+      const skuLower = (p.sku || '').toLowerCase();
+      const haystack = `${nameLower} ${descLower} ${skuLower}`;
       return (
         !localIds.has(p.id) &&
         !consolidatedVariantIds.has(p.id) &&
         !SUPPRESSED_API_CATEGORIES.has(p.category) &&
         !localNames.has(nameLower) &&
-        !SUPPRESSED_KEYWORDS.some((kw) => haystack.includes(kw))
+        !SUPPRESSED_KEYWORDS.some((kw) => haystack.includes(kw)) &&
+        !isDuplicateApiCatalogRow(p)
       );
     });
     return [...localProducts, ...apiOnly];
   }, [apiProducts]);
 
   const product = allProducts.find(p => p.id === productId);
+
+  const displayProduct = useMemo(() => {
+    if (!product) return null;
+    const image = getCatalogProductImage(product);
+    if (image === product.image) return product;
+    return { ...product, image };
+  }, [product]);
 
   useEffect(() => {
     if (product?.variants?.length > 0) setSelectedVariant(product.variants[0]);
@@ -68,8 +77,8 @@ export default function ProductDetail() {
     window.scrollTo(0, 0);
   }, [productId]);
 
-  const allImages = product
-    ? [product.image, ...(product.images || [])].filter((img, i, arr) => img && arr.indexOf(img) === i)
+  const allImages = displayProduct
+    ? [displayProduct.image, ...(displayProduct.images || [])].filter((img, i, arr) => img && arr.indexOf(img) === i)
     : [];
 
   const related = allProducts.filter(p => p.category === product?.category && p.id !== product?.id).slice(0, 4);
@@ -91,7 +100,7 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-[#FDFDFD]">
-      <ProductJsonLd product={product} allImages={allImages} />
+      <ProductJsonLd product={displayProduct} allImages={allImages} />
       <Header />
       <CartDrawer />
 
@@ -113,20 +122,20 @@ export default function ProductDetail() {
           {/* Left: Image Gallery */}
           <ProductImageGallery
             images={allImages}
-            productName={dynamicT(product.name)}
+            productName={dynamicT(displayProduct.name)}
             selectedVariant={selectedVariant}
           />
 
           {/* Right: Purchase Panel */}
           <ProductPurchasePanel
-            product={product}
+            product={displayProduct}
             selectedVariant={selectedVariant}
             setSelectedVariant={setSelectedVariant}
           />
         </div>
 
         {/* Specs / Features / Reviews Tabs */}
-        <ProductSpecsTabs product={product} />
+        <ProductSpecsTabs product={displayProduct} />
 
         {/* Related Products */}
         <RelatedProducts products={related} currentCategory={product.category} />

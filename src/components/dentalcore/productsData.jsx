@@ -449,3 +449,53 @@ export const products = [
     images: [img.suretact_r, img.suretact_r2],
   }
 ];
+
+/** Maps parent product id + every variant id → hero image (for API duplicate rows with broken CDN URLs). */
+export const catalogImageByKey = (() => {
+  const m = new Map();
+  for (const p of products) {
+    m.set(p.id, p.image);
+    if (p.variants) {
+      for (const v of p.variants) {
+        m.set(v.id, v.image);
+      }
+    }
+  }
+  return m;
+})();
+
+const SKU_IN_TEXT = /SKU:\s*([A-Za-z0-9_.]+)/i;
+
+/**
+ * Prefer a working /products/… URL from the local catalog when the row is a Base44 duplicate
+ * (same variant id or "SKU: …" in description) but `product.image` is missing or remote-only.
+ */
+export function getCatalogProductImage(product) {
+  const primary = product?.image;
+  if (typeof primary === 'string' && primary.includes('/products/')) return primary;
+
+  const keys = [product?.id, product?.sku].filter(Boolean);
+  const fromDesc = String(product?.description || '').match(SKU_IN_TEXT);
+  if (fromDesc) keys.push(fromDesc[1]);
+
+  for (const k of keys) {
+    const hit = catalogImageByKey.get(k);
+    if (hit) return hit;
+  }
+  return primary || '';
+}
+
+/** True when a Base44 Product row mirrors a local consolidated variant (OsseoSeal, etc.). */
+export function isDuplicateApiCatalogRow(p) {
+  const id = String(p?.id || '').trim();
+  const sku = String(p?.sku || '').trim();
+  const name = String(p?.name || '').toLowerCase();
+  const desc = String(p?.description || '').toLowerCase();
+  const pack = `${id} ${sku} ${name} ${desc}`.toLowerCase();
+
+  if (/\bsku:\s*os[_\d]/i.test(pack)) return true;
+  if (pack.includes('osseoseal') || pack.includes('osseo seal')) return true;
+  if (/^os\d{4}$/i.test(id) || /^os\d{4}$/i.test(sku)) return true;
+  if (/^os_[\d.]+cc$/i.test(id) || /^os_[\d.]+cc$/i.test(sku)) return true;
+  return false;
+}

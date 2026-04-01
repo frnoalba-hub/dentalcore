@@ -7,7 +7,7 @@ import { base44 } from '@/api/base44Client';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
 import { toast } from 'sonner';
-import { products as localProducts } from './productsData';
+import { products as localProducts, getCatalogProductImage, isDuplicateApiCatalogRow } from './productsData';
 import ProductQuickView from './ProductQuickView';
 
 export default function CatalogSection() {
@@ -51,13 +51,15 @@ export default function CatalogSection() {
     const apiOnly = apiProducts.filter((p) => {
       const nameLower = p.name?.toLowerCase() || '';
       const descLower = (p.description || '').toLowerCase();
-      const haystack = `${nameLower} ${descLower}`;
+      const skuLower = (p.sku || '').toLowerCase();
+      const haystack = `${nameLower} ${descLower} ${skuLower}`;
       return (
         !localIds.has(p.id) &&
         !consolidatedVariantIds.has(p.id) &&
         !SUPPRESSED_API_CATEGORIES.has(p.category) &&
         !localNames.has(nameLower) &&
-        !SUPPRESSED_API_KEYWORDS.some((kw) => haystack.includes(kw))
+        !SUPPRESSED_API_KEYWORDS.some((kw) => haystack.includes(kw)) &&
+        !isDuplicateApiCatalogRow(p)
       );
     });
     return [...localProducts, ...apiOnly];
@@ -176,7 +178,7 @@ export default function CatalogSection() {
                   <article className="group relative h-full flex flex-col bg-white border-r border-b border-[#111]/10 shadow-card transition-all duration-300 hover:border-[#111]/25 hover:shadow-card-hover hover:-translate-y-0.5">
                    <div className="relative aspect-square px-8 pb-8 pt-14 overflow-hidden bg-gradient-to-b from-[#FAFAFA] to-[#F2F2F2] group-hover:from-[#F5F5F5] group-hover:to-[#EBEBEB] transition-all duration-300">
                      <img
-                       src={product.image}
+                       src={getCatalogProductImage(product)}
                        alt={dynamicT(product.name)}
                        className="w-full h-full object-contain object-bottom mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.07]"
                      />
