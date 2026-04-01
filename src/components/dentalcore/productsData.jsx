@@ -178,7 +178,6 @@ export const products = [
     id: "TH-001",
     name: "Stronic Touch & Heat",
     price: 399.00,
-    promo: "Buy 2, Get 1 Free",
     category: "Endodontics",
     description: "Cordless rechargeable heat pen for warm vertical obturation. Multiple tip sizes included. Lightweight and ready to use out of the box.",
     image: img.stronic_full,
@@ -220,9 +219,9 @@ export const products = [
   {
     id: "A1004-V3",
     name: "AirPeak™ X600-Micro (KaVo)",
-    price: 499.00,
-    originalPrice: 699.00,
-    promo: "Buy 2, Get 1 Free",
+    price: 399.00,
+    originalPrice: 599.00,
+    promo: "3 Handpieces + 1 Coupler for $1,000",
     category: "Handpieces",
     description: "Ultra-compact head for pediatric patients and limited-opening cases. 380–450K RPM with full fiber optic illumination.",
     image: img.ap_micro
@@ -230,9 +229,7 @@ export const products = [
   {
     id: "A1009B",
     name: "AirPeak™ G100-LA (Low Speed)",
-    price: 106.00,
-    originalPrice: 159.00,
-    promo: "Buy 2, Get 1 Free",
+    price: 129.00,
     category: "Handpieces",
     description: "1:1 latch-type contra angle with push-button bur release. Smooth, quiet operation for restorative and prophy work.",
     image: img.ap_low_la
@@ -240,9 +237,7 @@ export const products = [
   {
     id: "A1012",
     name: "AirPeak™ G100-ST (Straight)",
-    price: 106.00,
-    originalPrice: 159.00,
-    promo: "Buy 2, Get 1 Free",
+    price: 129.00,
     category: "Handpieces",
     description: "1:1 straight nose cone for lab work, extraoral adjustments, and acrylic trimming. Durable stainless construction.",
     image: img.ap_low_st
@@ -263,8 +258,6 @@ export const products = [
     id: "A1003",
     name: "iTesla™ G600-S (1:5 Red Band)",
     price: 729.00,
-    originalPrice: 899.00,
-    promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "1:5 speed-increasing electric handpiece with DLC-coated titanium body and quad spray. Exceptional cutting power and visibility.",
     image: img.it_g600s
@@ -302,7 +295,6 @@ export const products = [
     id: "A1061",
     name: "STRONIC X300 Air Scaler",
     price: 699.00,
-    promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Air-driven scaler that connects directly to your KaVo coupler. 6,000 Hz oscillation for comfortable, efficient scaling without a separate unit.",
     image: img.x300_1,
@@ -312,7 +304,6 @@ export const products = [
     id: "A1658",
     name: "AirPeak™ PRO200 Air Polisher",
     price: 669.00,
-    promo: "Buy 2, Get 1 Free",
     category: "Equipment",
     description: "Air polishing handpiece with anti-clog design and 360° swivel nozzle. Fast biofilm removal for prophy, perio, and ortho patients.",
     image: img.air_polish
@@ -330,8 +321,6 @@ export const products = [
     id: "IPR-001",
     name: "AirPeak Automatic IPR",
     price: 249.00,
-    originalPrice: 299.00,
-    promo: "Buy 2, Get 1 Free",
     category: "Handpieces",
     description: "Reciprocating IPR handpiece for precise interproximal enamel reduction. Essential for aligner cases and orthodontic finishing.",
     image: img.ipr
@@ -406,7 +395,6 @@ export const products = [
     id: "M1042X",
     name: "ModuLite X Curing Light",
     price: 699.00,
-    promo: "Buy 2, Get 1 Free",
     category: "Restorative",
     description: "Broadband LED curing light (380–520nm) with built-in resin detection mode. Aerospace-grade aluminum body, lightweight and balanced.",
     image: img.modulite_4,
@@ -442,7 +430,6 @@ export const products = [
     id: "M1002",
     name: "SureTact G3 Rings (2pk)",
     price: 129.98,
-    promo: "Buy 2, Get 1 Free",
     category: "Restorative",
     description: "Replacement NiTi rings with strong spring-back memory. Universal fit for most sectional matrix systems. 2-pack.",
     image: img.suretact_r,
