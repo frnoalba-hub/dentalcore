@@ -26,7 +26,7 @@ function buildWebSiteSchema() {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     "url": SITE_URL,
-    "name": "Coretix — Premium Dental Instruments",
+    "name": "Coretix",
     "description": "Professional dental instruments, handpieces, endodontic supplies, curing lights, and surgical biomaterials at direct pricing.",
     "publisher": { "@id": `${SITE_URL}/#organization` },
     "potentialAction": {
