@@ -3,7 +3,7 @@ import { SITE_URL, productPageUrl, absoluteUrl } from '../../lib/siteUrl';
 
 function buildOrganizationSchema() {
   return {
-    "@type": "Organization",
+    "@type": ["Organization", "WholesaleStore"],
     "@id": `${SITE_URL}/#organization`,
     "name": companyInfo.companyName,
     "url": SITE_URL,
@@ -29,11 +29,6 @@ function buildWebSiteSchema() {
     "name": "Coretix",
     "description": "Professional dental instruments, handpieces, endodontic supplies, curing lights, and surgical biomaterials at direct pricing.",
     "publisher": { "@id": `${SITE_URL}/#organization` },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": `${SITE_URL}/?q={search_term_string}`,
-      "query-input": "required name=search_term_string"
-    }
   };
 }
 

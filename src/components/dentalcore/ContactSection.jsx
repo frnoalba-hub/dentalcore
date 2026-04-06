@@ -20,6 +20,29 @@ export default function ContactSection() {
           </p>
         </div>
 
+        <div
+          id="shipping-returns"
+          className="mb-12 max-w-3xl rounded-card border border-white/10 bg-[#141414] px-6 py-8 shadow-modal md:px-10"
+        >
+          <p className="text-[10px] uppercase tracking-[0.25em] text-white/35 font-semibold mb-4">
+            Shipping &amp; returns
+          </p>
+          <p className="text-sm text-white/55 font-body leading-relaxed mb-4">
+            <span className="text-white/80 font-medium">Shipping:</span> Orders are typically processed within{' '}
+            <span className="text-white/80">1–2 business days</span>. US delivery usually takes{' '}
+            <span className="text-white/80">3–7 business days</span> after shipment depending on destination and carrier.
+            Shipping cost is shown at checkout when available, or quoted by our sales team.
+          </p>
+          <p className="text-sm text-white/55 font-body leading-relaxed">
+            <span className="text-white/80 font-medium">Returns:</span> Return eligibility is evaluated case by case for
+            dental professionals. Contact{' '}
+            <a href={`mailto:${companyInfo.email}`} className="text-accent hover:underline">
+              {companyInfo.email}
+            </a>{' '}
+            before returning merchandise. Opened or sterile items may not be eligible for return.
+          </p>
+        </div>
+
         <div className="grid md:grid-cols-3 border border-white/10 rounded-card overflow-hidden bg-[#141414] shadow-modal">
           <div className="py-8 pr-8 pl-6 md:pl-8 border-b md:border-b-0 md:border-r border-white/10">
             <span className="text-xs text-white/40 uppercase tracking-widest block mb-4">{t('direct_line')}</span>

@@ -1,6 +1,49 @@
 import { SITE_URL, absoluteUrl, productPageUrl } from '../../lib/siteUrl';
 import { companyInfo } from '../dentalcore/productsData';
 
+/** Return policy link matches ContactSection (#shipping-returns). */
+function merchantReturnPolicyBlock() {
+  return {
+    hasMerchantReturnPolicy: {
+      '@type': 'MerchantReturnPolicy',
+      applicableCountry: 'US',
+      returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+      merchantReturnLink: `${SITE_URL}/#shipping-returns`,
+    },
+  };
+}
+
+/**
+ * Handling/transit windows match on-page shipping copy (not a guaranteed price).
+ * Omit shippingRate — actual charges are at checkout or sales quote.
+ */
+function shippingDetailsBlock() {
+  return {
+    shippingDetails: {
+      '@type': 'OfferShippingDetails',
+      shippingDestination: {
+        '@type': 'DefinedRegion',
+        addressCountry: 'US',
+      },
+      deliveryTime: {
+        '@type': 'ShippingDeliveryTime',
+        handlingTime: {
+          '@type': 'QuantitativeValue',
+          minValue: 1,
+          maxValue: 2,
+          unitCode: 'DAY',
+        },
+        transitTime: {
+          '@type': 'QuantitativeValue',
+          minValue: 3,
+          maxValue: 7,
+          unitCode: 'DAY',
+        },
+      },
+    },
+  };
+}
+
 function parsePrice(p) {
   if (typeof p.price === 'number' && !Number.isNaN(p.price)) return p.price;
   const n = parseFloat(String(p.price ?? '').replace(/[^0-9.]/g, ''));
@@ -34,6 +77,8 @@ export default function ProductJsonLd({ product, allImages }) {
       offerCount: product.variants.length,
       availability: 'https://schema.org/InStock',
       seller: { '@id': `${SITE_URL}/#organization` },
+      ...shippingDetailsBlock(),
+      ...merchantReturnPolicyBlock(),
     };
   } else {
     const price = parsePrice(product);
@@ -44,18 +89,27 @@ export default function ProductJsonLd({ product, allImages }) {
       price: price.toFixed(2),
       availability: 'https://schema.org/InStock',
       seller: { '@id': `${SITE_URL}/#organization` },
+      ...shippingDetailsBlock(),
+      ...merchantReturnPolicyBlock(),
     };
   }
 
+  const sku = product.sku || product.id;
   const productNode = {
     '@type': 'Product',
     '@id': `${pageUrl}#product`,
     name: product.name,
     description: product.description || product.name,
-    sku: product.id,
+    sku,
     brand: { '@type': 'Brand', name: companyInfo.companyName },
     offers,
   };
+
+  if (product.mpn) productNode.mpn = String(product.mpn);
+  if (product.gtin) {
+    const g = String(product.gtin).replace(/\D/g, '');
+    if (g.length === 12 || g.length === 13 || g.length === 14) productNode.gtin = g;
+  }
 
   if (product.category) productNode.category = product.category;
   if (deduped.length === 1) productNode.image = deduped[0];

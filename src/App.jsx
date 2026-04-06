@@ -5,7 +5,7 @@ import { queryClientInstance } from '@/lib/query-client'
 import VisualEditAgent from '@/lib/VisualEditAgent'
 import NavigationTracker from '@/lib/NavigationTracker'
 import { pagesConfig } from './pages.config'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import OrderTracking from './pages/OrderTracking';
 import AdminOrders from './pages/AdminOrders';
@@ -21,6 +21,17 @@ const MainPage = mainPageKey ? Pages[mainPageKey] : <></>;
 const LayoutWrapper = ({ children, currentPageName }) => Layout ?
   <Layout currentPageName={currentPageName}>{children}</Layout>
   : <>{children}</>;
+
+/** Legacy SPA paths → canonical URLs (query string preserved). */
+function LegacyProductPathRedirect() {
+  const { search } = useLocation();
+  return <Navigate to={`/product${search}`} replace />;
+}
+
+function LegacyOrderTrackingRedirect() {
+  const { search } = useLocation();
+  return <Navigate to={`/track-order${search}`} replace />;
+}
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, isAuthenticated, navigateToLogin } = useAuth();
@@ -65,7 +76,9 @@ const AuthenticatedApp = () => {
         />
       ))}
       <Route path="/product" element={<ProductDetail />} />
+      <Route path="/ProductDetail" element={<LegacyProductPathRedirect />} />
       <Route path="/track-order" element={<OrderTracking />} />
+      <Route path="/OrderTracking" element={<LegacyOrderTrackingRedirect />} />
       <Route path="/admin/orders" element={<AdminOrders />} />
       <Route path="/admin/dashboard" element={<AdminDashboard />} />
       <Route path="*" element={<PageNotFound />} />

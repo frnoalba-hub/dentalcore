@@ -10,10 +10,13 @@ import ContactSection from '../components/dentalcore/ContactSection';
 import CartDrawer from '../components/cart/CartDrawer';
 import JsonLdSchema from '../components/seo/JsonLdSchema';
 import FaqJsonLd from '../components/seo/FaqJsonLd';
+import { usePageSeo } from '@/hooks/usePageSeo';
 
 export default function Home() {
   const { refreshContent } = useContentStore();
   const location = useLocation();
+
+  usePageSeo({ variant: 'default' });
 
   useEffect(() => {
     refreshContent();

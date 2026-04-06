@@ -12,6 +12,9 @@ import ProductPurchasePanel from '../components/product/ProductPurchasePanel';
 import ProductSpecsTabs from '../components/product/ProductSpecsTabs';
 import RelatedProducts from '../components/product/RelatedProducts';
 import ProductJsonLd from '../components/seo/ProductJsonLd';
+import BreadcrumbJsonLd from '../components/seo/BreadcrumbJsonLd';
+import { usePageSeo } from '@/hooks/usePageSeo';
+import { SITE_URL, productPageUrl } from '@/lib/siteUrl';
 
 const SUPPRESSED_API_CATEGORIES = new Set([
   'Allograft / Osseoseal Membrane', 'Allograft', 'Osseoseal',
@@ -85,6 +88,26 @@ export default function ProductDetail() {
 
   const isLoading_ = isLoading && !localProducts.find(p => p.id === productId);
 
+  const seoVariant = useMemo(() => {
+    if (isLoading_) return 'default';
+    if (!product) return 'notFound';
+    return 'product';
+  }, [isLoading_, product]);
+
+  const canonicalForProductRoute =
+    productId != null && productId !== ''
+      ? productPageUrl(productId)
+      : `${SITE_URL}/`;
+
+  usePageSeo({
+    variant: seoVariant,
+    productName: product ? dynamicT(product.name) : undefined,
+    productSku: product ? (product.sku || product.id) : undefined,
+    productDescription: product ? dynamicT(product.description) : undefined,
+    canonicalUrl: canonicalForProductRoute,
+    ogImagePathOrUrl: allImages[0],
+  });
+
   if (isLoading_) return (
     <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center">
       <div className="w-6 h-6 border-2 border-[#111]/20 border-t-[#111] rounded-full animate-spin" />
@@ -101,6 +124,11 @@ export default function ProductDetail() {
   return (
     <div className="min-h-screen bg-[#FDFDFD]">
       <ProductJsonLd product={displayProduct} allImages={allImages} />
+      <BreadcrumbJsonLd
+        categoryLabel={dynamicT(product.category)}
+        productName={dynamicT(product.name)}
+        productId={product.id}
+      />
       <Header />
       <CartDrawer />
 
