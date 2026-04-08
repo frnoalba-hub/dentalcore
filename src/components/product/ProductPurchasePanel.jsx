@@ -57,9 +57,18 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
       </div>
 
       {/* Description */}
-      <p className="text-base text-[#111]/70 font-body leading-relaxed mb-8">
-        {dynamicT(product.description)}
-      </p>
+      <div className="mb-8 space-y-4">
+        <p className="text-base text-[#111]/70 font-body leading-relaxed">
+          {dynamicT(product.description)}
+        </p>
+        {product.longDescription && (
+          <div className="text-sm text-[#111]/60 font-body leading-relaxed space-y-3 border-l-2 border-accent/40 pl-4">
+            {String(product.longDescription).split(/\n\n+/).map((para, i) => (
+              <p key={i}>{dynamicT(para.trim())}</p>
+            ))}
+          </div>
+        )}
+      </div>
 
       {/* Variants */}
       {product.variants?.length > 0 && (

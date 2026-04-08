@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
@@ -10,11 +10,14 @@ import CartDrawer from '../components/cart/CartDrawer';
 import ProductImageGallery from '../components/product/ProductImageGallery';
 import ProductPurchasePanel from '../components/product/ProductPurchasePanel';
 import ProductSpecsTabs from '../components/product/ProductSpecsTabs';
+import ProductGeoAeoSummary from '../components/product/ProductGeoAeoSummary';
 import RelatedProducts from '../components/product/RelatedProducts';
 import ProductJsonLd from '../components/seo/ProductJsonLd';
 import BreadcrumbJsonLd from '../components/seo/BreadcrumbJsonLd';
+import ProductFaqJsonLd from '../components/seo/ProductFaqJsonLd';
 import { usePageSeo } from '@/hooks/usePageSeo';
 import { SITE_URL, productPageUrl } from '@/lib/siteUrl';
+import { getProductSlug } from '@/lib/productPaths';
 
 const SUPPRESSED_API_CATEGORIES = new Set([
   'Allograft / Osseoseal Membrane', 'Allograft', 'Osseoseal',
@@ -28,8 +31,9 @@ const SUPPRESSED_KEYWORDS = [
 ];
 
 export default function ProductDetail() {
-  const params = new URLSearchParams(window.location.search);
-  const productId = params.get('id');
+  const { productSlug } = useParams();
+  const [searchParams] = useSearchParams();
+  const idFromQuery = searchParams.get('id');
   const { dynamicT } = useTranslation();
   const [selectedVariant, setSelectedVariant] = useState(null);
 
@@ -62,7 +66,26 @@ export default function ProductDetail() {
     return [...localProducts, ...apiOnly];
   }, [apiProducts]);
 
-  const product = allProducts.find(p => p.id === productId);
+  const resolvedLocally = useMemo(() => {
+    if (productSlug) {
+      const decoded = decodeURIComponent(productSlug);
+      return localProducts.find((p) => getProductSlug(p) === decoded) ?? null;
+    }
+    if (idFromQuery) return localProducts.find((p) => p.id === idFromQuery) ?? null;
+    return null;
+  }, [productSlug, idFromQuery]);
+
+  const product = useMemo(() => {
+    if (!allProducts.length) return null;
+    if (productSlug) {
+      const decoded = decodeURIComponent(productSlug);
+      return allProducts.find((p) => getProductSlug(p) === decoded) ?? null;
+    }
+    if (idFromQuery) {
+      return allProducts.find((p) => p.id === idFromQuery) ?? null;
+    }
+    return null;
+  }, [allProducts, productSlug, idFromQuery]);
 
   const displayProduct = useMemo(() => {
     if (!product) return null;
@@ -74,11 +97,11 @@ export default function ProductDetail() {
   useEffect(() => {
     if (product?.variants?.length > 0) setSelectedVariant(product.variants[0]);
     else setSelectedVariant(null);
-  }, [productId, product?.id]);
+  }, [product?.id, product?.variants]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [productId]);
+  }, [productSlug, idFromQuery]);
 
   const allImages = displayProduct
     ? [displayProduct.image, ...(displayProduct.images || [])].filter((img, i, arr) => img && arr.indexOf(img) === i)
@@ -86,7 +109,10 @@ export default function ProductDetail() {
 
   const related = allProducts.filter(p => p.category === product?.category && p.id !== product?.id).slice(0, 4);
 
-  const isLoading_ = isLoading && !localProducts.find(p => p.id === productId);
+  const isLoading_ =
+    isLoading &&
+    !resolvedLocally &&
+    ((productSlug != null && productSlug !== '') || (idFromQuery != null && idFromQuery !== ''));
 
   const seoVariant = useMemo(() => {
     if (isLoading_) return 'default';
@@ -94,16 +120,19 @@ export default function ProductDetail() {
     return 'product';
   }, [isLoading_, product]);
 
-  const canonicalForProductRoute =
-    productId != null && productId !== ''
-      ? productPageUrl(productId)
-      : `${SITE_URL}/`;
+  const canonicalForProductRoute = product
+    ? productPageUrl(product)
+    : `${SITE_URL}/`;
 
   usePageSeo({
     variant: seoVariant,
     productName: product ? dynamicT(product.name) : undefined,
     productSku: product ? (product.sku || product.id) : undefined,
-    productDescription: product ? dynamicT(product.description) : undefined,
+    productDescription: product
+      ? [dynamicT(product.description), product.longDescription ? dynamicT(product.longDescription) : '']
+          .filter(Boolean)
+          .join(' ')
+      : undefined,
     canonicalUrl: canonicalForProductRoute,
     ogImagePathOrUrl: allImages[0],
   });
@@ -121,13 +150,21 @@ export default function ProductDetail() {
     </div>
   );
 
+  const canonicalSlug = getProductSlug(product);
+  if (idFromQuery && !productSlug && canonicalSlug) {
+    return <Navigate to={`/p/${encodeURIComponent(canonicalSlug)}`} replace />;
+  }
+
   return (
     <div className="min-h-screen bg-[#FDFDFD]">
       <ProductJsonLd product={displayProduct} allImages={allImages} />
+      {displayProduct?.faqs?.length > 0 && (
+        <ProductFaqJsonLd faqs={displayProduct.faqs} pageUrl={productPageUrl(displayProduct)} />
+      )}
       <BreadcrumbJsonLd
         categoryLabel={dynamicT(product.category)}
         productName={dynamicT(product.name)}
-        productId={product.id}
+        product={product}
       />
       <Header />
       <CartDrawer />
@@ -147,14 +184,12 @@ export default function ProductDetail() {
 
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-16">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
-          {/* Left: Image Gallery */}
           <ProductImageGallery
             images={allImages}
             productName={dynamicT(displayProduct.name)}
             selectedVariant={selectedVariant}
           />
 
-          {/* Right: Purchase Panel */}
           <ProductPurchasePanel
             product={displayProduct}
             selectedVariant={selectedVariant}
@@ -162,10 +197,10 @@ export default function ProductDetail() {
           />
         </div>
 
-        {/* Specs / Features / Reviews Tabs */}
+        <ProductGeoAeoSummary product={displayProduct} />
+
         <ProductSpecsTabs product={displayProduct} />
 
-        {/* Related Products */}
         <RelatedProducts products={related} currentCategory={product.category} />
       </div>
     </div>

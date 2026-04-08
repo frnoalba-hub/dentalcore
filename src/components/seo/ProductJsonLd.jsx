@@ -1,5 +1,6 @@
 import { SITE_URL, absoluteUrl, productPageUrl } from '../../lib/siteUrl';
 import { companyInfo } from '../dentalcore/productsData';
+import { productSchemaAudienceType } from '@/lib/generativeOptimizationEngine';
 
 /** Return policy link matches ContactSection (#shipping-returns). */
 function merchantReturnPolicyBlock() {
@@ -55,7 +56,7 @@ function parsePrice(p) {
  * aggregateRating is omitted unless present on the product object (visible reviews required by Google).
  */
 export default function ProductJsonLd({ product, allImages }) {
-  const pageUrl = productPageUrl(product.id);
+  const pageUrl = productPageUrl(product);
   const imageList = (allImages || [])
     .map(absoluteUrl)
     .filter(Boolean);
@@ -95,11 +96,15 @@ export default function ProductJsonLd({ product, allImages }) {
   }
 
   const sku = product.sku || product.id;
+  const fullDescription = [product.description, product.longDescription]
+    .filter(Boolean)
+    .join(' ')
+    .trim();
   const productNode = {
     '@type': 'Product',
     '@id': `${pageUrl}#product`,
     name: product.name,
-    description: product.description || product.name,
+    description: fullDescription || product.name,
     sku,
     brand: { '@type': 'Brand', name: companyInfo.companyName },
     offers,
@@ -119,9 +124,33 @@ export default function ProductJsonLd({ product, allImages }) {
     productNode.aggregateRating = product.aggregateRating;
   }
 
+  productNode.audience = {
+    '@type': 'Audience',
+    audienceType: productSchemaAudienceType,
+  };
+
+  const webPageDescription = (fullDescription || product.name).slice(0, 400);
+  const webPageNode = {
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: product.name,
+    description: webPageDescription,
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    about: { '@id': `${pageUrl}#product` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+  };
+  if (deduped[0]) {
+    webPageNode.primaryImageOfPage = {
+      '@type': 'ImageObject',
+      url: deduped[0],
+    };
+  }
+
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@graph': [productNode],
+    '@graph': [productNode, webPageNode],
   };
 
   return (

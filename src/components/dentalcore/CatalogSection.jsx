@@ -8,6 +8,7 @@ import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
 import { toast } from 'sonner';
 import { products as localProducts, getCatalogProductImage, isDuplicateApiCatalogRow } from './productsData';
+import { productRelativePath } from '@/lib/productPaths';
 import ProductQuickView from './ProductQuickView';
 
 export default function CatalogSection() {
@@ -172,7 +173,7 @@ export default function CatalogSection() {
             {filteredProducts.map((product, index) => (
               <motion.div key={product.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: index * 0.03 }}>
                 <Link
-                  to={`/product?id=${product.id}`}
+                  to={productRelativePath(product)}
                   className="group/link block h-full rounded-card focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDFDFD]"
                 >
                   <article className="group relative h-full flex flex-col bg-white border-r border-b border-[#111]/10 shadow-card transition-all duration-300 hover:border-[#111]/25 hover:shadow-card-hover hover:-translate-y-0.5">

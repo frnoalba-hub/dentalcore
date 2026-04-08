@@ -4,6 +4,7 @@ import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
 import { ArrowUpRight } from 'lucide-react';
 import { products as catalog } from './productsData';
+import { productRelativePath } from '@/lib/productPaths';
 
 /** About spotlight: biomaterials (local images + catalog pricing). Featured above = handpieces. */
 const ABOUT_PRODUCT_ID = 'OS-SEAL-SYR';
@@ -127,7 +128,7 @@ export default function AboutSection() {
                 <ArrowUpRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </button>
               <Link
-                to={`/product?id=${encodeURIComponent(product.id)}`}
+                to={productRelativePath(product)}
                 className="flex flex-1 sm:flex-none items-center justify-center border border-[#111]/20 rounded-sm text-[#111] px-6 py-4 text-sm font-medium uppercase tracking-widest hover:bg-[#111]/5 hover:border-[#111]/35 transition-colors text-center"
               >
                 {t('view_details')}

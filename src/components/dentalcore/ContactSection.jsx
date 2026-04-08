@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { companyInfo } from './productsData';
 import { useTranslation } from '@/lib/i18n';
 
@@ -62,8 +63,14 @@ export default function ContactSection() {
           </div>
         </div>
 
-        <div className="mt-24 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-xs text-white/30 uppercase tracking-widest font-medium">
+        <div className="mt-24 pt-8 border-t border-white/10 flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center text-xs text-white/30 uppercase tracking-widest font-medium">
           <p>© {new Date().getFullYear()} {companyInfo.companyName}</p>
+          <Link
+            to="/group-practices"
+            className="text-white/45 hover:text-accent transition-colors normal-case tracking-normal text-sm font-body"
+          >
+            DSOs &amp; multi-location practices
+          </Link>
           <p>{t('all_rights_reserved')}</p>
         </div>
       </div>

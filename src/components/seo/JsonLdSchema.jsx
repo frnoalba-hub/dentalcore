@@ -1,5 +1,12 @@
 import { products, companyInfo } from '../dentalcore/productsData';
 import { SITE_URL, productPageUrl, absoluteUrl } from '../../lib/siteUrl';
+import {
+  ENGINE_GEO_COORDINATES,
+  organizationDescriptionForSchema,
+  knowsAboutTopicsForSchema,
+  areaServedForSchema,
+  websiteDescriptionForSchema,
+} from '@/lib/generativeOptimizationEngine';
 
 function buildOrganizationSchema() {
   return {
@@ -9,15 +16,23 @@ function buildOrganizationSchema() {
     "url": SITE_URL,
     "email": companyInfo.email,
     "telephone": companyInfo.phone,
+    "description": organizationDescriptionForSchema,
+    "knowsAbout": knowsAboutTopicsForSchema,
+    "areaServed": areaServedForSchema,
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "2108 N St Ste N",
       "addressLocality": "Sacramento",
       "addressRegion": "CA",
       "postalCode": "95816",
-      "addressCountry": "US"
+      "addressCountry": "US",
     },
-    "sameAs": []
+    "geo": {
+      "@type": "GeoCoordinates",
+      latitude: ENGINE_GEO_COORDINATES.latitude,
+      longitude: ENGINE_GEO_COORDINATES.longitude,
+    },
+    "sameAs": [],
   };
 }
 
@@ -27,8 +42,10 @@ function buildWebSiteSchema() {
     "@id": `${SITE_URL}/#website`,
     "url": SITE_URL,
     "name": "Coretix",
-    "description": "Professional dental instruments, handpieces, endodontic supplies, curing lights, and surgical biomaterials at direct pricing.",
+    "inLanguage": "en-US",
+    "description": websiteDescriptionForSchema,
     "publisher": { "@id": `${SITE_URL}/#organization` },
+    "about": { "@id": `${SITE_URL}/#organization` },
   };
 }
 
@@ -48,7 +65,7 @@ function buildCatalogItemListSchema() {
       const item = {
         "@type": "WebPage",
         "name": p.name,
-        "url": productPageUrl(p.id),
+        "url": productPageUrl(p),
       };
       if (img) item.image = img;
       return {

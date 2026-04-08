@@ -6,172 +6,177 @@
         <priority>1.0</priority>
     </url>
     <url>
+        <loc>https://www.dentalcoreinstruments.com/group-practices</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.75</priority>
+    </url>
+    <url>
         <loc>https://www.dentalcoreinstruments.com/track-order</loc>
         <changefreq>weekly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=1006-1</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/uc-cut</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=1002-1</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/uc-one</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=1005-1</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/gp-cut-fit</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=1004-1</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/ep-plugger-set</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=1003-1</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/ep-suction-system</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=MTA-1</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/endoseal-mta-sealer</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=MTA-3</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/endocem-mta-root-repair</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=TH-001</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/stronic-touch-heat</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1004-V2</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/airpeak-x600-s-kavo</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1005</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/airpeak-x600-m-nsk</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1018</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/airpeak-x600-45-surgical</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1004-V3</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/airpeak-x600-micro-kavo</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1009B</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/airpeak-g100-la</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1012</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/airpeak-g100-st</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1019</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/itesla-electric-motor</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1003</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/itesla-g600-s</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1028</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/itesla-g600-d</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1020</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/itesla-g500-r20-implant</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1619</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/stronic-x150-piezo-scaler</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1061</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/stronic-x300-air-scaler</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1658</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/airpeak-pro200-air-polisher</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=A1030</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/mccare-x-maintenance</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=IPR-001</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/airpeak-automatic-ipr</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=OS-SEAL-SYR</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/osseoseal-prefilled-syringe</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=OS-SEAL-PDR</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/osseoseal-allograft-powder</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=OS-SEAL-MEM</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/osseoseal-collagen-membrane</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=OSTEO-PLUG</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/osteogen-plug-10x20</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=HELI-1</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/curagen-collagen-plug</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=M1042X</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/modulite-x-curing-light</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=1007-1</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/ep-cure-led</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=1008-1</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/ep-light-transilluminator</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=M1001</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/suretact-g3-matrix-kit</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>
     <url>
-        <loc>https://www.dentalcoreinstruments.com/product?id=M1002</loc>
+        <loc>https://www.dentalcoreinstruments.com/p/suretact-g3-rings-2pk</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>
     </url>

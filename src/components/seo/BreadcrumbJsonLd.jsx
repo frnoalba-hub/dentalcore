@@ -3,7 +3,7 @@ import { SITE_URL, productPageUrl } from '@/lib/siteUrl';
 /**
  * BreadcrumbList for product detail. Catalog/category share `/#catalog` (no per-category URLs yet).
  */
-export default function BreadcrumbJsonLd({ categoryLabel, productName, productId }) {
+export default function BreadcrumbJsonLd({ categoryLabel, productName, product }) {
   const catalogUrl = `${SITE_URL}/#catalog`;
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -31,7 +31,7 @@ export default function BreadcrumbJsonLd({ categoryLabel, productName, productId
         '@type': 'ListItem',
         position: 4,
         name: productName,
-        item: productPageUrl(productId),
+        item: productPageUrl(product),
       },
     ],
   };

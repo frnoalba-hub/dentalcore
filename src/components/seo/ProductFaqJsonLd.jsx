@@ -1,10 +1,13 @@
-import { faqEntitiesForSchema } from '@/lib/generativeOptimizationEngine';
+/**
+ * Product-scoped FAQPage JSON-LD for AEO (when `faqs` exist on catalog row).
+ */
+export default function ProductFaqJsonLd({ faqs, pageUrl }) {
+  if (!faqs?.length) return null;
 
-export default function FaqJsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqEntitiesForSchema.map((faq) => ({
+    mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {
@@ -12,6 +15,7 @@ export default function FaqJsonLd() {
         text: faq.answer,
       },
     })),
+    ...(pageUrl ? { url: pageUrl } : {}),
   };
 
   return (

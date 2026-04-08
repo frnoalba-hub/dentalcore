@@ -28,6 +28,7 @@ export default function Header() {
     { label: t('featured'), id: 'featured' },
     { label: 'Reviews', id: 'testimonials' },
     { label: t('about'), id: 'about' },
+    { label: 'DSOs & groups', to: '/group-practices' },
   ];
   const itemCount = getItemCount();
 
@@ -112,17 +113,28 @@ export default function Header() {
 
             {/* Desktop nav */}
             <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
-              {navLinks.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollTo(link.id)}
-                  type="button"
-                  className="text-xs font-semibold tracking-widest uppercase text-[#111]/55 hover:text-[#111] transition-colors relative group py-1"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out" />
-                </button>
-              ))}
+              {navLinks.map((link) =>
+                link.to ? (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="text-xs font-semibold tracking-widest uppercase text-[#111]/55 hover:text-[#111] transition-colors relative group py-1"
+                  >
+                    {link.label}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out" />
+                  </Link>
+                ) : (
+                  <button
+                    key={link.id}
+                    onClick={() => scrollTo(link.id)}
+                    type="button"
+                    className="text-xs font-semibold tracking-widest uppercase text-[#111]/55 hover:text-[#111] transition-colors relative group py-1"
+                  >
+                    {link.label}
+                    <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out" />
+                  </button>
+                ),
+              )}
             </nav>
 
             {/* Right side */}
@@ -191,15 +203,26 @@ export default function Header() {
               className="fixed inset-x-0 top-[100px] bottom-0 z-[56] bg-[#FDFDFD] lg:hidden overflow-y-auto border-t border-[#111]/10 shadow-drawer"
             >
               <nav className="flex flex-col p-8 gap-8 min-h-full max-w-lg">
-                {navLinks.map((link) => (
-                  <button
-                    key={link.id}
-                    onClick={() => scrollTo(link.id)}
-                    className="text-3xl font-semibold tracking-tighter uppercase text-[#111] text-left hover:text-accent transition-colors"
-                  >
-                    {link.label}
-                  </button>
-                ))}
+                {navLinks.map((link) =>
+                  link.to ? (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      onClick={() => setMobileOpen(false)}
+                      className="text-3xl font-semibold tracking-tighter uppercase text-[#111] text-left hover:text-accent transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <button
+                      key={link.id}
+                      onClick={() => scrollTo(link.id)}
+                      className="text-3xl font-semibold tracking-tighter uppercase text-[#111] text-left hover:text-accent transition-colors"
+                    >
+                      {link.label}
+                    </button>
+                  ),
+                )}
                 <Link
                   to="/track-order"
                   onClick={() => setMobileOpen(false)}

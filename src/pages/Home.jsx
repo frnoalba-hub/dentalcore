@@ -10,6 +10,7 @@ import ContactSection from '../components/dentalcore/ContactSection';
 import CartDrawer from '../components/cart/CartDrawer';
 import JsonLdSchema from '../components/seo/JsonLdSchema';
 import FaqJsonLd from '../components/seo/FaqJsonLd';
+import DiscoverySummary from '../components/seo/DiscoverySummary';
 import { usePageSeo } from '@/hooks/usePageSeo';
 
 export default function Home() {
@@ -39,6 +40,7 @@ export default function Home() {
       <FaqJsonLd />
       <Header />
       <CatalogSection />
+      <DiscoverySummary />
       <FeaturedProductSection />
       <TestimonialsSection />
       <AboutSection />

@@ -18,8 +18,12 @@ Pull immediately in Cursor so local files match GitHub. Editing on stale local c
 
 ## Sitemap
 
-`npm run build` runs `scripts/generate-sitemap.mjs` first (via `prebuild`). After deploy, confirm `https://www.dentalcoreinstruments.com/sitemap.xml` returns XML and submit it in Google Search Console if needed.
+`npm run build` runs `scripts/generate-sitemap.mjs` first (via `prebuild`). It emits canonical **`/p/{slug}`** URLs parsed from `slug:` lines in `productsData.jsx`. Optional Base44-only rows: add `{ "slug": "your-slug" }` entries to `scripts/sitemap-extras.json`. After deploy, confirm `https://www.dentalcoreinstruments.com/sitemap.xml` returns XML and submit it in Google Search Console if needed.
+
+## SPA routing (`/p/*`)
+
+`public/_redirects` provides `/* → /index.html` (200) for hosts that honor Netlify-style redirects so deep links like `/p/uc-one` load the app. If your host uses different rules, mirror that behavior there.
 
 ## `pages.config.js` (Base44)
 
-If a generator re-adds **ProductDetail** to `PAGES`, remove it again: product pages must use only **`/product?id=...`** (see `App.jsx` and `siteUrl.js`) so SEO stays consistent.
+If a generator re-adds **ProductDetail** to `PAGES`, remove it again: **`ProductDetail`** stays only in `App.jsx` routes (`/p/:productSlug` and legacy `/product`). Canonical product URLs are **`/p/{slug}`**; `/product?id=…` redirects to the slug URL when known (see `ProductDetail.jsx`, `siteUrl.js`, `productPaths.js`).

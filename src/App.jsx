@@ -11,6 +11,7 @@ import OrderTracking from './pages/OrderTracking';
 import AdminOrders from './pages/AdminOrders';
 import AdminDashboard from './pages/AdminDashboard';
 import ProductDetail from './pages/ProductDetail';
+import GroupPractices from './pages/GroupPractices';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 
@@ -75,8 +76,10 @@ const AuthenticatedApp = () => {
           }
         />
       ))}
+      <Route path="/p/:productSlug" element={<ProductDetail />} />
       <Route path="/product" element={<ProductDetail />} />
       <Route path="/ProductDetail" element={<LegacyProductPathRedirect />} />
+      <Route path="/group-practices" element={<GroupPractices />} />
       <Route path="/track-order" element={<OrderTracking />} />
       <Route path="/OrderTracking" element={<LegacyOrderTrackingRedirect />} />
       <Route path="/admin/orders" element={<AdminOrders />} />

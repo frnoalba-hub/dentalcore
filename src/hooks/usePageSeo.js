@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { SITE_URL, absoluteUrl } from '@/lib/siteUrl';
+import { productMetaGeoSuffix } from '@/lib/generativeOptimizationEngine';
 
 const DESC_MAX = 158;
 
@@ -71,7 +72,8 @@ function applyHead({ title, description, canonicalUrl, ogImage, robots }) {
 
 /**
  * Client-side document head for SPA routes (title, description, canonical, OG/Twitter).
- * @param {'default' | 'product' | 'notFound'} variant
+ * @param {'default' | 'product' | 'notFound' | 'staticPage'} variant
+ * @param {{ title: string, description: string, canonicalUrl?: string }} [staticPage] — required when variant is staticPage
  */
 export function usePageSeo({
   variant = 'default',
@@ -81,8 +83,30 @@ export function usePageSeo({
   canonicalUrl,
   ogImagePathOrUrl,
   robots,
+  staticPage,
 }) {
   useEffect(() => {
+    if (variant === 'staticPage' && staticPage?.title && staticPage?.description) {
+      applyHead({
+        title: staticPage.title,
+        description: staticPage.description,
+        canonicalUrl: staticPage.canonicalUrl || DEFAULT_SEO.canonicalUrl,
+        ogImage: ogImagePathOrUrl
+          ? absoluteUrl(ogImagePathOrUrl) || DEFAULT_SEO.ogImage
+          : DEFAULT_SEO.ogImage,
+        robots: robots || 'index, follow',
+      });
+      return () => {
+        applyHead({
+          title: DEFAULT_SEO.title,
+          description: DEFAULT_SEO.description,
+          canonicalUrl: DEFAULT_SEO.canonicalUrl,
+          ogImage: DEFAULT_SEO.ogImage,
+          robots: 'index, follow',
+        });
+      };
+    }
+
     if (variant === 'default') {
       applyHead({
         title: DEFAULT_SEO.title,
@@ -117,9 +141,10 @@ export function usePageSeo({
 
     if (variant === 'product' && productName && productSku) {
       const title = `${productName} | ${productSku} | Coretix`;
-      const description =
+      const baseDesc =
         productDescription ||
         `Buy ${productName} (${productSku}) — professional dental supply from Coretix, Sacramento CA.`;
+      const description = `${baseDesc.replace(/\s+/g, ' ').trim()}${productMetaGeoSuffix()}`;
       const canon = canonicalUrl || DEFAULT_SEO.canonicalUrl;
       const og =
         absoluteUrl(ogImagePathOrUrl) || DEFAULT_SEO.ogImage;
@@ -148,5 +173,6 @@ export function usePageSeo({
     canonicalUrl,
     ogImagePathOrUrl,
     robots,
+    staticPage,
   ]);
 }

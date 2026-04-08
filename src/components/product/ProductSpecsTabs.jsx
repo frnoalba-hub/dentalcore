@@ -6,10 +6,12 @@ export default function ProductSpecsTabs({ product }) {
   const hasFeatures = product.features?.length > 0;
   const hasSpecs = product.specs && Object.keys(product.specs).length > 0;
   const hasReviews = product.reviews?.length > 0;
+  const hasFaqs = product.faqs?.length > 0;
 
   const tabs = [];
   if (hasFeatures) tabs.push('Features');
   if (hasSpecs) tabs.push('Specifications');
+  if (hasFaqs) tabs.push('FAQ');
   if (hasReviews) tabs.push('Reviews');
   if (tabs.length === 0) return null;
 
@@ -64,6 +66,17 @@ export default function ProductSpecsTabs({ product }) {
               </div>
             ))}
           </div>
+        </div>
+      )}
+
+      {active === 'FAQ' && hasFaqs && (
+        <div className="max-w-2xl space-y-6">
+          {product.faqs.map((faq, i) => (
+            <div key={i} className="border border-[#111]/10 rounded-card shadow-card p-6 bg-white">
+              <h3 className="text-sm font-bold text-[#111] mb-2">{dynamicT(faq.question)}</h3>
+              <p className="text-sm text-[#111]/70 font-body leading-relaxed">{dynamicT(faq.answer)}</p>
+            </div>
+          ))}
         </div>
       )}
 
