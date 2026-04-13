@@ -1,10 +1,10 @@
 // --- COMPANY CONFIGURATION ---
 export const companyInfo = {
-  companyName: "Cortex Supplies",
+  companyName: "Coretix",
   email: "sales@dentalcoreinstruments.com",
   address: "2108 N St Ste N, Sacramento, CA 95816",
   phone: "(626) 268-3946",
-  logoText: "CORTEX"
+  logoText: "CORETIX"
 };
 
 // --- REAL PRODUCT IMAGES (local /public/products/) ---

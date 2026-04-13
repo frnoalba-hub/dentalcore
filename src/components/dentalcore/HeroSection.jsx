@@ -34,7 +34,7 @@ export default function HeroSection() {
               className="text-xs uppercase tracking-[0.25em] text-[#111]/35 font-semibold mb-8 flex items-center gap-3"
             >
               <span className="inline-block w-6 h-px bg-[#111]/30" />
-              Cortex Supplies
+              Coretix Dental Supply
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}

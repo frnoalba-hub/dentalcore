@@ -41,7 +41,7 @@ function buildWebSiteSchema() {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     "url": SITE_URL,
-    "name": "Cortex Supplies",
+    "name": "Coretix",
     "inLanguage": "en-US",
     "description": websiteDescriptionForSchema,
     "publisher": { "@id": `${SITE_URL}/#organization` },
@@ -58,7 +58,7 @@ function buildCatalogItemListSchema() {
   return {
     "@type": "ItemList",
     "@id": `${SITE_URL}/#catalog-itemlist`,
-    "name": "Cortex Supplies product catalog",
+    "name": "Coretix product catalog",
     "numberOfItems": products.length,
     "itemListElement": products.map((p, i) => {
       const img = absoluteUrl(p.image);

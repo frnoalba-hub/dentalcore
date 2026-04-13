@@ -36,7 +36,7 @@ export default function TestimonialsSection() {
               What Clinicians<br /><span className="text-white/40">Are Saying</span>
             </h2>
             <p className="text-sm text-white/40 font-body mt-4 max-w-xl leading-relaxed">
-              Real-world feedback from specialists using Cortex Supplies systems in practice.
+              Real-world feedback from specialists using Coretix systems in practice.
             </p>
           </div>
         </div>

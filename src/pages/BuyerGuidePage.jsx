@@ -29,12 +29,12 @@ export default function BuyerGuidePage() {
     () =>
       guide
         ? {
-            title: `${guide.title} | Cortex Supplies`,
+            title: `${guide.title} | Coretix`,
             description: guide.description,
             canonicalUrl: `${SITE_URL}/guides/${guide.slug}`,
           }
         : {
-            title: 'Buyer guide | Cortex Supplies',
+            title: 'Buyer guide | Coretix',
             description: 'Buyer guide for dental procurement teams.',
             canonicalUrl: `${SITE_URL}/`,
           },
@@ -66,11 +66,11 @@ export default function BuyerGuidePage() {
     inLanguage: 'en-US',
     author: {
       '@type': 'Organization',
-      name: 'Cortex Supplies',
+      name: 'Coretix',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Cortex Supplies',
+      name: 'Coretix',
       url: SITE_URL,
     },
     mainEntityOfPage: `${SITE_URL}/guides/${guide.slug}`,

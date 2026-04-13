@@ -28,7 +28,7 @@ export default function GroupPractices() {
             Dental service organizations &amp; multi-location practices
           </h1>
           <p className="mt-6 text-sm sm:text-base text-[#111]/70 font-body leading-relaxed max-w-3xl">
-            Cortex Supplies supplies licensed US dental teams with professional handpieces, endodontic systems,
+            Coretix supplies licensed US dental teams with professional handpieces, endodontic systems,
             biomaterials, curing lights, and chairside equipment, shipped from Sacramento, California.
             DSOs and multi-location groups may review our catalog and contact sales for volume or consolidated
             orders.

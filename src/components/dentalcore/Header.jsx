@@ -108,12 +108,9 @@ export default function Header() {
           <div className="h-16 flex items-center justify-between">
 
             {/* Logo */}
-            <Link to="/" className="flex flex-col group shrink-0 leading-none py-1" onClick={() => setMobileOpen(false)}>
+            <Link to="/" className="flex items-center gap-2 group shrink-0" onClick={() => setMobileOpen(false)}>
               <span className="text-xl font-bold tracking-widest uppercase text-[#111] group-hover:text-accent transition-colors duration-300">
-                CORTEX<span className="text-accent group-hover:text-[#111] transition-colors duration-300">.</span>
-              </span>
-              <span className="text-[9px] font-semibold tracking-[0.3em] uppercase text-[#111]/55 group-hover:text-[#111]/75 transition-colors mt-1">
-                SUPPLIES
+                CORETIX<span className="text-accent group-hover:text-[#111] transition-colors duration-300">.</span>
               </span>
             </Link>
 

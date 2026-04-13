@@ -113,7 +113,7 @@ export const translations = {
 
     clinical_feedback: 'Clinical Feedback',
 
-    about_title: 'About Cortex Supplies',
+    about_title: 'About Coretix',
 
     operate_with: 'Operate with',
     precision: 'Precision.',
@@ -160,7 +160,7 @@ export const translations = {
 
     clinical_feedback: 'Comentarios Clínicos',
 
-    about_title: 'Sobre Cortex Supplies',
+    about_title: 'Sobre Coretix',
 
     operate_with: 'Opere con',
     precision: 'Precisión.',

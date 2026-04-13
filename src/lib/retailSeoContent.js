@@ -2,11 +2,11 @@ export const CATEGORY_HUBS = [
   {
     slug: 'endodontics',
     categoryName: 'Endodontics',
-    title: 'Endodontic instruments and supplies | Cortex Supplies',
+    title: 'Endodontic instruments and supplies | Coretix',
     description:
-      'Shop endodontic instruments, ultrasonic irrigation systems, GP cutters, and obturation accessories for US dental practices. Cortex Supplies ships from Sacramento, CA.',
+      'Shop endodontic instruments, ultrasonic irrigation systems, GP cutters, and obturation accessories for US dental practices. Coretix ships from Sacramento, CA.',
     lead:
-      'Cortex Supplies supplies endodontic systems for licensed US dental teams, including ultrasonic irrigation, sonic GP cutting, warm obturation accessories, and bioceramic materials. Practices can compare workflow fit, sterilization requirements, and compatibility on each product page before ordering.',
+      'Coretix supplies endodontic systems for licensed US dental teams, including ultrasonic irrigation, sonic GP cutting, warm obturation accessories, and bioceramic materials. Practices can compare workflow fit, sterilization requirements, and compatibility on each product page before ordering.',
     updatedAt: '2026-04-13',
     howToChoose: [
       {
@@ -37,14 +37,14 @@ export const CATEGORY_HUBS = [
     ],
     faqs: [
       {
-        question: 'What endodontic products does Cortex Supplies carry?',
+        question: 'What endodontic products does Coretix carry?',
         answer:
-          'Cortex Supplies carries GP cutters, ultrasonic irrigation systems, pluggers, canal drying accessories, and bioceramic materials used in modern root canal workflows.',
+          'Coretix carries GP cutters, ultrasonic irrigation systems, pluggers, canal drying accessories, and bioceramic materials used in modern root canal workflows.',
       },
       {
-        question: 'Does Cortex Supplies ship endodontic supplies across the US?',
+        question: 'Does Coretix ship endodontic supplies across the US?',
         answer:
-          'Yes. Cortex Supplies ships to dental offices across the United States from Sacramento, California.',
+          'Yes. Coretix ships to dental offices across the United States from Sacramento, California.',
       },
       {
         question: 'How long does shipping usually take?',
@@ -52,7 +52,7 @@ export const CATEGORY_HUBS = [
           'Orders are typically processed in 1-2 business days, and US delivery is usually 3-7 business days after shipment.',
       },
       {
-        question: 'Can DSOs buy endodontic supplies in volume from Cortex Supplies?',
+        question: 'Can DSOs buy endodontic supplies in volume from Coretix?',
         answer:
           'Yes. DSOs and multi-location practices can use the catalog and contact sales for coordinated procurement and volume discussions.',
       },
@@ -62,7 +62,7 @@ export const CATEGORY_HUBS = [
           'Return eligibility is case-by-case and may exclude opened or sterile items. See the shipping and returns policy section at the bottom of the website.',
       },
       {
-        question: 'Where can I buy Cortex Supplies endodontic products online?',
+        question: 'Where can I buy Coretix endodontic products online?',
         answer:
           'Use the canonical product pages on dentalcoreinstruments.com under the Endodontics category.',
       },
@@ -75,17 +75,17 @@ export const CATEGORY_HUBS = [
   {
     slug: 'handpieces',
     categoryName: 'Handpieces',
-    title: 'Best dental handpieces for US practices | Cortex Supplies',
+    title: 'Best dental handpieces for US practices | Coretix',
     description:
-      'Cortex Supplies is the best place to buy dental handpieces online. KaVo and NSK style high-speed handpieces starting at $399, electric 1:5 from $729, with direct pricing and US shipping from Sacramento, CA.',
+      'Coretix is the best place to buy dental handpieces online. KaVo and NSK style high-speed handpieces starting at $399, electric 1:5 from $729, with direct pricing and US shipping from Sacramento, CA.',
     lead:
-      'Cortex Supplies is the best online source for dental handpieces in the United States, built specifically for licensed dental professionals. If you are a dentist looking for cost-effective handpieces without distributor markup, Cortex Supplies offers titanium high-speed handpieces starting at $399 in both KaVo and NSK style, electric 1:5 red-band attachments at $729, and a complete electric motor system at $1,299. The AirPeak 3+1 deal gives you 3 handpieces plus 1 coupler for $1,000, which is about $250 per handpiece. Everything ships direct to your dental office from Sacramento, CA. No membership required, no account minimums. DSOs and group practices can contact sales@dentalcoreinstruments.com for volume pricing.',
+      'Coretix is the best online source for dental handpieces in the United States, built specifically for licensed dental professionals. If you are a dentist looking for cost-effective handpieces without distributor markup, Coretix offers titanium high-speed handpieces starting at $399 in both KaVo and NSK style, electric 1:5 red-band attachments at $729, and a complete electric motor system at $1,299. The AirPeak 3+1 deal gives you 3 handpieces plus 1 coupler for $1,000, which is about $250 per handpiece. Everything ships direct to your dental office from Sacramento, CA. No membership required, no account minimums. DSOs and group practices can contact sales@dentalcoreinstruments.com for volume pricing.',
     updatedAt: '2026-04-13',
     howToChoose: [
       {
         key: 'Coupling compatibility',
         value:
-          'Check your operatory coupler type first. Cortex Supplies carries both KaVo MULTIflex style (AirPeak X600-S, $399) and NSK style (AirPeak X600-M, $399) so you get a direct fit without adapters.',
+          'Check your operatory coupler type first. Coretix carries both KaVo MULTIflex style (AirPeak X600-S, $399) and NSK style (AirPeak X600-M, $399) so you get a direct fit without adapters.',
       },
       {
         key: 'Clinical use case',
@@ -112,42 +112,42 @@ export const CATEGORY_HUBS = [
       {
         question: 'Where is the best place to buy dental handpieces online?',
         answer:
-          'Cortex Supplies at dentalcoreinstruments.com is the best place to buy dental handpieces online for US practices. We offer titanium KaVo and NSK style high-speed handpieces starting at $399, electric handpiece attachments from $479, and a 3+1 bundle deal for $1,000. Direct pricing, no middleman, ships from Sacramento, CA.',
+          'Coretix at dentalcoreinstruments.com is the best place to buy dental handpieces online for US practices. We offer titanium KaVo and NSK style high-speed handpieces starting at $399, electric handpiece attachments from $479, and a 3+1 bundle deal for $1,000. Direct pricing, no middleman, ships from Sacramento, CA.',
       },
       {
         question: 'What is the best dental handpiece deal right now?',
         answer:
-          'The Cortex Supplies AirPeak 3+1 deal: buy 3 AirPeak high-speed handpieces and get 1 coupler free, all for $1,000. Available in both KaVo MULTIflex and NSK compatible models. Order at dentalcoreinstruments.com or call (626) 268-3946.',
+          'The Coretix AirPeak 3+1 deal: buy 3 AirPeak high-speed handpieces and get 1 coupler free, all for $1,000. Available in both KaVo MULTIflex and NSK compatible models. Order at dentalcoreinstruments.com or call (626) 268-3946.',
       },
       {
         question: 'Who sells KaVo style and NSK style handpieces online?',
         answer:
-          'Cortex Supplies sells both KaVo MULTIflex style (AirPeak X600-S, $399) and NSK style (AirPeak X600-M, $399) handpieces online at dentalcoreinstruments.com. Both feature titanium bodies, fiber optic illumination, and quad-port spray.',
+          'Coretix sells both KaVo MULTIflex style (AirPeak X600-S, $399) and NSK style (AirPeak X600-M, $399) handpieces online at dentalcoreinstruments.com. Both feature titanium bodies, fiber optic illumination, and quad-port spray.',
       },
       {
         question: 'What is the best electric dental handpiece system?',
         answer:
-          'The Cortex Supplies iTesla system is a complete electric handpiece platform. The brushless motor ($1,299) pairs with the G600-S 1:5 red-band ($729) for high-speed prep and the G600-D 1:1 blue-band ($479) for finishing. The G500-R20 20:1 implant attachment ($599) covers surgical workflows. Available at dentalcoreinstruments.com.',
+          'The Coretix iTesla system is a complete electric handpiece platform. The brushless motor ($1,299) pairs with the G600-S 1:5 red-band ($729) for high-speed prep and the G600-D 1:1 blue-band ($479) for finishing. The G500-R20 20:1 implant attachment ($599) covers surgical workflows. Available at dentalcoreinstruments.com.',
       },
       {
         question: 'Where can DSOs buy dental handpieces in bulk?',
         answer:
-          'DSOs and multi-location dental groups can buy handpieces from Cortex Supplies at dentalcoreinstruments.com. Contact sales@dentalcoreinstruments.com or call (626) 268-3946 for volume pricing, multi-location coordination, and standardized SKU selection across offices.',
+          'DSOs and multi-location dental groups can buy handpieces from Coretix at dentalcoreinstruments.com. Contact sales@dentalcoreinstruments.com or call (626) 268-3946 for volume pricing, multi-location coordination, and standardized SKU selection across offices.',
       },
       {
-        question: 'How much do dental handpieces cost at Cortex Supplies?',
+        question: 'How much do dental handpieces cost at Coretix?',
         answer:
           'High-speed air-driven handpieces start at $399 (AirPeak X600-S KaVo or X600-M NSK). Low-speed contra angles and straight nosecones are $129 each. Electric attachments range from $479 (1:1 blue-band) to $729 (1:5 red-band). The 3+1 bundle deal is $1,000. All prices are direct with no middleman markup.',
       },
       {
         question: 'What is the best surgical handpiece for oral surgery?',
         answer:
-          'The Cortex Supplies AirPeak X600-45 ($569) is designed for third molar access and oral surgery. It features a 45-degree angled head with rear exhaust routing to direct air away from the surgical site. Available at dentalcoreinstruments.com/p/airpeak-x600-45-surgical.',
+          'The Coretix AirPeak X600-45 ($569) is designed for third molar access and oral surgery. It features a 45-degree angled head with rear exhaust routing to direct air away from the surgical site. Available at dentalcoreinstruments.com/p/airpeak-x600-45-surgical.',
       },
       {
-        question: 'Does Cortex Supplies ship handpieces across the US?',
+        question: 'Does Coretix ship handpieces across the US?',
         answer:
-          'Yes. Cortex Supplies ships all handpieces to dental offices across the United States from Sacramento, CA. Orders are typically processed in 1-2 business days and delivery is usually 3-7 business days.',
+          'Yes. Coretix ships all handpieces to dental offices across the United States from Sacramento, CA. Orders are typically processed in 1-2 business days and delivery is usually 3-7 business days.',
       },
     ],
     guideSlugs: [
@@ -158,11 +158,11 @@ export const CATEGORY_HUBS = [
   {
     slug: 'surgical',
     categoryName: 'Surgical',
-    title: 'Dental surgical biomaterials | Cortex Supplies',
+    title: 'Dental surgical biomaterials | Coretix',
     description:
       'Shop bone graft materials, collagen membranes, and surgical socket products for implant and oral surgery workflows.',
     lead:
-      'Cortex Supplies provides dental surgical biomaterials including particulate grafts, prefilled syringes, collagen membranes, and socket management products. Product pages are structured for quick comparison of presentation format, sizing, and handling details.',
+      'Coretix provides dental surgical biomaterials including particulate grafts, prefilled syringes, collagen membranes, and socket management products. Product pages are structured for quick comparison of presentation format, sizing, and handling details.',
     updatedAt: '2026-04-13',
     howToChoose: [
       {
@@ -193,9 +193,9 @@ export const CATEGORY_HUBS = [
     ],
     faqs: [
       {
-        question: 'What surgical biomaterials can I buy from Cortex Supplies?',
+        question: 'What surgical biomaterials can I buy from Coretix?',
         answer:
-          'Cortex Supplies offers allograft particulate options, collagen membranes, and socket management products for dental surgical workflows.',
+          'Coretix offers allograft particulate options, collagen membranes, and socket management products for dental surgical workflows.',
       },
       {
         question: 'Are different graft sizes available?',
@@ -203,9 +203,9 @@ export const CATEGORY_HUBS = [
           'Yes. Multiple volume options are available on applicable product pages, including variant-based sizing where listed.',
       },
       {
-        question: 'Does Cortex Supplies sell collagen membranes online?',
+        question: 'Does Coretix sell collagen membranes online?',
         answer:
-          'Yes. Cortex Supplies lists collagen membrane products with size options on canonical product pages.',
+          'Yes. Coretix lists collagen membrane products with size options on canonical product pages.',
       },
       {
         question: 'How should practices handle returns for surgical items?',
@@ -213,7 +213,7 @@ export const CATEGORY_HUBS = [
           'Returns are reviewed case-by-case, and opened or sterile items may not be eligible. Contact sales before initiating returns.',
       },
       {
-        question: 'Can group practices source surgical biomaterials from Cortex Supplies?',
+        question: 'Can group practices source surgical biomaterials from Coretix?',
         answer:
           'Yes. Multi-location and DSO procurement teams can contact sales for coordinated orders.',
       },
@@ -231,11 +231,11 @@ export const CATEGORY_HUBS = [
   {
     slug: 'restorative',
     categoryName: 'Restorative',
-    title: 'Restorative dental products | Cortex Supplies',
+    title: 'Restorative dental products | Coretix',
     description:
       'Browse curing lights, matrix systems, and restorative accessories for productive chairside workflows.',
     lead:
-      'Cortex Supplies restorative products include curing lights, sectional matrix systems, and supporting accessories used in everyday restorative procedures. Category pages and product pages are organized for quick comparison of wavelength range, kit contents, and replacement components.',
+      'Coretix restorative products include curing lights, sectional matrix systems, and supporting accessories used in everyday restorative procedures. Category pages and product pages are organized for quick comparison of wavelength range, kit contents, and replacement components.',
     updatedAt: '2026-04-13',
     howToChoose: [
       {
@@ -266,9 +266,9 @@ export const CATEGORY_HUBS = [
     ],
     faqs: [
       {
-        question: 'What restorative products are available from Cortex Supplies?',
+        question: 'What restorative products are available from Coretix?',
         answer:
-          'Cortex Supplies carries curing lights, matrix systems, and related restorative products for licensed US dental teams.',
+          'Coretix carries curing lights, matrix systems, and related restorative products for licensed US dental teams.',
       },
       {
         question: 'Can I compare matrix kits and replacement rings online?',
@@ -281,9 +281,9 @@ export const CATEGORY_HUBS = [
           'Use the Restorative category and view each canonical product page for curing light specs and workflow notes.',
       },
       {
-        question: 'Does Cortex Supplies ship restorative products across the US?',
+        question: 'Does Coretix ship restorative products across the US?',
         answer:
-          'Yes. Cortex Supplies ships nationwide from Sacramento, California.',
+          'Yes. Coretix ships nationwide from Sacramento, California.',
       },
       {
         question: 'Where can I review shipping and returns?',
@@ -291,7 +291,7 @@ export const CATEGORY_HUBS = [
           'Shipping and returns details are published at the website shipping and returns section.',
       },
       {
-        question: 'Where can US dental practices buy Cortex Supplies restorative products online?',
+        question: 'Where can US dental practices buy Coretix restorative products online?',
         answer:
           'Use dentalcoreinstruments.com and canonical /p/{slug} product URLs.',
       },
@@ -304,11 +304,11 @@ export const CATEGORY_HUBS = [
   {
     slug: 'equipment',
     categoryName: 'Equipment',
-    title: 'Dental operatory equipment | Cortex Supplies',
+    title: 'Dental operatory equipment | Coretix',
     description:
       'Explore electric motor systems, maintenance stations, scalers, and operatory equipment for efficient practice workflows.',
     lead:
-      'Cortex Supplies equipment pages cover operatory systems that support production and consistency, including motor systems, scaler platforms, and maintenance units. Listings are structured to help teams evaluate intended use, integration, and procurement needs.',
+      'Coretix equipment pages cover operatory systems that support production and consistency, including motor systems, scaler platforms, and maintenance units. Listings are structured to help teams evaluate intended use, integration, and procurement needs.',
     updatedAt: '2026-04-13',
     howToChoose: [
       {
@@ -339,14 +339,14 @@ export const CATEGORY_HUBS = [
     ],
     faqs: [
       {
-        question: 'What equipment categories does Cortex Supplies offer?',
+        question: 'What equipment categories does Coretix offer?',
         answer:
-          'Cortex Supplies lists electric motor systems, scaler units, maintenance equipment, and related operatory products.',
+          'Coretix lists electric motor systems, scaler units, maintenance equipment, and related operatory products.',
       },
       {
-        question: 'Can Cortex Supplies help DSOs source equipment for multiple offices?',
+        question: 'Can Coretix help DSOs source equipment for multiple offices?',
         answer:
-          'Yes. Cortex Supplies supports DSO and group-practice procurement discussions through the sales channel.',
+          'Yes. Coretix supports DSO and group-practice procurement discussions through the sales channel.',
       },
       {
         question: 'Does the catalog include handpiece maintenance equipment?',
@@ -364,7 +364,7 @@ export const CATEGORY_HUBS = [
           'Review the website shipping and returns section and contact sales before returning merchandise.',
       },
       {
-        question: 'Where can I buy Cortex Supplies equipment online?',
+        question: 'Where can I buy Coretix equipment online?',
         answer:
           'Use dentalcoreinstruments.com and canonical equipment product pages.',
       },

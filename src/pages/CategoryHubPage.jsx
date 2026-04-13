@@ -43,8 +43,8 @@ export default function CategoryHubPage() {
             canonicalUrl: `${SITE_URL}/c/${hub.slug}`,
           }
         : {
-            title: 'Category | Cortex Supplies',
-            description: 'Dental product category at Cortex Supplies.',
+            title: 'Category | Coretix',
+            description: 'Dental product category at Coretix.',
             canonicalUrl: `${SITE_URL}/`,
           },
     [hub],
@@ -112,7 +112,7 @@ export default function CategoryHubPage() {
             Category Hub
           </p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter uppercase text-[#111] max-w-4xl leading-[1.08]">
-            {hub.categoryName} at Cortex Supplies
+            {hub.categoryName} at Coretix
           </h1>
           <p className="mt-6 text-sm sm:text-base text-[#111]/70 font-body leading-relaxed max-w-3xl">
             {hub.lead}
