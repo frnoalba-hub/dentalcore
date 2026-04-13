@@ -19,7 +19,7 @@ export default function GroupPractices() {
     <div className="antialiased min-h-screen bg-[#FDFDFD]">
       <JsonLdSchema />
       <Header />
-      <main className="pt-[104px] pb-20 lg:pb-28">
+      <main className="pt-[84px] pb-20 lg:pb-28">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <p className="text-xs uppercase tracking-[0.25em] font-bold text-[#111]/40 mb-3">
             Procurement

@@ -99,7 +99,7 @@ export default function BuyerGuidePage() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
       <Header />
-      <main className="pt-[104px] pb-24">
+      <main className="pt-[84px] pb-24">
         <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
           <p className="text-xs uppercase tracking-[0.24em] text-[#111]/40 font-semibold mb-3">Buyer Guide</p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter text-[#111] leading-[1.08] max-w-5xl">

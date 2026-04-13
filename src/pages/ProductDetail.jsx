@@ -170,7 +170,7 @@ export default function ProductDetail() {
       <CartDrawer />
 
       {/* Breadcrumb */}
-      <div className="pt-[104px] border-b border-[#111]/10 px-6 lg:px-12 bg-white/60 shadow-card backdrop-blur-sm">
+      <div className="pt-[84px] border-b border-[#111]/10 px-6 lg:px-12 bg-white/60 shadow-card backdrop-blur-sm">
         <div className="max-w-[1600px] mx-auto flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm uppercase tracking-widest text-[#111]/45 py-4 sm:py-5">
           <Link to="/#catalog" className="hover:text-[#111] text-[#111]/55 font-semibold transition-colors flex items-center gap-1 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2">
             <ArrowLeft className="w-3 h-3 shrink-0" /> Catalog

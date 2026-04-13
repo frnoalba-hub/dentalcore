@@ -106,7 +106,7 @@ export default function CategoryHubPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Header />
-      <main className="pt-[104px] pb-24">
+      <main className="pt-[84px] pb-24">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <p className="text-xs uppercase tracking-[0.25em] text-[#111]/40 font-semibold mb-3">
             Category Hub

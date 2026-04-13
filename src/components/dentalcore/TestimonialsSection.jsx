@@ -24,7 +24,7 @@ export default function TestimonialsSection() {
   const { t, dynamicT } = useTranslation();
 
   return (
-    <section id="testimonials" className="py-24 lg:py-28 bg-[#0d0d0d] border-b border-white/10 scroll-mt-[104px]">
+    <section id="testimonials" className="py-24 lg:py-28 bg-[#0d0d0d] border-b border-white/10 scroll-mt-[84px]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-14 lg:mb-16">
           <div className="max-w-3xl">
