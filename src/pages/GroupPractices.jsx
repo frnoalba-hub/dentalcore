@@ -9,6 +9,7 @@ import {
   groupPracticeSourcingDiscoveryParagraph,
 } from '@/lib/generativeOptimizationEngine';
 import { usePageSeo } from '@/hooks/usePageSeo';
+import { trackEngagementEvent } from '@/lib/trackEvent';
 
 export default function GroupPractices() {
   const staticPage = useMemo(() => getGroupPracticesPageSeo(), []);
@@ -44,12 +45,24 @@ export default function GroupPractices() {
             </Link>
             <a
               href={`mailto:${companyInfo.email}`}
+              onClick={() =>
+                trackEngagementEvent('contact_click', {
+                  method: 'email',
+                  location: 'group_practices',
+                })
+              }
               className="inline-flex items-center justify-center px-6 py-3 text-xs font-semibold tracking-widest uppercase border border-[#111]/20 text-[#111] hover:border-[#111]/40 transition-colors rounded-sm"
             >
               Email {companyInfo.email}
             </a>
             <a
               href={`tel:${companyInfo.phone.replace(/\D/g, '')}`}
+              onClick={() =>
+                trackEngagementEvent('phone_click', {
+                  event_category: 'engagement',
+                  location: 'group_practices',
+                })
+              }
               className="text-sm text-[#111]/60 font-body hover:text-[#111] transition-colors"
             >
               {companyInfo.phone}

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Search, Package, Truck, CheckCircle, Clock, MapPin, ArrowLeft, Loader2, AlertCircle, Box } from 'lucide-react';
+import { Search, Package, CheckCircle, ArrowLeft, Loader2, AlertCircle } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { companyInfo } from '@/components/dentalcore/productsData';
 import OrderStatusTimeline from '@/components/order/OrderStatusTimeline';
 import OrderDetails from '@/components/order/OrderDetails';
+import { trackEngagementEvent } from '@/lib/trackEvent';
 
 const STEPS = ['confirmed', 'processing', 'shipped', 'out_for_delivery', 'delivered'];
 
@@ -27,6 +28,11 @@ export default function OrderTracking() {
         email: email.trim(),
       });
       setOrder(res.data);
+      if (res.data) {
+        trackEngagementEvent('order_tracking_lookup', {
+          event_category: 'engagement',
+        });
+      }
     } catch (err) {
       setError(err.response?.data?.error || 'Something went wrong. Please try again.');
     } finally {
@@ -144,9 +150,31 @@ export default function OrderTracking() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }} className="border-t border-[#111]/10 pt-8 mt-8">
             <p className="text-sm text-[#111]/50 font-body">
               Need help? Contact us at{' '}
-              <a href={`mailto:${companyInfo.email}`} className="text-accent hover:underline">{companyInfo.email}</a>
+              <a
+                href={`mailto:${companyInfo.email}`}
+                onClick={() =>
+                  trackEngagementEvent('contact_click', {
+                    method: 'email',
+                    location: 'order_tracking',
+                  })
+                }
+                className="text-accent hover:underline"
+              >
+                {companyInfo.email}
+              </a>
               {' '}or call{' '}
-              <a href={`tel:${companyInfo.phone}`} className="text-accent hover:underline">{companyInfo.phone}</a>
+              <a
+                href={`tel:${companyInfo.phone}`}
+                onClick={() =>
+                  trackEngagementEvent('phone_click', {
+                    event_category: 'engagement',
+                    location: 'order_tracking',
+                  })
+                }
+                className="text-accent hover:underline"
+              >
+                {companyInfo.phone}
+              </a>
             </p>
           </motion.div>
         )}

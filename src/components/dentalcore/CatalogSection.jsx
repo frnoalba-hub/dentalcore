@@ -10,6 +10,7 @@ import { toast } from 'sonner';
 import { products as localProducts, getCatalogProductImage, isDuplicateApiCatalogRow } from './productsData';
 import { productRelativePath } from '@/lib/productPaths';
 import ProductQuickView from './ProductQuickView';
+import { CATEGORY_HUBS } from '@/lib/retailSeoContent';
 
 export default function CatalogSection() {
   const [filter, setFilter] = useState('All');
@@ -108,6 +109,24 @@ export default function CatalogSection() {
             <p className="text-sm text-[#111]/40 font-body">Professional dental supplies, equipment & biomaterials.</p>
           </div>
         </motion.div>
+
+        <div className="mb-8 flex flex-wrap gap-2">
+          {CATEGORY_HUBS.map((hub) => (
+            <Link
+              key={hub.slug}
+              to={`/c/${hub.slug}`}
+              className="text-[10px] uppercase tracking-[0.14em] border border-[#111]/15 bg-white px-3 py-2 rounded-sm text-[#111]/70 hover:text-[#111] hover:border-[#111]/35 transition-colors"
+            >
+              {hub.categoryName} hub
+            </Link>
+          ))}
+          <Link
+            to="/guides/air-driven-vs-electric-handpieces"
+            className="text-[10px] uppercase tracking-[0.14em] border border-accent/30 bg-accent/5 px-3 py-2 rounded-sm text-accent hover:bg-accent hover:text-white transition-colors"
+          >
+            Buyer guides
+          </Link>
+        </div>
 
         {/* Category Tabs */}
         <div className="border-b border-[#111]/10 mb-8 overflow-x-auto scrollbar-none">

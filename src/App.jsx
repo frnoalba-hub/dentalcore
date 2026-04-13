@@ -12,8 +12,11 @@ import AdminOrders from './pages/AdminOrders';
 import AdminDashboard from './pages/AdminDashboard';
 import ProductDetail from './pages/ProductDetail';
 import GroupPractices from './pages/GroupPractices';
+import CategoryHubPage from './pages/CategoryHubPage';
+import BuyerGuidePage from './pages/BuyerGuidePage';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
+import Analytics from '@/components/Analytics';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -80,6 +83,8 @@ const AuthenticatedApp = () => {
       <Route path="/product" element={<ProductDetail />} />
       <Route path="/ProductDetail" element={<LegacyProductPathRedirect />} />
       <Route path="/group-practices" element={<GroupPractices />} />
+      <Route path="/c/:categorySlug" element={<CategoryHubPage />} />
+      <Route path="/guides/:guideSlug" element={<BuyerGuidePage />} />
       <Route path="/track-order" element={<OrderTracking />} />
       <Route path="/OrderTracking" element={<LegacyOrderTrackingRedirect />} />
       <Route path="/admin/orders" element={<AdminOrders />} />
@@ -96,6 +101,7 @@ function App() {
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <Router>
+          <Analytics />
           <NavigationTracker />
           <AuthenticatedApp />
         </Router>

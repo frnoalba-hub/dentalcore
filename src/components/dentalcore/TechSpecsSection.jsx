@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Settings, Thermometer, Battery, Shield, Zap, Box } from 'lucide-react';
 

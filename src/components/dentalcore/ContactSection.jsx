@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { companyInfo } from './productsData';
 import { useTranslation } from '@/lib/i18n';
+import { trackEngagementEvent } from '@/lib/trackEvent';
 
 export default function ContactSection() {
   const { t } = useTranslation();
@@ -37,7 +38,16 @@ export default function ContactSection() {
           <p className="text-sm text-white/55 font-body leading-relaxed">
             <span className="text-white/80 font-medium">Returns:</span> Return eligibility is evaluated case by case for
             dental professionals. Contact{' '}
-            <a href={`mailto:${companyInfo.email}`} className="text-accent hover:underline">
+            <a
+              href={`mailto:${companyInfo.email}`}
+              onClick={() =>
+                trackEngagementEvent('contact_click', {
+                  method: 'email',
+                  location: 'contact_returns',
+                })
+              }
+              className="text-accent hover:underline"
+            >
               {companyInfo.email}
             </a>{' '}
             before returning merchandise. Opened or sterile items may not be eligible for return.
@@ -47,13 +57,31 @@ export default function ContactSection() {
         <div className="grid md:grid-cols-3 border border-white/10 rounded-card overflow-hidden bg-[#141414] shadow-modal">
           <div className="py-8 pr-8 pl-6 md:pl-8 border-b md:border-b-0 md:border-r border-white/10">
             <span className="text-xs text-white/40 uppercase tracking-widest block mb-4">{t('direct_line')}</span>
-            <a href={`tel:${companyInfo.phone}`} className="text-2xl font-medium hover:text-accent transition-colors rounded-sm">
+            <a
+              href={`tel:${companyInfo.phone}`}
+              onClick={() =>
+                trackEngagementEvent('phone_click', {
+                  event_category: 'engagement',
+                  location: 'contact_section',
+                })
+              }
+              className="text-2xl font-medium hover:text-accent transition-colors rounded-sm"
+            >
               {companyInfo.phone}
             </a>
           </div>
           <div className="py-8 px-6 md:px-8 border-b md:border-b-0 md:border-r border-white/10">
             <span className="text-xs text-white/40 uppercase tracking-widest block mb-4">{t('digital_support')}</span>
-            <a href={`mailto:${companyInfo.email}`} className="text-xl font-medium hover:text-accent transition-colors">
+            <a
+              href={`mailto:${companyInfo.email}`}
+              onClick={() =>
+                trackEngagementEvent('contact_click', {
+                  method: 'email',
+                  location: 'contact_section',
+                })
+              }
+              className="text-xl font-medium hover:text-accent transition-colors"
+            >
               {companyInfo.email}
             </a>
           </div>

@@ -1,7 +1,6 @@
 // Promo engine: evaluates cart items and returns applicable promotions
 // Each promo returns a discount line with label + amount
 
-import { products as catalog } from '../dentalcore/productsData';
 
 // IDs that qualify for "Buy 2, Get 1 Free" (use sale price per unit)
 const B2G1_IDS = new Set([

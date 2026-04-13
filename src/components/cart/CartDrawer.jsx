@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Minus, Plus, Loader2, Gift } from 'lucide-react';
+import { X, Loader2, Gift } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
 
 import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
 import { useTranslation } from '@/lib/i18n';
 import { calculatePromos } from '../store/promoEngine';
+import { trackEngagementEvent } from '@/lib/trackEvent';
 import { Tag } from 'lucide-react';
 
 export default function CartDrawer() {
@@ -35,6 +36,12 @@ export default function CartDrawer() {
       });
       
       if (response.data.url) {
+        trackEngagementEvent('begin_checkout', {
+          event_category: 'ecommerce',
+          currency: 'USD',
+          value: finalTotal,
+          items: getItemCount(),
+        });
         window.location.href = response.data.url;
       } else if (response.data.error) {
         toast.error(response.data.error);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Flame, Scissors, Activity } from 'lucide-react';
 

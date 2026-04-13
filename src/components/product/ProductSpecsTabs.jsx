@@ -7,15 +7,17 @@ export default function ProductSpecsTabs({ product }) {
   const hasSpecs = product.specs && Object.keys(product.specs).length > 0;
   const hasReviews = product.reviews?.length > 0;
   const hasFaqs = product.faqs?.length > 0;
+  const hasSources = product.sources?.length > 0;
 
   const tabs = [];
   if (hasFeatures) tabs.push('Features');
   if (hasSpecs) tabs.push('Specifications');
   if (hasFaqs) tabs.push('FAQ');
+  if (hasSources) tabs.push('Sources');
   if (hasReviews) tabs.push('Reviews');
-  if (tabs.length === 0) return null;
 
-  const [active, setActive] = useState(tabs[0]);
+  const [active, setActive] = useState(tabs[0] ?? '');
+  if (tabs.length === 0) return null;
 
   return (
     <div className="border-t border-[#111]/10 mt-16 pt-12">
@@ -76,6 +78,26 @@ export default function ProductSpecsTabs({ product }) {
               <h3 className="text-sm font-bold text-[#111] mb-2">{dynamicT(faq.question)}</h3>
               <p className="text-sm text-[#111]/70 font-body leading-relaxed">{dynamicT(faq.answer)}</p>
             </div>
+          ))}
+        </div>
+      )}
+
+      {active === 'Sources' && hasSources && (
+        <div className="max-w-3xl space-y-3">
+          {product.sources.map((source, i) => (
+            <article key={`${source.url}-${i}`} className="border border-[#111]/10 rounded-card shadow-card p-5 bg-white">
+              <a
+                href={source.url}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm font-semibold text-[#111] hover:text-accent transition-colors break-all"
+              >
+                {source.label}
+              </a>
+              {source.note && (
+                <p className="text-sm text-[#111]/60 font-body leading-relaxed mt-1">{source.note}</p>
+              )}
+            </article>
           ))}
         </div>
       )}

@@ -16,6 +16,51 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://www.dentalcoreinstruments.com/c/endodontics</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.86</priority>
+    </url>
+    <url>
+        <loc>https://www.dentalcoreinstruments.com/c/handpieces</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.86</priority>
+    </url>
+    <url>
+        <loc>https://www.dentalcoreinstruments.com/c/surgical</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.86</priority>
+    </url>
+    <url>
+        <loc>https://www.dentalcoreinstruments.com/c/restorative</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.86</priority>
+    </url>
+    <url>
+        <loc>https://www.dentalcoreinstruments.com/c/equipment</loc>
+        <changefreq>weekly</changefreq>
+        <priority>0.86</priority>
+    </url>
+    <url>
+        <loc>https://www.dentalcoreinstruments.com/guides/air-driven-vs-electric-handpieces</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.72</priority>
+    </url>
+    <url>
+        <loc>https://www.dentalcoreinstruments.com/guides/kavo-vs-nsk-couplers</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.72</priority>
+    </url>
+    <url>
+        <loc>https://www.dentalcoreinstruments.com/guides/ultrasonic-irrigation-workflow</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.72</priority>
+    </url>
+    <url>
+        <loc>https://www.dentalcoreinstruments.com/guides/socket-grafting-materials-guide</loc>
+        <changefreq>monthly</changefreq>
+        <priority>0.72</priority>
+    </url>
+    <url>
         <loc>https://www.dentalcoreinstruments.com/p/uc-cut</loc>
         <changefreq>weekly</changefreq>
         <priority>0.9</priority>

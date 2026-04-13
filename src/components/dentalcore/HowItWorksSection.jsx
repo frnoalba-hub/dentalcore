@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Waves, Target, Gauge, Scale } from 'lucide-react';
 

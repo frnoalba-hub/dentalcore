@@ -6,6 +6,7 @@ import { companyInfo, products as localProducts } from './productsData';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
 import { toast } from 'sonner';
+import { trackEngagementEvent } from '@/lib/trackEvent';
 
 const promos = [
   { text: 'AirPeak™ Handpieces — 3 + 1 Coupler for $1,000', productId: 'A1004-V2', qty: 3 },
@@ -28,6 +29,8 @@ export default function Header() {
     { label: t('featured'), id: 'featured' },
     { label: 'Reviews', id: 'testimonials' },
     { label: t('about'), id: 'about' },
+    { label: 'Guides', to: '/guides/air-driven-vs-electric-handpieces' },
+    { label: 'Handpieces', to: '/c/handpieces' },
     { label: 'DSOs & groups', to: '/group-practices' },
   ];
   const itemCount = getItemCount();
@@ -148,6 +151,12 @@ export default function Header() {
 
               <a
                 href={`mailto:${companyInfo.email}`}
+                onClick={() =>
+                  trackEngagementEvent('contact_click', {
+                    method: 'email',
+                    location: 'header_desktop',
+                  })
+                }
                 className="hidden xl:flex items-center gap-1 text-xs font-semibold tracking-widest uppercase text-[#111]/50 hover:text-[#111] transition-colors"
               >
                 Contact <ArrowUpRight className="w-3.5 h-3.5" />
@@ -231,10 +240,28 @@ export default function Header() {
                   Track Order
                 </Link>
                 <div className="mt-auto pt-8 border-t border-[#111]/10 flex flex-col gap-4">
-                  <a href={`tel:${companyInfo.phone}`} className="text-sm uppercase tracking-wide text-[#111]/60 mt-4">
+                  <a
+                    href={`tel:${companyInfo.phone}`}
+                    onClick={() =>
+                      trackEngagementEvent('phone_click', {
+                        event_category: 'engagement',
+                        location: 'header_mobile_menu',
+                      })
+                    }
+                    className="text-sm uppercase tracking-wide text-[#111]/60 mt-4"
+                  >
                     {companyInfo.phone}
                   </a>
-                  <a href={`mailto:${companyInfo.email}`} className="text-sm uppercase tracking-wide text-[#111]/60">
+                  <a
+                    href={`mailto:${companyInfo.email}`}
+                    onClick={() =>
+                      trackEngagementEvent('contact_click', {
+                        method: 'email',
+                        location: 'header_mobile_menu',
+                      })
+                    }
+                    className="text-sm uppercase tracking-wide text-[#111]/60"
+                  >
                     {companyInfo.email}
                   </a>
                 </div>

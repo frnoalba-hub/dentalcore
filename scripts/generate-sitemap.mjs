@@ -6,6 +6,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { CATEGORY_HUB_PATHS, BUYER_GUIDE_PATHS } from '../src/lib/retailSeoContent.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -68,6 +69,8 @@ function main() {
     [SITE_URL + '/', 'weekly', '1.0'],
     [SITE_URL + '/group-practices', 'monthly', '0.75'],
     [SITE_URL + '/track-order', 'weekly', '0.8'],
+    ...CATEGORY_HUB_PATHS.map((p) => [SITE_URL + p, 'weekly', '0.86']),
+    ...BUYER_GUIDE_PATHS.map((p) => [SITE_URL + p, 'monthly', '0.72']),
   ];
 
   const productUrls = slugEntries.map(({ slug }) => [
