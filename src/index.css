@@ -39,7 +39,7 @@
 
 @layer components {
   .section-label {
-    @apply text-[#111] font-medium tracking-[0.1em] text-xs uppercase mb-6 block;
+    @apply text-[#111] font-medium tracking-[0.1em] text-sm uppercase mb-6 block;
     font-family: var(--font-sans);
   }
 

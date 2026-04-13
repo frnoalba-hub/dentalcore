@@ -7,7 +7,7 @@ const useContentStore = create(
     (set, get) => ({
       // Content data (defaults, will be overwritten by GitHub data)
       businessInfo: {
-        name: 'Coretix',
+        name: 'Cortex Supplies',
         phone: '(626) 214-6598',
         email: 'frno.alba@gmail.com',
         location: 'California, USA',
@@ -18,7 +18,7 @@ const useContentStore = create(
         { label: 'Use Cases', id: 'use-cases' },
         { label: 'How It Works', id: 'how-it-works' },
         { label: 'Gallery', id: 'gallery' },
-        { label: 'Catalog', id: 'catalog' },
+        { label: 'Products', id: 'catalog' },
         { label: 'Specs', id: 'specs' },
         { label: 'FAQ', id: 'faq' },
         { label: 'About', id: 'about' },
@@ -48,9 +48,9 @@ const useContentStore = create(
 
       aboutContent: {
         tagline: 'Our Story',
-        title: 'About Coretix',
+        title: 'About Cortex Supplies',
         paragraphs: [
-          'Coretix is a dentist-focused distributor based in California. We are dedicated to bringing practical, high-value innovations like the UC CUT by EPDENT directly to local dental practices.',
+          'Cortex Supplies is a dentist-focused distributor based in California. We are dedicated to bringing practical, high-value innovations like the UC CUT by EPDENT directly to local dental practices.',
           'We believe in a simple approach: start with local practices, build real relationships, and provide personal support. Unlike massive corporate distributors, we are agile, responsive, and truly care about your clinical success.'
         ],
         values: [

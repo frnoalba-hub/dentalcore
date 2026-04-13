@@ -95,15 +95,15 @@ export default function CatalogSection() {
   };
 
   return (
-    <section id="catalog" className="py-24 lg:py-28 bg-[#FDFDFD] scroll-mt-[100px]">
+    <section id="catalog" className="pt-8 pb-24 sm:pt-12 lg:py-28 bg-[#FDFDFD] scroll-mt-[104px]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
 
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.25em] text-[#111]/35 font-semibold mb-3 flex items-center gap-3">
+            <p className="text-xs uppercase tracking-[0.25em] text-[#111]/35 font-semibold mb-3 flex items-center gap-3">
               <span className="inline-block w-6 h-px bg-[#111]/30" />
-              {t('catalog') || 'Catalog'}
+              {t('catalog') || 'Products'}
             </p>
             <h2 className="section-title mb-1">{t('index')}</h2>
             <p className="text-sm text-[#111]/40 font-body">Professional dental supplies, equipment & biomaterials.</p>
@@ -115,14 +115,14 @@ export default function CatalogSection() {
             <Link
               key={hub.slug}
               to={`/c/${hub.slug}`}
-              className="text-[10px] uppercase tracking-[0.14em] border border-[#111]/15 bg-white px-3 py-2 rounded-sm text-[#111]/70 hover:text-[#111] hover:border-[#111]/35 transition-colors"
+              className="text-[11px] uppercase tracking-[0.14em] border border-[#111]/15 bg-white px-4 py-2.5 rounded-sm text-[#111]/70 hover:text-[#111] hover:border-[#111]/35 transition-colors"
             >
               {hub.categoryName} hub
             </Link>
           ))}
           <Link
             to="/guides/air-driven-vs-electric-handpieces"
-            className="text-[10px] uppercase tracking-[0.14em] border border-accent/30 bg-accent/5 px-3 py-2 rounded-sm text-accent hover:bg-accent hover:text-white transition-colors"
+            className="text-[11px] uppercase tracking-[0.14em] border border-accent/30 bg-accent/5 px-4 py-2.5 rounded-sm text-accent hover:bg-accent hover:text-white transition-colors"
           >
             Buyer guides
           </Link>
@@ -136,7 +136,7 @@ export default function CatalogSection() {
                 type="button"
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-5 py-3.5 text-[10px] font-bold uppercase tracking-[0.15em] transition-all border-b-2 whitespace-nowrap rounded-t-sm ${
+                className={`px-5 py-4 text-[11px] font-bold uppercase tracking-[0.15em] transition-all border-b-2 whitespace-nowrap rounded-t-sm ${
                   filter === cat
                     ? 'border-accent text-[#111]'
                     : 'border-transparent text-[#111]/35 hover:text-[#111] hover:border-[#111]/20'
@@ -195,7 +195,7 @@ export default function CatalogSection() {
                   to={productRelativePath(product)}
                   className="group/link block h-full rounded-card focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#FDFDFD]"
                 >
-                  <article className="group relative h-full flex flex-col bg-white border-r border-b border-[#111]/10 shadow-card transition-all duration-300 hover:border-[#111]/25 hover:shadow-card-hover hover:-translate-y-0.5">
+                  <article className="group relative h-full flex flex-col bg-white border-r border-b border-[#111]/10 shadow-card transition-all duration-300 hover:border-[#111]/25 hover:shadow-card-hover hover:-translate-y-1">
                    <div className="relative aspect-square px-8 pb-8 pt-14 overflow-hidden bg-gradient-to-b from-[#FAFAFA] to-[#F2F2F2] group-hover:from-[#F5F5F5] group-hover:to-[#EBEBEB] transition-all duration-300">
                      <img
                        src={getCatalogProductImage(product)}
@@ -203,7 +203,7 @@ export default function CatalogSection() {
                        className="w-full h-full object-contain object-bottom mix-blend-multiply transition-transform duration-700 group-hover:scale-[1.07]"
                      />
                      <div className="absolute top-3 left-3 flex gap-1.5">
-                       <span className="text-[9px] uppercase tracking-[0.12em] font-bold text-[#111]/40 border border-[#111]/10 px-2 py-1 bg-white/90 backdrop-blur-sm">
+                       <span className="text-[10px] uppercase tracking-[0.12em] font-bold text-[#111]/40 border border-[#111]/10 px-2 py-1 bg-white/90 backdrop-blur-sm">
                          {dynamicT(product.category)}
                        </span>
                      </div>
@@ -219,24 +219,24 @@ export default function CatalogSection() {
                            setQuickViewProduct(product);
                          }
                        }}
-                       className="absolute bottom-3 right-3 z-10 w-9 h-9 bg-[#111] text-white flex items-center justify-center rounded-sm opacity-0 group-hover:opacity-100 hover:bg-accent active:scale-95 transition-all duration-200 shadow-card-hover pointer-events-none group-hover:pointer-events-auto"
+                      className="absolute bottom-3 right-3 z-10 w-10 h-10 bg-[#111] text-white flex items-center justify-center rounded-sm opacity-0 group-hover:opacity-100 hover:bg-accent active:scale-95 transition-all duration-200 shadow-card-hover pointer-events-none group-hover:pointer-events-auto"
                        title={product.variants?.length > 0 ? "Select Options" : "Quick add to cart"}
                      >
                        {product.variants?.length > 0 ? <Eye className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
                      </button>
                    </div>
 
-                   <div className="p-5 border-t border-[#111]/10 flex flex-col flex-1 justify-between">
+                   <div className="p-6 border-t border-[#111]/10 flex flex-col flex-1 justify-between">
                      <div>
                        {product.promo && (
-                         <span className="inline-block text-[9px] font-bold uppercase tracking-[0.12em] bg-accent text-white px-2 py-0.5 mb-2.5">
+                         <span className="inline-block text-[10px] font-bold uppercase tracking-[0.12em] bg-accent text-white px-2 py-0.5 mb-2.5">
                            {product.promo}
                          </span>
                        )}
-                       <h3 className="text-sm font-bold text-[#111] tracking-tight uppercase mb-1.5 leading-snug">
+                       <h3 className="text-base font-bold text-[#111] tracking-tight uppercase mb-1.5 leading-snug">
                          {dynamicT(product.name)}
                        </h3>
-                       <p className="text-xs text-[#111]/50 font-body line-clamp-2 leading-relaxed">
+                       <p className="text-sm text-[#111]/50 font-body line-clamp-2 leading-relaxed">
                          {dynamicT(product.description)}
                        </p>
                      </div>
@@ -244,16 +244,16 @@ export default function CatalogSection() {
                      <div className="mt-5 pt-4 border-t border-[#111]/8 flex items-center justify-between">
                        <div>
                          {product.originalPrice && (
-                           <p className="text-[10px] text-[#111]/35 line-through mb-0.5">
+                           <p className="text-[11px] text-[#111]/35 line-through mb-0.5">
                              ${typeof product.originalPrice === 'number' ? product.originalPrice.toFixed(2) : product.originalPrice}
                            </p>
                          )}
-                         <p className={`text-lg font-semibold tracking-tight ${product.originalPrice ? 'text-accent' : 'text-[#111]'}`}>
-                           {product.variants?.length > 0 && <span className="text-xs font-medium mr-0.5">From </span>}
+                         <p className={`text-xl font-semibold tracking-tight ${product.originalPrice ? 'text-accent' : 'text-[#111]'}`}>
+                           {product.variants?.length > 0 && <span className="text-sm font-medium mr-0.5">From </span>}
                            {typeof product.price === 'number' ? `$${product.price.toFixed(2)}` : (String(product.price).startsWith('$') ? product.price : `$${product.price}`)}
                          </p>
                        </div>
-                       <span className="text-[10px] font-bold uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                       <span className="text-[11px] font-bold uppercase tracking-widest text-accent opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
                          {product.variants?.length > 0 ? 'Options' : t('view_details')}
                          <ArrowUpRight className="w-3 h-3" />
                        </span>

@@ -20,7 +20,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [promoIndex, setPromoIndex] = useState(0);
   const { openCart, getItemCount, addItem } = useCartStore();
-  const { t, lang, setLang } = useTranslation();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -66,7 +66,7 @@ export default function Header() {
   return (
     <>
       {/* Promo announcement bar */}
-      <div className="fixed top-0 w-full z-50 bg-[#111] text-white h-9 flex items-center justify-center overflow-hidden border-b border-white/10 shadow-sm">
+      <div className="fixed top-0 w-full z-50 bg-[#111] text-white h-10 flex items-center justify-center overflow-hidden border-b border-white/10 shadow-sm">
         <AnimatePresence mode="wait">
           <motion.p
             key={promoIndex}
@@ -74,7 +74,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.4 }}
-            className="text-[10px] font-medium uppercase tracking-[0.15em] flex items-center gap-2"
+            className="text-[11px] font-medium uppercase tracking-[0.15em] flex items-center gap-2"
           >
             <span className="text-accent">●</span>
             {promos[promoIndex].text}
@@ -96,9 +96,9 @@ export default function Header() {
         </AnimatePresence>
       </div>
 
-      {/* Main header — offset by promo bar height (36px) */}
+      {/* Main header — offset by promo bar height (40px) */}
       <header
-        className={`fixed top-9 w-full z-50 transition-all duration-300 ${
+        className={`fixed top-10 w-full z-50 transition-all duration-300 ${
           scrolled
             ? 'bg-[#FDFDFD]/95 backdrop-blur-md border-b border-[#111]/10 shadow-card'
             : 'bg-[#FDFDFD] border-b border-[#111]/10'
@@ -108,9 +108,12 @@ export default function Header() {
           <div className="h-16 flex items-center justify-between">
 
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 group shrink-0" onClick={() => setMobileOpen(false)}>
-              <span className="text-lg font-bold tracking-widest uppercase text-[#111] group-hover:text-accent transition-colors duration-300">
-                CORETIX<span className="text-accent group-hover:text-[#111] transition-colors duration-300">.</span>
+            <Link to="/" className="flex flex-col group shrink-0 leading-none py-1" onClick={() => setMobileOpen(false)}>
+              <span className="text-xl font-bold tracking-widest uppercase text-[#111] group-hover:text-accent transition-colors duration-300">
+                CORTEX<span className="text-accent group-hover:text-[#111] transition-colors duration-300">.</span>
+              </span>
+              <span className="text-[9px] font-semibold tracking-[0.3em] uppercase text-[#111]/55 group-hover:text-[#111]/75 transition-colors mt-1">
+                SUPPLIES
               </span>
             </Link>
 
@@ -121,7 +124,7 @@ export default function Header() {
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="text-xs font-semibold tracking-widest uppercase text-[#111]/55 hover:text-[#111] transition-colors relative group py-1"
+                    className="text-[13px] font-semibold tracking-widest uppercase text-[#111]/55 hover:text-[#111] transition-colors relative group py-1"
                   >
                     {link.label}
                     <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out" />
@@ -131,7 +134,7 @@ export default function Header() {
                     key={link.id}
                     onClick={() => scrollTo(link.id)}
                     type="button"
-                    className="text-xs font-semibold tracking-widest uppercase text-[#111]/55 hover:text-[#111] transition-colors relative group py-1"
+                    className="text-[13px] font-semibold tracking-widest uppercase text-[#111]/55 hover:text-[#111] transition-colors relative group py-1"
                   >
                     {link.label}
                     <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300 ease-out" />
@@ -144,7 +147,7 @@ export default function Header() {
             <div className="flex items-center gap-5">
               <Link
                 to="/track-order"
-                className="hidden xl:flex items-center gap-1 text-xs font-semibold tracking-widest uppercase text-[#111]/50 hover:text-[#111] transition-colors"
+                className="hidden xl:flex items-center gap-1 text-[13px] font-semibold tracking-widest uppercase text-[#111]/50 hover:text-[#111] transition-colors"
               >
                 <Package className="w-3.5 h-3.5" /> Track Order
               </Link>
@@ -157,7 +160,7 @@ export default function Header() {
                     location: 'header_desktop',
                   })
                 }
-                className="hidden xl:flex items-center gap-1 text-xs font-semibold tracking-widest uppercase text-[#111]/50 hover:text-[#111] transition-colors"
+                className="hidden xl:flex items-center gap-1 text-[13px] font-semibold tracking-widest uppercase text-[#111]/50 hover:text-[#111] transition-colors"
               >
                 Contact <ArrowUpRight className="w-3.5 h-3.5" />
               </a>
@@ -167,7 +170,7 @@ export default function Header() {
                 onClick={openCart}
                 className="relative flex items-center gap-2 text-[#111] hover:text-accent transition-colors rounded-sm px-2 py-1.5 -mr-1 hover:bg-[#111]/[0.04] active:bg-[#111]/[0.07]"
               >
-                <span className="text-xs font-semibold tracking-widest uppercase hidden sm:block">Cart</span>
+                <span className="text-[13px] font-semibold tracking-widest uppercase hidden sm:block">Cart</span>
                 <div className="relative">
                   <ShoppingBag className="w-5 h-5" strokeWidth={1.5} />
                   {itemCount > 0 && (
@@ -183,7 +186,7 @@ export default function Header() {
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-expanded={mobileOpen}
                 aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-                className="lg:hidden text-[#111] p-2 -mr-2 rounded-sm hover:bg-[#111]/[0.04] active:bg-[#111]/[0.07] transition-colors"
+                className="lg:hidden text-[#111] p-3 -mr-3 rounded-sm hover:bg-[#111]/[0.04] active:bg-[#111]/[0.07] transition-colors"
               >
                 {mobileOpen ? <X className="w-5 h-5" strokeWidth={1.5} /> : <Menu className="w-5 h-5" strokeWidth={1.5} />}
               </button>
@@ -200,7 +203,7 @@ export default function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-x-0 top-[100px] bottom-0 z-[55] bg-[#111]/25 backdrop-blur-[2px] lg:hidden"
+              className="fixed inset-x-0 top-[104px] bottom-0 z-[55] bg-[#111]/25 backdrop-blur-[2px] lg:hidden"
               onClick={() => setMobileOpen(false)}
               aria-hidden
             />
@@ -209,7 +212,7 @@ export default function Header() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 24 }}
               transition={{ type: 'spring', damping: 28, stiffness: 320 }}
-              className="fixed inset-x-0 top-[100px] bottom-0 z-[56] bg-[#FDFDFD] lg:hidden overflow-y-auto border-t border-[#111]/10 shadow-drawer"
+              className="fixed inset-x-0 top-[104px] bottom-0 z-[56] bg-[#FDFDFD] lg:hidden overflow-y-auto border-t border-[#111]/10 shadow-drawer"
             >
               <nav className="flex flex-col p-8 gap-8 min-h-full max-w-lg">
                 {navLinks.map((link) =>
@@ -248,7 +251,7 @@ export default function Header() {
                         location: 'header_mobile_menu',
                       })
                     }
-                    className="text-sm uppercase tracking-wide text-[#111]/60 mt-4"
+                    className="text-base uppercase tracking-wide text-[#111]/60 mt-4"
                   >
                     {companyInfo.phone}
                   </a>
@@ -260,7 +263,7 @@ export default function Header() {
                         location: 'header_mobile_menu',
                       })
                     }
-                    className="text-sm uppercase tracking-wide text-[#111]/60"
+                    className="text-base uppercase tracking-wide text-[#111]/60"
                   >
                     {companyInfo.email}
                   </a>

@@ -19,16 +19,16 @@ export default function GroupPractices() {
     <div className="antialiased min-h-screen bg-[#FDFDFD]">
       <JsonLdSchema />
       <Header />
-      <main className="pt-[100px] pb-20 lg:pb-28">
+      <main className="pt-[104px] pb-20 lg:pb-28">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-          <p className="text-[10px] uppercase tracking-[0.25em] font-bold text-[#111]/40 mb-3">
+          <p className="text-xs uppercase tracking-[0.25em] font-bold text-[#111]/40 mb-3">
             Procurement
           </p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter uppercase text-[#111] max-w-3xl leading-[1.08]">
             Dental service organizations &amp; multi-location practices
           </h1>
           <p className="mt-6 text-sm sm:text-base text-[#111]/70 font-body leading-relaxed max-w-3xl">
-            Coretix supplies licensed US dental teams with professional handpieces, endodontic systems,
+            Cortex Supplies supplies licensed US dental teams with professional handpieces, endodontic systems,
             biomaterials, curing lights, and chairside equipment, shipped from Sacramento, California.
             DSOs and multi-location groups may review our catalog and contact sales for volume or consolidated
             orders.
@@ -41,7 +41,7 @@ export default function GroupPractices() {
               to="/#catalog"
               className="inline-flex items-center justify-center px-6 py-3 text-xs font-semibold tracking-widest uppercase bg-[#111] text-white hover:bg-[#111]/90 transition-colors rounded-sm"
             >
-              Browse catalog
+              Browse products
             </Link>
             <a
               href={`mailto:${companyInfo.email}`}

@@ -35,7 +35,7 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
       <div className="flex items-center gap-3 mb-4">
         <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">{dynamicT(product.category)}</span>
         {product.promo && (
-          <span className="text-[10px] font-bold uppercase tracking-widest bg-accent text-white px-2 py-1">
+          <span className="text-[11px] font-bold uppercase tracking-widest bg-accent text-white px-2 py-1">
             {product.promo}
           </span>
         )}
@@ -102,15 +102,15 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
       {/* Quantity + Add to Cart */}
       <div className="flex items-stretch gap-3 mb-8">
         <div className="flex items-center border border-[#111] bg-white rounded-sm overflow-hidden shadow-card">
-          <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-12 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-sm">−</button>
-          <span className="w-10 text-center text-sm font-medium">{quantity}</span>
-          <button type="button" onClick={() => setQuantity(quantity + 1)} className="w-10 h-12 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-sm">+</button>
+          <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-12 h-14 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-base">−</button>
+          <span className="w-12 text-center text-base font-medium">{quantity}</span>
+          <button type="button" onClick={() => setQuantity(quantity + 1)} className="w-12 h-14 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-base">+</button>
         </div>
         <button
           type="button"
           onClick={handleAddToCart}
           disabled={product.variants?.length > 0 && !selectedVariant}
-          className={`flex-1 flex items-center justify-between px-6 h-12 rounded-sm transition-all text-sm font-medium uppercase tracking-widest shadow-card active:scale-[0.99] disabled:active:scale-100 ${
+          className={`flex-1 flex items-center justify-between px-6 h-14 rounded-sm transition-all text-base font-medium uppercase tracking-widest shadow-card active:scale-[0.99] disabled:active:scale-100 ${
             added
               ? 'bg-green-600 text-white shadow-card-hover'
               : 'bg-[#111] text-white hover:bg-accent hover:shadow-card-hover disabled:opacity-45 disabled:cursor-not-allowed disabled:shadow-none'
@@ -132,8 +132,8 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
         ].map(({ icon: Icon, label, sub }) => (
           <div key={label} className="flex flex-col items-center text-center p-3 border border-[#111]/10 bg-white rounded-card shadow-card">
             <Icon className="w-4 h-4 text-[#111]/40 mb-1.5" strokeWidth={1.5} />
-            <span className="text-[10px] font-bold uppercase tracking-widest text-[#111]">{label}</span>
-            <span className="text-[9px] text-[#111]/40 mt-0.5">{sub}</span>
+            <span className="text-[11px] font-bold uppercase tracking-widest text-[#111]">{label}</span>
+            <span className="text-[10px] text-[#111]/40 mt-0.5">{sub}</span>
           </div>
         ))}
       </div>

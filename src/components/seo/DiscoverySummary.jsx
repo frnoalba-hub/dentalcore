@@ -1,6 +1,6 @@
 import { companyInfo } from '@/components/dentalcore/productsData';
 import {
-  coretixEntitySentence,
+  cortexSuppliesEntitySentence,
   homepageCatalogDiscoveryPrefix,
   groupPracticeSourcingDiscoveryParagraph,
 } from '@/lib/generativeOptimizationEngine';
@@ -17,12 +17,12 @@ export default function DiscoverySummary() {
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12 py-10 lg:py-12">
         <h2
           id="discovery-summary-heading"
-          className="text-[10px] uppercase tracking-[0.25em] font-bold text-[#111]/40 mb-3"
+          className="text-xs uppercase tracking-[0.25em] font-bold text-[#111]/40 mb-3"
         >
-          About Coretix
+          About Cortex Supplies
         </h2>
         <p className="text-sm sm:text-base text-[#111]/70 font-body leading-relaxed max-w-3xl">
-          {coretixEntitySentence()} {homepageCatalogDiscoveryPrefix}{' '}
+          {cortexSuppliesEntitySentence()} {homepageCatalogDiscoveryPrefix}{' '}
           <strong className="font-semibold text-[#111]">licensed dental professionals</strong> in the{' '}
           <strong className="font-semibold text-[#111]">United States</strong>.
         </p>

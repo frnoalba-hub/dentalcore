@@ -31,10 +31,10 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="text-[10px] uppercase tracking-[0.25em] text-[#111]/35 font-semibold mb-8 flex items-center gap-3"
+              className="text-xs uppercase tracking-[0.25em] text-[#111]/35 font-semibold mb-8 flex items-center gap-3"
             >
               <span className="inline-block w-6 h-px bg-[#111]/30" />
-              Coretix Dental Supply
+              Cortex Supplies
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -67,7 +67,7 @@ export default function HeroSection() {
               onClick={scrollToCatalog}
               className="group flex items-center justify-between border-b-2 border-[#111]/20 pb-4 text-[#111] hover:text-accent hover:border-accent transition-all duration-300 w-full sm:w-[85%]"
             >
-              <span className="text-xs uppercase tracking-[0.2em] font-semibold">Shop the Catalog</span>
+              <span className="text-sm uppercase tracking-[0.2em] font-semibold">Shop Products</span>
               <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
             </motion.button>
           </div>

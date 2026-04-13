@@ -43,8 +43,8 @@ export default function CategoryHubPage() {
             canonicalUrl: `${SITE_URL}/c/${hub.slug}`,
           }
         : {
-            title: 'Category | Coretix',
-            description: 'Dental product category at Coretix.',
+            title: 'Category | Cortex Supplies',
+            description: 'Dental product category at Cortex Supplies.',
             canonicalUrl: `${SITE_URL}/`,
           },
     [hub],
@@ -106,13 +106,13 @@ export default function CategoryHubPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Header />
-      <main className="pt-[100px] pb-24">
+      <main className="pt-[104px] pb-24">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-          <p className="text-[10px] uppercase tracking-[0.25em] text-[#111]/40 font-semibold mb-3">
+          <p className="text-xs uppercase tracking-[0.25em] text-[#111]/40 font-semibold mb-3">
             Category Hub
           </p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter uppercase text-[#111] max-w-4xl leading-[1.08]">
-            {hub.categoryName} at Coretix
+            {hub.categoryName} at Cortex Supplies
           </h1>
           <p className="mt-6 text-sm sm:text-base text-[#111]/70 font-body leading-relaxed max-w-3xl">
             {hub.lead}
@@ -144,7 +144,7 @@ export default function CategoryHubPage() {
                 to="/#catalog"
                 className="text-xs uppercase tracking-widest text-accent hover:text-[#111] transition-colors"
               >
-                View full catalog
+                View full shop
               </Link>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 border-t border-l border-[#111]/10">
@@ -161,9 +161,9 @@ export default function CategoryHubPage() {
                       className="w-full h-full object-contain"
                     />
                   </div>
-                  <p className="text-[10px] uppercase tracking-[0.16em] text-[#111]/45 mb-1">{product.id}</p>
-                  <h3 className="text-sm font-semibold text-[#111] leading-snug">{product.name}</h3>
-                  <p className="mt-2 text-xs text-[#111]/60 line-clamp-2">{product.description}</p>
+                  <p className="text-[11px] uppercase tracking-[0.16em] text-[#111]/45 mb-1">{product.id}</p>
+                  <h3 className="text-base font-semibold text-[#111] leading-snug">{product.name}</h3>
+                  <p className="mt-2 text-sm text-[#111]/60 line-clamp-2">{product.description}</p>
                 </Link>
               ))}
             </div>
@@ -180,7 +180,7 @@ export default function CategoryHubPage() {
                   to={`/guides/${guide.slug}`}
                   className="border border-[#111]/10 rounded-card bg-white shadow-card p-6 hover:border-[#111]/25 transition-colors"
                 >
-                  <p className="text-[10px] uppercase tracking-[0.18em] text-[#111]/45 mb-2">Guide</p>
+                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#111]/45 mb-2">Guide</p>
                   <h3 className="text-base font-semibold tracking-tight text-[#111] mb-2">{guide.title}</h3>
                   <p className="text-sm text-[#111]/65 leading-relaxed">{guide.description}</p>
                 </Link>

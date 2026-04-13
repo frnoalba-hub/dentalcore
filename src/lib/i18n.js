@@ -88,7 +88,7 @@ const productTranslations = {
 export const translations = {
   en: {
     lang_name: 'EN',
-    catalog: 'Catalog',
+    catalog: 'Products',
     featured: 'Featured',
     about: 'About',
     contact: 'Contact',
@@ -103,7 +103,7 @@ export const translations = {
     next_day: 'Next-Day Dispatch',
     clinical_support: 'Direct Clinical Support',
 
-    index: 'Index',
+    index: 'Shop',
     all: 'All',
     view_details: 'View Details',
     loading: 'Loading...',
@@ -113,7 +113,7 @@ export const translations = {
 
     clinical_feedback: 'Clinical Feedback',
 
-    about_title: 'About Dental Core Supplies',
+    about_title: 'About Cortex Supplies',
 
     operate_with: 'Operate with',
     precision: 'Precision.',
@@ -122,7 +122,7 @@ export const translations = {
     headquarters: 'Headquarters',
     all_rights_reserved: 'All Rights Reserved',
 
-    back_to_index: 'Back to Index',
+    back_to_index: 'Back to Shop',
     add_to_requisition: 'Add to Cart',
     core_specifications: 'Core Specifications',
 
@@ -135,7 +135,7 @@ export const translations = {
   },
   es: {
     lang_name: 'ES',
-    catalog: 'Catálogo',
+    catalog: 'Productos',
     featured: 'Destacado',
     about: 'Nosotros',
     contact: 'Contacto',
@@ -150,7 +150,7 @@ export const translations = {
     next_day: 'Envío al Día Siguiente',
     clinical_support: 'Soporte Clínico Directo',
 
-    index: 'Índice',
+    index: 'Tienda',
     all: 'Todos',
     view_details: 'Ver Detalles',
     loading: 'Cargando...',
@@ -160,7 +160,7 @@ export const translations = {
 
     clinical_feedback: 'Comentarios Clínicos',
 
-    about_title: 'Sobre Dental Core Supplies',
+    about_title: 'Sobre Cortex Supplies',
 
     operate_with: 'Opere con',
     precision: 'Precisión.',
@@ -169,7 +169,7 @@ export const translations = {
     headquarters: 'Sede Central',
     all_rights_reserved: 'Todos los derechos reservados',
 
-    back_to_index: 'Volver al Índice',
+    back_to_index: 'Volver a Tienda',
     add_to_requisition: 'Agregar al Carrito',
     core_specifications: 'Especificaciones Principales',
 

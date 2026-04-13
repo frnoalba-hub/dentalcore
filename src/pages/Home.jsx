@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useContentStore } from '../components/store/contentStore';
 import Header from '../components/dentalcore/Header';
+import HeroSection from '../components/dentalcore/HeroSection';
 import CatalogSection from '../components/dentalcore/CatalogSection';
 import FeaturedProductSection from '../components/dentalcore/FeaturedProductSection';
 import TestimonialsSection from '../components/dentalcore/TestimonialsSection';
@@ -39,6 +40,8 @@ export default function Home() {
       <JsonLdSchema />
       <FaqJsonLd />
       <Header />
+      <HeroSection />
+      <div className="border-t border-[#111]/5" aria-hidden />
       <CatalogSection />
       <DiscoverySummary />
       <FeaturedProductSection />

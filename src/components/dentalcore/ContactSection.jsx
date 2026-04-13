@@ -10,7 +10,7 @@ export default function ContactSection() {
     <section id="contact" className="py-24 lg:py-28 bg-[#111] text-white border-b border-white/10">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <div className="mb-12 lg:mb-16 max-w-3xl">
-          <p className="text-[10px] uppercase tracking-[0.25em] text-white/35 font-semibold mb-3 flex items-center gap-3">
+          <p className="text-xs uppercase tracking-[0.25em] text-white/35 font-semibold mb-3 flex items-center gap-3">
             <span className="inline-block w-6 h-px bg-white/25" />
             {t('contact') || 'Contact'}
           </p>

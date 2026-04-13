@@ -6,9 +6,9 @@ const DESC_MAX = 158;
 
 /** Matches index.html defaults; home route resets head to these after product pages. */
 export const DEFAULT_SEO = {
-  title: 'Coretix',
+  title: 'Cortex Supplies',
   description:
-    'Shop professional dental instruments at Coretix. High-speed handpieces, endodontic systems, curing lights, bone graft materials & more. Direct pricing for dentists. Sacramento, CA.',
+    'Shop professional dental instruments at Cortex Supplies. High-speed handpieces, endodontic systems, curing lights, bone graft materials & more. Direct pricing for dentists. Sacramento, CA.',
   canonicalUrl: `${SITE_URL}/`,
   ogImage: `${SITE_URL}/og-coretix.png?v=3`,
 };
@@ -122,7 +122,7 @@ export function usePageSeo({
 
     if (variant === 'notFound') {
       applyHead({
-        title: 'Product not found | Coretix',
+        title: 'Product not found | Cortex Supplies',
         description: DEFAULT_SEO.description,
         canonicalUrl: canonicalUrl || DEFAULT_SEO.canonicalUrl,
         ogImage: DEFAULT_SEO.ogImage,
@@ -140,10 +140,10 @@ export function usePageSeo({
     }
 
     if (variant === 'product' && productName && productSku) {
-      const title = `${productName} | ${productSku} | Coretix`;
+      const title = `${productName} | ${productSku} | Cortex Supplies`;
       const baseDesc =
         productDescription ||
-        `Buy ${productName} (${productSku}) — professional dental supply from Coretix, Sacramento CA.`;
+        `Buy ${productName} (${productSku}) — professional dental supply from Cortex Supplies, Sacramento CA.`;
       const description = `${baseDesc.replace(/\s+/g, ' ').trim()}${productMetaGeoSuffix()}`;
       const canon = canonicalUrl || DEFAULT_SEO.canonicalUrl;
       const og =

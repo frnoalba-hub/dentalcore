@@ -29,12 +29,12 @@ export default function BuyerGuidePage() {
     () =>
       guide
         ? {
-            title: `${guide.title} | Coretix`,
+            title: `${guide.title} | Cortex Supplies`,
             description: guide.description,
             canonicalUrl: `${SITE_URL}/guides/${guide.slug}`,
           }
         : {
-            title: 'Buyer guide | Coretix',
+            title: 'Buyer guide | Cortex Supplies',
             description: 'Buyer guide for dental procurement teams.',
             canonicalUrl: `${SITE_URL}/`,
           },
@@ -66,11 +66,11 @@ export default function BuyerGuidePage() {
     inLanguage: 'en-US',
     author: {
       '@type': 'Organization',
-      name: 'Coretix',
+      name: 'Cortex Supplies',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Coretix',
+      name: 'Cortex Supplies',
       url: SITE_URL,
     },
     mainEntityOfPage: `${SITE_URL}/guides/${guide.slug}`,
@@ -99,9 +99,9 @@ export default function BuyerGuidePage() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
       <Header />
-      <main className="pt-[100px] pb-24">
+      <main className="pt-[104px] pb-24">
         <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
-          <p className="text-[10px] uppercase tracking-[0.24em] text-[#111]/40 font-semibold mb-3">Buyer Guide</p>
+          <p className="text-xs uppercase tracking-[0.24em] text-[#111]/40 font-semibold mb-3">Buyer Guide</p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter text-[#111] leading-[1.08] max-w-5xl">
             {guide.title}
           </h1>
@@ -145,7 +145,7 @@ export default function BuyerGuidePage() {
 
           <section className="mt-12 grid gap-4 md:grid-cols-2">
             <article className="border border-[#111]/10 rounded-card bg-white shadow-card p-6">
-              <p className="text-[10px] uppercase tracking-[0.18em] text-[#111]/45 mb-2">Related categories</p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-[#111]/45 mb-2">Related categories</p>
               <div className="space-y-2">
                 {relatedCategories.map((category) => (
                   <Link
@@ -159,7 +159,7 @@ export default function BuyerGuidePage() {
               </div>
             </article>
             <article className="border border-[#111]/10 rounded-card bg-white shadow-card p-6">
-              <p className="text-[10px] uppercase tracking-[0.18em] text-[#111]/45 mb-2">More guides</p>
+              <p className="text-[11px] uppercase tracking-[0.18em] text-[#111]/45 mb-2">More guides</p>
               <div className="space-y-2">
                 {relatedGuides.map((related) => (
                   <Link
