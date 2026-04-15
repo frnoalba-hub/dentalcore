@@ -7,6 +7,10 @@ export const CORETIX_PUBLIC_ENTITY_NAME = 'Coretix Dental Supplies';
 export const CORETIX_BRAND_SHORT = 'Coretix';
 export const CORETIX_TAGLINE = 'Dental Supplies';
 
+/** Header ticker — short motto (not the legal name); pairs with hero headline */
+export const CORETIX_HEADER_TICKER_MOTTO_PLAIN = 'Better tools. Better care.';
+export const CORETIX_HEADER_TICKER_MOTTO = `\u201C${CORETIX_HEADER_TICKER_MOTTO_PLAIN}\u201D`;
+
 /**
  * Expands standalone "Coretix" to the full public entity name for SEO/AEO copy,
  * while preserving product line names like "Coretix AirPeak" / "Coretix iTesla".

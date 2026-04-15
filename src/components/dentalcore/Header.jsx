@@ -78,8 +78,15 @@ export default function Header() {
           scrolled ? 'shadow-[0_2px_20px_rgba(0,0,0,0.25)]' : ''
         }`}
       >
-        {/* Promo ticker — logo row already shows brand + tagline; avoid repeating full legal name here */}
-        <div className="border-b border-white/[0.06] flex items-center h-7 overflow-hidden px-2 sm:px-4">
+        {/* Promo ticker — motto left (no duplicate of logo + tagline); offers center */}
+        <div className="border-b border-white/[0.06] flex items-center h-7 overflow-hidden px-2 sm:px-4 gap-2 sm:gap-3">
+          <span
+            className="shrink-0 max-w-[38%] sm:max-w-[42%] truncate text-[8px] sm:text-[9px] font-medium tracking-[0.06em] text-white/38 normal-case sm:italic"
+            title={companyInfo.headerTickerMottoPlain}
+          >
+            {companyInfo.headerTickerMotto}
+          </span>
+          <span className="hidden sm:block shrink-0 w-px h-3 bg-white/10" aria-hidden />
           <div className="flex-1 min-w-0 flex justify-center overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.p

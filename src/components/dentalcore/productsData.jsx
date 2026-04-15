@@ -4,6 +4,8 @@ import {
   CORETIX_PUBLIC_ENTITY_NAME,
   CORETIX_BRAND_SHORT,
   CORETIX_TAGLINE,
+  CORETIX_HEADER_TICKER_MOTTO,
+  CORETIX_HEADER_TICKER_MOTTO_PLAIN,
 } from '../../lib/coretixPublicName.js';
 
 // --- COMPANY CONFIGURATION ---
@@ -14,6 +16,9 @@ export const companyInfo = {
   brandShort: CORETIX_BRAND_SHORT,
   /** Header / UI descriptor (uppercased in layout) */
   tagline: CORETIX_TAGLINE,
+  /** Top promo strip — motto, not full legal name */
+  headerTickerMotto: CORETIX_HEADER_TICKER_MOTTO,
+  headerTickerMottoPlain: CORETIX_HEADER_TICKER_MOTTO_PLAIN,
   email: 'sales@dentalcoreinstruments.com',
   address: '2108 N St Ste N, Sacramento, CA 95816',
   phone: '(626) 268-3946',
