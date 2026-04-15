@@ -89,6 +89,13 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
                   }`}
                 >
                   <span className="text-xs font-semibold tracking-wide uppercase">{v.name}</span>
+                  {v.mpn && (
+                    <span
+                      className={`text-[10px] font-mono tracking-tight mt-0.5 ${isSelected ? 'text-white/65' : 'text-[#111]/45'}`}
+                    >
+                      {v.mpn}
+                    </span>
+                  )}
                   <span className={`text-xs mt-0.5 ${isSelected ? 'text-white/70' : 'text-[#111]/50'}`}>
                     ${Number(v.price).toFixed(2)}
                   </span>

@@ -93,6 +93,25 @@ function buildProductIndex(products: ProductRow[]): Map<string, { name: string; 
   return byId;
 }
 
+/** Local-only variant SKUs (see `productsData.jsx`) used when Base44 catalog has not synced rows yet. */
+function mergeStaticCatalogFallbacks(index: Map<string, { name: string; price: number; image: string }>) {
+  const staticRows: Record<string, { name: string; price: number; image: string }> = {
+    '1002-1-UNIT': {
+      name: 'UC-ONE (Ultrasonic Irrigation) — Unit',
+      price: 599,
+      image: '/products/UC_ONE_Ultasonic_Irrigation_1002-1.png',
+    },
+    '1002-Full Kit': {
+      name: 'UC-ONE (Ultrasonic Irrigation) — Full kit',
+      price: 699,
+      image: '/products/UC_ONE_CONTENTS.png',
+    },
+  };
+  for (const [id, row] of Object.entries(staticRows)) {
+    if (!index.has(id)) index.set(id, row);
+  }
+}
+
 function normalizeLineInputs(body: Record<string, unknown>): LineInput[] {
   const raw = body.lineItems ?? body.items;
   if (!Array.isArray(raw) || raw.length === 0) return [];
@@ -176,6 +195,7 @@ Deno.serve(async (req) => {
     const base44 = createClientFromRequest(req);
     const productRows = (await base44.asServiceRole.entities.Product.list()) as ProductRow[];
     const index = buildProductIndex(productRows);
+    mergeStaticCatalogFallbacks(index);
 
     const pricedLines: PricedLine[] = [];
     for (const line of lineInputs) {
