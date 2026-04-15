@@ -3,6 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ZoomIn, ZoomOut, Play, X, ChevronLeft, ChevronRight, Maximize2, Video, Image as ImageIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+const publicProductImage = (fileName) => {
+  const base = import.meta.env.BASE_URL || '/';
+  const prefix = base.endsWith('/') ? base : `${base}/`;
+  return `${prefix}products/${encodeURIComponent(fileName)}`;
+};
+
 function ImageZoom({ src, alt, onClose }) {
   const [zoom, setZoom] = useState(1);
   const [position, setPosition] = useState({ x: 50, y: 50 });
@@ -48,12 +54,11 @@ export default function ProductShowcase() {
   const [idx, setIdx] = useState(0);
 
   const gallery = [
-    { id: 1, label: 'UC CUT Device', src: 'https://maruchiusa.com/cdn/shop/products/Black_2048x2048.png?v=1656021060' },
-    { id: 2, label: 'Side View', src: 'https://maruchiusa.com/cdn/shop/products/UC-CUT-side_2048x2048.png?v=1656021060' },
-    { id: 4, label: 'Tips Collection', src: 'https://tricountydental.com/cdn/shop/files/epdent-uccut-gutta-percha-cutting-devices-1006-4.jpg?v=1757618951' },
-    { id: 5, label: 'F Tip', src: 'https://tricountydental.com/cdn/shop/files/uccutfTip_cae217dd-dbad-48c1-a1d5-81cdba86fcbb.webp?v=1757619032' },
-    { id: 6, label: 'SB Bovie Tip', src: 'https://usdentaloutlet.com/cdn/shop/files/sb-tip.png?v=1751916971' },
-    { id: 8, label: 'Device in Use', src: 'https://usdentaloutlet.com/cdn/shop/files/uc-cut-3.jpg?v=1731621539' },
+    { id: 1, label: 'UC-CUT device', src: publicProductImage('UC_CUT_Full_Device_1006-1.jpg') },
+    { id: 2, label: 'Unit with included tip', src: publicProductImage('UC_CUT_Gutta_Purcha_Cutter_Unit+Tip_1006-1.jpg') },
+    { id: 3, label: 'Handpiece', src: publicProductImage('UC_CUT_Gutta_Purcha_Cutter_Unit_1006-1.jpg') },
+    { id: 4, label: 'Close-up', src: publicProductImage('UC_CUT_Gutta_Purcha_Cutter_Unit_1006-1_Close-up.jpg') },
+    { id: 5, label: 'Included orange tip', src: publicProductImage('UC_CUT_Gutta_Purcha_Cutter_Tip_1006-1-U.jpg') },
   ];
 
   const videos = [
