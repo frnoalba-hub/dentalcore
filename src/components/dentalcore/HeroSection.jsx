@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useTranslation } from '@/lib/i18n';
+import { companyInfo } from './productsData';
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -11,7 +12,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-end pt-[120px] pb-0 bg-[#FDFDFD] border-b border-[#111]/10 overflow-hidden">
+    <section className="relative min-h-[100dvh] flex flex-col justify-end pt-[calc(var(--site-header-height)+2.25rem)] pb-0 bg-[#FDFDFD] border-b border-[#111]/10 overflow-hidden">
       {/* Structural Grid Lines */}
       <div className="absolute inset-0 pointer-events-none flex justify-center opacity-[0.06]">
         <div className="w-full max-w-[1600px] h-full border-x border-[#111] grid grid-cols-2 md:grid-cols-4">
@@ -34,7 +35,7 @@ export default function HeroSection() {
               className="text-xs uppercase tracking-[0.25em] text-[#111]/35 font-semibold mb-8 flex items-center gap-3"
             >
               <span className="inline-block w-6 h-px bg-[#111]/30" />
-              Coretix Dental Supply
+              {companyInfo.companyName}
             </motion.p>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}

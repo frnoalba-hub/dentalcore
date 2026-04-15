@@ -1,4 +1,6 @@
-export const CATEGORY_HUBS = [
+import { expandCoretixBrandForSeoCopy } from './coretixPublicName.js';
+
+const CATEGORY_HUBS_RAW = [
   {
     slug: 'endodontics',
     categoryName: 'Endodontics',
@@ -558,6 +560,26 @@ export const BUYER_GUIDES = [
     relatedCategorySlugs: ['surgical', 'endodontics'],
   },
 ];
+
+export const CATEGORY_HUBS = CATEGORY_HUBS_RAW.map((hub) => ({
+  ...hub,
+  title: expandCoretixBrandForSeoCopy(hub.title),
+  description: expandCoretixBrandForSeoCopy(hub.description),
+  lead: hub.lead != null ? expandCoretixBrandForSeoCopy(hub.lead) : hub.lead,
+  howToChoose: Array.isArray(hub.howToChoose)
+    ? hub.howToChoose.map((item) => ({
+        ...item,
+        value: expandCoretixBrandForSeoCopy(item.value),
+      }))
+    : hub.howToChoose,
+  faqs: Array.isArray(hub.faqs)
+    ? hub.faqs.map((f) => ({
+        ...f,
+        question: expandCoretixBrandForSeoCopy(f.question),
+        answer: expandCoretixBrandForSeoCopy(f.answer),
+      }))
+    : hub.faqs,
+}));
 
 export const CATEGORY_HUB_PATHS = CATEGORY_HUBS.map((hub) => `/c/${hub.slug}`);
 export const BUYER_GUIDE_PATHS = BUYER_GUIDES.map((guide) => `/guides/${guide.slug}`);

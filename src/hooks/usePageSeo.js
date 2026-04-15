@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { SITE_URL, absoluteUrl } from '@/lib/siteUrl';
 import { productMetaGeoSuffix } from '@/lib/generativeOptimizationEngine';
+import { companyInfo } from '@/components/dentalcore/productsData';
 
 const DESC_MAX = 158;
 
 /** Matches index.html defaults; home route resets head to these after product pages. */
 export const DEFAULT_SEO = {
-  title: 'Coretix',
-  description:
-    'Shop professional dental instruments at Coretix. High-speed handpieces, endodontic systems, curing lights, bone graft materials & more. Direct pricing for dentists. Sacramento, CA.',
+  title: companyInfo.companyName,
+  description: `Shop professional dental instruments at ${companyInfo.companyName}. High-speed handpieces, endodontic systems, curing lights, bone graft materials & more. Direct pricing for dentists. Sacramento, CA.`,
   canonicalUrl: `${SITE_URL}/`,
   ogImage: `${SITE_URL}/og-coretix.png?v=3`,
 };
@@ -122,7 +122,7 @@ export function usePageSeo({
 
     if (variant === 'notFound') {
       applyHead({
-        title: 'Product not found | Coretix',
+        title: `Product not found | ${companyInfo.companyName}`,
         description: DEFAULT_SEO.description,
         canonicalUrl: canonicalUrl || DEFAULT_SEO.canonicalUrl,
         ogImage: DEFAULT_SEO.ogImage,
@@ -140,10 +140,10 @@ export function usePageSeo({
     }
 
     if (variant === 'product' && productName && productSku) {
-      const title = `${productName} | ${productSku} | Coretix`;
+      const title = `${productName} | ${productSku} | ${companyInfo.brandShort}`;
       const baseDesc =
         productDescription ||
-        `Buy ${productName} (${productSku}) — professional dental supply from Coretix, Sacramento CA.`;
+        `Buy ${productName} (${productSku}) — professional dental supply from ${companyInfo.companyName}, Sacramento CA.`;
       const description = `${baseDesc.replace(/\s+/g, ' ').trim()}${productMetaGeoSuffix()}`;
       const canon = canonicalUrl || DEFAULT_SEO.canonicalUrl;
       const og =

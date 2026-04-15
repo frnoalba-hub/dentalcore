@@ -1,6 +1,7 @@
 import { SITE_URL, absoluteUrl, productPageUrl } from '../../lib/siteUrl';
 import { companyInfo } from '../dentalcore/productsData';
 import { productSchemaAudienceType } from '@/lib/generativeOptimizationEngine';
+import { parseYouTubeVideoId, youtubeEmbedUrl, youtubeWatchUrl } from '@/lib/youtubeEmbed';
 
 /** Return policy link matches ContactSection (#shipping-returns). */
 function merchantReturnPolicyBlock() {
@@ -148,9 +149,28 @@ export default function ProductJsonLd({ product, allImages }) {
     };
   }
 
+  const graph = [productNode, webPageNode];
+  const youtubeId = product.videoUrl ? parseYouTubeVideoId(product.videoUrl) : null;
+  if (youtubeId) {
+    const videoNode = {
+      '@type': 'VideoObject',
+      '@id': `${pageUrl}#video`,
+      name: product.videoTitle || `${product.name} — overview`,
+      description: webPageDescription,
+      thumbnailUrl: deduped[0] || undefined,
+      contentUrl: youtubeWatchUrl(youtubeId),
+      embedUrl: youtubeEmbedUrl(youtubeId),
+      publisher: { '@id': `${SITE_URL}/#organization` },
+      isAccessibleForFree: true,
+      inLanguage: 'en-US',
+    };
+    graph.push(videoNode);
+    productNode.subjectOf = { '@id': `${pageUrl}#video` };
+  }
+
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@graph': [productNode, webPageNode],
+    '@graph': graph,
   };
 
   return (

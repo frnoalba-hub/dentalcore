@@ -7,7 +7,7 @@ export default function ContactSection() {
   const { t } = useTranslation();
 
   return (
-    <section id="contact" className="py-24 lg:py-28 bg-[#111] text-white border-b border-white/10">
+    <section id="contact" className="py-24 lg:py-28 bg-[#111] text-white border-b border-white/10 scroll-mt-[var(--site-header-height)]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <div className="mb-12 lg:mb-16 max-w-3xl">
           <p className="text-xs uppercase tracking-[0.25em] text-white/35 font-semibold mb-3 flex items-center gap-3">
@@ -18,7 +18,7 @@ export default function ContactSection() {
             {t('operate_with')} <span className="text-white">{t('precision')}</span>
           </h2>
           <p className="text-sm text-white/40 font-body mt-4 max-w-xl leading-relaxed">
-            Sales, warranty, and clinical support — direct from Sacramento.
+            {companyInfo.companyName} — sales, warranty, and clinical support direct from Sacramento.
           </p>
         </div>
 
@@ -97,7 +97,12 @@ export default function ContactSection() {
         </div>
 
         <div className="mt-24 pt-8 border-t border-white/10 flex flex-col gap-4 md:gap-0 md:flex-row justify-between items-center text-xs text-white/30 uppercase tracking-widest font-medium">
-          <p>© {new Date().getFullYear()} {companyInfo.companyName}</p>
+          <div className="text-center md:text-left">
+            <p>© {new Date().getFullYear()} {companyInfo.companyName}</p>
+            <p className="mt-1.5 text-[10px] tracking-[0.2em] text-white/25 normal-case font-body">
+              {companyInfo.tagline} · US shipping
+            </p>
+          </div>
           <Link
             to="/group-practices"
             className="text-white/45 hover:text-accent transition-colors normal-case tracking-normal text-sm font-body"

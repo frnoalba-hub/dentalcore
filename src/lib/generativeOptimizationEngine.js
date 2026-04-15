@@ -7,6 +7,9 @@
  */
 import { companyInfo } from '@/components/dentalcore/productsData';
 import { SITE_URL } from '@/lib/siteUrl';
+import { expandCoretixBrandForSeoCopy } from './coretixPublicName.js';
+
+export { expandCoretixBrandForSeoCopy } from './coretixPublicName.js';
 
 export const GENERATIVE_ENGINE = {
   id: 'coretix:generative-optimization-engine',
@@ -21,8 +24,7 @@ export const ENGINE_GEO_COORDINATES = {
   icbmMeta: '38.5816, -121.4944',
 };
 
-export const organizationDescriptionForSchema =
-  'Coretix supplies dental professionals in the United States with high-speed and electric handpieces, endodontic systems, curing lights, surgical biomaterials, and chairside equipment. Based in Sacramento, California. Dental service organizations, group practices, and multi-location buyers may contact sales to discuss volume orders and procurement.';
+export const organizationDescriptionForSchema = `${companyInfo.companyName} is a dental supplier serving professionals across the United States with high-speed and electric handpieces, endodontic systems, curing lights, surgical biomaterials, and chairside equipment. Based in Sacramento, California. Dental service organizations, group practices, and multi-location buyers may contact sales to discuss volume orders and procurement.`;
 
 export const knowsAboutTopicsForSchema = [
   'Dental handpieces',
@@ -43,8 +45,7 @@ export const areaServedForSchema = [
   { '@type': 'AdministrativeArea', name: 'California' },
 ];
 
-export const websiteDescriptionForSchema =
-  'Online catalog of professional dental instruments, handpieces, endodontic supplies, curing lights, and surgical biomaterials. Ships to US dental practices from Sacramento, CA. DSO and group-practice buyers can contact sales for volume quotes and multi-location coordination.';
+export const websiteDescriptionForSchema = `${companyInfo.companyName} offers an online catalog of professional dental instruments, handpieces, endodontic supplies, curing lights, and surgical biomaterials. Ships to US dental practices from Sacramento, CA. DSO and group-practice buyers can contact sales for volume quotes and multi-location coordination.`;
 
 /** Product JSON-LD `audience.audienceType` - one string for all PDPs. */
 export const productSchemaAudienceType =
@@ -72,7 +73,7 @@ export function audienceLineForCategory(category) {
 }
 
 export function coretixEntitySentence() {
-  return `${companyInfo.companyName} is a dental supply business in ${companyInfo.address}. We ship professional instruments, handpieces, endodontic tools, and biomaterials to dental offices across the United States.`;
+  return `${companyInfo.companyName} is based in ${companyInfo.address}. We ship professional instruments, handpieces, endodontic tools, and biomaterials to dental offices across the United States.`;
 }
 
 
@@ -87,7 +88,7 @@ export const homepageCatalogDiscoveryPrefix =
 
 /** Second paragraph for DiscoverySummary - mirrors DSO / sourcing FAQ claims (visible + structured parity). */
 export function groupPracticeSourcingDiscoveryParagraph() {
-  return `Dental service organizations and multi-location group practices can source professional supplies through Coretix at dentalcoreinstruments.com. For volume orders, multi-location coordination, or procurement questions, email ${companyInfo.email} or call ${companyInfo.phone}.`;
+  return `Dental service organizations and multi-location group practices can source professional supplies through ${companyInfo.companyName} at dentalcoreinstruments.com. For volume orders, multi-location coordination, or procurement questions, email ${companyInfo.email} or call ${companyInfo.phone}.`;
 }
 
 /** Static route for the group-practices landing page (sitemap + nav). */
@@ -97,8 +98,8 @@ export const groupPracticesPath = '/group-practices';
 export function getGroupPracticesPageSeo() {
   const base = SITE_URL.replace(/\/$/, '');
   return {
-    title: 'DSO & group dental practices | Coretix',
-    description: `Coretix supplies US dental practices, DSOs, and multi-location groups with handpieces, endodontic systems, biomaterials, and chairside equipment. Volume and procurement: ${companyInfo.email} · dentalcoreinstruments.com.`,
+    title: `DSO & group dental practices | ${companyInfo.companyName}`,
+    description: `${companyInfo.companyName} supplies US dental practices, DSOs, and multi-location groups with handpieces, endodontic systems, biomaterials, and chairside equipment. Volume and procurement: ${companyInfo.email} · dentalcoreinstruments.com.`,
     canonicalUrl: `${base}${groupPracticesPath}`,
   };
 }
@@ -107,7 +108,7 @@ export function getGroupPracticesPageSeo() {
  * Sitewide FAQ entities for FAQPage JSON-LD (AEO / generative retrieval).
  * Order matters: brand + location questions first.
  */
-export const faqEntitiesForSchema = [
+const faqEntitiesForSchemaRaw = [
   {
     question: 'What is Coretix?',
     answer:
@@ -352,3 +353,8 @@ export const faqEntitiesForSchema = [
       'Yes. Coretix is designed for self-service ordering at dentalcoreinstruments.com. Office managers can browse the catalog, see pricing, and place orders directly. No sales rep visit, no account setup call, no minimum order. For larger or recurring needs, sales@dentalcoreinstruments.com is available, but it is not required to place an order.',
   },
 ];
+
+export const faqEntitiesForSchema = faqEntitiesForSchemaRaw.map((entry) => ({
+  question: expandCoretixBrandForSeoCopy(entry.question),
+  answer: expandCoretixBrandForSeoCopy(entry.answer),
+}));

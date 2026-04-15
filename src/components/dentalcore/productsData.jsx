@@ -1,10 +1,23 @@
+// Per-SKU Discovery (gallery, videoUrl, discoveryHeading, discoveryParagraph): see PRODUCT_DISCOVERY_BRIEF.md in the dentalcore repo root.
+
+import {
+  CORETIX_PUBLIC_ENTITY_NAME,
+  CORETIX_BRAND_SHORT,
+  CORETIX_TAGLINE,
+} from '../../lib/coretixPublicName.js';
+
 // --- COMPANY CONFIGURATION ---
 export const companyInfo = {
-  companyName: "Coretix",
-  email: "sales@dentalcoreinstruments.com",
-  address: "2108 N St Ste N, Sacramento, CA 95816",
-  phone: "(626) 268-3946",
-  logoText: "CORETIX"
+  /** Full public entity name — Organization JSON-LD, meta, GEO/AEO sentences */
+  companyName: CORETIX_PUBLIC_ENTITY_NAME,
+  /** Short brand for long title tags (e.g. product pages) */
+  brandShort: CORETIX_BRAND_SHORT,
+  /** Header / UI descriptor (uppercased in layout) */
+  tagline: CORETIX_TAGLINE,
+  email: 'sales@dentalcoreinstruments.com',
+  address: '2108 N St Ste N, Sacramento, CA 95816',
+  phone: '(626) 268-3946',
+  logoText: 'CORETIX',
 };
 
 // --- REAL PRODUCT IMAGES (local /public/products/) ---
@@ -22,8 +35,10 @@ const img = {
   uccut_tips:   resolveImage('UC_CUT_Gutta_Purcha_Cutter_ALL_Tips.png'),
   uccut_bovie:  resolveImage('UC_CUT_Boive_Tip.png'),
 
-  // Endo
+  // Endo — UC-ONE (hero + angles / spec sheet)
   ucone:        resolveImage('UC_ONE_Ultasonic_Irrigation_1002-1.png'),
+  ucone_dual:   resolveImage('UC_ONE_1002-1_dual_angle.png'),
+  ucone_sheet:  resolveImage('UC_ONE_1002-1_features_infographic.png'),
   cutfit:       resolveImage('Cut_&_Fit_Gutta_Percha_Cutter_1005-1.jpg'),
   ep_plugger:   resolveImage('EP_PLUGGER_SET_1004-1.jpg'),
   ep_suction:   resolveImage('EP_SUCTION_1003-1.png'),
@@ -167,7 +182,12 @@ export const products = [
     description: "Cordless ultrasonic irrigator that activates irrigant deep into canal anatomy. Supports cleaning and debris removal when used with your clinical irrigant protocol.",
     longDescription: "UC-ONE is built for clinicians who want a cordless, handheld way to ultrasonically activate sodium hypochlorite, EDTA, or other approved irrigants inside the root canal system. Ultrasonic energy improves fluid streaming and can help dislodge debris and biofilm in complex anatomy when combined with adequate irrigation volume and needle delivery. Use only irrigants and settings consistent with manufacturer directions and your training.",
     image: img.ucone,
-    images: [img.ucone],
+    images: [img.ucone, img.ucone_dual, img.ucone_sheet],
+    videoUrl: "https://www.youtube.com/watch?v=Myhnt67xVMk",
+    videoTitle: "UC-ONE passive ultrasonic irrigation — clinical overview",
+    discoveryHeading: "Why practices add ultrasonic activation",
+    discoveryParagraph:
+      "Needle irrigation alone often leaves irregular canal anatomy under-challenged. A cordless ultrasonic activator like UC-ONE helps move irrigant in tight curves and fins when used as part of a complete volume-and-exchange protocol—so teams standardize on safer, more predictable cleaning steps before obturation. Coretix supplies US dental practices from Sacramento with direct pricing; watch the overview, then confirm tip selection and IFU with your clinical lead.",
     features: [
       "Cordless design for easy access to all quadrants",
       "Ultrasonic activation of canal irrigants (per clinical protocol)",
@@ -183,6 +203,7 @@ export const products = [
       "Training": "Operator should follow CE guidelines for ultrasonic endodontic irrigation",
     },
     faqs: [
+      { question: "Is there an official UC-ONE overview video?", answer: "Yes. Use the Discovery section on this page (embedded player and link to YouTube) for a manufacturer-style walkthrough, then follow your IFU and training for clinical use." },
       { question: "What does UC-ONE do during root canal treatment?", answer: "UC-ONE ultrasonically activates irrigants inside the canal to improve cleaning and debris removal when used as part of a complete irrigation protocol with sufficient volume and proper needle placement." },
       { question: "Is UC-ONE a replacement for needle irrigation?", answer: "No. Needle irrigation and canal preparation remain essential. UC-ONE adds activation after, or alongside, conventional delivery, per accepted endodontic technique." },
       { question: "Which irrigants can I use with UC-ONE?", answer: "Use only irrigants approved for intracanal use and compatible with the device per the manufacturer IFU, commonly sodium hypochlorite and EDTA in clinical practice when indicated." },

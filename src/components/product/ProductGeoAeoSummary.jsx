@@ -15,16 +15,16 @@ export default function ProductGeoAeoSummary({ product }) {
 
   return (
     <section
-      className="product-geo-aeo-summary mt-12 max-w-3xl border border-[#111]/10 rounded-card bg-white shadow-card p-6 sm:p-8"
+      className="product-geo-aeo-summary mt-12 w-full border border-[#111]/10 rounded-card bg-white shadow-card p-6 sm:p-8"
       aria-labelledby="product-geo-aeo-heading"
     >
       <h2
         id="product-geo-aeo-heading"
-        className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#111]/45 mb-4"
+        className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#111]/45 mb-6"
       >
         Quick facts
       </h2>
-      <dl className="space-y-4 text-sm font-body text-[#111]/75 leading-relaxed">
+      <dl className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-5 text-sm font-body text-[#111]/75 leading-relaxed">
         <div>
           <dt className="text-[11px] uppercase tracking-widest font-bold text-[#111]/50 mb-1">What it is</dt>
           <dd>{dynamicT(product.name)} — {dynamicT(product.description)}</dd>

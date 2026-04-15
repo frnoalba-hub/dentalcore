@@ -9,9 +9,8 @@ export default function Policies() {
   usePageSeo({
     variant: 'staticPage',
     staticPage: {
-      title: 'Shipping, returns & warranty | Coretix',
-      description:
-        'Coretix policies for US dental practices: shipping timelines, returns (case-by-case), and manufacturer-backed warranty. Sacramento, CA.',
+      title: `Shipping, returns & warranty | ${companyInfo.companyName}`,
+      description: `${companyInfo.companyName} policies for US dental practices: shipping timelines, returns (case-by-case), and manufacturer-backed warranty. Sacramento, CA.`,
       canonicalUrl,
     },
   });
@@ -19,9 +18,9 @@ export default function Policies() {
   return (
     <div className="min-h-screen bg-[#FDFDFD] text-[#111]">
       <Header />
-      <main className="max-w-3xl mx-auto px-6 lg:px-12 pt-[120px] pb-24">
+      <main className="max-w-3xl mx-auto px-6 lg:px-12 pt-[calc(var(--site-header-height)+2.25rem)] pb-24">
         <p className="text-xs uppercase tracking-[0.25em] text-[#111]/40 font-semibold mb-3">
-          Coretix
+          {companyInfo.companyName}
         </p>
         <h1 className="text-3xl lg:text-4xl font-semibold tracking-tight uppercase mb-10">
           Policies
@@ -62,7 +61,7 @@ export default function Policies() {
           <p className="text-sm text-[#111]/65 font-body leading-relaxed">
             Warranty terms follow each product&apos;s manufacturer instructions for use (IFU) and packaging. Many
             instruments include a limited manufacturer warranty against defects; specifics appear on the product
-            detail page or IFU. Warranty claims are coordinated through Coretix support with the same contact channels
+            detail page or IFU. Warranty claims are coordinated through {companyInfo.companyName} support with the same contact channels
             above.
           </p>
         </section>

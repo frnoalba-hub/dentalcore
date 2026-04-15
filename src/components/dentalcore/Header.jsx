@@ -77,8 +77,13 @@ export default function Header() {
           scrolled ? 'shadow-[0_2px_20px_rgba(0,0,0,0.25)]' : ''
         }`}
       >
-        {/* Promo ticker — thin line at very top */}
-        <div className="border-b border-white/[0.06] flex items-center justify-center h-7 overflow-hidden">
+        {/* Promo ticker — store name + offers */}
+        <div className="border-b border-white/[0.06] flex items-center h-7 overflow-hidden px-2 sm:px-4 gap-2 sm:gap-3">
+          <span className="shrink-0 max-w-[40%] sm:max-w-[46%] truncate text-[8px] sm:text-[9px] font-semibold uppercase tracking-[0.12em] text-white/40">
+            {companyInfo.companyName}
+          </span>
+          <span className="hidden sm:block shrink-0 w-px h-3 bg-white/10" aria-hidden />
+          <div className="flex-1 min-w-0 flex justify-center overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.p
               key={promoIndex}
@@ -86,9 +91,9 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.35 }}
-              className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] text-white/50 flex items-center gap-2"
+              className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] text-white/50 flex items-center gap-2 truncate"
             >
-              <span className="text-accent text-[8px]">&#9679;</span>
+              <span className="text-accent text-[8px] shrink-0">&#9679;</span>
               {promos[promoIndex].text}
               <button
                 onClick={() => {
@@ -106,18 +111,33 @@ export default function Header() {
               </button>
             </motion.p>
           </AnimatePresence>
+          </div>
         </div>
 
         {/* Main nav row */}
         <div className="w-full px-5 lg:px-10">
-          <div className="h-14 flex items-center justify-between">
+          <div className="h-14 lg:h-[4.75rem] flex items-center justify-between">
 
-            {/* Logo */}
-            <Link to="/" className="flex items-baseline gap-0 group shrink-0" onClick={() => setMobileOpen(false)}>
-              <span className="text-[22px] font-bold tracking-tight text-white group-hover:text-accent transition-colors duration-200" style={{ fontFamily: 'var(--font-sans)' }}>
-                CORETIX
+            {/* Logo — larger / heavier from lg up; mobile unchanged */}
+            <Link
+              to="/"
+              className="flex flex-col gap-0 sm:gap-0.5 shrink-0 leading-none group"
+              onClick={() => setMobileOpen(false)}
+            >
+              <span className="flex items-baseline gap-0">
+                <span
+                  className="text-[22px] lg:text-[1.625rem] xl:text-[1.75rem] font-bold lg:font-black tracking-tight text-white group-hover:text-accent transition-colors duration-200"
+                  style={{ fontFamily: 'var(--font-sans)' }}
+                >
+                  {companyInfo.logoText}
+                </span>
+                <span className="text-accent text-[22px] lg:text-[1.625rem] xl:text-[1.75rem] font-bold lg:font-black group-hover:text-white transition-colors duration-200">
+                  .
+                </span>
               </span>
-              <span className="text-accent text-[22px] font-bold group-hover:text-white transition-colors duration-200">.</span>
+              <span className="text-[8px] sm:text-[9px] lg:text-[10px] font-semibold tracking-[0.2em] uppercase text-white/45 group-hover:text-white/60 transition-colors">
+                {companyInfo.tagline}
+              </span>
             </Link>
 
             {/* Desktop nav — right aligned */}
@@ -210,7 +230,7 @@ export default function Header() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-x-0 top-[84px] bottom-0 z-[55] bg-black/40 backdrop-blur-[2px] lg:hidden"
+              className="fixed inset-x-0 top-[var(--site-header-height)] bottom-0 z-[55] bg-black/40 backdrop-blur-[2px] lg:hidden"
               onClick={() => setMobileOpen(false)}
               aria-hidden
             />
@@ -219,9 +239,17 @@ export default function Header() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ type: 'spring', damping: 30, stiffness: 350 }}
-              className="fixed inset-x-0 top-[84px] bottom-0 z-[56] bg-[#111] lg:hidden overflow-y-auto"
+              className="fixed inset-x-0 top-[var(--site-header-height)] bottom-0 z-[56] bg-[#111] lg:hidden overflow-y-auto"
             >
               <nav className="flex flex-col p-8 gap-7 min-h-full">
+                <div className="pb-6 border-b border-white/10 -mt-1">
+                  <p className="text-[11px] font-semibold tracking-[0.18em] uppercase text-white/55">
+                    {companyInfo.companyName}
+                  </p>
+                  <p className="text-[10px] mt-1.5 tracking-[0.2em] uppercase text-white/35">
+                    {companyInfo.tagline}
+                  </p>
+                </div>
                 {[...primaryNav, ...secondaryNav].map((link) =>
                   link.to ? (
                     <Link

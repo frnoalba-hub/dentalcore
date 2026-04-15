@@ -22,7 +22,7 @@ export default function FeaturedProductSection() {
   if (!product) return null;
 
   return (
-    <section id="featured" className="py-24 lg:py-28 bg-[#111] text-white scroll-mt-[84px] border-b border-white/10">
+    <section id="featured" className="py-24 lg:py-28 bg-[#111] text-white scroll-mt-[var(--site-header-height)] border-b border-white/10">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <div className="mb-12 lg:mb-14 max-w-2xl">
           <p className="text-xs uppercase tracking-[0.25em] text-white/35 font-semibold mb-3 flex items-center gap-3">

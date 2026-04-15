@@ -11,6 +11,7 @@ import ProductImageGallery from '../components/product/ProductImageGallery';
 import ProductPurchasePanel from '../components/product/ProductPurchasePanel';
 import ProductSpecsTabs from '../components/product/ProductSpecsTabs';
 import ProductGeoAeoSummary from '../components/product/ProductGeoAeoSummary';
+import ProductDiscoveryBlock from '../components/product/ProductDiscoveryBlock';
 import RelatedProducts from '../components/product/RelatedProducts';
 import ProductJsonLd from '../components/seo/ProductJsonLd';
 import BreadcrumbJsonLd from '../components/seo/BreadcrumbJsonLd';
@@ -18,6 +19,7 @@ import ProductFaqJsonLd from '../components/seo/ProductFaqJsonLd';
 import { usePageSeo } from '@/hooks/usePageSeo';
 import { SITE_URL, productPageUrl } from '@/lib/siteUrl';
 import { getProductSlug } from '@/lib/productPaths';
+import { parseYouTubeVideoId } from '@/lib/youtubeEmbed';
 
 const SUPPRESSED_API_CATEGORIES = new Set([
   'Allograft / Osseoseal Membrane', 'Allograft', 'Osseoseal',
@@ -170,7 +172,7 @@ export default function ProductDetail() {
       <CartDrawer />
 
       {/* Breadcrumb */}
-      <div className="pt-[84px] border-b border-[#111]/10 px-6 lg:px-12 bg-white/60 shadow-card backdrop-blur-sm">
+      <div className="pt-[var(--site-header-height)] border-b border-[#111]/10 px-6 lg:px-12 bg-white/60 shadow-card backdrop-blur-sm">
         <div className="max-w-[1600px] mx-auto flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm uppercase tracking-widest text-[#111]/45 py-4 sm:py-5">
           <Link to="/#catalog" className="hover:text-[#111] text-[#111]/55 font-semibold transition-colors flex items-center gap-1 rounded-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2">
             <ArrowLeft className="w-3 h-3 shrink-0" /> Catalog
@@ -188,6 +190,11 @@ export default function ProductDetail() {
             images={allImages}
             productName={dynamicT(displayProduct.name)}
             selectedVariant={selectedVariant}
+            officialVideoHref={
+              displayProduct.videoUrl && parseYouTubeVideoId(displayProduct.videoUrl)
+                ? '#product-discovery'
+                : undefined
+            }
           />
 
           <ProductPurchasePanel
@@ -196,6 +203,8 @@ export default function ProductDetail() {
             setSelectedVariant={setSelectedVariant}
           />
         </div>
+
+        <ProductDiscoveryBlock product={displayProduct} />
 
         <ProductGeoAeoSummary product={displayProduct} />
 

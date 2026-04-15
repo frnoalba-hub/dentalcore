@@ -9,6 +9,14 @@
   :root {
     --font-sans: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    /* Fixed header: promo strip (28px) + main bar — taller on lg+ so the wordmark scales on desktop */
+    --site-header-height: 84px;
+  }
+
+  @media (min-width: 1024px) {
+    :root {
+      --site-header-height: 104px;
+    }
   }
 
   body {

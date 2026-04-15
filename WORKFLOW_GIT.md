@@ -29,3 +29,7 @@ Pull immediately in Cursor so local files match GitHub. Editing on stale local c
 If a generator re-adds **ProductDetail** to `PAGES`, remove it again: **`ProductDetail`** stays only in `App.jsx` routes (`/p/:productSlug` and legacy `/product`). Canonical product URLs are **`/p/{slug}`**; `/product?id=…` redirects to the slug URL when known (see `ProductDetail.jsx`, `siteUrl.js`, `productPaths.js`).
 
 **Admin:** Do not register `AdminProducts` in `PAGES` (avoids a public `/:page` route). Product admin lives at **`/admin/products`** behind `RequireAuth` in `App.jsx`; `/AdminProducts` redirects there.
+
+## Product Discovery (video + AEO copy, per SKU)
+
+Use **`PRODUCT_DISCOVERY_BRIEF.md`** in this folder: copy-paste template, field map to `productsData.jsx`, and a checklist for humans or Cursor. UC-ONE (`slug: uc-one`) is the reference row.

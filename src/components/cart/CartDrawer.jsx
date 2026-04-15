@@ -9,6 +9,7 @@ import { useTranslation } from '@/lib/i18n';
 import { calculatePromos } from '../store/promoEngine';
 import { trackEngagementEvent } from '@/lib/trackEvent';
 import { isCheckoutEnabled } from '@/lib/commerceFlags';
+import { companyInfo } from '@/components/dentalcore/productsData';
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, getTotal, getItemCount } = useCartStore();
@@ -69,8 +70,11 @@ export default function CartDrawer() {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeCart} className="fixed inset-0 bg-[#111]/40 backdrop-blur-sm z-40" />
           <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 26, stiffness: 210 }} className="fixed right-0 top-0 h-full w-full max-w-md bg-[#FDFDFD] border-l border-[#111]/10 shadow-drawer z-50 flex flex-col">
             
-            <div className="flex items-center justify-between p-6 border-b border-[#111]/10 bg-[#FDFDFD]/95 backdrop-blur-sm">
-              <h2 className="text-sm font-bold uppercase tracking-widest text-[#111]">{t('active_requisition')} ({getItemCount()})</h2>
+            <div className="flex items-center justify-between p-6 border-b border-[#111]/10 bg-[#FDFDFD]/95 backdrop-blur-sm gap-3">
+              <div className="min-w-0">
+                <h2 className="text-sm font-bold uppercase tracking-widest text-[#111]">{t('active_requisition')} ({getItemCount()})</h2>
+                <p className="text-[10px] text-[#111]/40 font-body mt-1 tracking-wide truncate">{companyInfo.companyName}</p>
+              </div>
               <button type="button" onClick={closeCart} aria-label="Close cart" className="p-2 rounded-sm text-[#111]/50 hover:text-[#111] hover:bg-[#111]/5 transition-colors">
                 <X className="w-5 h-5" />
               </button>

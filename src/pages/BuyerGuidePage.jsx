@@ -10,6 +10,7 @@ import {
 } from '@/lib/retailSeoContent';
 import { SITE_URL } from '@/lib/siteUrl';
 import { usePageSeo } from '@/hooks/usePageSeo';
+import { companyInfo } from '@/components/dentalcore/productsData';
 
 function formatUpdatedLabel(dateString) {
   const d = new Date(dateString);
@@ -29,12 +30,12 @@ export default function BuyerGuidePage() {
     () =>
       guide
         ? {
-            title: `${guide.title} | Coretix`,
+            title: `${guide.title} | ${companyInfo.companyName}`,
             description: guide.description,
             canonicalUrl: `${SITE_URL}/guides/${guide.slug}`,
           }
         : {
-            title: 'Buyer guide | Coretix',
+            title: `Buyer guide | ${companyInfo.companyName}`,
             description: 'Buyer guide for dental procurement teams.',
             canonicalUrl: `${SITE_URL}/`,
           },
@@ -66,11 +67,11 @@ export default function BuyerGuidePage() {
     inLanguage: 'en-US',
     author: {
       '@type': 'Organization',
-      name: 'Coretix',
+      name: companyInfo.companyName,
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Coretix',
+      name: companyInfo.companyName,
       url: SITE_URL,
     },
     mainEntityOfPage: `${SITE_URL}/guides/${guide.slug}`,
@@ -99,7 +100,7 @@ export default function BuyerGuidePage() {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
       <Header />
-      <main className="pt-[84px] pb-24">
+      <main className="pt-[var(--site-header-height)] pb-24">
         <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
           <p className="text-xs uppercase tracking-[0.24em] text-[#111]/40 font-semibold mb-3">Buyer Guide</p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter text-[#111] leading-[1.08] max-w-5xl">

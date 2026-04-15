@@ -11,6 +11,7 @@ import { products as localProducts, getCatalogProductImage } from '@/components/
 import { productRelativePath } from '@/lib/productPaths';
 import { SITE_URL } from '@/lib/siteUrl';
 import { usePageSeo } from '@/hooks/usePageSeo';
+import { companyInfo } from '@/components/dentalcore/productsData';
 
 function formatUpdatedLabel(dateString) {
   const d = new Date(dateString);
@@ -43,8 +44,8 @@ export default function CategoryHubPage() {
             canonicalUrl: `${SITE_URL}/c/${hub.slug}`,
           }
         : {
-            title: 'Category | Coretix',
-            description: 'Dental product category at Coretix.',
+            title: `Category | ${companyInfo.companyName}`,
+            description: `Dental product category at ${companyInfo.companyName}.`,
             canonicalUrl: `${SITE_URL}/`,
           },
     [hub],
@@ -106,13 +107,13 @@ export default function CategoryHubPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <Header />
-      <main className="pt-[84px] pb-24">
+      <main className="pt-[var(--site-header-height)] pb-24">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <p className="text-xs uppercase tracking-[0.25em] text-[#111]/40 font-semibold mb-3">
             Category Hub
           </p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter uppercase text-[#111] max-w-4xl leading-[1.08]">
-            {hub.categoryName} at Coretix
+            {hub.categoryName} at {companyInfo.companyName}
           </h1>
           <p className="mt-6 text-sm sm:text-base text-[#111]/70 font-body leading-relaxed max-w-3xl">
             {hub.lead}

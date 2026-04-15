@@ -13,6 +13,7 @@ function buildOrganizationSchema() {
     "@type": ["Organization", "WholesaleStore"],
     "@id": `${SITE_URL}/#organization`,
     "name": companyInfo.companyName,
+    "alternateName": companyInfo.brandShort,
     "url": SITE_URL,
     "email": companyInfo.email,
     "telephone": companyInfo.phone,
@@ -41,7 +42,7 @@ function buildWebSiteSchema() {
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     "url": SITE_URL,
-    "name": "Coretix",
+    "name": companyInfo.companyName,
     "inLanguage": "en-US",
     "description": websiteDescriptionForSchema,
     "publisher": { "@id": `${SITE_URL}/#organization` },
@@ -58,7 +59,7 @@ function buildCatalogItemListSchema() {
   return {
     "@type": "ItemList",
     "@id": `${SITE_URL}/#catalog-itemlist`,
-    "name": "Coretix product catalog",
+    "name": `${companyInfo.companyName} product catalog`,
     "numberOfItems": products.length,
     "itemListElement": products.map((p, i) => {
       const img = absoluteUrl(p.image);

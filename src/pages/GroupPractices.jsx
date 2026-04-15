@@ -19,7 +19,7 @@ export default function GroupPractices() {
     <div className="antialiased min-h-screen bg-[#FDFDFD]">
       <JsonLdSchema />
       <Header />
-      <main className="pt-[84px] pb-20 lg:pb-28">
+      <main className="pt-[var(--site-header-height)] pb-20 lg:pb-28">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <p className="text-xs uppercase tracking-[0.25em] font-bold text-[#111]/40 mb-3">
             Procurement
@@ -28,7 +28,7 @@ export default function GroupPractices() {
             Dental service organizations &amp; multi-location practices
           </h1>
           <p className="mt-6 text-sm sm:text-base text-[#111]/70 font-body leading-relaxed max-w-3xl">
-            Coretix supplies licensed US dental teams with professional handpieces, endodontic systems,
+            {companyInfo.companyName} supplies licensed US dental teams with professional handpieces, endodontic systems,
             biomaterials, curing lights, and chairside equipment, shipped from Sacramento, California.
             DSOs and multi-location groups may review our catalog and contact sales for volume or consolidated
             orders.

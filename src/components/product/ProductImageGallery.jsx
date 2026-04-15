@@ -1,7 +1,13 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
-export default function ProductImageGallery({ images, productName, selectedVariant }) {
+export default function ProductImageGallery({
+  images,
+  productName,
+  selectedVariant,
+  /** When set (e.g. `#product-discovery`), show a jump link for PDPs with an official embed below the fold */
+  officialVideoHref,
+}) {
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   const allImages = images.filter((img, i, arr) => img && arr.indexOf(img) === i);
@@ -45,6 +51,16 @@ export default function ProductImageGallery({ images, productName, selectedVaria
             </button>
           ))}
         </div>
+      )}
+
+      {officialVideoHref && (
+        <a
+          href={officialVideoHref}
+          className="inline-flex items-center gap-2 text-sm font-semibold text-accent hover:text-[#111] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:ring-offset-2 rounded-sm"
+        >
+          <span className="uppercase tracking-widest text-[11px] text-[#111]/45 font-bold">Video</span>
+          Official overview — watch below
+        </a>
       )}
     </div>
   );

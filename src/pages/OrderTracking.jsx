@@ -51,9 +51,14 @@ export default function OrderTracking() {
             <ArrowLeft className="w-4 h-4" />
             Back to Store
           </Link>
-          <span className="text-lg font-bold tracking-widest uppercase">
-            {companyInfo.logoText}<span className="text-accent">.</span>
-          </span>
+          <div className="text-right leading-tight">
+            <span className="block text-lg font-bold tracking-widest uppercase">
+              {companyInfo.logoText}<span className="text-accent">.</span>
+            </span>
+            <span className="block text-[9px] font-semibold uppercase tracking-[0.14em] text-white/45 mt-1 max-w-[14rem]">
+              {companyInfo.companyName}
+            </span>
+          </div>
         </div>
       </div>
 

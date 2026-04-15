@@ -50,7 +50,7 @@ export default function AboutSection() {
         : product.price;
 
   return (
-    <section id="about" className="py-24 lg:py-28 bg-[#FDFDFD] border-b border-[#111]/10 scroll-mt-[84px]">
+    <section id="about" className="py-24 lg:py-28 bg-[#FDFDFD] border-b border-[#111]/10 scroll-mt-[var(--site-header-height)]">
       <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
         <div className="mb-12 lg:mb-14 max-w-2xl">
           <p className="text-xs uppercase tracking-[0.25em] text-[#111]/35 font-semibold mb-3 flex items-center gap-3">

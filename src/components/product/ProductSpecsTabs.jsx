@@ -44,7 +44,7 @@ export default function ProductSpecsTabs({ product }) {
 
       {/* Content */}
       {active === 'Features' && hasFeatures && (
-        <div className="grid sm:grid-cols-2 gap-4 max-w-3xl">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {product.features.map((f, i) => (
             <div key={i} className="flex items-start gap-3 p-4 border border-[#111]/10 bg-white rounded-card shadow-card">
               <span className="text-accent font-bold text-lg leading-none mt-0.5">—</span>
@@ -55,11 +55,11 @@ export default function ProductSpecsTabs({ product }) {
       )}
 
       {active === 'Specifications' && hasSpecs && (
-        <div className="max-w-2xl">
-          <div className="divide-y divide-[#111]/10 border border-[#111]/10">
+        <div className="w-full">
+          <div className="divide-y divide-[#111]/10 border border-[#111]/10 rounded-card overflow-hidden">
             {Object.entries(product.specs).map(([key, val]) => (
               <div key={key} className="flex items-center bg-white">
-                <div className="w-1/3 px-5 py-4 bg-[#F5F5F5] border-r border-[#111]/10">
+                <div className="w-1/3 lg:w-1/4 px-5 py-4 bg-[#F5F5F5] border-r border-[#111]/10">
                   <p className="text-[11px] uppercase tracking-widest font-bold text-[#111]/60">{key}</p>
                 </div>
                 <div className="flex-1 px-5 py-4">
@@ -72,7 +72,7 @@ export default function ProductSpecsTabs({ product }) {
       )}
 
       {active === 'FAQ' && hasFaqs && (
-        <div className="max-w-2xl space-y-6">
+        <div className="grid sm:grid-cols-2 gap-5">
           {product.faqs.map((faq, i) => (
             <div key={i} className="border border-[#111]/10 rounded-card shadow-card p-6 bg-white">
               <h3 className="text-sm font-bold text-[#111] mb-2">{dynamicT(faq.question)}</h3>
@@ -83,7 +83,7 @@ export default function ProductSpecsTabs({ product }) {
       )}
 
       {active === 'Sources' && hasSources && (
-        <div className="max-w-3xl space-y-3">
+        <div className="grid sm:grid-cols-2 gap-4">
           {product.sources.map((source, i) => (
             <article key={`${source.url}-${i}`} className="border border-[#111]/10 rounded-card shadow-card p-5 bg-white">
               <a
@@ -103,7 +103,7 @@ export default function ProductSpecsTabs({ product }) {
       )}
 
       {active === 'Reviews' && hasReviews && (
-        <div className="space-y-6 max-w-2xl">
+        <div className="grid sm:grid-cols-2 gap-5">
           {product.reviews.map((r, i) => (
             <div key={i} className="border border-[#111]/10 rounded-card shadow-card p-6 bg-white">
               <div className="flex items-center justify-between mb-3">
