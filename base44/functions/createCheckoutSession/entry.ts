@@ -96,13 +96,13 @@ function buildProductIndex(products: ProductRow[]): Map<string, { name: string; 
 /** Local-only variant SKUs (see `productsData.jsx`) used when Base44 catalog has not synced rows yet. */
 function mergeStaticCatalogFallbacks(index: Map<string, { name: string; price: number; image: string }>) {
   const staticRows: Record<string, { name: string; price: number; image: string }> = {
-    '1002-1-UNIT': {
-      name: 'UC-ONE (Ultrasonic Irrigation) — Unit',
+    '1002-1': {
+      name: 'UC-ONE (Ultrasonic Irrigation)',
       price: 599,
       image: '/products/UC_ONE_Ultasonic_Irrigation_1002-1.png',
     },
-    '1002-Full Kit': {
-      name: 'UC-ONE (Ultrasonic Irrigation) — Full kit',
+    '1002-Full-Kit': {
+      name: 'UC-ONE Full Kit (Ultrasonic Irrigation)',
       price: 699,
       image: '/products/UC_ONE_CONTENTS.png',
     },

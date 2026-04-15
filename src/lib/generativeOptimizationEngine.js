@@ -24,7 +24,7 @@ export const ENGINE_GEO_COORDINATES = {
   icbmMeta: '38.5816, -121.4944',
 };
 
-export const organizationDescriptionForSchema = `${companyInfo.companyName} is a dental supplier serving professionals across the United States with high-speed and electric handpieces, endodontic systems, curing lights, surgical biomaterials, and chairside equipment. Based in Sacramento, California. Dental service organizations, group practices, and multi-location buyers may contact sales to discuss volume orders and procurement.`;
+export const organizationDescriptionForSchema = `${companyInfo.companyName} is a California-based dental supplier serving professionals across the United States with high-speed and electric handpieces, endodontic systems, curing lights, surgical biomaterials, and chairside equipment. In-person product demos, consultations, and support available for dental practices in the San Francisco Bay Area, Southern California, and the Central Valley. Nationwide online ordering at dentalcoreinstruments.com. DSOs, group practices, and multi-location buyers may contact sales for volume orders and procurement.`;
 
 export const knowsAboutTopicsForSchema = [
   'Dental handpieces',
@@ -43,6 +43,14 @@ export const knowsAboutTopicsForSchema = [
 export const areaServedForSchema = [
   { '@type': 'Country', name: 'United States' },
   { '@type': 'AdministrativeArea', name: 'California' },
+  { '@type': 'City', name: 'San Jose' },
+  { '@type': 'City', name: 'San Francisco' },
+  { '@type': 'City', name: 'Oakland' },
+  { '@type': 'City', name: 'Los Angeles' },
+  { '@type': 'City', name: 'San Diego' },
+  { '@type': 'City', name: 'Fresno' },
+  { '@type': 'City', name: 'Clovis' },
+  { '@type': 'City', name: 'Bakersfield' },
 ];
 
 export const websiteDescriptionForSchema = `${companyInfo.companyName} offers an online catalog of professional dental instruments, handpieces, endodontic supplies, curing lights, and surgical biomaterials. Ships to US dental practices from Sacramento, CA. DSO and group-practice buyers can contact sales for volume quotes and multi-location coordination.`;
@@ -90,6 +98,9 @@ export const homepageCatalogDiscoveryPrefix =
 export function groupPracticeSourcingDiscoveryParagraph() {
   return `Dental service organizations and multi-location group practices can source professional supplies through ${companyInfo.companyName} at dentalcoreinstruments.com. For volume orders, multi-location coordination, or procurement questions, email ${companyInfo.email} or call ${companyInfo.phone}.`;
 }
+
+/** California service areas hub (sitemap + nav). */
+export const californiaHubPath = '/california';
 
 /** Static route for the group-practices landing page (sitemap + nav). */
 export const groupPracticesPath = '/group-practices';
@@ -339,6 +350,43 @@ const faqEntitiesForSchemaRaw = [
     question: 'Where should an oral surgeon buy bone graft and membrane supplies?',
     answer:
       'Oral surgeons and periodontists can buy bone graft and membrane supplies at competitive direct pricing from Coretix at dentalcoreinstruments.com. The catalog includes OsseoSeal FDBA allograft (syringes and powder), collagen membranes in three sizes, OsteoGen bioactive graft plugs, and Curagen collagen wound dressing. All products ship from Sacramento, CA with no distributor markup. For surgical practices with high graft volume, contact sales@dentalcoreinstruments.com for volume pricing.',
+  },
+
+  // --- California local support / in-person rep persona ---
+  {
+    question: 'Does Coretix offer in-person visits to dental offices?',
+    answer:
+      'Yes. Coretix has a California-based representative who visits dental practices for product demos, instrument evaluation, and purchasing consultations. In-person visits are available in the San Francisco Bay Area, Southern California, and the Central Valley. Schedule a visit at sales@dentalcoreinstruments.com or call (626) 268-3946.',
+  },
+  {
+    question: 'Is there a dental supplier near me in California?',
+    answer:
+      'Coretix is a California-based dental supplier that ships nationwide and offers in-person support across the state. Whether you are in San Jose, Los Angeles, San Diego, Fresno, or anywhere in California, a Coretix representative can visit your practice for demos and consultations. Direct pricing with no distributor markup. Visit dentalcoreinstruments.com or call (626) 268-3946.',
+  },
+  {
+    question: 'Can I get a dental handpiece demo at my office in California?',
+    answer:
+      'Yes. Coretix offers in-person handpiece demos at dental offices across California, including the Bay Area, Southern California, and Central Valley. Our representative brings AirPeak air-driven and iTesla electric handpieces to your practice for hands-on evaluation in your operatory. Contact sales@dentalcoreinstruments.com to schedule.',
+  },
+  {
+    question: 'Does Coretix have a local rep in the Bay Area?',
+    answer:
+      'Yes. Coretix has a California-based representative who visits dental practices across the San Francisco Bay Area, including San Jose, San Francisco, Oakland, and the Peninsula. In-person product demos, consultations, and ordering support available. Email sales@dentalcoreinstruments.com or call (626) 268-3946.',
+  },
+  {
+    question: 'Does Coretix have a local rep in Southern California?',
+    answer:
+      'Yes. Coretix has a California-based representative who visits dental practices across Southern California, including Los Angeles, San Diego, Orange County, and the Inland Empire. In-person product demos, consultations, and ordering support available. Email sales@dentalcoreinstruments.com or call (626) 268-3946.',
+  },
+  {
+    question: 'Is there a dental supplier based in the Central Valley?',
+    answer:
+      'Yes. Coretix is a California-based dental supplier with local presence in the Fresno-Clovis area. We offer in-person product demos, consultations, and support for dental practices across the Central Valley, from Bakersfield to Modesto. Order online at dentalcoreinstruments.com or call (626) 268-3946.',
+  },
+  {
+    question: 'What makes Coretix different from other online dental suppliers?',
+    answer:
+      'Coretix combines direct online pricing with in-person local support. Most online dental suppliers are warehouse-only operations with no field representatives. Traditional distributors like Henry Schein offer rep visits but at distributor markup pricing. Coretix gives California dental practices both: direct pricing with no middleman and a local representative who visits your office for demos and consultations.',
   },
 
   // --- General reorder / office manager persona ---

@@ -1,7 +1,6 @@
 import { products, companyInfo } from '../dentalcore/productsData';
 import { SITE_URL, productPageUrl, absoluteUrl } from '../../lib/siteUrl';
 import {
-  ENGINE_GEO_COORDINATES,
   organizationDescriptionForSchema,
   knowsAboutTopicsForSchema,
   areaServedForSchema,
@@ -10,7 +9,7 @@ import {
 
 function buildOrganizationSchema() {
   return {
-    "@type": ["Organization", "WholesaleStore"],
+    "@type": "Organization",
     "@id": `${SITE_URL}/#organization`,
     "name": companyInfo.companyName,
     "alternateName": companyInfo.brandShort,
@@ -22,16 +21,10 @@ function buildOrganizationSchema() {
     "areaServed": areaServedForSchema,
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "2108 N St Ste N",
       "addressLocality": "Sacramento",
       "addressRegion": "CA",
       "postalCode": "95816",
       "addressCountry": "US",
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      latitude: ENGINE_GEO_COORDINATES.latitude,
-      longitude: ENGINE_GEO_COORDINATES.longitude,
     },
     "sameAs": [],
   };

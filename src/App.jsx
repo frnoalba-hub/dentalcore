@@ -12,6 +12,8 @@ import AdminOrders from './pages/AdminOrders';
 import AdminDashboard from './pages/AdminDashboard';
 import ProductDetail from './pages/ProductDetail';
 import GroupPractices from './pages/GroupPractices';
+import CaliforniaHub from './pages/CaliforniaHub';
+import CaliforniaMetroPage from './pages/CaliforniaMetroPage';
 import CategoryHubPage from './pages/CategoryHubPage';
 import BuyerGuidePage from './pages/BuyerGuidePage';
 import AdminProducts from './pages/AdminProducts';
@@ -96,6 +98,8 @@ const AuthenticatedApp = () => {
       <Route path="/product" element={<ProductDetail />} />
       <Route path="/ProductDetail" element={<LegacyProductPathRedirect />} />
       <Route path="/group-practices" element={<GroupPractices />} />
+      <Route path="/california" element={<CaliforniaHub />} />
+      <Route path="/california/:metroSlug" element={<CaliforniaMetroPage />} />
       <Route path="/c/:categorySlug" element={<CategoryHubPage />} />
       <Route path="/guides/:guideSlug" element={<BuyerGuidePage />} />
       <Route path="/track-order" element={<OrderTracking />} />
