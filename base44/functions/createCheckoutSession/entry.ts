@@ -183,6 +183,7 @@ Deno.serve(async (req) => {
   try {
     const body = (await req.json()) as Record<string, unknown>;
     const origin = String(body.origin ?? '').trim();
+    const orderNotes = String(body.orderNotes ?? '').trim().slice(0, 500) || null;
     if (!origin || !isAllowedOrigin(origin)) {
       return Response.json({ error: 'Invalid or disallowed checkout origin' }, { status: 400 });
     }
@@ -289,6 +290,7 @@ Deno.serve(async (req) => {
       metadata: {
         base44_app_id: Deno.env.get('BASE44_APP_ID') ?? '',
         promos: JSON.stringify(promos),
+        ...(orderNotes ? { order_notes: orderNotes } : {}),
       },
     };
     if (discounts.length > 0) sessionParams.discounts = discounts;

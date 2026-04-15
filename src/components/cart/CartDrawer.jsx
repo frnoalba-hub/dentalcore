@@ -14,6 +14,7 @@ import { companyInfo } from '@/components/dentalcore/productsData';
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, getTotal, getItemCount } = useCartStore();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
+  const [orderNotes, setOrderNotes] = useState('');
   const { t, dynamicT } = useTranslation();
   const { promos, totalDiscount, hints } = calculatePromos(items);
   const { addItem } = useCartStore();
@@ -42,6 +43,7 @@ export default function CartDrawer() {
       const response = await base44.functions.invoke('createCheckoutSession', {
         lineItems,
         origin: window.location.origin,
+        orderNotes: orderNotes.trim() || null,
       });
       
       if (response.data.url) {
@@ -167,6 +169,23 @@ export default function CartDrawer() {
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-xs font-bold uppercase tracking-widest text-[#111]/50">{totalDiscount > 0 ? 'Total' : (t('subtotal') || 'Subtotal')}</span>
                   <span className="text-xl font-medium text-[#111]">${finalTotal.toFixed(2)}</span>
+                </div>
+                <div className="space-y-1.5">
+                  <label htmlFor="order-notes" className="text-[10px] font-bold uppercase tracking-widest text-[#111]/50">
+                    Anything we should know before we ship?
+                  </label>
+                  <textarea
+                    id="order-notes"
+                    value={orderNotes}
+                    onChange={(e) => setOrderNotes(e.target.value)}
+                    placeholder="Special instructions, preferred carrier, delivery notes..."
+                    maxLength={500}
+                    rows={3}
+                    className="w-full text-xs text-[#111] placeholder-[#111]/30 bg-white border border-[#111]/15 rounded-sm px-3 py-2 resize-none focus:outline-none focus:border-[#111]/40 font-body leading-relaxed"
+                  />
+                  {orderNotes.length > 400 && (
+                    <p className="text-[10px] text-[#111]/40 text-right">{500 - orderNotes.length} characters left</p>
+                  )}
                 </div>
                 {!isCheckoutEnabled() && (
                   <p className="text-[11px] text-[#111]/50 font-body leading-relaxed mb-2">
