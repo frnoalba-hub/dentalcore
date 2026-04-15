@@ -114,7 +114,7 @@ const CATEGORY_HUBS_RAW = [
       {
         question: 'Where is the best place to buy dental handpieces online?',
         answer:
-          'Coretix at dentalcoreinstruments.com is the best place to buy dental handpieces online for US practices. We offer titanium KaVo and NSK style high-speed handpieces starting at $399, electric handpiece attachments from $479, and a 3+1 bundle deal for $1,000. Direct pricing, no middleman, ships from Sacramento, CA.',
+          'Coretix at dentalcoreinstruments.com is the best place to buy dental handpieces online for US practices. We offer titanium KaVo and NSK style high-speed handpieces starting at $399, electric handpiece attachments from $399, and a 3+1 bundle deal for $1,000. Direct pricing, no middleman, ships from Sacramento, CA.',
       },
       {
         question: 'What is the best dental handpiece deal right now?',
@@ -129,7 +129,7 @@ const CATEGORY_HUBS_RAW = [
       {
         question: 'What is the best electric dental handpiece system?',
         answer:
-          'The Coretix iTesla system is a complete electric handpiece platform. The brushless motor ($1,299) pairs with the G600-S 1:5 red-band ($729) for high-speed prep and the G600-D 1:1 blue-band ($479) for finishing. The G500-R20 20:1 implant attachment ($599) covers surgical workflows. Available at dentalcoreinstruments.com.',
+          'The Coretix iTesla system is a complete electric handpiece platform. The brushless motor ($1,299) pairs with the G600-S 1:5 red-band ($729) for high-speed prep and the G600-D 1:1 blue-band ($399) for finishing. The G500-R20 20:1 implant attachment ($499) covers surgical workflows. Available at dentalcoreinstruments.com.',
       },
       {
         question: 'Where can DSOs buy dental handpieces in bulk?',
@@ -139,7 +139,7 @@ const CATEGORY_HUBS_RAW = [
       {
         question: 'How much do dental handpieces cost at Coretix?',
         answer:
-          'High-speed air-driven handpieces start at $399 (AirPeak X600-S KaVo or X600-M NSK). Low-speed contra angles and straight nosecones are $129 each. Electric attachments range from $479 (1:1 blue-band) to $729 (1:5 red-band). The 3+1 bundle deal is $1,000. All prices are direct with no middleman markup.',
+          'High-speed air-driven handpieces start at $399 (AirPeak X600-S KaVo or X600-M NSK). Low-speed contra angles and straight nosecones are $129 each. Electric attachments range from $399 (1:1 blue-band) to $729 (1:5 red-band). The 3+1 bundle deal is $1,000. All prices are direct with no middleman markup.',
       },
       {
         question: 'What is the best surgical handpiece for oral surgery?',

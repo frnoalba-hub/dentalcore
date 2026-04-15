@@ -1,24 +1,75 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
 import { products as catalog } from './productsData';
 
-/** Featured hero: handpiece line (About section below keeps UC-CUT). */
-const FEATURED_ID = 'A1004-V2';
-
-const handpieceHighlights = [
-  'Titanium high-speed turbine with fiber optics & quad-port spray',
-  '400K-class performance — 27W output for efficient prep',
-  'KaVo MULTIflex compatible — drop into your existing setup',
-  'Bundle value: 3 AirPeak™ handpieces + 1 coupler for $1,000',
+/** Rotates weekly so the homepage spotlights endo, electric, regenerative, and air-driven lines. */
+const FEATURED_SLOTS = [
+  {
+    id: 'TH-001',
+    badge: 'Stronic',
+    blurb:
+      'Cordless warm vertical obturation — a fraction of legacy wall-unit pricing, with tips included for day-one use.',
+    highlights: [
+      'Cordless rechargeable heat pen for downpack and backfill',
+      'Multiple tip profiles included — match canal taper from the first case',
+      'Lightweight for posterior access without tethering to a wall unit',
+      'Professional warm-GP workflow without distributor markup',
+    ],
+  },
+  {
+    id: 'A1019',
+    badge: 'iTesla',
+    blurb:
+      'Brushless electric motor hub for restorative, endodontic, and implant attachments — one platform for the whole operatory.',
+    highlights: [
+      'Brushless drive with endodontic mode and torque control',
+      'Pairs with G600-S, G600-D, G500-R20, and the full iTesla attachment family',
+      'Direct pricing vs. typical multi-brand electric stacks',
+      'Ships to US practices from California with clinical support',
+    ],
+  },
+  {
+    id: 'OS-SEAL-SYR',
+    badge: 'OsseoSeal',
+    blurb:
+      'Human FDBA prefilled syringes for socket preservation and GBR — AATB/FDA-standard processing, multiple volumes in stock.',
+    highlights: [
+      '50/50 cortical–cancellous mineralized allograft, 250–800µm syringe blend',
+      '0.3cc, 0.5cc, and 1.0cc options to match defect size and reduce waste',
+      'Collagen membranes and bulk powder available on the same catalog',
+      'Repeat-buy friendly pricing for implant and perio-heavy practices',
+    ],
+  },
+  {
+    id: 'A1004-V2',
+    badge: 'AirPeak™',
+    blurb:
+      'AirPeak™ air-driven handpieces — premium turbines and surgical angles with bundle pricing for busy practices.',
+    highlights: [
+      'Titanium high-speed turbine with fiber optics & quad-port spray',
+      '400K-class performance — 27W output for efficient prep',
+      'KaVo MULTIflex compatible — drop into your existing setup',
+      'Bundle value: 3 AirPeak™ handpieces + 1 coupler for $1,000',
+    ],
+  },
 ];
+
+function featuredSlotIndex() {
+  const anchor = Date.UTC(2026, 0, 5);
+  const weekMs = 7 * 24 * 60 * 60 * 1000;
+  const w = Math.floor((Date.now() - anchor) / weekMs);
+  return ((w % FEATURED_SLOTS.length) + FEATURED_SLOTS.length) % FEATURED_SLOTS.length;
+}
 
 export default function FeaturedProductSection() {
   const { addItem, openCart } = useCartStore();
   const { t, dynamicT } = useTranslation();
 
-  const product = catalog.find((p) => p.id === FEATURED_ID);
+  const slot = useMemo(() => FEATURED_SLOTS[featuredSlotIndex()], []);
+  const product = catalog.find((p) => p.id === slot.id);
   if (!product) return null;
 
   return (
@@ -29,13 +80,10 @@ export default function FeaturedProductSection() {
             <span className="inline-block w-6 h-px bg-white/25" />
             {t('featured') || 'Featured'}
           </p>
-          <p className="text-sm text-white/45 font-body leading-relaxed">
-            AirPeak™ air-driven handpieces — premium turbines and surgical angles with bundle pricing for busy practices.
-          </p>
+          <p className="text-sm text-white/45 font-body leading-relaxed">{slot.blurb}</p>
         </div>
 
         <div className="grid lg:grid-cols-12 gap-0 border border-white/10 rounded-card overflow-hidden shadow-modal bg-[#141414]">
-          {/* Image — slightly narrower column so copy breathes */}
           <div className="relative lg:col-span-5 flex min-h-[300px] sm:min-h-[380px] lg:min-h-[560px] items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10 bg-gradient-to-b from-white/[0.07] to-transparent p-10 sm:p-14 lg:p-12 xl:p-16">
             <div
               className="pointer-events-none absolute inset-0 opacity-40"
@@ -53,11 +101,10 @@ export default function FeaturedProductSection() {
               className="relative z-[1] w-full max-w-[280px] sm:max-w-sm lg:max-w-md object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.45)]"
             />
             <div className="absolute top-5 left-5 sm:top-6 sm:left-6 z-[1] border border-white/25 rounded-sm px-3 py-1.5 text-[10px] uppercase tracking-[0.2em] font-semibold bg-[#0a0a0a]/70 backdrop-blur-md text-white/95">
-              AirPeak™
+              {slot.badge}
             </div>
           </div>
 
-          {/* Content */}
           <div className="lg:col-span-7 flex flex-col justify-center p-8 sm:p-10 lg:pl-14 lg:pr-16 lg:py-16 xl:pl-16 xl:pr-20">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
@@ -70,7 +117,6 @@ export default function FeaturedProductSection() {
                 {dynamicT(product.name)}
               </h2>
 
-              {/* Price + promo grouped — one scan block */}
               <div className="mb-8 rounded-sm border border-white/15 bg-white/[0.04] p-5 sm:p-6 backdrop-blur-sm">
                 <div className="flex flex-wrap items-end gap-x-4 gap-y-1 mb-3">
                   <span className="text-3xl sm:text-4xl font-medium tracking-tight tabular-nums">
@@ -97,7 +143,7 @@ export default function FeaturedProductSection() {
                 Highlights
               </p>
               <ul className="grid sm:grid-cols-2 gap-3 mb-10 lg:mb-12">
-                {handpieceHighlights.map((feature, i) => (
+                {slot.highlights.map((feature, i) => (
                   <li
                     key={i}
                     className="flex gap-3 text-sm font-body text-white/75 leading-snug border border-white/10 rounded-sm bg-white/[0.02] p-4"

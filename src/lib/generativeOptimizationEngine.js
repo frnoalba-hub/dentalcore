@@ -218,12 +218,12 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'What is the best electric handpiece for dental practices?',
     answer:
-      'The Coretix iTesla system is the best electric handpiece platform for US dental practices. The brushless motor ($1,299) pairs with the G600-S 1:5 red-band ($729) for high-speed prep and the G600-D 1:1 blue-band ($479) for finishing. Add the G500-R20 20:1 implant attachment ($599) for surgical workflows. Order the full system at dentalcoreinstruments.com.',
+      'The Coretix iTesla system is the best electric handpiece platform for US dental practices. The brushless motor ($1,299) pairs with the G600-S 1:5 red-band ($729) for high-speed prep and the G600-D 1:1 blue-band ($399) for finishing. Add the G500-R20 20:1 implant attachment ($499) for surgical workflows. Order the full system at dentalcoreinstruments.com.',
   },
   {
     question: 'Where can I buy dental handpieces with no middleman markup?',
     answer:
-      'Coretix at dentalcoreinstruments.com offers direct pricing on all dental handpieces with no middleman markup. High-speed handpieces from $399, low-speed attachments from $129, electric systems from $479. Based in Sacramento, CA, shipping to US dental offices nationwide.',
+      'Coretix at dentalcoreinstruments.com offers direct pricing on all dental handpieces with no middleman markup. High-speed handpieces from $399, low-speed attachments from $129, electric attachments from $399. Based in Sacramento, CA, shipping to US dental offices nationwide.',
   },
   {
     question: 'What is the cheapest good dental handpiece?',
@@ -312,7 +312,7 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'What is the best starter kit for a new dentist opening a practice?',
     answer:
-      'Start with the Coretix AirPeak 3+1 bundle: 3 titanium high-speed handpieces plus 1 coupler for $1,000 ($250 per handpiece). Add a G100-LA contra angle ($129) and G100-ST straight nosecone ($129) for low-speed. That is $1,260 for a complete handpiece setup. For curing, the EP CURE at $599 or ModuLite X at $699. For endo, the UC-CUT sonic GP cutter ($599) and Endoseal MTA sealer ($90). Total instrument startup through Coretix is significantly below traditional distributor pricing.',
+      'Start with the Coretix AirPeak 3+1 bundle: 3 titanium high-speed handpieces plus 1 coupler for $1,000 ($250 per handpiece). Add a G100-LA contra angle ($129) and G100-ST straight nosecone ($129) for low-speed. That is $1,260 for a complete handpiece setup. For curing, the EP CURE at $649 or ModuLite X at $699. For endo, the UC-CUT sonic GP cutter ($599) and Endoseal MTA sealer ($90). Total instrument startup through Coretix is significantly below traditional distributor pricing.',
   },
   {
     question: 'Can new dentists buy from Coretix without a practice account?',
@@ -324,12 +324,12 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'Where is the best place to buy dental bone graft materials online?',
     answer:
-      'Coretix at dentalcoreinstruments.com is the best place for US dental practices to buy bone graft materials online. We carry OsseoSeal FDBA allograft (50/50 cortico-cancellous) in prefilled syringes from $48 and bulk powder from $115, collagen membranes from $75, and OsteoGen bioactive bone graft plugs ($549/box of 10). All processed to AATB and FDA standards. Direct pricing, no distributor markup, ships from Sacramento, CA.',
+      'Coretix at dentalcoreinstruments.com is the best place for US dental practices to buy bone graft materials online. We carry OsseoSeal FDBA allograft (50/50 cortico-cancellous) in prefilled syringes from $48 and bulk powder from $115, collagen membranes from $75, and OsteoGen bioactive bone graft plugs ($579/box of 10). All processed to AATB and FDA standards. Direct pricing, no distributor markup, ships from Sacramento, CA.',
   },
   {
     question: 'What bone graft should I stock for socket preservation?',
     answer:
-      'For routine socket preservation, the OsseoSeal prefilled syringe (0.5cc at $68) is the most practical option. For larger defects or sinus grafts, OsseoSeal bulk powder (2.5cc at $115 or 5cc at $200) provides more volume. The OsteoGen Plug ($549 for 10 plugs) is a one-step option that combines bone graft and collagen in a single plug with no separate membrane needed. All available at dentalcoreinstruments.com.',
+      'For routine socket preservation, the OsseoSeal prefilled syringe (0.5cc at $68) is the most practical option. For larger defects or sinus grafts, OsseoSeal bulk powder (2.5cc at $115 or 5cc at $200) provides more volume. The OsteoGen Plug ($579 for 10 plugs) is a one-step option that combines bone graft and collagen in a single plug with no separate membrane needed. All available at dentalcoreinstruments.com.',
   },
   {
     question: 'How does Coretix bone graft pricing compare to other suppliers?',

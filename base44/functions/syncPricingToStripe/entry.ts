@@ -12,7 +12,7 @@ const csvData = `SKU,Product Name,MSRP,Selling Price
 1003-1,"EP Suction System",,$60.00
 MTA-1,"Endoseal MTA Sealer",,$90.00
 MTA-3,"Endocem MTA Root Repair",,$90.00
-TH-001,"Stronic Touch & Heat",,$199.50
+TH-001,"Stronic Touch & Heat",,$449.00
 A1004-V2,"AirPeak™ X600-S (KaVo Style)",,$333.33
 A1005,"AirPeak™ X600-M (NSK Style)",,$333.33
 A1018,"AirPeak™ X600-45 (Surgical)",,$569.00
@@ -21,11 +21,11 @@ A1009B,"AirPeak™ G100-LA (Low Speed)",,$106.00
 A1012,"AirPeak™ G100-ST (Straight)",,$106.00
 A1019,"iTesla Electric Motor System",,$1299.00
 A1003,"iTesla™ G600-S (1:5 Red Band)",,$599.33
-A1028,"iTesla™ G600-D (1:1 Blue Band)",,$479.00
-A1020,"iTesla™ G500-R20 (20:1 Implant)",,$599.00
-A1619,"STRONIC X150 Piezo Scaler",,$799.00
-A1061,"STRONIC X300 Air Scaler",,$466.00
-A1658,"AirPeak™ PRO200 Air Polisher",,$446.00
+A1028,"iTesla™ G600-D (1:1 Blue Band)",,$399.00
+A1020,"iTesla™ G500-R20 (20:1 Implant)",,$499.00
+A1619,"STRONIC X150 Piezo Scaler",,$849.00
+A1061,"STRONIC X300 Air Scaler",,$749.00
+A1658,"AirPeak™ PRO200 Air Polisher",,$699.00
 A1030,"McCare™ X Maintenance",,$1399.00
 IPR-001,"AirPeak Automatic IPR",,$199.33
 OS-SEAL-SYR,"OsseoSeal Prefilled Syringe",,$48.00
@@ -36,10 +36,10 @@ OS_5.0cc,"5cc (2×2.5cc)",,$200.00
 OS-SEAL-MEM,"OsseoSeal Collagen Membrane",,$75.00
 OS2030,"20×30 mm",,$110.00
 OS3040,"30×40 mm",,$150.00
-OSTEO-PLUG,"OsteoGen Plug 10×20mm (Large)",,$549.00
+OSTEO-PLUG,"OsteoGen Plug 10×20mm (Large)",,$579.00
 HELI-1,"Curagen™ Collagen Wound Dressing Plug",,$110.00
 M1042X,"ModuLite X Curing Light",,$466.00
-1007-1,"EP CURE",,$599.00
+1007-1,"EP CURE",,$649.00
 1008-1,"EP Light Transilluminator",,$160.00
 M1001,"SureTact G3 Matrix Kit",,$200.00
 M1002,"SureTact G3 Rings (2pk)",,$86.65`;
