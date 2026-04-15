@@ -5,7 +5,6 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { companyInfo, products as localProducts } from './productsData';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
-import { toast } from 'sonner';
 import { trackEngagementEvent } from '@/lib/trackEvent';
 
 const promos = [
@@ -19,7 +18,7 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [promoIndex, setPromoIndex] = useState(0);
-  const { openCart, getItemCount, addItem } = useCartStore();
+  const { openCart, getItemCount } = useCartStore();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
@@ -78,7 +77,7 @@ export default function Header() {
           scrolled ? 'shadow-[0_2px_20px_rgba(0,0,0,0.25)]' : ''
         }`}
       >
-        {/* Promo ticker — motto left (no duplicate of logo + tagline); offers center */}
+        {/* Promo ticker — motto left; rotating offers link to PDP (not blind add-to-cart when checkout may be paused / bundles need correct qty). */}
         <div className="border-b border-white/[0.06] flex items-center h-7 overflow-hidden px-2 sm:px-4 gap-2 sm:gap-3">
           <span
             className="shrink-0 max-w-[38%] sm:max-w-[42%] truncate text-[8px] sm:text-[9px] font-medium tracking-[0.06em] text-white/38 normal-case sm:italic"
@@ -99,20 +98,25 @@ export default function Header() {
             >
               <span className="text-accent text-[8px] shrink-0">&#9679;</span>
               {promos[promoIndex].text}
-              <button
-                onClick={() => {
-                  const promo = promos[promoIndex];
-                  const product = localProducts.find(p => p.id === promo.productId);
-                  if (product) {
-                    addItem(product, promo.qty);
-                    openCart();
-                    toast.success(`Added ${product.name} to cart`);
-                  }
-                }}
-                className="underline underline-offset-4 text-white/40 hover:text-accent transition-colors flex items-center gap-0.5"
-              >
-                Shop <ChevronRight className="w-2.5 h-2.5" />
-              </button>
+              {(() => {
+                const row = promos[promoIndex];
+                const product = localProducts.find((p) => p.id === row.productId);
+                if (!product?.slug) return null;
+                return (
+                  <Link
+                    to={`/p/${product.slug}`}
+                    onClick={() =>
+                      trackEngagementEvent('header_promo_product_link', {
+                        sku: product.id,
+                        promo_index: promoIndex,
+                      })
+                    }
+                    className="underline underline-offset-4 text-white/40 hover:text-accent transition-colors flex items-center gap-0.5 shrink-0"
+                  >
+                    View <ChevronRight className="w-2.5 h-2.5" />
+                  </Link>
+                );
+              })()}
             </motion.p>
           </AnimatePresence>
           </div>
