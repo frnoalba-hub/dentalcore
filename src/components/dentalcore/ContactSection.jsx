@@ -52,6 +52,11 @@ export default function ContactSection() {
             </a>{' '}
             before returning merchandise. Opened or sterile items may not be eligible for return.
           </p>
+          <p className="text-sm text-white/45 font-body mt-4">
+            <Link to="/policies" className="text-accent font-semibold uppercase tracking-widest text-[11px] hover:underline">
+              Full policies (shipping, returns, warranty) →
+            </Link>
+          </p>
         </div>
 
         <div className="grid md:grid-cols-3 border border-white/10 rounded-card overflow-hidden bg-[#141414] shadow-modal">

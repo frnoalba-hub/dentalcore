@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Loader2, Gift } from 'lucide-react';
+import { Gift, Loader2, Tag, X } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
 
 import { base44 } from '@/api/base44Client';
@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { useTranslation } from '@/lib/i18n';
 import { calculatePromos } from '../store/promoEngine';
 import { trackEngagementEvent } from '@/lib/trackEvent';
-import { Tag } from 'lucide-react';
+import { isCheckoutEnabled } from '@/lib/commerceFlags';
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, getTotal, getItemCount } = useCartStore();
@@ -21,7 +21,12 @@ export default function CartDrawer() {
 
   const handleStripeCheckout = async () => {
     if (items.length === 0) return;
-    
+
+    if (!isCheckoutEnabled()) {
+      toast.error('Online checkout is paused. Email sales for a quote or invoice.');
+      return;
+    }
+
     if (window.self !== window.top) {
       toast.error('Checkout is disabled in preview. Open in a new tab to test.');
       return;
@@ -29,10 +34,13 @@ export default function CartDrawer() {
 
     setIsCheckingOut(true);
     try {
+      const lineItems = items.map(({ id, quantity }) => ({
+        id,
+        quantity: Math.min(99, Math.max(1, Math.floor(Number(quantity)) || 1)),
+      }));
       const response = await base44.functions.invoke('createCheckoutSession', {
-        items,
+        lineItems,
         origin: window.location.origin,
-        promos,
       });
       
       if (response.data.url) {
@@ -156,10 +164,15 @@ export default function CartDrawer() {
                   <span className="text-xs font-bold uppercase tracking-widest text-[#111]/50">{totalDiscount > 0 ? 'Total' : (t('subtotal') || 'Subtotal')}</span>
                   <span className="text-xl font-medium text-[#111]">${finalTotal.toFixed(2)}</span>
                 </div>
+                {!isCheckoutEnabled() && (
+                  <p className="text-[11px] text-[#111]/50 font-body leading-relaxed mb-2">
+                    Online checkout is paused. Use email below for a quote or invoice — cart totals are for reference only.
+                  </p>
+                )}
                 <button
                   type="button"
                   onClick={handleStripeCheckout}
-                  disabled={isCheckingOut}
+                  disabled={isCheckingOut || !isCheckoutEnabled()}
                   className="w-full bg-[#111] text-white py-4 text-sm font-medium uppercase tracking-widest rounded-sm shadow-card hover:bg-accent hover:shadow-card-hover active:scale-[0.99] transition-all flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100"
                 >
                   {isCheckingOut ? (
@@ -167,6 +180,8 @@ export default function CartDrawer() {
                       <Loader2 className="w-5 h-5 animate-spin mr-2" />
                       {t('processing')}
                     </>
+                  ) : !isCheckoutEnabled() ? (
+                    'Checkout paused — email sales'
                   ) : (
                     t('secure_checkout') || "Pay with Card"
                   )}

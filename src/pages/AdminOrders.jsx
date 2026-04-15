@@ -43,7 +43,7 @@ export default function AdminOrders() {
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-5xl mx-auto">
         <div className="flex items-center gap-3 mb-8">
-          <Link to="/AdminProducts" className="text-gray-400 hover:text-gray-700">
+          <Link to="/admin/products" className="text-gray-400 hover:text-gray-700">
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>

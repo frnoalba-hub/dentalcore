@@ -14,7 +14,10 @@ import ProductDetail from './pages/ProductDetail';
 import GroupPractices from './pages/GroupPractices';
 import CategoryHubPage from './pages/CategoryHubPage';
 import BuyerGuidePage from './pages/BuyerGuidePage';
+import AdminProducts from './pages/AdminProducts';
+import Policies from './pages/Policies';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
+import RequireAuth from '@/lib/RequireAuth';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Analytics from '@/components/Analytics';
 
@@ -79,6 +82,16 @@ const AuthenticatedApp = () => {
           }
         />
       ))}
+      <Route path="/policies" element={<Policies />} />
+      <Route path="/AdminProducts" element={<Navigate to="/admin/products" replace />} />
+      <Route
+        path="/admin/products"
+        element={
+          <RequireAuth>
+            <AdminProducts />
+          </RequireAuth>
+        }
+      />
       <Route path="/p/:productSlug" element={<ProductDetail />} />
       <Route path="/product" element={<ProductDetail />} />
       <Route path="/ProductDetail" element={<LegacyProductPathRedirect />} />
@@ -87,8 +100,22 @@ const AuthenticatedApp = () => {
       <Route path="/guides/:guideSlug" element={<BuyerGuidePage />} />
       <Route path="/track-order" element={<OrderTracking />} />
       <Route path="/OrderTracking" element={<LegacyOrderTrackingRedirect />} />
-      <Route path="/admin/orders" element={<AdminOrders />} />
-      <Route path="/admin/dashboard" element={<AdminDashboard />} />
+      <Route
+        path="/admin/orders"
+        element={
+          <RequireAuth>
+            <AdminOrders />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/admin/dashboard"
+        element={
+          <RequireAuth>
+            <AdminDashboard />
+          </RequireAuth>
+        }
+      />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );

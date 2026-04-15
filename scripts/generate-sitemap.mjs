@@ -67,6 +67,7 @@ function main() {
 
   const staticUrls = [
     [SITE_URL + '/', 'weekly', '1.0'],
+    [SITE_URL + '/policies', 'monthly', '0.65'],
     [SITE_URL + '/group-practices', 'monthly', '0.75'],
     [SITE_URL + '/track-order', 'weekly', '0.8'],
     ...CATEGORY_HUB_PATHS.map((p) => [SITE_URL + p, 'weekly', '0.86']),

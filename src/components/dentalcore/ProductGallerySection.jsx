@@ -88,8 +88,6 @@ const products = [
 export default function ProductGallerySection() {
   const [activeProduct, setActiveProduct] = useState('uc-cut');
 
-  const currentProduct = products.find(p => p.id === activeProduct);
-
   return (
     <section id="products" className="relative py-32 px-6 lg:px-12 bg-gradient-to-b from-transparent via-gray-950/50 to-transparent">
       <div className="container mx-auto max-w-7xl">

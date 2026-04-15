@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Menu, X, ArrowUpRight, ChevronRight, Package } from 'lucide-react';
+import { ShoppingBag, Menu, X, ArrowUpRight, ChevronRight } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { companyInfo, products as localProducts } from './productsData';
 import { useCartStore } from '../store/cartStore';
@@ -35,6 +35,7 @@ export default function Header() {
     { label: 'Reviews', id: 'testimonials' },
     { label: 'Guides', to: '/guides/air-driven-vs-electric-handpieces' },
     { label: 'Handpieces', to: '/c/handpieces' },
+    { label: 'Policies', to: '/policies' },
     { label: 'DSOs & groups', to: '/group-practices' },
     { label: 'Track Order', to: '/track-order' },
   ];

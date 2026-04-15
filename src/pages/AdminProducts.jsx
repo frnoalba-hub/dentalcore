@@ -85,7 +85,7 @@ export default function AdminProducts() {
       }));
       
       toast.success(`${urls.length} image(s) uploaded successfully`);
-    } catch (error) {
+    } catch {
       toast.error('Failed to upload images');
     } finally {
       setUploading(false);
@@ -101,7 +101,7 @@ export default function AdminProducts() {
       const result = await base44.integrations.Core.UploadFile({ file });
       setFormData({ ...formData, image: result.file_url });
       toast.success('Main image uploaded');
-    } catch (error) {
+    } catch {
       toast.error('Failed to upload image');
     } finally {
       setUploading(false);
@@ -138,15 +138,6 @@ export default function AdminProducts() {
       image: url
     }));
     toast.success('Primary image set');
-  };
-
-  const reorderImages = (fromIndex, toIndex) => {
-    setFormData(prev => {
-      const newImages = [...prev.images];
-      const [removed] = newImages.splice(fromIndex, 1);
-      newImages.splice(toIndex, 0, removed);
-      return { ...prev, images: newImages };
-    });
   };
 
   const addVariant = () => {
@@ -253,49 +244,55 @@ export default function AdminProducts() {
             <div className="text-sm text-gray-500 flex-1">
               Showing {filteredProducts.length} of {products.length} products
             </div>
-            
-            <Button onClick={async () => {
-              toast.loading('Wiping database...', { duration: 3000 });
-              let delCount = 0;
-              for (const p of products) {
-                try {
-                  await base44.entities.Product.delete(p.id);
-                  delCount++;
-                } catch(e) { console.error('Failed to delete', p.id); }
-              }
-              toast.dismiss();
-              toast.success('Deleted ' + delCount + ' mock products');
-              queryClient.invalidateQueries(['admin-products']);
-            }} variant="destructive" className="bg-red-600 hover:bg-red-700">
-              <Trash2 className="w-4 h-4 mr-2" />
-              Wipe Mock Data
-            </Button>
 
-            <Button onClick={async () => {
-              toast.loading('Importing catalog...');
-              let successCount = 0;
-              for (const p of fullCatalog) {
-                try {
-                  await base44.entities.Product.create({
-                    name: p.name,
-                    category: p.category,
-                    price: '$' + p.price,
-                    description: p.description,
-                    image: p.image || '',
-                    stock: 100
-                  });
-                  successCount++;
-                } catch (err) {
-                  console.error('Failed to import', p.name);
-                }
-              }
-              toast.dismiss();
-              toast.success('Successfully imported ' + successCount + ' products');
-              queryClient.invalidateQueries(['admin-products']);
-            }} variant="outline" className="border-amber-500 text-amber-600">
-              <Upload className="w-4 h-4 mr-2" />
-              Seed {fullCatalog.length} Products from Excel
-            </Button>
+            {(import.meta.env.DEV || import.meta.env.VITE_ENABLE_ADMIN_DANGER === 'true') && (
+              <>
+                <Button onClick={async () => {
+                  toast.loading('Wiping database...', { duration: 3000 });
+                  let delCount = 0;
+                  for (const p of products) {
+                    try {
+                      await base44.entities.Product.delete(p.id);
+                      delCount++;
+                    } catch {
+                      console.error('Failed to delete', p.id);
+                    }
+                  }
+                  toast.dismiss();
+                  toast.success('Deleted ' + delCount + ' mock products');
+                  queryClient.invalidateQueries(['admin-products']);
+                }} variant="destructive" className="bg-red-600 hover:bg-red-700">
+                  <Trash2 className="w-4 h-4 mr-2" />
+                  Wipe Mock Data
+                </Button>
+
+                <Button onClick={async () => {
+                  toast.loading('Importing catalog...');
+                  let successCount = 0;
+                  for (const p of fullCatalog) {
+                    try {
+                      await base44.entities.Product.create({
+                        name: p.name,
+                        category: p.category,
+                        price: '$' + p.price,
+                        description: p.description,
+                        image: p.image || '',
+                        stock: 100
+                      });
+                      successCount++;
+                    } catch {
+                      console.error('Failed to import', p.name);
+                    }
+                  }
+                  toast.dismiss();
+                  toast.success('Successfully imported ' + successCount + ' products');
+                  queryClient.invalidateQueries(['admin-products']);
+                }} variant="outline" className="border-amber-500 text-amber-600">
+                  <Upload className="w-4 h-4 mr-2" />
+                  Seed {fullCatalog.length} Products from Excel
+                </Button>
+              </>
+            )}
           </div>
         </div>
 

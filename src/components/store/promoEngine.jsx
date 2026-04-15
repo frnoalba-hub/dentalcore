@@ -46,16 +46,7 @@ export function calculatePromos(items) {
   const totalAirpeakQty = airpeakItems.reduce((s, i) => s + i.quantity, 0);
   const bundles = Math.floor(totalAirpeakQty / 3);
   if (bundles > 0) {
-    // Normal price per unit for these is the item price
-    const normalPerBundle = airpeakItems.reduce((s, i) => {
-      const unitPrice = parsePrice(i.price);
-      const share = Math.min(i.quantity, bundles * 3) * unitPrice;
-      return s + share;
-    }, 0);
-    // Bundle price is $1,000 per 3
-    const bundleTotal = bundles * 1000;
-    // However items already priced at $333.33, so 3 = $999.99, round the diff
-    const rawTotal = bundles * 3 * 333.33;
+    // Bundle price is $1,000 per 3; catalog may already reflect deal vs $599 retail.
     // Effectively coupler free — show as savings vs original $599 each
     const originalPerUnit = 599;
     const savings = bundles * (3 * originalPerUnit - 1000);

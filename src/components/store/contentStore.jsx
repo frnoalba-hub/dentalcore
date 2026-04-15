@@ -1,17 +1,13 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { base44 } from '@/api/base44Client';
+import { canonicalBusinessInfo } from '@/lib/companyDefaults';
 
 const useContentStore = create(
   persist(
     (set, get) => ({
-      // Content data (defaults, will be overwritten by GitHub data)
-      businessInfo: {
-        name: 'Coretix',
-        phone: '(626) 214-6598',
-        email: 'frno.alba@gmail.com',
-        location: 'California, USA',
-      },
+      // Content data (defaults; GitHub fetch may refresh company fields when available)
+      businessInfo: { ...canonicalBusinessInfo },
       
       headerNav: [
         { label: 'Features', id: 'features' },
@@ -89,27 +85,18 @@ const useContentStore = create(
           const content = response.data.content;
           
           // Parse companyInfo from the JSX file
-          const companyInfoMatch = content.match(/export const companyInfo = \{([^}]+)\}/s);
-          if (companyInfoMatch) {
-            const companyInfoStr = '{' + companyInfoMatch[1] + '}';
-            const cleanedStr = companyInfoStr
-              .replace(/\/\/[^\n]*/g, '') // Remove comments
-              .replace(/(\w+):/g, '"$1":') // Quote keys
-              .replace(/,\s*}/g, '}'); // Remove trailing commas
-            
-            try {
-              const parsedInfo = eval('(' + cleanedStr + ')');
-              set({ 
-                businessInfo: {
-                  name: parsedInfo.companyName || get().businessInfo.name,
-                  phone: parsedInfo.phone || get().businessInfo.phone,
-                  email: parsedInfo.email || get().businessInfo.email,
-                  location: get().businessInfo.location,
-                }
-              });
-            } catch (parseError) {
-              console.warn('Failed to parse companyInfo:', parseError);
-            }
+          const companyName = content.match(/companyName:\s*"([^"]*)"/)?.[1];
+          const email = content.match(/email:\s*"([^"]*)"/)?.[1];
+          const phone = content.match(/phone:\s*"([^"]*)"/)?.[1];
+          if (companyName || email || phone) {
+            set({
+              businessInfo: {
+                name: companyName || get().businessInfo.name,
+                phone: phone || get().businessInfo.phone,
+                email: email || get().businessInfo.email,
+                location: get().businessInfo.location,
+              },
+            });
           }
           
           set({ 
@@ -134,7 +121,7 @@ const useContentStore = create(
       updateAboutContent: (content) => set({ aboutContent: content }),
     }),
     {
-      name: 'dental-core-content',
+      name: 'dental-core-content-v2',
       partialize: (state) => ({
         businessInfo: state.businessInfo,
         headerNav: state.headerNav,
