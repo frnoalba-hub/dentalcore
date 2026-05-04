@@ -17,6 +17,8 @@ import CaliforniaMetroPage from './pages/CaliforniaMetroPage';
 import CategoryHubPage from './pages/CategoryHubPage';
 import BuyerGuidePage from './pages/BuyerGuidePage';
 import AdminProducts from './pages/AdminProducts';
+import About from './pages/About';
+import Contact from './pages/Contact';
 import Policies from './pages/Policies';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import RequireAuth from '@/lib/RequireAuth';
@@ -85,6 +87,8 @@ const AuthenticatedApp = () => {
         />
       ))}
       <Route path="/policies" element={<Policies />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/contact" element={<Contact />} />
       <Route path="/AdminProducts" element={<Navigate to="/admin/products" replace />} />
       <Route
         path="/admin/products"

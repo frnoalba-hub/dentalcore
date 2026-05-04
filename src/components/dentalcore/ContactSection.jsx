@@ -103,12 +103,15 @@ export default function ContactSection() {
               {companyInfo.tagline} · US shipping
             </p>
           </div>
-          <Link
-            to="/group-practices"
-            className="text-white/45 hover:text-accent transition-colors normal-case tracking-normal text-sm font-body"
-          >
-            DSOs &amp; multi-location practices
-          </Link>
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-body normal-case tracking-normal">
+            <Link to="/about" className="text-white/45 hover:text-accent transition-colors">About</Link>
+            <span className="text-white/20">·</span>
+            <Link to="/contact" className="text-white/45 hover:text-accent transition-colors">Contact</Link>
+            <span className="text-white/20">·</span>
+            <Link to="/group-practices" className="text-white/45 hover:text-accent transition-colors">DSOs &amp; Groups</Link>
+            <span className="text-white/20">·</span>
+            <Link to="/policies" className="text-white/45 hover:text-accent transition-colors">Policies</Link>
+          </div>
           <p>{t('all_rights_reserved')}</p>
         </div>
       </div>

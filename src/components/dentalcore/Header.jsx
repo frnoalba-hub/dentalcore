@@ -32,6 +32,8 @@ export default function Header() {
 
   const secondaryNav = [
     { label: 'Reviews', id: 'testimonials' },
+    { label: 'About', to: '/about' },
+    { label: 'Contact', to: '/contact' },
     { label: 'Guides', to: '/guides/air-driven-vs-electric-handpieces' },
     { label: 'Handpieces', to: '/c/handpieces' },
     { label: 'Policies', to: '/policies' },
