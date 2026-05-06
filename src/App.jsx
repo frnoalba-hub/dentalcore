@@ -19,7 +19,9 @@ import BuyerGuidePage from './pages/BuyerGuidePage';
 import AdminProducts from './pages/AdminProducts';
 import About from './pages/About';
 import Contact from './pages/Contact';
+import AdminQuotes from './pages/AdminQuotes';
 import Policies from './pages/Policies';
+import RequestQuote from './pages/RequestQuote';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import RequireAuth from '@/lib/RequireAuth';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
@@ -106,6 +108,7 @@ const AuthenticatedApp = () => {
       <Route path="/california/:metroSlug" element={<CaliforniaMetroPage />} />
       <Route path="/c/:categorySlug" element={<CategoryHubPage />} />
       <Route path="/guides/:guideSlug" element={<BuyerGuidePage />} />
+      <Route path="/request-quote" element={<RequestQuote />} />
       <Route path="/track-order" element={<OrderTracking />} />
       <Route path="/OrderTracking" element={<LegacyOrderTrackingRedirect />} />
       <Route
@@ -113,6 +116,14 @@ const AuthenticatedApp = () => {
         element={
           <RequireAuth>
             <AdminOrders />
+          </RequireAuth>
+        }
+      />
+      <Route
+        path="/admin/quotes"
+        element={
+          <RequireAuth>
+            <AdminQuotes />
           </RequireAuth>
         }
       />

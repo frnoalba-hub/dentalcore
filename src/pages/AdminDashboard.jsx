@@ -103,6 +103,9 @@ export default function AdminDashboard() {
             <Link to="/admin/orders" className="text-sm bg-white border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-700">
               View Orders →
             </Link>
+            <Link to="/admin/quotes" className="text-sm bg-white border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-700">
+              View Quotes →
+            </Link>
           </div>
         </div>
 

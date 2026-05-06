@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Gift, Loader2, Tag, X } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
@@ -15,11 +16,13 @@ export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, getTotal, getItemCount } = useCartStore();
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [orderNotes, setOrderNotes] = useState('');
+  const navigate = useNavigate();
   const { t, dynamicT } = useTranslation();
   const { promos, totalDiscount, hints } = calculatePromos(items);
   const { addItem } = useCartStore();
   const subtotal = getTotal();
   const finalTotal = Math.max(0, subtotal - totalDiscount);
+  const salesPhoneHref = `tel:${String(companyInfo.phone).replace(/[^\d+]/g, '')}`;
 
   const handleStripeCheckout = async () => {
     if (items.length === 0) return;
@@ -63,6 +66,40 @@ export default function CartDrawer() {
     } finally {
       setIsCheckingOut(false);
     }
+  };
+
+  const handleQuoteRequest = () => {
+    if (items.length === 0) return;
+
+    trackEngagementEvent('quote_request_click', {
+      event_category: 'lead_gen',
+      location: 'cart_drawer',
+      items: getItemCount(),
+      value: Number(finalTotal.toFixed(2)),
+    });
+
+    const quoteItems = items.map((item) => ({
+      id: item.id,
+      name: dynamicT(item.name),
+      quantity: item.quantity,
+      unitPrice:
+        typeof item.price === 'number'
+          ? Number(item.price.toFixed(2))
+          : typeof item.price === 'string' && item.price.startsWith('$')
+            ? item.price
+            : `$${item.price}`,
+    }));
+
+    closeCart();
+    navigate('/request-quote', {
+      state: {
+        source: 'cart_drawer',
+        cartItems: quoteItems,
+        estimatedTotal: Number(finalTotal.toFixed(2)),
+        orderNotes: orderNotes.trim() || '',
+        sourcePageUrl: window.location.href,
+      },
+    });
   };
 
   return (
@@ -209,6 +246,25 @@ export default function CartDrawer() {
                     t('secure_checkout') || "Pay with Card"
                   )}
                 </button>
+                <button
+                  type="button"
+                  onClick={handleQuoteRequest}
+                  className="w-full border border-[#111]/20 bg-white text-[#111] py-3 text-[11px] font-bold uppercase tracking-widest rounded-sm hover:border-[#111]/40 hover:bg-[#111]/5 transition-colors"
+                >
+                  Request Quote / Invoice
+                </button>
+                <a
+                  href={salesPhoneHref}
+                  onClick={() =>
+                    trackEngagementEvent('phone_click', {
+                      event_category: 'engagement',
+                      location: 'cart_drawer',
+                    })
+                  }
+                  className="w-full border border-[#111]/10 text-[#111]/75 py-3 text-[10px] font-semibold uppercase tracking-widest rounded-sm hover:text-[#111] hover:border-[#111]/30 transition-colors inline-flex items-center justify-center"
+                >
+                  Call Sales: {companyInfo.phone}
+                </a>
               </div>
             )}
           </motion.div>

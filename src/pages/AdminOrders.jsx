@@ -50,6 +50,14 @@ export default function AdminOrders() {
             <h1 className="text-3xl font-bold text-gray-900">Orders</h1>
             <p className="text-gray-500 mt-0.5 text-sm">{orders.length} total orders</p>
           </div>
+          <div className="ml-auto flex gap-2">
+            <Link to="/admin/quotes" className="text-sm bg-white border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-700">
+              Quotes
+            </Link>
+            <Link to="/admin/dashboard" className="text-sm bg-white border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-700">
+              Dashboard
+            </Link>
+          </div>
         </div>
 
         {/* Filters */}

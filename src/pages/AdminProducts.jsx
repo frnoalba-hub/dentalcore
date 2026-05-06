@@ -10,6 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Pencil, Upload, Loader2, Image as ImageIcon, Search, X, Plus, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
+import { Link } from 'react-router-dom';
 import fullCatalog from '../components/dentalcore/full_catalog.json';
 
 export default function AdminProducts() {
@@ -202,8 +203,23 @@ export default function AdminProducts() {
     <div className="min-h-screen bg-gray-50 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Product Management</h1>
-          <p className="text-gray-500 mt-1">Manage your product catalog, variants, and images</p>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h1 className="text-3xl font-bold text-gray-900">Product Management</h1>
+              <p className="text-gray-500 mt-1">Manage your product catalog, variants, and images</p>
+            </div>
+            <div className="flex gap-2">
+              <Link to="/admin/quotes" className="text-sm bg-white border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-700">
+                Quotes
+              </Link>
+              <Link to="/admin/orders" className="text-sm bg-white border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-700">
+                Orders
+              </Link>
+              <Link to="/admin/dashboard" className="text-sm bg-white border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-700">
+                Dashboard
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Search and Filters */}

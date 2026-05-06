@@ -1,16 +1,21 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowUpRight, Check, Shield, Truck, RotateCcw } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
+import { companyInfo } from '@/components/dentalcore/productsData';
+import { trackEngagementEvent } from '@/lib/trackEvent';
 
 export default function ProductPurchasePanel({ product, selectedVariant, setSelectedVariant }) {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const navigate = useNavigate();
   const { addItem, openCart } = useCartStore();
   const { dynamicT } = useTranslation();
 
   const activePrice = selectedVariant ? selectedVariant.price : product?.price;
   const activeOriginal = selectedVariant ? selectedVariant.originalPrice : product?.originalPrice;
+  const salesPhoneHref = `tel:${String(companyInfo.phone).replace(/[^\d+]/g, '')}`;
 
   const handleAddToCart = () => {
     const itemToAdd = selectedVariant
@@ -27,6 +32,36 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
     openCart();
+  };
+
+  const handleRequestQuote = () => {
+    trackEngagementEvent('quote_request_click', {
+      event_category: 'lead_gen',
+      location: 'product_purchase_panel',
+      product_id: product.id,
+      variant_id: selectedVariant?.id || null,
+      quantity,
+      value: typeof activePrice === 'number' ? Number((activePrice * quantity).toFixed(2)) : undefined,
+    });
+
+    navigate('/request-quote', {
+      state: {
+        source: 'product_purchase_panel',
+        product: {
+          id: product.id,
+          name: dynamicT(product.name),
+          sku: selectedVariant?.sku || product?.sku || selectedVariant?.id || product?.id || '',
+          variantId: selectedVariant?.id || '',
+          variantName: selectedVariant ? dynamicT(selectedVariant.name) : '',
+          unitPrice:
+            typeof activePrice === 'number'
+              ? Number(activePrice.toFixed(2))
+              : String(activePrice || ''),
+        },
+        quantity,
+        sourcePageUrl: window.location.href,
+      },
+    });
   };
 
   return (
@@ -128,6 +163,29 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
           </span>
           {added ? <Check className="w-4 h-4" /> : <ArrowUpRight className="w-4 h-4" />}
         </button>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-3 mb-8">
+        <button
+          type="button"
+          onClick={handleRequestQuote}
+          className="h-12 px-4 border border-[#111]/20 bg-white text-[#111] text-xs font-bold uppercase tracking-widest rounded-sm hover:border-[#111]/45 hover:bg-[#111]/5 transition-colors"
+        >
+          Request Quote
+        </button>
+        <a
+          href={salesPhoneHref}
+          onClick={() =>
+            trackEngagementEvent('phone_click', {
+              event_category: 'engagement',
+              location: 'product_purchase_panel',
+              product_id: product.id,
+            })
+          }
+          className="h-12 px-4 border border-[#111] bg-[#111] text-white text-xs font-bold uppercase tracking-widest rounded-sm hover:bg-accent transition-colors inline-flex items-center justify-center"
+        >
+          Talk to a Rep
+        </a>
       </div>
 
       {/* Trust badges */}
