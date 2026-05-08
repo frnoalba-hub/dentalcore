@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="624" viewBox="0 0 1640 624" role="img" aria-label="Coretix Dental Supplies">
+  <rect width="1640" height="624" fill="#111111" />
+  <!-- CORETIX wordmark centered, same style as og-coretix but on dark bg, white text -->
+  <g transform="translate(820 320)">
+    <text
+      text-anchor="middle"
+      y="0"
+      dominant-baseline="alphabetic"
+      fill="#ffffff"
+      font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+      font-size="96"
+      font-weight="800"
+      letter-spacing="-0.04em"
+    >CORETIX</text>
+    <rect x="220" y="-67" width="19" height="19" fill="#0047FF" />
+    <!-- Tagline below wordmark -->
+    <text
+      text-anchor="middle"
+      y="44"
+      dominant-baseline="alphabetic"
+      fill="#888888"
+      font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+      font-size="22"
+      font-weight="400"
+      letter-spacing="0.12em"
+    >DENTAL SUPPLIES</text>
+  </g>
+</svg>

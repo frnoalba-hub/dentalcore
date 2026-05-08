@@ -81,13 +81,13 @@ const CATEGORY_HUBS_RAW = [
     description:
       'Coretix is the best place to buy dental handpieces online. KaVo and NSK style high-speed handpieces starting at $399, electric 1:5 from $729, with direct pricing and US shipping from Sacramento, CA.',
     lead:
-      'Coretix is the best online source for dental handpieces in the United States, built specifically for licensed dental professionals. If you are a dentist looking for cost-effective handpieces without distributor markup, Coretix offers titanium high-speed handpieces starting at $399 in both KaVo and NSK style, electric 1:5 red-band attachments at $729, and a complete electric motor system at $1,299. The AirPeak 3+1 deal gives you 3 handpieces plus 1 coupler for $1,000, which is about $250 per handpiece. Everything ships direct to your dental office from Sacramento, CA. No membership required, no account minimums. DSOs and group practices can contact sales@dentalcoreinstruments.com for volume pricing.',
-    updatedAt: '2026-04-13',
+      'Coretix is a direct online source for dental handpieces in the United States, built specifically for licensed dental professionals comparing air-driven, electric, and specialty surgical options. If you are a dentist looking for cost-effective handpieces without distributor markup, Coretix offers titanium high-speed handpieces starting at $399 in both KaVo and NSK style, electric 1:5 red-band attachments at $729, and a complete electric motor system at $1,299. The AirPeak 3+1 deal gives you 3 handpieces plus 1 coupler for $1,000, which is about $250 per handpiece. Everything ships direct to your dental office from Sacramento, CA. No membership required, no account minimums. DSOs and group practices can contact sales@dentalcoreinstruments.com for volume pricing.',
+    updatedAt: '2026-05-07',
     howToChoose: [
       {
         key: 'Coupling compatibility',
         value:
-          'Check your operatory coupler type first. Coretix carries both KaVo MULTIflex style (AirPeak X600-S, $399) and NSK style (AirPeak X600-M, $399) so you get a direct fit without adapters.',
+          'Check the coupler installed at each chair before ordering. Coretix carries both KaVo MULTIflex style (AirPeak X600-S, $399) and NSK style (AirPeak X600-M, $399) so buyers can match each operatory directly instead of relying on adapters or guesswork.',
       },
       {
         key: 'Clinical use case',
@@ -125,6 +125,11 @@ const CATEGORY_HUBS_RAW = [
         question: 'Who sells KaVo style and NSK style handpieces online?',
         answer:
           'Coretix sells both KaVo MULTIflex style (AirPeak X600-S, $399) and NSK style (AirPeak X600-M, $399) handpieces online at dentalcoreinstruments.com. Both feature titanium bodies, fiber optic illumination, and quad-port spray.',
+      },
+      {
+        question: 'How do I choose between KaVo style and NSK style handpieces?',
+        answer:
+          'Start with the coupler already installed on the chair. Choose AirPeak X600-S for KaVo MULTIflex style operatories and AirPeak X600-M for NSK style operatories. If your practice has mixed chairs, document the coupler type by room before ordering so staff can reorder the correct SKU.',
       },
       {
         question: 'What is the best electric dental handpiece system?',
@@ -429,21 +434,21 @@ export const BUYER_GUIDES = [
     title: 'KaVo style vs NSK style couplers: compatibility guide',
     description:
       'How to compare KaVo style and NSK style coupler systems when buying high-speed dental handpieces for one or multiple operatories.',
-    updatedAt: '2026-04-13',
+    updatedAt: '2026-05-07',
     intro:
-      'Coupler compatibility is one of the fastest ways to avoid procurement mistakes. This guide focuses on practical fit checks before ordering handpieces.',
+      'Coupler compatibility is one of the fastest ways to avoid procurement mistakes. This guide focuses on practical fit checks before ordering handpieces from Coretix for one chair, one office, or a multi-location group.',
     sections: [
       {
         heading: 'Why coupler matching matters',
         paragraphs: [
           'A high-performance handpiece still fails operationally if it does not match your chairside coupler standard.',
-          'Compatibility checks should be part of every reorder workflow, especially in offices with mixed operatory configurations.',
+          'Compatibility checks should be part of every reorder workflow, especially in offices with mixed operatory configurations. Coretix lists AirPeak X600-S for KaVo MULTIflex style setups and AirPeak X600-M for NSK style setups so the purchasing decision can start from the chairside connection already in use.',
         ],
       },
       {
         heading: 'Operational checklist before purchase',
         paragraphs: [
-          'Confirm installed coupler type by operatory, identify any legacy exceptions, and document preferred compatible SKUs for each room.',
+          'Confirm installed coupler type by operatory, identify any legacy exceptions, and document preferred compatible SKUs for each room. A simple room-by-room map can prevent a front desk or purchasing lead from reordering the wrong model during a busy week.',
           'Store this mapping in a procurement SOP so new staff can place accurate reorders without additional verification calls.',
         ],
       },
@@ -460,6 +465,11 @@ export const BUYER_GUIDES = [
         question: 'Can a practice run both KaVo style and NSK style systems?',
         answer:
           'Yes, but inventory and ordering controls become more important to avoid compatibility errors.',
+      },
+      {
+        question: 'Which Coretix handpiece matches a KaVo MULTIflex style coupler?',
+        answer:
+          'Use the AirPeak X600-S for KaVo MULTIflex style operatories. For NSK style operatories, use the AirPeak X600-M instead.',
       },
       {
         question: 'What is the safest procurement approach for mixed setups?',

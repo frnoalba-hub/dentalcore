@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Coretix">
+  <rect width="512" height="512" fill="#ffffff" />
+  <!-- C + square accent: same font as favicon; square sits outside the C opening (right), upper-mid like the period after CORETIX — not on baseline (avoids overlap). -->
+  <g transform="translate(256 334)">
+    <text
+      x="-36"
+      y="0"
+      text-anchor="middle"
+      dominant-baseline="alphabetic"
+      fill="#111111"
+      font-family="system-ui, -apple-system, 'Segoe UI', sans-serif"
+      font-size="220"
+      font-weight="800"
+      letter-spacing="-0.04em"
+    >C</text>
+    <rect x="58" y="-103" width="48" height="48" fill="#0047FF" />
+  </g>
+</svg>

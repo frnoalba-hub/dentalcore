@@ -17,4 +17,19 @@ await sharp(join(pub, 'og-coretix.svg'))
   .png()
   .toFile(join(pub, 'apple-touch-icon.png'));
 
-console.log('Wrote og-coretix.png, favicon-32x32.png, apple-touch-icon.png');
+await sharp(join(pub, 'coretix-pfp.svg'))
+  .resize(1024, 1024, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 1 } })
+  .png()
+  .toFile(join(pub, 'coretix-pfp.png'));
+
+await sharp(join(pub, 'coretix-symbol.svg'))
+  .resize(1024, 1024, { fit: 'contain', background: { r: 255, g: 255, b: 255, alpha: 1 } })
+  .png()
+  .toFile(join(pub, 'coretix-symbol.png'));
+
+await sharp(join(pub, 'coretix-cover.svg'))
+  .resize(1640, 624, { fit: 'contain', background: { r: 17, g: 17, b: 17, alpha: 1 } })
+  .png()
+  .toFile(join(pub, 'coretix-cover.png'));
+
+console.log('Wrote og-coretix.png, favicon-32x32.png, apple-touch-icon.png, coretix-pfp.png, coretix-symbol.png, coretix-cover.png');

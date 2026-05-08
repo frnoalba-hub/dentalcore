@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Coretix mark">
+  <rect width="512" height="512" fill="#ffffff" />
+  <!-- Abstract mark: rotated square frame (precision / core) plus brand blue square. No letterforms. -->
+  <g transform="translate(256 256) rotate(45)">
+    <rect
+      x="-118"
+      y="-118"
+      width="236"
+      height="236"
+      fill="none"
+      stroke="#111111"
+      stroke-width="40"
+    />
+  </g>
+  <rect x="292" y="228" width="56" height="56" fill="#0047FF" />
+</svg>
