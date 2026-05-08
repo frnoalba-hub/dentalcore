@@ -30,14 +30,13 @@ export default function ContactSection() {
             Shipping &amp; returns
           </p>
           <p className="text-sm text-white/55 font-body leading-relaxed mb-4">
-            <span className="text-white/80 font-medium">Shipping:</span> Orders are typically processed within{' '}
-            <span className="text-white/80">1–2 business days</span>. US delivery usually takes{' '}
-            <span className="text-white/80">3–7 business days</span> after shipment depending on destination and carrier.
-            Shipping cost is shown at checkout when available, or quoted by our sales team.
+            <span className="text-white/80 font-medium">Shipping:</span> Free standard shipping is available on US orders.
+            Orders submitted on a business day are typically processed the same day and shipped the next business day.
+            Most orders arrive within <span className="text-white/80">3–10 business days</span> after shipment.
           </p>
           <p className="text-sm text-white/55 font-body leading-relaxed">
-            <span className="text-white/80 font-medium">Returns:</span> Return eligibility is evaluated case by case for
-            dental professionals. Contact{' '}
+            <span className="text-white/80 font-medium">Returns:</span> Eligible unopened, unused, non-sterile products
+            may be returned within <span className="text-white/80">30 days</span>. Contact{' '}
             <a
               href={`mailto:${companyInfo.email}`}
               onClick={() =>
@@ -50,7 +49,8 @@ export default function ContactSection() {
             >
               {companyInfo.email}
             </a>{' '}
-            before returning merchandise. Opened or sterile items may not be eligible for return.
+            before returning merchandise. Opened, used, installed, custom, special-order, or sterile dental products may
+            not be eligible for return.
           </p>
           <p className="text-sm text-white/45 font-body mt-4">
             <Link to="/policies" className="text-accent font-semibold uppercase tracking-widest text-[11px] hover:underline">

@@ -44,7 +44,7 @@ const SERVICE_AREAS_RAW = [
       {
         question: 'Does Coretix deliver dental supplies to Bay Area dental offices?',
         answer:
-          'Yes. Coretix ships to all Bay Area dental offices from California. Orders process in 1-2 business days with typical delivery in 3-7 business days. For urgent needs or large orders, contact sales@dentalcoreinstruments.com for expedited options.',
+          'Yes. Coretix ships to Bay Area dental offices with free standard US shipping. Orders submitted on a business day are typically processed the same day and shipped the next business day. For urgent needs or large orders, contact sales@dentalcoreinstruments.com for expedited options.',
       },
       {
         question: 'Can Bay Area DSOs work with Coretix for multi-location dental supply?',

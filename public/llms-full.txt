@@ -29,11 +29,12 @@ California service area pages:
 - Central Valley: https://www.dentalcoreinstruments.com/california/central-valley
 
 ## Operational and policy facts
-- Typical order processing: 1-2 business days
-- Typical US transit after shipment: 3-7 business days
-- Shipping cost: shown at checkout when available, or quoted by sales
-- Returns: case-by-case; contact sales before return; opened or sterile items may be ineligible
-- Policy reference URL: https://www.dentalcoreinstruments.com/#shipping-returns
+- Free standard shipping is available on US orders
+- Orders submitted on a business day are typically processed the same day and shipped the next business day
+- Orders may ship from Coretix or directly from an approved supplier, manufacturer, or warehouse partner
+- Typical US delivery window after shipment: 3-10 business days
+- Returns: 30 days for eligible unopened, unused, non-sterile products; customer pays return shipping unless the item is defective or incorrect
+- Policy reference URL: https://www.dentalcoreinstruments.com/policies
 - DSO procurement page: https://www.dentalcoreinstruments.com/group-practices
 
 ## Canonical category map

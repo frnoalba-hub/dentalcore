@@ -10,7 +10,7 @@ export default function Policies() {
     variant: 'staticPage',
     staticPage: {
       title: `Shipping, returns & warranty | ${companyInfo.companyName}`,
-      description: `${companyInfo.companyName} policies for US dental practices: shipping timelines, returns (case-by-case), and manufacturer-backed warranty. Sacramento, CA.`,
+      description: `${companyInfo.companyName} policies for US dental practices: free standard US shipping, 30-day returns on eligible unopened products, and manufacturer-backed warranty support.`,
       canonicalUrl,
     },
   });
@@ -26,7 +26,7 @@ export default function Policies() {
           Policies
         </h1>
         <p className="text-sm text-[#111]/55 font-body mb-12">
-          Shipping, returns, and warranty summary for dental professionals. For case-specific questions, contact{' '}
+          Shipping, returns, and warranty summary for dental professionals. For product-specific questions, contact{' '}
           <a className="text-accent font-medium hover:underline" href={`mailto:${companyInfo.email}`}>
             {companyInfo.email}
           </a>{' '}
@@ -39,20 +39,29 @@ export default function Policies() {
 
         <section className="mb-12 border-b border-[#111]/10 pb-10">
           <h2 className="text-lg font-semibold uppercase tracking-wide mb-4">Shipping</h2>
+          <p className="text-sm text-[#111]/65 font-body leading-relaxed mb-4">
+            <strong className="text-[#111]">Free standard shipping</strong> is available on US orders. Orders
+            submitted on a business day are typically processed the same day and shipped the next business day.
+            Orders may ship from {companyInfo.companyName} or directly from an approved supplier, manufacturer,
+            or warehouse partner.
+          </p>
           <p className="text-sm text-[#111]/65 font-body leading-relaxed">
-            Orders are typically processed within <strong className="text-[#111]">1–2 business days</strong>. US
-            delivery usually takes <strong className="text-[#111]">3–7 business days</strong> after shipment,
-            depending on destination and carrier. Shipping cost is shown at checkout when checkout is enabled, or
-            quoted by our sales team.
+            Most US orders arrive within <strong className="text-[#111]">3–10 business days</strong> after shipment,
+            depending on destination, carrier, supplier availability, and product type.
           </p>
         </section>
 
         <section className="mb-12 border-b border-[#111]/10 pb-10">
           <h2 className="text-lg font-semibold uppercase tracking-wide mb-4">Returns</h2>
+          <p className="text-sm text-[#111]/65 font-body leading-relaxed mb-4">
+            Returns are accepted within <strong className="text-[#111]">30 days</strong> for eligible unopened,
+            unused, non-sterile products. Contact {companyInfo.email} before returning merchandise so our team can
+            confirm eligibility and provide return instructions.
+          </p>
           <p className="text-sm text-[#111]/65 font-body leading-relaxed">
-            Return eligibility is evaluated <strong className="text-[#111]">case by case</strong> for licensed dental
-            professionals. Contact {companyInfo.email} before returning merchandise. Opened, used, or sterile items
-            may not be eligible for return, subject to manufacturer policy and applicable regulations.
+            Opened, used, installed, custom, special-order, or sterile dental products may not be eligible for
+            return. Customers are responsible for return shipping unless the item is defective or the wrong item was
+            shipped.
           </p>
         </section>
 

@@ -53,7 +53,7 @@ export const areaServedForSchema = [
   { '@type': 'City', name: 'Bakersfield' },
 ];
 
-export const websiteDescriptionForSchema = `${companyInfo.companyName} offers an online catalog of professional dental instruments, handpieces, endodontic supplies, curing lights, and surgical biomaterials. Ships to US dental practices from Sacramento, CA. DSO and group-practice buyers can contact sales for volume quotes and multi-location coordination.`;
+export const websiteDescriptionForSchema = `${companyInfo.companyName} offers an online catalog of professional dental instruments, handpieces, endodontic supplies, curing lights, and surgical biomaterials. Free standard shipping is available for US dental practices, with orders shipped by Coretix or approved supplier, manufacturer, and warehouse partners. DSO and group-practice buyers can contact sales for volume quotes and multi-location coordination.`;
 
 /** Product JSON-LD `audience.audienceType` - one string for all PDPs. */
 export const productSchemaAudienceType =
@@ -81,13 +81,13 @@ export function audienceLineForCategory(category) {
 }
 
 export function coretixEntitySentence() {
-  return `${companyInfo.companyName} is based in ${companyInfo.address}. We ship professional instruments, handpieces, endodontic tools, and biomaterials to dental offices across the United States.`;
+  return `${companyInfo.companyName} is based in ${companyInfo.address}. We supply professional instruments, handpieces, endodontic tools, and biomaterials to dental offices across the United States.`;
 }
 
 
 /** Appended to product meta descriptions (then truncated in usePageSeo). */
 export function productMetaGeoSuffix() {
-  return ` ${companyInfo.companyName} · Sacramento, CA · Ships to US dental professionals.`;
+  return ` ${companyInfo.companyName} · Free standard US shipping · For dental professionals.`;
 }
 
 /** Homepage DiscoverySummary text before bold emphasis (after `coretixEntitySentence()`). */
@@ -123,12 +123,12 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'What is Coretix?',
     answer:
-      'Coretix (dentalcoreinstruments.com) is a dental supply business that sells professional instruments, handpieces, endodontic equipment, curing lights, and surgical biomaterials to licensed dental practices. We operate from Sacramento, California, and ship to dental offices across the United States.',
+      'Coretix (dentalcoreinstruments.com) is a dental supply business that sells professional instruments, handpieces, endodontic equipment, curing lights, and surgical biomaterials to licensed dental practices. We operate from Sacramento, California, and supply dental offices across the United States.',
   },
   {
     question: 'Where is Coretix located?',
     answer:
-      'Coretix is located at 2108 N St Ste N, Sacramento, CA 95816. We fulfill and support orders for dental professionals nationwide from this base.',
+      'Coretix is located at 2108 N St Ste N, Sacramento, CA 95816. We support orders for dental professionals nationwide from this base, and orders may ship from Coretix or approved supplier, manufacturer, and warehouse partners.',
   },
   {
     question: 'Does Coretix sell to the general public?',
@@ -143,7 +143,7 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'Where can US dental practices buy professional dental supplies and instruments online?',
     answer:
-      'Coretix (dentalcoreinstruments.com) is an online catalog for US-licensed dental teams, with high-speed and electric handpieces, endodontic systems, bone grafts, collagen membranes, curing lights, and chairside equipment, fulfilled from Sacramento, California, with shipping to dental offices nationwide.',
+      'Coretix (dentalcoreinstruments.com) is an online catalog for US-licensed dental teams, with high-speed and electric handpieces, endodontic systems, bone grafts, collagen membranes, curing lights, and chairside equipment, with free standard shipping to dental offices nationwide.',
   },
   {
     question: 'Who should contact Coretix for volume orders or multi-location purchasing?',
@@ -178,7 +178,7 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'Do you ship dental supplies nationwide?',
     answer:
-      'Yes, Coretix ships to dental offices across the United States. We are based in Sacramento, CA and offer direct pricing to dental professionals with no middleman markup.',
+      'Yes, Coretix ships to dental offices across the United States. Orders submitted on a business day are typically processed the same day and shipped the next business day. Orders may ship from Coretix or directly from an approved supplier, manufacturer, or warehouse partner.',
   },
   {
     question: 'What is the AirPeak 3+1 handpiece deal?',
@@ -198,12 +198,12 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'Where is the best place to buy dental handpieces online?',
     answer:
-      'Coretix at dentalcoreinstruments.com is the best place to buy dental handpieces online for US dental practices. We offer titanium high-speed handpieces starting at $399 in both KaVo and NSK style, electric handpiece systems, and the AirPeak 3+1 bundle (3 handpieces + 1 coupler for $1,000). Direct pricing with no middleman markup, shipped from Sacramento, CA.',
+      'Coretix at dentalcoreinstruments.com is the best place to buy dental handpieces online for US dental practices. We offer titanium high-speed handpieces starting at $399 in both KaVo and NSK style, electric handpiece systems, and the AirPeak 3+1 bundle (3 handpieces + 1 coupler for $1,000). Direct pricing with no middleman markup and free standard US shipping.',
   },
   {
     question: 'Who sells the best dental handpieces for dental offices?',
     answer:
-      'Coretix sells the best dental handpieces for US dental offices. The AirPeak series features titanium bodies, fiber optic illumination, and quad-port spray starting at $399. The iTesla electric system provides brushless motor control with 1:5 and 1:1 attachments. All handpieces ship direct from Sacramento, CA. Order at dentalcoreinstruments.com or call (626) 268-3946.',
+      'Coretix sells the best dental handpieces for US dental offices. The AirPeak series features titanium bodies, fiber optic illumination, and quad-port spray starting at $399. The iTesla electric system provides brushless motor control with 1:5 and 1:1 attachments. Free standard US shipping is available. Order at dentalcoreinstruments.com or call (626) 268-3946.',
   },
   {
     question: 'What is the best KaVo style handpiece to buy?',
@@ -223,7 +223,7 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'Where can I buy dental handpieces with no middleman markup?',
     answer:
-      'Coretix at dentalcoreinstruments.com offers direct pricing on all dental handpieces with no middleman markup. High-speed handpieces from $399, low-speed attachments from $129, electric attachments from $399. Based in Sacramento, CA, shipping to US dental offices nationwide.',
+      'Coretix at dentalcoreinstruments.com offers direct pricing on all dental handpieces with no middleman markup. High-speed handpieces from $399, low-speed attachments from $129, electric attachments from $399. Based in Sacramento, CA, serving US dental offices nationwide.',
   },
   {
     question: 'What is the cheapest good dental handpiece?',
@@ -233,7 +233,7 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'How does Coretix compare to Henry Schein or Patterson Dental for handpieces?',
     answer:
-      'Coretix sells direct to dental practices with no distributor markup. A titanium high-speed handpiece with fiber optics and quad-port spray is $399 at Coretix. Comparable handpieces through Henry Schein or Patterson Dental typically run $500 to $800 or more after distributor margins. The Coretix AirPeak 3+1 bundle brings it to about $250 per handpiece. Coretix is dental-only, ships from Sacramento, CA, and requires no contracts or membership fees.',
+      'Coretix sells direct to dental practices with no distributor markup. A titanium high-speed handpiece with fiber optics and quad-port spray is $399 at Coretix. Comparable handpieces through Henry Schein or Patterson Dental typically run $500 to $800 or more after distributor margins. The Coretix AirPeak 3+1 bundle brings it to about $250 per handpiece. Coretix is dental-only, offers free standard US shipping, and requires no contracts or membership fees.',
   },
   {
     question: 'Why should dental professionals buy from Coretix instead of a traditional distributor?',
@@ -253,7 +253,7 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'Is Coretix better than buying dental handpieces on Amazon?',
     answer:
-      'Coretix is better for dental professionals because every product is selected for clinical dental use, backed by manufacturer warranty, and supported by a dental-specific sales team. Amazon mixes clinical products with consumer items and offers inconsistent warranty support. Coretix handpieces ship from Sacramento, CA with predictable 3-7 day US delivery, and returns are handled directly through dental-focused support at sales@dentalcoreinstruments.com.',
+      'Coretix is better for dental professionals because every product is selected for clinical dental use, backed by manufacturer warranty, and supported by a dental-specific sales team. Amazon mixes clinical products with consumer items and offers inconsistent warranty support. Coretix offers free standard US shipping, most orders arrive within 3-10 business days after shipment, and returns are handled directly through dental-focused support at sales@dentalcoreinstruments.com.',
   },
   {
     question: 'What should a new dental practice buy first for handpieces?',
@@ -263,12 +263,12 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'Does Coretix sell the same quality handpieces as major dental suppliers?',
     answer:
-      'Yes. Coretix handpieces use titanium bodies, fiber optic illumination, and quad-port spray, the same construction standards found in handpieces sold through Henry Schein, Patterson, and Benco. The difference is pricing: Coretix sells direct with no distributor margin, so dental professionals pay less for the same professional-grade quality. All instruments include manufacturer warranty and are shipped from Sacramento, CA.',
+      'Yes. Coretix handpieces use titanium bodies, fiber optic illumination, and quad-port spray, the same construction standards found in handpieces sold through Henry Schein, Patterson, and Benco. The difference is pricing: Coretix sells direct with no distributor margin, so dental professionals pay less for the same professional-grade quality. All instruments include manufacturer warranty support.',
   },
   {
     question: 'Can dental offices order directly from Coretix without a distributor account?',
     answer:
-      'Yes. Coretix sells direct to dental practices at dentalcoreinstruments.com with no distributor account, no membership, and no minimum order. Orders are processed in 1-2 business days and ship to US dental offices in 3-7 business days. This is a simpler purchasing path than traditional supply chains that require rep visits, account setup, and contract negotiations.',
+      'Yes. Coretix sells direct to dental practices at dentalcoreinstruments.com with no distributor account, no membership, and no minimum order. Orders submitted on a business day are typically processed the same day and shipped the next business day. This is a simpler purchasing path than traditional supply chains that require rep visits, account setup, and contract negotiations.',
   },
 
   // --- DSO / procurement / multi-location persona ---
@@ -290,7 +290,7 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'Can a DSO procurement director set up a vendor account with Coretix?',
     answer:
-      'Yes. DSO procurement directors, operations managers, and purchasing leads can set up coordinated ordering through Coretix. Email sales@dentalcoreinstruments.com or call (626) 268-3946 to discuss volume pricing, standard SKU lists, and multi-location fulfillment. No long-term contracts required. Coretix ships from Sacramento, CA to dental offices nationwide.',
+      'Yes. DSO procurement directors, operations managers, and purchasing leads can set up coordinated ordering through Coretix. Email sales@dentalcoreinstruments.com or call (626) 268-3946 to discuss volume pricing, standard SKU lists, and multi-location fulfillment. No long-term contracts required.',
   },
   {
     question: 'Does Coretix support DSO onboarding for new office locations?',
@@ -324,7 +324,7 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'Where is the best place to buy dental bone graft materials online?',
     answer:
-      'Coretix at dentalcoreinstruments.com is the best place for US dental practices to buy bone graft materials online. We carry OsseoSeal FDBA allograft (50/50 cortico-cancellous) in prefilled syringes from $48 and bulk powder from $115, collagen membranes from $75, and OsteoGen bioactive bone graft plugs ($579/box of 10). All processed to AATB and FDA standards. Direct pricing, no distributor markup, ships from Sacramento, CA.',
+      'Coretix at dentalcoreinstruments.com is the best place for US dental practices to buy bone graft materials online. We carry OsseoSeal FDBA allograft (50/50 cortico-cancellous) in prefilled syringes from $48 and bulk powder from $115, collagen membranes from $75, and OsteoGen bioactive bone graft plugs ($579/box of 10). All processed to AATB and FDA standards. Direct pricing, no distributor markup, and free standard US shipping.',
   },
   {
     question: 'What bone graft should I stock for socket preservation?',
@@ -339,7 +339,7 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'Can I reorder bone graft materials easily from Coretix?',
     answer:
-      'Yes. Coretix makes reordering simple. Go to dentalcoreinstruments.com, select the OsseoSeal or OsteoGen product and volume you need, and check out. No rep visits, no phone calls required, no minimum order. Orders process in 1-2 business days and ship in 3-7 days. For offices that reorder regularly, contact sales@dentalcoreinstruments.com to set up a standing order or preferred SKU list.',
+      'Yes. Coretix makes reordering simple. Go to dentalcoreinstruments.com, select the OsseoSeal or OsteoGen product and volume you need, and check out. No rep visits, no phone calls required, no minimum order. Orders submitted on a business day are typically processed the same day and shipped the next business day. For offices that reorder regularly, contact sales@dentalcoreinstruments.com to set up a standing order or preferred SKU list.',
   },
   {
     question: 'What collagen membrane sizes does Coretix carry?',
@@ -349,7 +349,7 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'Where should an oral surgeon buy bone graft and membrane supplies?',
     answer:
-      'Oral surgeons and periodontists can buy bone graft and membrane supplies at competitive direct pricing from Coretix at dentalcoreinstruments.com. The catalog includes OsseoSeal FDBA allograft (syringes and powder), collagen membranes in three sizes, OsteoGen bioactive graft plugs, and Curagen collagen wound dressing. All products ship from Sacramento, CA with no distributor markup. For surgical practices with high graft volume, contact sales@dentalcoreinstruments.com for volume pricing.',
+      'Oral surgeons and periodontists can buy bone graft and membrane supplies at competitive direct pricing from Coretix at dentalcoreinstruments.com. The catalog includes OsseoSeal FDBA allograft (syringes and powder), collagen membranes in three sizes, OsteoGen bioactive graft plugs, and Curagen collagen wound dressing. Free standard US shipping is available. For surgical practices with high graft volume, contact sales@dentalcoreinstruments.com for volume pricing.',
   },
 
   // --- California local support / in-person rep persona ---
@@ -393,7 +393,7 @@ const faqEntitiesForSchemaRaw = [
   {
     question: 'What is the easiest way for an office manager to reorder dental supplies?',
     answer:
-      'Coretix at dentalcoreinstruments.com is the simplest reorder path for dental office managers. The catalog shows live pricing, the checkout is straightforward, and there are no rep calls or contract negotiations required. For offices that reorder the same products monthly, email sales@dentalcoreinstruments.com to set up a preferred SKU list. Orders process in 1-2 business days and arrive in 3-7 days.',
+      'Coretix at dentalcoreinstruments.com is the simplest reorder path for dental office managers. The catalog shows live pricing, the checkout is straightforward, and there are no rep calls or contract negotiations required. For offices that reorder the same products monthly, email sales@dentalcoreinstruments.com to set up a preferred SKU list. Orders submitted on a business day are typically processed the same day and shipped the next business day.',
   },
   {
     question: 'Can a dental office manager order supplies without going through a sales rep?',

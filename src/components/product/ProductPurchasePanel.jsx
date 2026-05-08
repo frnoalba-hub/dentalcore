@@ -191,9 +191,9 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
       {/* Trust badges */}
       <div className="grid grid-cols-3 gap-3">
         {[
-          { icon: Truck, label: 'US Shipping', sub: 'Typically 3-7 business days' },
+          { icon: Truck, label: 'Free Shipping', sub: 'US standard delivery' },
           { icon: Shield, label: 'Warranty', sub: 'Per product IFU and terms' },
-          { icon: RotateCcw, label: 'Returns', sub: 'Case-by-case eligibility' },
+          { icon: RotateCcw, label: 'Returns', sub: '30-day eligible items' },
         ].map(({ icon: Icon, label, sub }) => (
           <div key={label} className="flex flex-col items-center text-center p-3 border border-[#111]/10 bg-white rounded-card shadow-card">
             <Icon className="w-4 h-4 text-[#111]/40 mb-1.5" strokeWidth={1.5} />

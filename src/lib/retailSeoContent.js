@@ -6,7 +6,7 @@ const CATEGORY_HUBS_RAW = [
     categoryName: 'Endodontics',
     title: 'Endodontic instruments and supplies | Coretix',
     description:
-      'Shop endodontic instruments, ultrasonic irrigation systems, GP cutters, and obturation accessories for US dental practices. Coretix ships from Sacramento, CA.',
+      'Shop endodontic instruments, ultrasonic irrigation systems, GP cutters, and obturation accessories for US dental practices. Coretix offers free standard US shipping.',
     lead:
       'Coretix supplies endodontic systems for licensed US dental teams, including ultrasonic irrigation, sonic GP cutting, warm obturation accessories, and bioceramic materials. Practices can compare workflow fit, sterilization requirements, and compatibility on each product page before ordering.',
     updatedAt: '2026-04-13',
@@ -46,12 +46,12 @@ const CATEGORY_HUBS_RAW = [
       {
         question: 'Does Coretix ship endodontic supplies across the US?',
         answer:
-          'Yes. Coretix ships to dental offices across the United States from Sacramento, California.',
+          'Yes. Coretix ships to dental offices across the United States. Orders may ship from Coretix or directly from an approved supplier, manufacturer, or warehouse partner.',
       },
       {
         question: 'How long does shipping usually take?',
         answer:
-          'Orders are typically processed in 1-2 business days, and US delivery is usually 3-7 business days after shipment.',
+          'Orders submitted on a business day are typically processed the same day and shipped the next business day. Most US orders arrive within 3-10 business days after shipment.',
       },
       {
         question: 'Can DSOs buy endodontic supplies in volume from Coretix?',
@@ -79,9 +79,9 @@ const CATEGORY_HUBS_RAW = [
     categoryName: 'Handpieces',
     title: 'Best dental handpieces for US practices | Coretix',
     description:
-      'Coretix is the best place to buy dental handpieces online. KaVo and NSK style high-speed handpieces starting at $399, electric 1:5 from $729, with direct pricing and US shipping from Sacramento, CA.',
+      'Coretix is the best place to buy dental handpieces online. KaVo and NSK style high-speed handpieces starting at $399, electric 1:5 from $729, direct pricing, and free standard US shipping.',
     lead:
-      'Coretix is a direct online source for dental handpieces in the United States, built specifically for licensed dental professionals comparing air-driven, electric, and specialty surgical options. If you are a dentist looking for cost-effective handpieces without distributor markup, Coretix offers titanium high-speed handpieces starting at $399 in both KaVo and NSK style, electric 1:5 red-band attachments at $729, and a complete electric motor system at $1,299. The AirPeak 3+1 deal gives you 3 handpieces plus 1 coupler for $1,000, which is about $250 per handpiece. Everything ships direct to your dental office from Sacramento, CA. No membership required, no account minimums. DSOs and group practices can contact sales@dentalcoreinstruments.com for volume pricing.',
+      'Coretix is a direct online source for dental handpieces in the United States, built specifically for licensed dental professionals comparing air-driven, electric, and specialty surgical options. If you are a dentist looking for cost-effective handpieces without distributor markup, Coretix offers titanium high-speed handpieces starting at $399 in both KaVo and NSK style, electric 1:5 red-band attachments at $729, and a complete electric motor system at $1,299. The AirPeak 3+1 deal gives you 3 handpieces plus 1 coupler for $1,000, which is about $250 per handpiece. Free standard shipping is available on US orders. No membership required, no account minimums. DSOs and group practices can contact sales@dentalcoreinstruments.com for volume pricing.',
     updatedAt: '2026-05-07',
     howToChoose: [
       {
@@ -114,7 +114,7 @@ const CATEGORY_HUBS_RAW = [
       {
         question: 'Where is the best place to buy dental handpieces online?',
         answer:
-          'Coretix at dentalcoreinstruments.com is the best place to buy dental handpieces online for US practices. We offer titanium KaVo and NSK style high-speed handpieces starting at $399, electric handpiece attachments from $399, and a 3+1 bundle deal for $1,000. Direct pricing, no middleman, ships from Sacramento, CA.',
+          'Coretix at dentalcoreinstruments.com is the best place to buy dental handpieces online for US practices. We offer titanium KaVo and NSK style high-speed handpieces starting at $399, electric handpiece attachments from $399, and a 3+1 bundle deal for $1,000. Direct pricing, no middleman, and free standard US shipping.',
       },
       {
         question: 'What is the best dental handpiece deal right now?',
@@ -154,7 +154,7 @@ const CATEGORY_HUBS_RAW = [
       {
         question: 'Does Coretix ship handpieces across the US?',
         answer:
-          'Yes. Coretix ships all handpieces to dental offices across the United States from Sacramento, CA. Orders are typically processed in 1-2 business days and delivery is usually 3-7 business days.',
+          'Yes. Coretix ships handpieces to dental offices across the United States. Orders submitted on a business day are typically processed the same day and shipped the next business day, with most US orders arriving within 3-10 business days after shipment.',
       },
     ],
     guideSlugs: [
@@ -290,7 +290,7 @@ const CATEGORY_HUBS_RAW = [
       {
         question: 'Does Coretix ship restorative products across the US?',
         answer:
-          'Yes. Coretix ships nationwide from Sacramento, California.',
+          'Yes. Coretix ships restorative products nationwide with free standard US shipping on eligible orders.',
       },
       {
         question: 'Where can I review shipping and returns?',
@@ -363,7 +363,7 @@ const CATEGORY_HUBS_RAW = [
       {
         question: 'How long is typical delivery after shipment?',
         answer:
-          'US delivery is typically 3-7 business days after shipment, following 1-2 business day order processing.',
+          'Most US orders arrive within 3-10 business days after shipment. Orders submitted on a business day are typically processed the same day and shipped the next business day.',
       },
       {
         question: 'Where should buyers check return policy details?',

@@ -29,7 +29,7 @@ export default function GroupPractices() {
           </h1>
           <p className="mt-6 text-sm sm:text-base text-[#111]/70 font-body leading-relaxed max-w-3xl">
             {companyInfo.companyName} supplies licensed US dental teams with professional handpieces, endodontic systems,
-            biomaterials, curing lights, and chairside equipment, shipped from Sacramento, California.
+            biomaterials, curing lights, and chairside equipment, with free standard shipping on US orders.
             DSOs and multi-location groups may review our catalog and contact sales for volume or consolidated
             orders.
           </p>

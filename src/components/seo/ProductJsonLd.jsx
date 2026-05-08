@@ -1,28 +1,34 @@
 import { SITE_URL, absoluteUrl, productPageUrl } from '../../lib/siteUrl';
 import { companyInfo } from '../dentalcore/productsData';
-import { productSchemaAudienceType } from '@/lib/generativeOptimizationEngine';
 import { parseYouTubeVideoId, youtubeEmbedUrl, youtubeWatchUrl } from '@/lib/youtubeEmbed';
 
-/** Return policy link matches ContactSection (#shipping-returns). */
+/** Merchant Center-compatible return policy. */
 function merchantReturnPolicyBlock() {
   return {
     hasMerchantReturnPolicy: {
       '@type': 'MerchantReturnPolicy',
       applicableCountry: 'US',
       returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
-      merchantReturnLink: `${SITE_URL}/#shipping-returns`,
+      merchantReturnDays: 30,
+      returnMethod: 'https://schema.org/ReturnByMail',
+      returnFees: 'https://schema.org/ReturnShippingFees',
+      merchantReturnLink: `${SITE_URL}/policies`,
     },
   };
 }
 
 /**
- * Handling/transit windows match on-page shipping copy (not a guaranteed price).
- * Omit shippingRate — actual charges are at checkout or sales quote.
+ * Free US standard shipping. Orders are usually submitted same day and shipped next business day.
  */
 function shippingDetailsBlock() {
   return {
     shippingDetails: {
       '@type': 'OfferShippingDetails',
+      shippingRate: {
+        '@type': 'MonetaryAmount',
+        value: '0.00',
+        currency: 'USD',
+      },
       shippingDestination: {
         '@type': 'DefinedRegion',
         addressCountry: 'US',
@@ -31,14 +37,14 @@ function shippingDetailsBlock() {
         '@type': 'ShippingDeliveryTime',
         handlingTime: {
           '@type': 'QuantitativeValue',
-          minValue: 1,
-          maxValue: 2,
+          minValue: 0,
+          maxValue: 1,
           unitCode: 'DAY',
         },
         transitTime: {
           '@type': 'QuantitativeValue',
           minValue: 3,
-          maxValue: 7,
+          maxValue: 10,
           unitCode: 'DAY',
         },
       },
@@ -124,11 +130,6 @@ export default function ProductJsonLd({ product, allImages }) {
   if (product.aggregateRating) {
     productNode.aggregateRating = product.aggregateRating;
   }
-
-  productNode.audience = {
-    '@type': 'Audience',
-    audienceType: productSchemaAudienceType,
-  };
 
   const webPageDescription = (fullDescription || product.name).slice(0, 400);
   const webPageNode = {
