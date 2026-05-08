@@ -36,7 +36,7 @@ ${itemsList || 'See your order for details'}
 Total: $${Number(order.total || 0).toFixed(2)}
 
 You can track your order at any time here:
-https://coretixdental.com/track-order
+https://www.dentalcoreinstruments.com/track-order
 
 Questions? Reply to this email or contact us at sales@dentalcoreinstruments.com
 
@@ -82,7 +82,7 @@ ${trackingInfo}
 ${deliveryInfo}
 
 Track your order here:
-https://coretixdental.com/track-order
+https://www.dentalcoreinstruments.com/track-order
 
 Questions? Contact us at sales@dentalcoreinstruments.com
 

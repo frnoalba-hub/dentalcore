@@ -22,6 +22,7 @@ import Contact from './pages/Contact';
 import AdminQuotes from './pages/AdminQuotes';
 import Policies from './pages/Policies';
 import RequestQuote from './pages/RequestQuote';
+import OrderConfirmation from './pages/OrderConfirmation';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import RequireAuth from '@/lib/RequireAuth';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
@@ -109,6 +110,7 @@ const AuthenticatedApp = () => {
       <Route path="/c/:categorySlug" element={<CategoryHubPage />} />
       <Route path="/guides/:guideSlug" element={<BuyerGuidePage />} />
       <Route path="/request-quote" element={<RequestQuote />} />
+      <Route path="/order-confirmation" element={<OrderConfirmation />} />
       <Route path="/track-order" element={<OrderTracking />} />
       <Route path="/OrderTracking" element={<LegacyOrderTrackingRedirect />} />
       <Route

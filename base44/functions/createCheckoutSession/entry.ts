@@ -69,6 +69,11 @@ function isAllowedOrigin(origin: string): boolean {
   }
 }
 
+function generateOrderId(): string {
+  const num = Math.floor(10000 + Math.random() * 90000);
+  return `CTX-${num}`;
+}
+
 function buildProductIndex(products: ProductRow[]): Map<string, { name: string; price: number; image: string }> {
   const byId = new Map<string, { name: string; price: number; image: string }>();
   for (const p of products) {
@@ -253,42 +258,29 @@ Deno.serve(async (req) => {
       discounts.push({ coupon: coupon.id });
     }
 
-    const subtotal = pricedLines.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const discountedSubtotal = subtotal - totalDiscount;
-    const freeShipping = discountedSubtotal >= 500;
+    const publicOrderId = generateOrderId();
 
     const sessionParams: Stripe.Checkout.SessionCreateParams & { discounts?: { coupon: string }[] } = {
       payment_method_types: ['card'],
       line_items,
       mode: 'payment',
-      shipping_address_collection: { allowed_countries: ['US', 'CA'] },
-      shipping_options: freeShipping
-        ? [{
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 0, currency: 'usd' },
-            display_name: 'Free Shipping',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 3 },
-              maximum: { unit: 'business_day', value: 7 },
-            },
+      shipping_address_collection: { allowed_countries: ['US'] },
+      shipping_options: [{
+        shipping_rate_data: {
+          type: 'fixed_amount',
+          fixed_amount: { amount: 0, currency: 'usd' },
+          display_name: 'Free Standard Shipping',
+          delivery_estimate: {
+            minimum: { unit: 'business_day', value: 3 },
+            maximum: { unit: 'business_day', value: 10 },
           },
-        }]
-        : [{
-          shipping_rate_data: {
-            type: 'fixed_amount',
-            fixed_amount: { amount: 1500, currency: 'usd' },
-            display_name: 'Standard Shipping',
-            delivery_estimate: {
-              minimum: { unit: 'business_day', value: 3 },
-              maximum: { unit: 'business_day', value: 7 },
-            },
-          },
-        }],
-      success_url: `${origin.replace(/\/$/, '')}/?checkout=success`,
+        },
+      }],
+      success_url: `${origin.replace(/\/$/, '')}/order-confirmation?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin.replace(/\/$/, '')}/?checkout=cancel`,
       metadata: {
         base44_app_id: Deno.env.get('BASE44_APP_ID') ?? '',
+        order_id: publicOrderId,
         promos: JSON.stringify(promos),
         ...(orderNotes ? { order_notes: orderNotes } : {}),
       },

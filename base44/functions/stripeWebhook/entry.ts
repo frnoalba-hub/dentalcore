@@ -52,7 +52,7 @@ Deno.serve(async (req) => {
     const base44 = createClientFromRequest(req);
 
     await base44.asServiceRole.entities.Order.create({
-      order_id: generateOrderId(),
+      order_id: session.metadata?.order_id || generateOrderId(),
       email: customerEmail.toLowerCase(),
       customer_name: customerName,
       status: 'confirmed',
