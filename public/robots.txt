@@ -34,4 +34,3 @@ User-agent: cohere-ai
 Allow: /
 
 Sitemap: https://www.dentalcoreinstruments.com/sitemap.xml
-LLMs: https://www.dentalcoreinstruments.com/llms.txt
