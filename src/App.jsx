@@ -23,6 +23,7 @@ import AdminQuotes from './pages/AdminQuotes';
 import Policies from './pages/Policies';
 import RequestQuote from './pages/RequestQuote';
 import OrderConfirmation from './pages/OrderConfirmation';
+import SiteLayout from '@/components/dentalcore/SiteLayout';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import RequireAuth from '@/lib/RequireAuth';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
@@ -73,26 +74,46 @@ const AuthenticatedApp = () => {
   // Render the main app
   return (
     <Routes>
-      <Route path="/" element={
-        <LayoutWrapper currentPageName={mainPageKey}>
-          <MainPage />
-        </LayoutWrapper>
-      } />
-      {Object.entries(Pages).map(([path, Page]) => (
-        <Route
-          key={path}
-          path={`/${path}`}
-          element={
-            <LayoutWrapper currentPageName={path}>
-              <Page />
-            </LayoutWrapper>
-          }
-        />
-      ))}
-      <Route path="/policies" element={<Policies />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
+      {/* Public storefront — shared header / footer / cart drawer */}
+      <Route element={<SiteLayout />}>
+        <Route path="/" element={
+          <LayoutWrapper currentPageName={mainPageKey}>
+            <MainPage />
+          </LayoutWrapper>
+        } />
+        {Object.entries(Pages).map(([path, Page]) => (
+          <Route
+            key={path}
+            path={`/${path}`}
+            element={
+              <LayoutWrapper currentPageName={path}>
+                <Page />
+              </LayoutWrapper>
+            }
+          />
+        ))}
+        <Route path="/policies" element={<Policies />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/p/:productSlug" element={<ProductDetail />} />
+        <Route path="/product" element={<ProductDetail />} />
+        <Route path="/group-practices" element={<GroupPractices />} />
+        <Route path="/california" element={<CaliforniaHub />} />
+        <Route path="/california/:metroSlug" element={<CaliforniaMetroPage />} />
+        <Route path="/c/:categorySlug" element={<CategoryHubPage />} />
+        <Route path="/guides/:guideSlug" element={<BuyerGuidePage />} />
+        <Route path="/request-quote" element={<RequestQuote />} />
+        <Route path="/order-confirmation" element={<OrderConfirmation />} />
+        <Route path="/track-order" element={<OrderTracking />} />
+        <Route path="*" element={<PageNotFound />} />
+      </Route>
+
+      {/* Legacy redirects */}
+      <Route path="/ProductDetail" element={<LegacyProductPathRedirect />} />
+      <Route path="/OrderTracking" element={<LegacyOrderTrackingRedirect />} />
       <Route path="/AdminProducts" element={<Navigate to="/admin/products" replace />} />
+
+      {/* Admin (own shell) */}
       <Route
         path="/admin/products"
         element={
@@ -101,18 +122,6 @@ const AuthenticatedApp = () => {
           </RequireAuth>
         }
       />
-      <Route path="/p/:productSlug" element={<ProductDetail />} />
-      <Route path="/product" element={<ProductDetail />} />
-      <Route path="/ProductDetail" element={<LegacyProductPathRedirect />} />
-      <Route path="/group-practices" element={<GroupPractices />} />
-      <Route path="/california" element={<CaliforniaHub />} />
-      <Route path="/california/:metroSlug" element={<CaliforniaMetroPage />} />
-      <Route path="/c/:categorySlug" element={<CategoryHubPage />} />
-      <Route path="/guides/:guideSlug" element={<BuyerGuidePage />} />
-      <Route path="/request-quote" element={<RequestQuote />} />
-      <Route path="/order-confirmation" element={<OrderConfirmation />} />
-      <Route path="/track-order" element={<OrderTracking />} />
-      <Route path="/OrderTracking" element={<LegacyOrderTrackingRedirect />} />
       <Route
         path="/admin/orders"
         element={
@@ -137,7 +146,6 @@ const AuthenticatedApp = () => {
           </RequireAuth>
         }
       />
-      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 };
@@ -154,7 +162,9 @@ function App() {
           <AuthenticatedApp />
         </Router>
         <Toaster />
-        <VisualEditAgent />
+        {/* Base44 visual editor bridge — dev only; its postMessage listener
+            must never ship to production visitors. */}
+        {import.meta.env.DEV && <VisualEditAgent />}
       </QueryClientProvider>
     </AuthProvider>
   )

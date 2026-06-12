@@ -47,7 +47,12 @@ M1002,"SureTact G3 Rings (2pk)",,$86.65`;
 Deno.serve(async (req) => {
   try {
     const base44 = createClientFromRequest(req);
-    
+
+    const user = await base44.auth.me();
+    if (!user || user.role !== 'admin') {
+      return Response.json({ error: 'Unauthorized - Admin only' }, { status: 403 });
+    }
+
     // Parse CSV
     const lines = csvData.split('\n').slice(1); // Skip header
     const priceData = lines

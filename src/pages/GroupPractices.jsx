@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '@/components/dentalcore/Header';
-import CartDrawer from '@/components/cart/CartDrawer';
 import JsonLdSchema from '@/components/seo/JsonLdSchema';
 import { companyInfo } from '@/components/dentalcore/productsData';
 import {
@@ -18,7 +16,6 @@ export default function GroupPractices() {
   return (
     <div className="antialiased min-h-screen bg-[#FDFDFD]">
       <JsonLdSchema />
-      <Header />
       <main className="pt-[var(--site-header-height)] pb-20 lg:pb-28">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <p className="text-xs uppercase tracking-[0.25em] font-bold text-[#111]/40 mb-3">
@@ -70,7 +67,6 @@ export default function GroupPractices() {
           </div>
         </div>
       </main>
-      <CartDrawer />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import Header from '@/components/dentalcore/Header';
 import { companyInfo } from '@/components/dentalcore/productsData';
 import { usePageSeo } from '@/hooks/usePageSeo';
 import { SITE_URL } from '@/lib/siteUrl';
@@ -17,7 +16,6 @@ export default function Policies() {
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] text-[#111]">
-      <Header />
       <main className="max-w-3xl mx-auto px-6 lg:px-12 pt-[calc(var(--site-header-height)+2.25rem)] pb-24">
         <p className="text-xs uppercase tracking-[0.25em] text-[#111]/40 font-semibold mb-3">
           {companyInfo.companyName}

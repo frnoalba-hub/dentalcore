@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import Header from '@/components/dentalcore/Header';
-import CartDrawer from '@/components/cart/CartDrawer';
 import JsonLdSchema from '@/components/seo/JsonLdSchema';
 import {
   getCategoryHubBySlug,
@@ -9,7 +7,7 @@ import {
 } from '@/lib/retailSeoContent';
 import { products as localProducts, getCatalogProductImage } from '@/components/dentalcore/productsData';
 import { productRelativePath } from '@/lib/productPaths';
-import { SITE_URL } from '@/lib/siteUrl';
+import { SITE_URL, absoluteUrl, productPageUrl } from '@/lib/siteUrl';
 import { usePageSeo } from '@/hooks/usePageSeo';
 import { companyInfo } from '@/components/dentalcore/productsData';
 
@@ -69,20 +67,26 @@ export default function CategoryHubPage() {
     url: `${SITE_URL}/c/${hub.slug}`,
   };
 
+  /** WebPage items — not Product (thin Product rows triggered Product snippets / missing aggregateRating in GSC). */
   const itemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: `${hub.categoryName} products`,
     numberOfItems: products.length,
-    itemListElement: products.map((product, idx) => ({
-      '@type': 'ListItem',
-      position: idx + 1,
-      item: {
-        '@type': 'Product',
+    itemListElement: products.map((product, idx) => {
+      const img = absoluteUrl(getCatalogProductImage(product));
+      const item = {
+        '@type': 'WebPage',
         name: product.name,
-        url: `${SITE_URL}${productRelativePath(product)}`,
-      },
-    })),
+        url: productPageUrl(product),
+      };
+      if (img) item.image = img;
+      return {
+        '@type': 'ListItem',
+        position: idx + 1,
+        item,
+      };
+    }),
   };
 
   const collectionSchema = {
@@ -106,7 +110,6 @@ export default function CategoryHubPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <Header />
       <main className="pt-[var(--site-header-height)] pb-24">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <p className="text-xs uppercase tracking-[0.25em] text-[#111]/40 font-semibold mb-3">
@@ -204,7 +207,6 @@ export default function CategoryHubPage() {
           </section>
         </div>
       </main>
-      <CartDrawer />
     </div>
   );
 }

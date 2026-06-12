@@ -1,14 +1,17 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Plus, Minus, ShoppingCart } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
 import { toast } from 'sonner';
 import { getCatalogProductImage } from './productsData';
+import { useDialogA11y } from '@/hooks/useDialogA11y';
 
 export default function ProductQuickView({ product, onClose }) {
   const { addItem, openCart } = useCartStore();
   const { dynamicT } = useTranslation();
+  const dialogRef = useRef(null);
+  useDialogA11y(dialogRef, true, onClose);
   const [currentImage, setCurrentImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedVariant, setSelectedVariant] = useState(
@@ -51,11 +54,16 @@ export default function ProductQuickView({ product, onClose }) {
         className="fixed inset-0 bg-[#111]/50 backdrop-blur-sm z-[70] flex items-center justify-center p-4"
       >
         <motion.div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Quick view: ${dynamicT(product.name)}`}
+          tabIndex={-1}
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           onClick={(e) => e.stopPropagation()}
-          className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto overflow-x-hidden border border-[#111]/10 rounded-card shadow-modal"
+          className="bg-white w-full max-w-4xl max-h-[90vh] overflow-y-auto overflow-x-hidden border border-[#111]/10 rounded-card shadow-modal focus:outline-none"
         >
           {/* Close */}
           <div className="sticky top-0 z-10 flex justify-end items-center min-h-[52px] px-4 border-b border-[#111]/10 bg-white/95 backdrop-blur-sm">
@@ -79,10 +87,10 @@ export default function ProductQuickView({ product, onClose }) {
                 )}
                 {images.length > 1 && (
                   <>
-                    <button type="button" onClick={prevImage} className="absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-[#111]/15 rounded-sm shadow-card flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors">
+                    <button type="button" onClick={prevImage} aria-label="Previous image" className="absolute left-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-[#111]/15 rounded-sm shadow-card flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors">
                       <ChevronLeft className="w-4 h-4" />
                     </button>
-                    <button type="button" onClick={nextImage} className="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-[#111]/15 rounded-sm shadow-card flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors">
+                    <button type="button" onClick={nextImage} aria-label="Next image" className="absolute right-0 top-1/2 -translate-y-1/2 w-9 h-9 bg-white border border-[#111]/15 rounded-sm shadow-card flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors">
                       <ChevronRight className="w-4 h-4" />
                     </button>
                   </>
@@ -96,6 +104,8 @@ export default function ProductQuickView({ product, onClose }) {
                       type="button"
                       key={i}
                       onClick={() => setCurrentImage(i)}
+                      aria-label={`View image ${i + 1} of ${images.length}`}
+                      aria-current={i === currentImage}
                       className={`w-14 h-14 flex-shrink-0 border-2 p-1 rounded-sm transition-all ${
                         i === currentImage ? 'border-[#111] ring-2 ring-accent/35 ring-offset-2 ring-offset-[#F5F5F5]' : 'border-[#111]/10 hover:border-[#111]/30'
                       }`}
@@ -182,11 +192,11 @@ export default function ProductQuickView({ product, onClose }) {
 
                 <div className="flex items-center gap-3">
                   <div className="flex items-center border border-[#111]/20 rounded-sm overflow-hidden bg-white">
-                    <button type="button" onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="w-10 h-10 flex items-center justify-center hover:bg-[#111]/5 transition-colors">
+                    <button type="button" onClick={() => setQuantity((q) => Math.max(1, q - 1))} aria-label="Decrease quantity" className="w-10 h-10 flex items-center justify-center hover:bg-[#111]/5 transition-colors">
                       <Minus className="w-3 h-3" />
                     </button>
-                    <span className="w-10 text-center text-sm font-medium">{quantity}</span>
-                    <button type="button" onClick={() => setQuantity((q) => q + 1)} className="w-10 h-10 flex items-center justify-center hover:bg-[#111]/5 transition-colors">
+                    <span className="w-10 text-center text-sm font-medium" aria-live="polite">{quantity}</span>
+                    <button type="button" onClick={() => setQuantity((q) => q + 1)} aria-label="Increase quantity" className="w-10 h-10 flex items-center justify-center hover:bg-[#111]/5 transition-colors">
                       <Plus className="w-3 h-3" />
                     </button>
                   </div>

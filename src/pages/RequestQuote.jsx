@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Header from '@/components/dentalcore/Header';
-import CartDrawer from '@/components/cart/CartDrawer';
 import { companyInfo } from '@/components/dentalcore/productsData';
 import { base44 } from '@/api/base44Client';
 import { usePageSeo } from '@/hooks/usePageSeo';
@@ -162,8 +160,6 @@ export default function RequestQuote() {
 
   return (
     <div className="antialiased min-h-screen bg-[#FDFDFD]">
-      <Header />
-      <CartDrawer />
       <main className="pt-[var(--site-header-height)] pb-16 lg:pb-24">
         <section className="max-w-[980px] mx-auto px-6 lg:px-12 pt-10">
           <p className="text-xs uppercase tracking-[0.25em] font-bold text-[#111]/40 mb-3">Office Pricing</p>

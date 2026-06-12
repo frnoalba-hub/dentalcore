@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import Header from '@/components/dentalcore/Header';
-import CartDrawer from '@/components/cart/CartDrawer';
 import JsonLdSchema from '@/components/seo/JsonLdSchema';
 import {
   BUYER_GUIDES,
@@ -99,7 +97,6 @@ export default function BuyerGuidePage() {
       {faqSchema && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
-      <Header />
       <main className="pt-[var(--site-header-height)] pb-24">
         <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
           <p className="text-xs uppercase tracking-[0.24em] text-[#111]/40 font-semibold mb-3">Buyer Guide</p>
@@ -176,7 +173,6 @@ export default function BuyerGuidePage() {
           </section>
         </div>
       </main>
-      <CartDrawer />
     </div>
   );
 }

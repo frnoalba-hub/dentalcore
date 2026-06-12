@@ -5,8 +5,6 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useTranslation } from '@/lib/i18n';
 import { products as localProducts, getCatalogProductImage, isDuplicateApiCatalogRow } from '../components/dentalcore/productsData';
-import Header from '../components/dentalcore/Header';
-import CartDrawer from '../components/cart/CartDrawer';
 import ProductImageGallery from '../components/product/ProductImageGallery';
 import ProductPurchasePanel from '../components/product/ProductPurchasePanel';
 import ProductSpecsTabs from '../components/product/ProductSpecsTabs';
@@ -140,13 +138,13 @@ export default function ProductDetail() {
   });
 
   if (isLoading_) return (
-    <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center">
+    <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center pt-[var(--site-header-height)]">
       <div className="w-6 h-6 border-2 border-[#111]/20 border-t-[#111] rounded-full animate-spin" />
     </div>
   );
 
   if (!product) return (
-    <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center flex-col gap-4">
+    <div className="min-h-screen bg-[#FDFDFD] flex items-center justify-center flex-col gap-4 pt-[var(--site-header-height)]">
       <p className="text-sm text-[#111]/50 uppercase tracking-widest">Product not found</p>
       <Link to="/" className="text-xs uppercase tracking-widest font-semibold text-accent hover:underline">← Back to catalog</Link>
     </div>
@@ -168,9 +166,6 @@ export default function ProductDetail() {
         productName={dynamicT(product.name)}
         product={product}
       />
-      <Header />
-      <CartDrawer />
-
       {/* Breadcrumb */}
       <div className="pt-[var(--site-header-height)] border-b border-[#111]/10 px-6 lg:px-12 bg-white/60 shadow-card backdrop-blur-sm">
         <div className="max-w-[1600px] mx-auto flex flex-wrap items-center gap-x-3 gap-y-1 text-xs sm:text-sm uppercase tracking-widest text-[#111]/45 py-4 sm:py-5">

@@ -1,8 +1,19 @@
 import { Link } from 'react-router-dom';
 import { companyInfo } from '@/components/dentalcore/productsData';
 import { trackEngagementEvent } from '@/lib/trackEvent';
+import { usePageSeo } from '@/hooks/usePageSeo';
+import { SITE_URL } from '@/lib/siteUrl';
 
 export default function Contact() {
+  usePageSeo({
+    variant: 'staticPage',
+    staticPage: {
+      title: `Contact Us | ${companyInfo.companyName}`,
+      description: `Contact ${companyInfo.companyName} in Sacramento, CA — sales, orders, and clinical support for dental professionals. Call ${companyInfo.phone} or email ${companyInfo.email}.`,
+      canonicalUrl: `${SITE_URL}/contact`,
+    },
+  });
+
   return (
     <main className="min-h-screen bg-[#FDFDFD]" style={{ paddingTop: 'var(--site-header-height)' }}>
       {/* Hero */}

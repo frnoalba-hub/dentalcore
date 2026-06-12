@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { base44 } from '@/api/base44Client';
 import { canonicalBusinessInfo } from '@/lib/companyDefaults';
+import { companyInfo } from '@/components/dentalcore/productsData';
 
 const useContentStore = create(
   persist(
@@ -70,50 +70,21 @@ const useContentStore = create(
       lastFetched: null,
       error: null,
 
-      // Actions
-      fetchContentFromGitHub: async () => {
-        set({ isLoading: true, error: null });
-        try {
-          const response = await base44.functions.invoke('fetchGitHubContent', {
-            filePath: 'src/components/dentalcore/productsData.jsx'
-          });
-
-          if (response.data.error) {
-            throw new Error(response.data.error);
-          }
-
-          const content = response.data.content;
-          
-          // Parse companyInfo from the JSX file
-          const companyName = content.match(/companyName:\s*"([^"]*)"/)?.[1];
-          const email = content.match(/email:\s*"([^"]*)"/)?.[1];
-          const phone = content.match(/phone:\s*"([^"]*)"/)?.[1];
-          if (companyName || email || phone) {
-            set({
-              businessInfo: {
-                name: companyName || get().businessInfo.name,
-                phone: phone || get().businessInfo.phone,
-                email: email || get().businessInfo.email,
-                location: get().businessInfo.location,
-              },
-            });
-          }
-          
-          set({ 
-            lastFetched: new Date().toISOString(),
-            isLoading: false 
-          });
-
-          return content;
-        } catch (error) {
-          set({ error: error.message, isLoading: false });
-          console.error('Failed to fetch content from GitHub:', error);
-        }
-      },
-
-      refreshContent: async () => {
-        set({ lastFetched: null });
-        await get().fetchContentFromGitHub();
+      // Actions — business info comes from the bundled productsData companyInfo.
+      // (Previously fetched the same file via a backend GitHub proxy, which
+      // exposed an unauthenticated repo-read endpoint for no benefit.)
+      refreshContent: () => {
+        set({
+          businessInfo: {
+            name: companyInfo.companyName || get().businessInfo.name,
+            phone: companyInfo.phone || get().businessInfo.phone,
+            email: companyInfo.email || get().businessInfo.email,
+            location: get().businessInfo.location,
+          },
+          lastFetched: new Date().toISOString(),
+          isLoading: false,
+          error: null,
+        });
       },
 
       updateBusinessInfo: (info) => set({ businessInfo: info }),

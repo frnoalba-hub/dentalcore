@@ -3,10 +3,16 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.6';
 Deno.serve(async (req) => {
     try {
         const base44 = createClientFromRequest(req);
+
+        const user = await base44.auth.me();
+        if (!user || user.role !== 'admin') {
+            return Response.json({ error: 'Unauthorized - Admin only' }, { status: 403 });
+        }
+
         const { filePath } = await req.json();
 
-        if (!filePath) {
-            return Response.json({ error: 'filePath is required' }, { status: 400 });
+        if (!filePath || typeof filePath !== 'string' || filePath.includes('..')) {
+            return Response.json({ error: 'A valid filePath is required' }, { status: 400 });
         }
 
         const token = Deno.env.get("GITHUB_TOKEN");

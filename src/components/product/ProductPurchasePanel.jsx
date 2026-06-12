@@ -144,9 +144,9 @@ export default function ProductPurchasePanel({ product, selectedVariant, setSele
       {/* Quantity + Add to Cart */}
       <div className="flex items-stretch gap-3 mb-8">
         <div className="flex items-center border border-[#111] bg-white rounded-sm overflow-hidden shadow-card">
-          <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-12 h-14 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-base">−</button>
-          <span className="w-12 text-center text-base font-medium">{quantity}</span>
-          <button type="button" onClick={() => setQuantity(quantity + 1)} className="w-12 h-14 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-base">+</button>
+          <button type="button" onClick={() => setQuantity(Math.max(1, quantity - 1))} aria-label="Decrease quantity" className="w-12 h-14 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-base">−</button>
+          <span className="w-12 text-center text-base font-medium" aria-live="polite">{quantity}</span>
+          <button type="button" onClick={() => setQuantity(quantity + 1)} aria-label="Increase quantity" className="w-12 h-14 flex items-center justify-center hover:bg-[#111] hover:text-white transition-colors text-base">+</button>
         </div>
         <button
           type="button"

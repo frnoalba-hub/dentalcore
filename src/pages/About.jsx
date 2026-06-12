@@ -1,7 +1,18 @@
 import { Link } from 'react-router-dom';
 import { companyInfo } from '@/components/dentalcore/productsData';
+import { usePageSeo } from '@/hooks/usePageSeo';
+import { SITE_URL } from '@/lib/siteUrl';
 
 export default function About() {
+  usePageSeo({
+    variant: 'staticPage',
+    staticPage: {
+      title: `About Us | ${companyInfo.companyName}`,
+      description: `${companyInfo.companyName} is a Sacramento-based distributor of premium dental instruments — handpieces, surgical supplies, bone graft materials, and restorative accessories for US dental professionals.`,
+      canonicalUrl: `${SITE_URL}/about`,
+    },
+  });
+
   return (
     <main className="min-h-screen bg-[#FDFDFD]" style={{ paddingTop: 'var(--site-header-height)' }}>
       {/* Hero */}

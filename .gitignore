@@ -17,6 +17,13 @@ dist
 dist-ssr
 *.local
 
+# Generated data artifacts / PII — keep out of the repo
+excel_output.json
+restore.patch
+user_changes.txt
+oldProductsData*.jsx
+scripts/apex_shop_scrape_report.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

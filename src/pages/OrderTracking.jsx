@@ -7,10 +7,22 @@ import { companyInfo } from '@/components/dentalcore/productsData';
 import OrderStatusTimeline from '@/components/order/OrderStatusTimeline';
 import OrderDetails from '@/components/order/OrderDetails';
 import { trackEngagementEvent } from '@/lib/trackEvent';
+import { usePageSeo } from '@/hooks/usePageSeo';
+import { SITE_URL } from '@/lib/siteUrl';
 
 const STEPS = ['confirmed', 'processing', 'shipped', 'out_for_delivery', 'delivered'];
 
 export default function OrderTracking() {
+  usePageSeo({
+    variant: 'staticPage',
+    robots: 'noindex, follow',
+    staticPage: {
+      title: `Track Your Order | ${companyInfo.companyName}`,
+      description: `Track your ${companyInfo.companyName} order — enter your order ID and checkout email to view delivery status.`,
+      canonicalUrl: `${SITE_URL}/track-order`,
+    },
+  });
+
   const [orderId, setOrderId] = useState('');
   const [email, setEmail] = useState('');
   const [order, setOrder] = useState(null);
@@ -43,26 +55,13 @@ export default function OrderTracking() {
   const currentStep = order ? STEPS.indexOf(order.status) : -1;
 
   return (
-    <div className="min-h-screen bg-[#FDFDFD]">
-      {/* Header */}
-      <div className="bg-[#111] text-white">
-        <div className="max-w-5xl mx-auto px-6 py-6 flex items-center justify-between">
-          <Link to="/" className="text-xs font-semibold tracking-widest uppercase text-white/60 hover:text-white flex items-center gap-2 transition-colors">
-            <ArrowLeft className="w-4 h-4" />
-            Back to Store
-          </Link>
-          <div className="text-right leading-tight">
-            <span className="block text-lg font-bold tracking-widest uppercase">
-              {companyInfo.logoText}<span className="text-accent">.</span>
-            </span>
-            <span className="block text-[9px] font-semibold uppercase tracking-[0.14em] text-white/45 mt-1 max-w-[14rem]">
-              {companyInfo.companyName}
-            </span>
-          </div>
-        </div>
-      </div>
-
+    <main className="min-h-screen bg-[#FDFDFD] pt-[var(--site-header-height)]">
       <div className="max-w-5xl mx-auto px-6 py-16">
+        <Link to="/" className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-[#111]/45 hover:text-[#111] transition-colors mb-8">
+          <ArrowLeft className="w-4 h-4" />
+          Back to Store
+        </Link>
+
         {/* Title */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="mb-12">
           <h1 className="text-4xl lg:text-5xl font-medium tracking-tighter uppercase text-[#111] mb-3">
@@ -87,7 +86,7 @@ export default function OrderTracking() {
               type="text"
               value={orderId}
               onChange={(e) => setOrderId(e.target.value)}
-              placeholder="e.g. CTX-10042"
+              placeholder="e.g. CTX-7KQ2M9XH"
               required
               className="w-full bg-transparent border border-[#111]/20 focus:border-[#111] px-4 py-3 text-sm font-body text-[#111] placeholder:text-[#111]/30 outline-none transition-colors"
             />
@@ -184,6 +183,6 @@ export default function OrderTracking() {
           </motion.div>
         )}
       </div>
-    </div>
+    </main>
   );
 }

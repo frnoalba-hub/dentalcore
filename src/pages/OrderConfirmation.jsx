@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import Header from '@/components/dentalcore/Header';
-import CartDrawer from '@/components/cart/CartDrawer';
 import { companyInfo } from '@/components/dentalcore/productsData';
 import { base44 } from '@/api/base44Client';
 import { useCartStore } from '@/components/store/cartStore';
@@ -95,7 +93,6 @@ export default function OrderConfirmation() {
 
   return (
     <div className="min-h-screen bg-[#FDFDFD] text-[#111]">
-      <Header />
       <main className="max-w-3xl mx-auto px-6 lg:px-12 pt-[calc(var(--site-header-height)+3rem)] pb-24">
         <p className="text-xs uppercase tracking-[0.25em] text-[#111]/40 font-semibold mb-3">
           {companyInfo.companyName}
@@ -144,7 +141,6 @@ export default function OrderConfirmation() {
           </Link>
         </div>
       </main>
-      <CartDrawer />
     </div>
   );
 }

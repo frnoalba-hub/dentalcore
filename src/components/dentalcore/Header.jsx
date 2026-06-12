@@ -41,6 +41,13 @@ export default function Header() {
     { label: 'Track Order', to: '/track-order' },
   ];
 
+  // Key routes surfaced on desktop too (the rest stay in the mobile menu)
+  const desktopSecondaryNav = [
+    { label: 'Guides', to: '/guides/air-driven-vs-electric-handpieces' },
+    { label: 'Policies', to: '/policies' },
+    { label: 'Track Order', to: '/track-order' },
+  ];
+
   const itemCount = getItemCount();
 
   useEffect(() => {
@@ -175,6 +182,18 @@ export default function Header() {
 
               <span className="w-px h-4 bg-white/15" aria-hidden />
 
+              {desktopSecondaryNav.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="text-[12px] font-semibold tracking-[0.14em] uppercase text-white/35 hover:text-white transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+
+              <span className="w-px h-4 bg-white/15" aria-hidden />
+
               <a
                 href={`mailto:${companyInfo.email}`}
                 onClick={() =>
@@ -191,6 +210,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={openCart}
+                aria-label={`Open cart${itemCount > 0 ? ` (${itemCount} items)` : ''}`}
                 className="relative flex items-center gap-2 text-white/60 hover:text-white transition-colors px-2 py-1.5 -mr-1"
               >
                 <div className="relative">
@@ -209,6 +229,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={openCart}
+                aria-label={`Open cart${itemCount > 0 ? ` (${itemCount} items)` : ''}`}
                 className="relative text-white/60 hover:text-white transition-colors p-1"
               >
                 <ShoppingBag className="w-5 h-5" strokeWidth={1.5} />

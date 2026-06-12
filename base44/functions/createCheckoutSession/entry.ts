@@ -70,8 +70,13 @@ function isAllowedOrigin(origin: string): boolean {
 }
 
 function generateOrderId(): string {
-  const num = Math.floor(10000 + Math.random() * 90000);
-  return `CTX-${num}`;
+  // Unambiguous alphabet (no 0/O, 1/I/L) — 8 chars ≈ 1.1e12 combinations,
+  // not enumerable through the public lookupOrder endpoint.
+  const alphabet = '23456789ABCDEFGHJKMNPQRSTUVWXYZ';
+  const bytes = crypto.getRandomValues(new Uint8Array(8));
+  let id = '';
+  for (const b of bytes) id += alphabet[b % alphabet.length];
+  return `CTX-${id}`;
 }
 
 function buildProductIndex(products: ProductRow[]): Map<string, { name: string; price: number; image: string }> {

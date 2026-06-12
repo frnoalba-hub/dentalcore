@@ -1,7 +1,5 @@
 import { useMemo } from 'react';
 import { Link, Navigate, useParams } from 'react-router-dom';
-import Header from '@/components/dentalcore/Header';
-import CartDrawer from '@/components/cart/CartDrawer';
 import JsonLdSchema from '@/components/seo/JsonLdSchema';
 import { companyInfo } from '@/components/dentalcore/productsData';
 import { getServiceAreaBySlug, getServiceAreaPageSeo } from '@/lib/californiaServiceAreas';
@@ -65,7 +63,6 @@ export default function CaliforniaMetroPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      <Header />
       <main className="pt-[var(--site-header-height)] pb-24">
         <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
           <p className="text-xs uppercase tracking-[0.25em] text-[#111]/40 font-semibold mb-3">
@@ -205,7 +202,6 @@ export default function CaliforniaMetroPage() {
           </section>
         </div>
       </main>
-      <CartDrawer />
     </div>
   );
 }

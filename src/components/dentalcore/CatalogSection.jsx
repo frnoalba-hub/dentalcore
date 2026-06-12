@@ -159,13 +159,14 @@ export default function CatalogSection() {
             <Search className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 text-[#111]/40" />
             <input
               type="text"
+              aria-label={t('search_products') || "Search products"}
               placeholder={t('search_products') || "Search products..."}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full md:w-[260px] bg-transparent border-b border-[#111]/20 focus:border-[#111] pl-6 pr-8 py-2 text-sm font-body text-[#111] placeholder:text-[#111]/30 outline-none transition-colors"
             />
             {searchQuery && (
-              <button type="button" onClick={() => setSearchQuery('')} className="absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded-sm text-[#111]/40 hover:text-[#111] hover:bg-[#111]/5">
+              <button type="button" onClick={() => setSearchQuery('')} aria-label="Clear search" className="absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded-sm text-[#111]/40 hover:text-[#111] hover:bg-[#111]/5">
                 <X className="w-4 h-4" />
               </button>
             )}
@@ -207,7 +208,7 @@ export default function CatalogSection() {
                          {dynamicT(product.category)}
                        </span>
                      </div>
-                     {/* Quick Add button on hover */}
+                     {/* Quick Add — always visible on touch/small screens, hover-revealed on desktop */}
                      <button
                        type="button"
                        onClick={(e) => {
@@ -219,8 +220,9 @@ export default function CatalogSection() {
                            setQuickViewProduct(product);
                          }
                        }}
-                      className="absolute bottom-3 right-3 z-10 w-10 h-10 bg-[#111] text-white flex items-center justify-center rounded-sm opacity-0 group-hover:opacity-100 hover:bg-accent active:scale-95 transition-all duration-200 shadow-card-hover pointer-events-none group-hover:pointer-events-auto"
+                      className="absolute bottom-3 right-3 z-10 w-10 h-10 bg-[#111] text-white flex items-center justify-center rounded-sm opacity-100 pointer-events-auto lg:opacity-0 lg:pointer-events-none lg:group-hover:opacity-100 lg:group-hover:pointer-events-auto hover:bg-accent active:scale-95 transition-all duration-200 shadow-card-hover"
                        title={product.variants?.length > 0 ? "Select Options" : "Quick add to cart"}
+                       aria-label={product.variants?.length > 0 ? `Select options for ${dynamicT(product.name)}` : `Add ${dynamicT(product.name)} to cart`}
                      >
                        {product.variants?.length > 0 ? <Eye className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
                      </button>

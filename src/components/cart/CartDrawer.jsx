@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Gift, Loader2, Tag, X } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
+import { useDialogA11y } from '@/hooks/useDialogA11y';
 
 import { base44 } from '@/api/base44Client';
 import { toast } from 'sonner';
@@ -14,6 +15,8 @@ import { companyInfo } from '@/components/dentalcore/productsData';
 
 export default function CartDrawer() {
   const { items, isOpen, closeCart, updateQuantity, removeItem, getTotal, getItemCount } = useCartStore();
+  const drawerRef = useRef(null);
+  useDialogA11y(drawerRef, isOpen, closeCart);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [orderNotes, setOrderNotes] = useState('');
   const navigate = useNavigate();
@@ -106,8 +109,8 @@ export default function CartDrawer() {
     <AnimatePresence>
       {isOpen && (
         <>
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeCart} className="fixed inset-0 bg-[#111]/40 backdrop-blur-sm z-40" />
-          <motion.div initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 26, stiffness: 210 }} className="fixed right-0 top-0 h-full w-full max-w-md bg-[#FDFDFD] border-l border-[#111]/10 shadow-drawer z-50 flex flex-col">
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeCart} aria-hidden className="fixed inset-0 bg-[#111]/40 backdrop-blur-sm z-40" />
+          <motion.div ref={drawerRef} role="dialog" aria-modal="true" aria-label="Shopping cart" tabIndex={-1} initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 26, stiffness: 210 }} className="fixed right-0 top-0 h-full w-full max-w-md bg-[#FDFDFD] border-l border-[#111]/10 shadow-drawer z-50 flex flex-col focus:outline-none">
             
             <div className="flex items-center justify-between p-6 border-b border-[#111]/10 bg-[#FDFDFD]/95 backdrop-blur-sm gap-3">
               <div className="min-w-0">
@@ -142,9 +145,9 @@ export default function CartDrawer() {
                       </p>
                       <div className="flex items-center gap-4">
                         <div className="flex items-center border border-[#111]/20 rounded-sm overflow-hidden bg-white">
-                          <button type="button" onClick={() => updateQuantity(item.id, item.quantity - 1)} className="w-8 h-8 flex items-center justify-center text-[#111]/60 hover:text-[#111] hover:bg-[#111]/5 transition-colors">-</button>
-                          <span className="w-8 text-center text-xs font-medium">{item.quantity}</span>
-                          <button type="button" onClick={() => updateQuantity(item.id, item.quantity + 1)} className="w-8 h-8 flex items-center justify-center text-[#111]/60 hover:text-[#111] hover:bg-[#111]/5 transition-colors">+</button>
+                          <button type="button" onClick={() => updateQuantity(item.id, item.quantity - 1)} aria-label={`Decrease quantity of ${dynamicT(item.name)}`} className="w-8 h-8 flex items-center justify-center text-[#111]/60 hover:text-[#111] hover:bg-[#111]/5 transition-colors">-</button>
+                          <span className="w-8 text-center text-xs font-medium" aria-live="polite">{item.quantity}</span>
+                          <button type="button" onClick={() => updateQuantity(item.id, item.quantity + 1)} aria-label={`Increase quantity of ${dynamicT(item.name)}`} className="w-8 h-8 flex items-center justify-center text-[#111]/60 hover:text-[#111] hover:bg-[#111]/5 transition-colors">+</button>
                         </div>
                         <button type="button" onClick={() => removeItem(item.id)} className="text-[10px] uppercase tracking-widest text-red-600 font-bold hover:underline">{t('remove')}</button>
                       </div>
