@@ -6,6 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Search, X, Loader2, PackageOpen, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import OrderRow from '@/components/admin/OrderRow';
+import OrdersKPIBar from '@/components/admin/OrdersKPIBar';
 
 const STATUS_OPTIONS = ['all', 'confirmed', 'processing', 'shipped', 'out_for_delivery', 'delivered'];
 
@@ -59,6 +60,9 @@ export default function AdminOrders() {
             </Link>
           </div>
         </div>
+
+        {/* KPI dashboard */}
+        {!isLoading && <OrdersKPIBar orders={orders} />}
 
         {/* Filters */}
         <div className="bg-white rounded-lg border border-gray-200 p-4 mb-6 flex flex-col md:flex-row gap-3">
