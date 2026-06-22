@@ -15,6 +15,7 @@ import fullCatalog from '../components/dentalcore/full_catalog.json';
 
 export default function AdminProducts() {
   const [editingProduct, setEditingProduct] = useState(null);
+  const [dialogMode, setDialogMode] = useState('edit'); // 'edit' | 'create'
   const [formData, setFormData] = useState({});
   const [uploading, setUploading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -55,7 +56,34 @@ export default function AdminProducts() {
     },
   });
 
+  const createMutation = useMutation({
+    mutationFn: (data) => base44.entities.Product.create(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['admin-products'] });
+      queryClient.invalidateQueries({ queryKey: ['products'] });
+      toast.success('Product created successfully');
+      setDialogOpen(false);
+      setEditingProduct(null);
+      setDialogMode('edit');
+    },
+    onError: () => {
+      toast.error('Failed to create product');
+    },
+  });
+
+  const getEmptyFormData = () => ({
+    name: '',
+    category: '',
+    price: '$0.00',
+    description: '',
+    image: '',
+    images: [],
+    variants: [],
+    stock: 100,
+  });
+
   const handleEdit = (product) => {
+    setDialogMode('edit');
     setEditingProduct(product);
     setFormData({
       name: product.name,
@@ -65,7 +93,15 @@ export default function AdminProducts() {
       image: product.image,
       images: product.images || [],
       variants: product.variants || [],
+      stock: Number.isFinite(Number(product.stock)) ? Number(product.stock) : 100,
     });
+    setDialogOpen(true);
+  };
+
+  const handleCreate = () => {
+    setDialogMode('create');
+    setEditingProduct(null);
+    setFormData(getEmptyFormData());
     setDialogOpen(true);
   };
 
@@ -183,11 +219,45 @@ export default function AdminProducts() {
     }));
   };
 
+  const normalizePrice = (value) => {
+    const raw = String(value ?? '').trim();
+    if (!raw) return '$0.00';
+    if (raw.startsWith('$')) return raw;
+    const n = Number(raw);
+    return Number.isFinite(n) ? `$${n.toFixed(2)}` : `$${raw}`;
+  };
+
+  const buildPayload = () => {
+    const mainImage = String(formData.image || '').trim();
+    const gallery = (formData.images || []).filter(Boolean);
+    return {
+      name: String(formData.name || '').trim(),
+      category: String(formData.category || '').trim(),
+      price: normalizePrice(formData.price),
+      description: String(formData.description || '').trim(),
+      image: mainImage,
+      images: gallery.length > 0 ? gallery : (mainImage ? [mainImage] : []),
+      variants: Array.isArray(formData.variants) ? formData.variants : [],
+      stock: Number.isFinite(Number(formData.stock)) ? Number(formData.stock) : 100,
+    };
+  };
+
   const handleSave = () => {
+    const payload = buildPayload();
+    if (!payload.name || !payload.category || !payload.description || !payload.image) {
+      toast.error('Name, category, description, and main image are required.');
+      return;
+    }
+
+    if (dialogMode === 'create') {
+      createMutation.mutate(payload);
+      return;
+    }
+
     if (!editingProduct) return;
     updateMutation.mutate({
       id: editingProduct.id,
-      data: formData,
+      data: payload,
     });
   };
 
@@ -209,6 +279,10 @@ export default function AdminProducts() {
               <p className="text-gray-500 mt-1">Manage your product catalog, variants, and images</p>
             </div>
             <div className="flex gap-2">
+              <Button onClick={handleCreate} className="bg-[#111] hover:bg-accent">
+                <Plus className="w-4 h-4 mr-2" />
+                Add Product
+              </Button>
               <Link to="/admin/quotes" className="text-sm bg-white border border-gray-200 px-3 py-2 rounded-lg hover:bg-gray-50 text-gray-700">
                 Quotes
               </Link>
@@ -355,11 +429,14 @@ export default function AdminProducts() {
         {/* Edit Dialog */}
         <Dialog open={dialogOpen} onOpenChange={(open) => {
           setDialogOpen(open);
-          if (!open) setEditingProduct(null);
+          if (!open) {
+            setEditingProduct(null);
+            setDialogMode('edit');
+          }
         }}>
           <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
             <DialogHeader>
-              <DialogTitle>Edit Product</DialogTitle>
+              <DialogTitle>{dialogMode === 'create' ? 'Add Product' : 'Edit Product'}</DialogTitle>
             </DialogHeader>
             
             <Tabs defaultValue="basic" className="w-full">
@@ -618,14 +695,14 @@ export default function AdminProducts() {
 
             <div className="flex justify-end gap-2 pt-4 border-t">
               <Button variant="outline" onClick={() => setDialogOpen(false)}>Cancel</Button>
-              <Button onClick={handleSave} disabled={updateMutation.isPending}>
-                {updateMutation.isPending ? (
+              <Button onClick={handleSave} disabled={updateMutation.isPending || createMutation.isPending}>
+                {(updateMutation.isPending || createMutation.isPending) ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
                     Saving...
                   </>
                 ) : (
-                  'Save Changes'
+                  dialogMode === 'create' ? 'Create Product' : 'Save Changes'
                 )}
               </Button>
             </div>
