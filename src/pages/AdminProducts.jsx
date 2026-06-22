@@ -290,9 +290,11 @@ export default function AdminProducts() {
                       await base44.entities.Product.create({
                         name: p.name,
                         category: p.category,
-                        price: '$' + p.price,
+                        price: '$' + Number(p.price).toFixed(2),
                         description: p.description,
                         image: p.image || '',
+                        images: p.image ? [p.image] : [],
+                        variants: p.variants || [],
                         stock: 100
                       });
                       successCount++;
@@ -305,7 +307,7 @@ export default function AdminProducts() {
                   queryClient.invalidateQueries(['admin-products']);
                 }} variant="outline" className="border-amber-500 text-amber-600">
                   <Upload className="w-4 h-4 mr-2" />
-                  Seed {fullCatalog.length} Products from Excel
+                  Seed {fullCatalog.length} Products from Full Catalog
                 </Button>
               </>
             )}

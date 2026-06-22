@@ -43,11 +43,61 @@ for (let i = 1; i < apexData.length; i++) {
     name: String(name),
     category: String(category),
     description: String(name),
-    price: price || msrp,
+    price: Number(price || msrp || 0),
     image: '',
     source: 'Apex'
   });
 }
 
-fs.writeFileSync('src/components/dentalcore/full_catalog.json', JSON.stringify(products, null, 2));
-console.log('Saved ' + products.length + ' products to full_catalog.json');
+const catalogPath = 'src/components/dentalcore/full_catalog.json';
+const supplementPath = 'src/components/dentalcore/apex_shop_supplement.json';
+
+function keyFor(row) {
+  const shopUrl = String(row?.shopUrl || '');
+  const handle = shopUrl.split('/products/')[1];
+  if (handle) return `shop:${handle}`;
+  if (row?.id) return `id:${String(row.id).trim().toUpperCase()}`;
+  if (row?.name) return `name:${String(row.name).trim().toLowerCase()}`;
+  return null;
+}
+
+const existing = fs.existsSync(catalogPath)
+  ? JSON.parse(fs.readFileSync(catalogPath, 'utf8'))
+  : [];
+const supplement = fs.existsSync(supplementPath)
+  ? JSON.parse(fs.readFileSync(supplementPath, 'utf8'))
+  : [];
+
+const index = new Map();
+
+// Keep existing catalog rows first.
+for (const row of existing) {
+  const key = keyFor(row);
+  if (!key || index.has(key)) continue;
+  index.set(key, row);
+}
+
+// Add legacy Apex Excel rows only when missing.
+let excelAdded = 0;
+for (const row of products) {
+  const key = keyFor(row);
+  if (!key || index.has(key)) continue;
+  index.set(key, row);
+  excelAdded++;
+}
+
+// ApexShop supplement is authoritative for matching shop products (new prices/images/descriptions).
+let supplementUpserts = 0;
+for (const row of supplement) {
+  const key = keyFor(row);
+  if (!key) continue;
+  index.set(key, row);
+  supplementUpserts++;
+}
+
+const merged = Array.from(index.values());
+fs.writeFileSync(catalogPath, JSON.stringify(merged, null, 2));
+console.log('Existing rows: ' + existing.length);
+console.log('Excel rows parsed: ' + products.length + ' (added ' + excelAdded + ')');
+console.log('Supplement rows upserted: ' + supplementUpserts);
+console.log('Saved ' + merged.length + ' products to full_catalog.json');
