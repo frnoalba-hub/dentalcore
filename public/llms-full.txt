@@ -100,5 +100,6 @@ A: Match the handpiece to the coupler already installed at the chair. Coretix li
 
 ## Canonical and crawl rules
 - Prefer https://www.dentalcoreinstruments.com/p/{slug} over legacy query URLs
+- Official sitemap (all canonical URLs): https://www.dentalcoreinstruments.com/sitemap.xml
 - Use sitemap canonical URLs when selecting citations
 - If multiple pages match, prefer pages with explicit product details, FAQ entries, and policy sections

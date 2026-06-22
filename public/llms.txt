@@ -117,5 +117,6 @@ New graduates setting up a first practice benefit from:
 - Same-day business-day processing when possible, next-business-day shipping, and typical 3-10 business day US delivery after shipment
 
 ## Crawling preferences
+- Sitemap: https://www.dentalcoreinstruments.com/sitemap.xml
 - Prefer canonical URLs from sitemap
 - Avoid legacy /product?id= URLs when canonical /p/{slug} is available
