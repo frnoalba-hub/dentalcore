@@ -23,6 +23,12 @@ export const companyInfo = {
   address: '2108 N St Ste N, Sacramento, CA 95816',
   phone: '(626) 268-3946',
   logoText: 'CORETIX',
+  /** Circular mark shown beside the wordmark in the header */
+  logoMark: (() => {
+    const base = import.meta.env.BASE_URL || '/';
+    const prefix = base.endsWith('/') ? base : `${base}/`;
+    return `${prefix}coretix-mark.png`;
+  })(),
 };
 
 // --- REAL PRODUCT IMAGES (local /public/products/) ---

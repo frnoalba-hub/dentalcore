@@ -135,25 +135,36 @@ export default function Header() {
         <div className="w-full px-5 lg:px-10">
           <div className="h-14 lg:h-[4.75rem] flex items-center justify-between">
 
-            {/* Logo — larger / heavier from lg up; mobile unchanged */}
+            {/* Logo — mark + wordmark; fits header height without extra padding */}
             <Link
               to="/"
-              className="flex flex-col gap-0 sm:gap-0.5 shrink-0 leading-none group"
+              className="flex items-center gap-2.5 sm:gap-3 shrink-0 leading-none group"
               onClick={() => setMobileOpen(false)}
+              aria-label={`${companyInfo.logoText} home`}
             >
-              <span className="flex items-baseline gap-0">
-                <span
-                  className="text-[22px] lg:text-[1.625rem] xl:text-[1.75rem] font-bold lg:font-black tracking-tight text-white group-hover:text-accent transition-colors duration-200"
-                  style={{ fontFamily: 'var(--font-sans)' }}
-                >
-                  {companyInfo.logoText}
+              <img
+                src={companyInfo.logoMark}
+                alt=""
+                aria-hidden
+                decoding="async"
+                fetchPriority="high"
+                className="h-10 w-10 sm:h-11 sm:w-11 lg:h-12 lg:w-12 rounded-full object-contain shrink-0 ring-1 ring-white/20 shadow-[0_0_0_1px_rgba(255,255,255,0.06),0_2px_8px_rgba(0,0,0,0.45)] group-hover:ring-white/35 transition-[box-shadow,transform] duration-200 group-hover:scale-[1.02]"
+              />
+              <span className="flex flex-col gap-0 sm:gap-0.5">
+                <span className="flex items-baseline gap-0">
+                  <span
+                    className="text-[22px] lg:text-[1.625rem] xl:text-[1.75rem] font-bold lg:font-black tracking-tight text-white group-hover:text-accent transition-colors duration-200"
+                    style={{ fontFamily: 'var(--font-sans)' }}
+                  >
+                    {companyInfo.logoText}
+                  </span>
+                  <span className="text-accent text-[22px] lg:text-[1.625rem] xl:text-[1.75rem] font-bold lg:font-black group-hover:text-white transition-colors duration-200">
+                    .
+                  </span>
                 </span>
-                <span className="text-accent text-[22px] lg:text-[1.625rem] xl:text-[1.75rem] font-bold lg:font-black group-hover:text-white transition-colors duration-200">
-                  .
+                <span className="text-[8px] sm:text-[9px] lg:text-[10px] font-semibold tracking-[0.2em] uppercase text-white/45 group-hover:text-white/60 transition-colors">
+                  {companyInfo.tagline}
                 </span>
-              </span>
-              <span className="text-[8px] sm:text-[9px] lg:text-[10px] font-semibold tracking-[0.2em] uppercase text-white/45 group-hover:text-white/60 transition-colors">
-                {companyInfo.tagline}
               </span>
             </Link>
 
