@@ -8,6 +8,7 @@ import { useCartStore } from '../store/cartStore';
 import { useTranslation } from '@/lib/i18n';
 import { toast } from 'sonner';
 import { products as localProducts, getCatalogProductImage, buildStorefrontCatalog, catalogImageByKey } from './productsData';
+import { lookupCatalogImage } from './catalogImageRegistry';
 import { productRelativePath } from '@/lib/productPaths';
 import ProductQuickView from './ProductQuickView';
 import { CATEGORY_HUBS } from '@/lib/retailSeoContent';
@@ -81,7 +82,7 @@ export default function CatalogSection() {
           ))}
           <Link
             to="/guides/air-driven-vs-electric-handpieces"
-            className="text-[11px] uppercase tracking-[0.14em] border border-accent/30 bg-accent/5 px-4 py-2.5 rounded-sm text-accent hover:bg-accent hover:text-white transition-colors"
+            className="text-[11px] uppercase tracking-[0.14em] border border-[#111]/15 bg-white px-4 py-2.5 rounded-sm text-[#111]/70 hover:text-[#111] hover:border-[#111]/35 transition-colors"
           >
             Buyer guides
           </Link>
@@ -162,7 +163,11 @@ export default function CatalogSection() {
                        alt={dynamicT(product.name)}
                        loading="lazy"
                        onError={(e) => {
-                         const fallback = catalogImageByKey.get(product.id) || catalogImageByKey.get(product.sku);
+                         const fallback =
+                           catalogImageByKey.get(product.id) ||
+                           catalogImageByKey.get(product.sku) ||
+                           lookupCatalogImage(product.id) ||
+                           lookupCatalogImage(product.sku);
                          if (fallback && e.currentTarget.src !== fallback) {
                            e.currentTarget.src = fallback;
                          }

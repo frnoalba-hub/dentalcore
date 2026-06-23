@@ -13,7 +13,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[calc(100dvh-var(--site-header-height))] flex flex-col justify-center pt-[calc(var(--site-header-height)+1.25rem)] pb-12 lg:pb-16 bg-[#FDFDFD] border-b border-[#111]/10 overflow-hidden">
+    <section className="relative pt-[calc(var(--site-header-height)+1.25rem)] pb-10 lg:pb-14 bg-[#FDFDFD] border-b border-[#111]/10 overflow-hidden">
       {/* Structural Grid Lines */}
       <div className="absolute inset-0 pointer-events-none flex justify-center opacity-[0.06]">
         <div className="w-full max-w-[1600px] h-full border-x border-[#111] grid grid-cols-2 md:grid-cols-4">
@@ -26,8 +26,8 @@ export default function HeroSection() {
       {/* Subtle radial gradient */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(0,71,255,0.05),transparent)]" />
 
-      <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 flex-1 flex flex-col justify-center">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 xl:gap-12 items-center">
+      <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-8 xl:gap-10 items-start">
           {/* Copy */}
           <div className="lg:col-span-5 xl:col-span-5">
             <motion.h1

@@ -7,6 +7,7 @@ import {
   CORETIX_HEADER_TICKER_MOTTO,
   CORETIX_HEADER_TICKER_MOTTO_PLAIN,
 } from '../../lib/coretixPublicName.js';
+import { lookupCatalogImage } from './catalogImageRegistry.js';
 
 // --- COMPANY CONFIGURATION ---
 export const companyInfo = {
@@ -229,6 +230,47 @@ export const products = [
     ],
     inStock: true,
     rating: 5.0
+  },
+  {
+    id: "UC-CUT-TIPS",
+    slug: "uc-cut-tips",
+    mpn: "UC-CUT-TIPS",
+    name: "UC-CUT Tips & Accessories",
+    price: 169.40,
+    category: "Endodontics",
+    description: "Replacement and specialty tips for the UC-CUT sonic GP cutter, including posterior #90, anterior #110, Bovie metal, condensation profiles, ball tips, and the tip stand.",
+    longDescription: "Build out your UC-CUT setup with the tip profiles that match your cases. Metal tips are autoclavable per manufacturer IFU. Select the tip or stand you need below.",
+    image: resolveImage('UC_CUT_Gutta_Purcha_Cutter_ALL_Tips.png'),
+    images: uniqueImages(
+      resolveImage('UC_CUT_Gutta_Purcha_Cutter_ALL_Tips.png'),
+      resolveImage('UC_CUT_Boive_Tip.png'),
+      resolveImage('UC_CUT_Gutta_Purcha_Cutter_Tip_1006-2.jpg'),
+      resolveImage('UC_CUT_Gutta_Purcha_Cutter_Tip_#110_1006-3.jpg'),
+      resolveImage('UC_CUT_Tip_SB_1006-4.png'),
+      resolveImage('UC_CUT_Gutta_Purcha_Cutter_-Tips_F_1006-5.png'),
+      resolveImage('UC_CUT_Gutta_Purcha_Cutter_-Tips_FM_1006-6.png'),
+      resolveImage('UC_CUT_Tip_B8_1006-7.png'),
+      resolveImage('UC_CUT_Tip_B2_1006-8.png'),
+      resolveImage('UC_CUT_Stand_1006-9.png'),
+    ),
+    variants: [
+      { id: '1006-2', name: 'Tip #90 (Posterior)', price: 169.40, image: resolveImage('UC_CUT_Gutta_Purcha_Cutter_Tip_1006-2.jpg') },
+      { id: '1006-3', name: 'Tip #110 (Anterior)', price: 169.40, image: resolveImage('UC_CUT_Gutta_Purcha_Cutter_Tip_#110_1006-3.jpg') },
+      { id: '1006-4', name: 'Bovie Metal Tip (SB)', price: 169.40, image: resolveImage('UC_CUT_Tip_SB_1006-4.png') },
+      { id: '1006-5', name: 'F Tip (Vertical Condensation)', price: 169.40, image: resolveImage('UC_CUT_Gutta_Purcha_Cutter_-Tips_F_1006-5.png') },
+      { id: '1006-6', name: 'FM Tip (Vertical Condensation)', price: 169.40, image: resolveImage('UC_CUT_Gutta_Purcha_Cutter_-Tips_FM_1006-6.png') },
+      { id: '1006-7', name: 'B8 Ball Tip (Green)', price: 169.40, image: resolveImage('UC_CUT_Tip_B8_1006-7.png') },
+      { id: '1006-8', name: 'B2 Tip', price: 169.40, image: resolveImage('UC_CUT_Tip_B2_1006-8.png') },
+      { id: '1006-9', name: 'Tip Stand', price: 193.60, image: resolveImage('UC_CUT_Stand_1006-9.png') },
+    ],
+    features: [
+      "Interchangeable profiles for posterior, anterior, and specialty GP work",
+      "Bovie-style metal tip for electrosurgery-compatible workflows",
+      "Vertical condensation F and FM profiles",
+      "Optional tip stand for chairside organization",
+    ],
+    specs: { "Compatibility": "UC-CUT sonic GP cutter (1006-1)", "Material": "Metal tips (autoclavable per IFU)" },
+    inStock: true,
   },
   {
     id: "1002-1",
@@ -1366,7 +1408,8 @@ function matchesLocalCatalogDuplicate(pack) {
   if (/\buc[- ]?cut\b|1006-1\b/i.test(pack)) return true;
   if (/\buc[- ]?one\b|1002-1\b/i.test(pack) && !/tip|plastic|metal|holder/i.test(pack)) return true;
   if (/1002[- ]?full|uc[- ]?one full kit/i.test(pack)) return true;
-  if (/1006[- ]?full|uc[- ]?cut full kit/i.test(pack)) return true;
+  if (/^1006-[2-9]$/i.test(id) || /^1006-[2-9]$/i.test(sku)) return true;
+  if (/1006[- ]?full/i.test(pack)) return true;
   if (/endoseal|mta-1\b/i.test(pack)) return true;
   if (/endocem|mta-3\b/i.test(pack)) return true;
   if (/ep cure mini|1008-1/i.test(pack)) return true;
@@ -1387,6 +1430,9 @@ function matchesLocalCatalogDuplicate(pack) {
 export function getCatalogProductImage(product) {
   const primary = product?.image;
   if (typeof primary === 'string' && (primary.includes('/products/') || primary.includes('/product_images/'))) {
+    return normalizeProductImagePath(primary);
+  }
+  if (typeof primary === 'string' && (primary.startsWith('http://') || primary.startsWith('https://'))) {
     return primary;
   }
 
@@ -1395,10 +1441,23 @@ export function getCatalogProductImage(product) {
   if (fromDesc) keys.push(fromDesc[1]);
 
   for (const k of keys) {
-    const hit = catalogImageByKey.get(k);
+    const hit = catalogImageByKey.get(k) || lookupCatalogImage(k);
     if (hit) return hit;
   }
-  return primary || '';
+  if (primary) return normalizeProductImagePath(primary);
+  return '';
+}
+
+function normalizeProductImagePath(url) {
+  if (!url || typeof url !== 'string') return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  if (url.includes('/product_images/')) {
+    const fileName = decodeURIComponent(url.split('/').pop() || '');
+    const base = import.meta.env.BASE_URL || '/';
+    const prefix = base.endsWith('/') ? base : `${base}/`;
+    return `${prefix}products/${encodeURIComponent(fileName)}`;
+  }
+  return url;
 }
 
 /** True when a Base44 Product row mirrors a local consolidated or parent SKU. */
