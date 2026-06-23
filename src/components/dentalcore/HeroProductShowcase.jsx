@@ -89,7 +89,8 @@ function formatUsd(value) {
 }
 
 function productThumb(product) {
-  return product?.image || product?.images?.[0] || '';
+  if (!product) return '';
+  return product.image || product.images?.[0] || '';
 }
 
 function promoThumb(promo) {
@@ -250,34 +251,47 @@ export default function HeroProductShowcase() {
                   slide_index: index,
                 })
               }
-              className="group block border border-accent/30 bg-[#111] hover:border-accent transition-colors duration-300"
+              className="group block border border-[#111]/10 bg-white hover:border-accent/40 transition-colors duration-300"
             >
-              <div className="relative aspect-[4/3] sm:aspect-[5/4] lg:aspect-[4/3] overflow-hidden">
-                {promoThumb(slide) && (
+              <div className="relative aspect-[4/3] sm:aspect-[5/4] lg:aspect-[4/3] overflow-hidden bg-[#f6f6f6]">
+                {promoThumb(slide) ? (
                   <img
                     src={promoThumb(slide)}
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-contain p-10 opacity-25"
-                    aria-hidden
+                    alt={product?.name || slide.headline}
+                    className="absolute inset-0 w-full h-full object-contain p-6 sm:p-8 lg:p-10"
                   />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#111] via-[#141414] to-[#0a1628]/90" />
-                <div className="relative z-10 h-full flex flex-col items-start justify-center px-6 sm:px-8 lg:px-10 py-8">
-                  <span className="inline-flex items-center gap-1.5 text-accent text-[10px] font-bold uppercase tracking-[0.16em] mb-4">
-                    <Tag className="w-3.5 h-3.5" />
-                    Active promotion
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight mb-3">
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center text-[#111]/25 text-sm uppercase tracking-widest">
                     {slide.headline}
-                  </h3>
-                  <p className="text-sm sm:text-base text-white/60 font-body leading-relaxed max-w-md mb-6">
+                  </div>
+                )}
+                <span className="absolute top-3 left-3 sm:top-4 sm:left-4 inline-flex items-center gap-1.5 bg-accent text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1">
+                  <Tag className="w-3 h-3" />
+                  Active promotion
+                </span>
+              </div>
+
+              <div className="border-t border-[#111]/10 px-4 sm:px-5 py-4 sm:py-5 flex items-end justify-between gap-4">
+                <div className="min-w-0">
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-accent font-semibold mb-1.5">
+                    Promotion
+                  </p>
+                  <p className="text-sm sm:text-base font-semibold text-[#111] group-hover:text-accent transition-colors leading-snug">
+                    {slide.headline}
+                  </p>
+                  <p className="mt-2 text-xs sm:text-sm text-[#111]/55 font-body leading-relaxed">
                     {slide.detail}
                   </p>
-                  <span className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.14em] font-semibold text-white/70 group-hover:text-accent transition-colors">
-                    {slide.linkLabel}
-                    <ArrowUpRight className="w-3.5 h-3.5" />
-                  </span>
+                  {product?.promo && (
+                    <p className="mt-2 text-[10px] sm:text-[11px] text-accent font-semibold uppercase tracking-[0.1em]">
+                      {product.promo}
+                    </p>
+                  )}
                 </div>
+                <span className="shrink-0 flex items-center gap-1 text-[10px] sm:text-[11px] uppercase tracking-[0.14em] font-semibold text-[#111]/45 group-hover:text-accent transition-colors pb-0.5">
+                  {slide.linkLabel}
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </span>
               </div>
             </Link>
           </motion.div>
@@ -317,9 +331,7 @@ export default function HeroProductShowcase() {
               className={`shrink-0 snap-start w-14 h-14 sm:w-16 sm:h-16 border transition-all ${
                 i === index
                   ? 'border-accent bg-white ring-1 ring-accent/30'
-                  : s.type === 'promo'
-                    ? 'border-accent/25 bg-[#111] hover:border-accent/50'
-                    : 'border-[#111]/10 bg-[#f8f8f8] hover:border-[#111]/25'
+                  : 'border-[#111]/10 bg-[#f8f8f8] hover:border-[#111]/25'
               }`}
             >
               {thumb ? (
