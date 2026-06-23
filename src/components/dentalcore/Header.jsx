@@ -8,10 +8,10 @@ import { useTranslation } from '@/lib/i18n';
 import { trackEngagementEvent } from '@/lib/trackEvent';
 
 const promos = [
-  { text: 'AirPeak™ — 3 + 1 Coupler for $1,000', productId: 'A1004-V2', qty: 3 },
-  { text: 'iTesla G600-S — Buy 2, Get 1 Free', productId: 'A1003', qty: 2 },
-  { text: 'ModuLite X — Buy 2, Get 1 Free', productId: 'M1042X', qty: 2 },
-  { text: 'OsseoSeal Bone Graft — Now Available', productId: 'OS-SEAL-SYR', qty: 1 },
+  { text: 'AirPeak™ · 3 + 1 Coupler for $1,000', productId: 'A1004-V2', qty: 3 },
+  { text: 'iTesla G600-S · Buy 2, Get 1 Free', productId: 'A1003', qty: 2 },
+  { text: 'ModuLite X · Buy 2, Get 1 Free', productId: 'M1042X', qty: 2 },
+  { text: 'OsseoSeal Bone Graft · Now Available', productId: 'OS-SEAL-SYR', qty: 1 },
 ];
 
 export default function Header() {
@@ -86,135 +86,95 @@ export default function Header() {
           scrolled ? 'shadow-[0_2px_20px_rgba(0,0,0,0.25)]' : ''
         }`}
       >
-        {/* Promo ticker — promos centered on mobile; motto + promos balanced in 3-col grid from md up */}
-        <div className="border-b border-white/[0.06] grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center h-7 overflow-hidden px-2 sm:px-4 gap-x-3">
-          <span
-            className="hidden md:block md:col-start-1 min-w-0 truncate text-[9px] font-medium tracking-[0.06em] text-white/38 italic"
-            title={companyInfo.headerTickerMottoPlain}
-          >
-            {companyInfo.headerTickerMotto}
-          </span>
-          <div className="col-start-1 md:col-start-2 flex justify-center min-w-0 overflow-hidden">
-            <AnimatePresence mode="wait">
-              <motion.p
-                key={promoIndex}
-                initial={{ opacity: 0, y: 6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                transition={{ duration: 0.35 }}
-                className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.15em] text-white/50 flex items-center justify-center gap-2 truncate max-w-full"
-              >
-                <span className="text-accent text-[8px] shrink-0">&#9679;</span>
-                <span className="truncate">{promos[promoIndex].text}</span>
-                {(() => {
-                  const row = promos[promoIndex];
-                  const product = localProducts.find((p) => p.id === row.productId);
-                  if (!product?.slug) return null;
-                  return (
-                    <Link
-                      to={`/p/${product.slug}`}
-                      onClick={() =>
-                        trackEngagementEvent('header_promo_product_link', {
-                          sku: product.id,
-                          promo_index: promoIndex,
-                        })
-                      }
-                      className="underline underline-offset-4 text-white/40 hover:text-accent transition-colors flex items-center gap-0.5 shrink-0"
-                    >
-                      View <ChevronRight className="w-2.5 h-2.5" />
-                    </Link>
-                  );
-                })()}
-              </motion.p>
-            </AnimatePresence>
-          </div>
-          <span className="hidden md:block md:col-start-3" aria-hidden />
-        </div>
-
-        {/* Main nav row */}
+        {/* Logo + nav flush to top; promo strip sits below the wordmark */}
         <div className="w-full px-5 lg:px-10">
-          <div className="h-14 lg:h-[4.75rem] flex items-center justify-between">
+          <div className="h-14 lg:h-[4.5rem] flex items-center justify-between gap-4">
 
-            {/* Logo */}
-            <Link
-              to="/"
-              className="flex flex-col gap-0 sm:gap-0.5 shrink-0 leading-none group"
-              onClick={() => setMobileOpen(false)}
-            >
-              <span className="flex items-baseline gap-0">
-                <span
-                  className="text-[22px] lg:text-[1.625rem] xl:text-[1.75rem] font-bold lg:font-black tracking-tight text-white group-hover:text-accent transition-colors duration-200"
-                  style={{ fontFamily: 'var(--font-sans)' }}
-                >
-                  {companyInfo.logoText}
+            <div className="flex items-center min-w-0 gap-6 lg:gap-10 xl:gap-12">
+              {/* Logo */}
+              <Link
+                to="/"
+                className="flex flex-col gap-0.5 sm:gap-1 shrink-0 leading-none group"
+                onClick={() => setMobileOpen(false)}
+              >
+                <span className="flex items-baseline gap-0">
+                  <span
+                    className="text-[24px] lg:text-[1.75rem] xl:text-[1.875rem] font-bold tracking-tight text-white group-hover:text-accent transition-colors duration-200"
+                    style={{ fontFamily: 'var(--font-sans)' }}
+                  >
+                    {companyInfo.logoText}
+                  </span>
+                  <span className="text-accent text-[24px] lg:text-[1.75rem] xl:text-[1.875rem] font-bold group-hover:text-white transition-colors duration-200">
+                    .
+                  </span>
                 </span>
-                <span className="text-accent text-[22px] lg:text-[1.625rem] xl:text-[1.75rem] font-bold lg:font-black group-hover:text-white transition-colors duration-200">
-                  .
+                <span className="text-[9px] sm:text-[10px] lg:text-[11px] font-semibold tracking-[0.22em] uppercase text-white/50 group-hover:text-white/65 transition-colors">
+                  {companyInfo.tagline}
                 </span>
-              </span>
-              <span className="text-[8px] sm:text-[9px] lg:text-[10px] font-semibold tracking-[0.2em] uppercase text-white/45 group-hover:text-white/60 transition-colors">
-                {companyInfo.tagline}
-              </span>
-            </Link>
+              </Link>
 
-            {/* Desktop nav — right aligned */}
-            <nav className="hidden lg:flex items-center gap-7">
-              {primaryNav.map((link) =>
-                link.to ? (
+              {/* Desktop nav — sits left of center, not pinned to the far right */}
+              <nav className="hidden lg:flex items-center flex-wrap gap-x-5 xl:gap-x-6 gap-y-1 min-w-0">
+                {primaryNav.map((link) =>
+                  link.to ? (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      className="text-[13px] xl:text-[14px] font-semibold tracking-[0.1em] uppercase text-white/55 hover:text-white transition-colors whitespace-nowrap"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <button
+                      key={link.id}
+                      onClick={() => scrollTo(link.id)}
+                      type="button"
+                      className="text-[13px] xl:text-[14px] font-semibold tracking-[0.1em] uppercase text-white/55 hover:text-white transition-colors whitespace-nowrap"
+                    >
+                      {link.label}
+                    </button>
+                  ),
+                )}
+
+                <span className="w-px h-4 bg-white/15 shrink-0" aria-hidden />
+
+                {desktopSecondaryNav.map((link) => (
                   <Link
                     key={link.to}
                     to={link.to}
-                    className="text-[12px] font-semibold tracking-[0.14em] uppercase text-white/45 hover:text-white transition-colors"
+                    className="text-[13px] xl:text-[14px] font-semibold tracking-[0.1em] uppercase text-white/45 hover:text-white transition-colors whitespace-nowrap"
                   >
                     {link.label}
                   </Link>
-                ) : (
-                  <button
-                    key={link.id}
-                    onClick={() => scrollTo(link.id)}
-                    type="button"
-                    className="text-[12px] font-semibold tracking-[0.14em] uppercase text-white/45 hover:text-white transition-colors"
-                  >
-                    {link.label}
-                  </button>
-                ),
-              )}
+                ))}
 
-              <span className="w-px h-4 bg-white/15" aria-hidden />
+                <span className="w-px h-4 bg-white/15 shrink-0" aria-hidden />
 
-              {desktopSecondaryNav.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className="text-[12px] font-semibold tracking-[0.14em] uppercase text-white/35 hover:text-white transition-colors"
+                <a
+                  href={`mailto:${companyInfo.email}`}
+                  onClick={() =>
+                    trackEngagementEvent('contact_click', {
+                      method: 'email',
+                      location: 'header_desktop',
+                    })
+                  }
+                  className="text-[13px] xl:text-[14px] font-semibold tracking-[0.1em] uppercase text-white/45 hover:text-white transition-colors flex items-center gap-1 whitespace-nowrap"
                 >
-                  {link.label}
-                </Link>
-              ))}
+                  Email <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </nav>
+            </div>
 
-              <span className="w-px h-4 bg-white/15" aria-hidden />
-
-              <a
-                href={`mailto:${companyInfo.email}`}
-                onClick={() =>
-                  trackEngagementEvent('contact_click', {
-                    method: 'email',
-                    location: 'header_desktop',
-                  })
-                }
-                className="text-[12px] font-semibold tracking-[0.14em] uppercase text-white/35 hover:text-white transition-colors flex items-center gap-1"
-              >
-                Email <ArrowUpRight className="w-3 h-3" />
-              </a>
-
+            {/* Cart (desktop) + mobile controls */}
+            <div className="flex items-center gap-3 shrink-0">
               <button
                 type="button"
                 onClick={openCart}
                 aria-label={`Open cart${itemCount > 0 ? ` (${itemCount} items)` : ''}`}
-                className="relative flex items-center gap-2 text-white/60 hover:text-white transition-colors px-2 py-1.5 -mr-1"
+                className="relative hidden lg:flex items-center text-white/60 hover:text-white transition-colors px-2 py-1.5 -mr-1"
               >
                 <div className="relative">
-                  <ShoppingBag className="w-[18px] h-[18px]" strokeWidth={1.5} />
+                  <ShoppingBag className="w-[19px] h-[19px]" strokeWidth={1.5} />
                   {itemCount > 0 && (
                     <span className="absolute -top-1.5 -right-2 min-w-[16px] h-[16px] bg-accent text-white text-[10px] font-bold flex items-center justify-center">
                       {itemCount}
@@ -222,7 +182,6 @@ export default function Header() {
                   )}
                 </div>
               </button>
-            </nav>
 
             {/* Mobile: cart + hamburger */}
             <div className="flex items-center gap-3 lg:hidden">
@@ -249,7 +208,44 @@ export default function Header() {
                 {mobileOpen ? <X className="w-5 h-5" strokeWidth={1.5} /> : <Menu className="w-5 h-5" strokeWidth={1.5} />}
               </button>
             </div>
+            </div>
           </div>
+        </div>
+
+        {/* Promo ticker — below logo / tagline */}
+        <div className="border-t border-white/[0.06] h-8 flex items-center justify-center overflow-hidden px-4 sm:px-6">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={promoIndex}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.35 }}
+              className="text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.14em] text-white/50 flex items-center justify-center gap-2 truncate max-w-full"
+            >
+              <span className="text-accent text-[8px] shrink-0">&#9679;</span>
+              <span className="truncate">{promos[promoIndex].text}</span>
+              {(() => {
+                const row = promos[promoIndex];
+                const product = localProducts.find((p) => p.id === row.productId);
+                if (!product?.slug) return null;
+                return (
+                  <Link
+                    to={`/p/${product.slug}`}
+                    onClick={() =>
+                      trackEngagementEvent('header_promo_product_link', {
+                        sku: product.id,
+                        promo_index: promoIndex,
+                      })
+                    }
+                    className="underline underline-offset-4 text-white/40 hover:text-accent transition-colors flex items-center gap-0.5 shrink-0"
+                  >
+                    View <ChevronRight className="w-2.5 h-2.5" />
+                  </Link>
+                );
+              })()}
+            </motion.p>
+          </AnimatePresence>
         </div>
 
         {/* Mobile menu */}

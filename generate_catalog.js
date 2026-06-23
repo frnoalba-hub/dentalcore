@@ -1,5 +1,9 @@
 import fs from 'fs';
 import * as XLSX from 'xlsx';
+import {
+  retailFromApexRow,
+  isPromoUnitId,
+} from './scripts/lib/apexPricing.js';
 
 const dowellPath = 'C:/Users/sebas/OneDrive/Desktop/VC_CORE_HQ/05_Companies/Dental_Core_Supplies/_PRODUCT_HUB/Dental Core Files/docs/Dowell_Dealer_Docs/Dowell Dealer Price for DentalCore.xlsx';
 const apexPath = 'C:/Users/sebas/OneDrive/Desktop/VC_CORE_HQ/05_Companies/Dental_Core_Supplies/_PRODUCT_HUB/Dental Core Files/docs/Apex_Dealer_Docs/Apexdent_price_list_11-11-25_dental_core.xlsx';
@@ -23,10 +27,6 @@ const dowellData = readExcel(dowellPath) || [];
 const apexData = readExcel(apexPath) || [];
 
 const products = [];
-
-// Removed Dowell parse code per user request.
-
-// Parse Apex - assume row 0 is header
 for (let i = 1; i < apexData.length; i++) {
   const row = apexData[i];
   if (!row || row.length < 6) continue;
@@ -34,18 +34,21 @@ for (let i = 1; i < apexData.length; i++) {
   const name = row[1];
   const id = row[2];
   const msrp = row[3];
-  const price = row[5]; // Selling Price
-  
+  const selling = row[5];
+
   if (!id || !name) continue;
-  
+  const idStr = String(id);
+  const apexRow = { msrp: Number(msrp) || 0, selling: Number(selling) || 0 };
+  const price = retailFromApexRow(apexRow, { isPromoUnit: isPromoUnitId(idStr) });
+
   products.push({
-    id: String(id),
+    id: idStr,
     name: String(name),
     category: String(category),
     description: String(name),
-    price: Number(price || msrp || 0),
+    price,
     image: '',
-    source: 'Apex'
+    source: 'Apex',
   });
 }
 

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from '@/lib/i18n';
-import { companyInfo } from './productsData';
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -12,7 +12,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-[100dvh] flex flex-col justify-end pt-[calc(var(--site-header-height)+2.25rem)] pb-0 bg-[#FDFDFD] border-b border-[#111]/10 overflow-hidden">
+    <section className="relative min-h-[calc(100dvh-var(--site-header-height))] flex flex-col justify-end pt-[calc(var(--site-header-height)+1.5rem)] pb-16 lg:pb-20 bg-[#FDFDFD] border-b border-[#111]/10 overflow-hidden">
       {/* Structural Grid Lines */}
       <div className="absolute inset-0 pointer-events-none flex justify-center opacity-[0.06]">
         <div className="w-full max-w-[1600px] h-full border-x border-[#111] grid grid-cols-2 md:grid-cols-4">
@@ -26,64 +26,54 @@ export default function HeroSection() {
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(0,71,255,0.05),transparent)]" />
 
       <div className="w-full max-w-[1600px] mx-auto px-6 lg:px-12 relative z-10 flex-1 flex flex-col justify-end">
-        <div className="grid lg:grid-cols-12 gap-8 items-end mb-16">
-          <div className="lg:col-span-8">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-xs uppercase tracking-[0.25em] text-[#111]/35 font-semibold mb-8 flex items-center gap-3"
-            >
-              <span className="inline-block w-6 h-px bg-[#111]/30" />
-              {companyInfo.companyName}
-            </motion.p>
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[13vw] sm:text-[11vw] xl:text-[130px] leading-[0.82] tracking-tighter font-semibold text-[#111] uppercase"
-            >
-              Better
-              <br />
-              Tools<span className="text-accent">.</span>
-              <br />
-              Better
-              <br />
-              Care<span className="text-accent">.</span>
-            </motion.h1>
-          </div>
-          <div className="lg:col-span-4 flex flex-col justify-end pb-2 lg:pb-8">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="text-base lg:text-lg text-[#111]/55 leading-relaxed mb-10 max-w-sm font-body"
-            >
-              Professional-grade dental instruments, handpieces, and biomaterials — shipped directly to your practice.
-            </motion.p>
-            <motion.button
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              onClick={scrollToCatalog}
-              className="group flex items-center justify-between border-b-2 border-[#111]/20 pb-4 text-[#111] hover:text-accent hover:border-accent transition-all duration-300 w-full sm:w-[85%]"
-            >
-              <span className="text-sm uppercase tracking-[0.2em] font-semibold">Shop Products</span>
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </motion.button>
-          </div>
-        </div>
-      </div>
+        <div className="max-w-3xl lg:max-w-4xl">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[12vw] sm:text-[9.5vw] lg:text-[5.75rem] xl:text-[6.25rem] leading-[0.88] tracking-[-0.03em] font-semibold text-[#111]"
+            style={{ fontFamily: 'var(--font-sans)' }}
+          >
+            Better
+            <br />
+            Tools<span className="text-accent">.</span>
+            <br />
+            Better
+            <br />
+            Care<span className="text-accent">.</span>
+          </motion.h1>
 
-      {/* Ticker / Specs Bar */}
-      <div className="w-full border-t border-[#111]/10 bg-[#111]/[0.02] relative z-10">
-        <div className="max-w-[1600px] mx-auto flex overflow-x-auto divide-x divide-[#111]/10">
-          {[t('iso_certified'), t('warranty'), t('next_day'), t('clinical_support')].map((spec, i) => (
-            <div key={i} className="px-6 py-5 flex-1 min-w-[140px] flex items-center gap-2">
-              <span className="w-1 h-1 rounded-full bg-accent shrink-0" />
-              <span className="text-[10px] uppercase tracking-widest font-semibold text-[#111]/50 whitespace-nowrap">{spec}</span>
-            </div>
-          ))}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.25, duration: 0.5 }}
+            className="mt-8 lg:mt-10 text-base lg:text-lg text-[#111]/60 leading-relaxed max-w-xl font-body"
+          >
+            Professional-grade dental instruments, handpieces, and biomaterials. Shipped directly to your practice.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.35 }}
+            className="mt-10 lg:mt-12 flex flex-col sm:flex-row sm:items-end gap-8 sm:gap-12"
+          >
+            <button
+              type="button"
+              onClick={scrollToCatalog}
+              className="group flex items-center justify-between border-b-2 border-[#111]/20 pb-4 text-[#111] hover:text-accent hover:border-accent transition-all duration-300 w-full sm:w-auto sm:min-w-[220px]"
+            >
+              <span className="text-sm uppercase tracking-[0.18em] font-semibold">Shop Products</span>
+              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+            </button>
+
+            <p className="text-[11px] sm:text-xs uppercase tracking-[0.16em] text-[#111]/40 font-semibold max-w-xs leading-relaxed">
+              {t('clinical_support')}.{' '}
+              <Link to="/contact" className="text-[#111]/55 hover:text-accent transition-colors underline underline-offset-4">
+                Talk to our team
+              </Link>
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>

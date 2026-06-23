@@ -144,10 +144,11 @@ const img = {
 
 
 // --- MASTER PRODUCT CATALOG ---
-// Apex: Apexdent_price_list_*_dental_core.xlsx - MSRP col 3, Selling col 5 (see generate_catalog.js).
-// Rule: No `promo` → `price` = Apex selling only; no `originalPrice` (clean list price).
-// With `promo` → `price` = promotional sell; `originalPrice` = Apex MSRP when that SKU exists in the sheet
-// (otherwise a single explicit list price you set by hand - never duplicate `price` as fake MSRP).
+// Apex: Apexdent_price_list_*_dental_core.xlsx — MSRP col 3, Dealer col 4, Selling col 5.
+// Retail policy (scripts/lib/apexPricing.js):
+// - Promo / B2G1 / bundle SKUs: list at Apex *selling*; cart promos apply at checkout.
+// - Other singles: Apex selling × 1.10 (10% margin), never below Apex selling.
+// - With `promo` + `originalPrice`: unit list = promo price; originalPrice = MSRP for strike-through.
 export const products = [
   // =========================================
   // ENDODONTICS
@@ -157,7 +158,7 @@ export const products = [
     slug: "uc-cut",
     mpn: "1006-1",
     name: "UC-CUT (Sonic GP Cutter)",
-    price: 599.00,
+    price: 658.99,
     category: "Endodontics",
     description: "Cordless sonic GP cutter with rapid heat-up and vibration-assisted removal. Clean, precise gutta-percha trimming with interchangeable tips — no cart required.",
     longDescription: "UC-CUT is designed for chairside gutta-percha cutting without a bulky electrosurgery unit. The cordless handpiece combines rapid heat-up with sonic vibration to shear GP cleanly at the canal orifice, giving you consistent results during obturation and retreatment procedures.\n\nInterchangeable tips let you match the right profile to your case — posterior, anterior, and specialty options are available separately. The compact, lightweight design fits naturally alongside your existing endo setup.\n\nThis listing is for the UC-CUT handpiece unit. Tips are sold separately so you can build the set that matches your workflow.",
@@ -209,7 +210,7 @@ export const products = [
     slug: "uc-one",
     mpn: "1002-1",
     name: "UC-ONE (Ultrasonic Irrigation)",
-    price: 599.00,
+    price: 658.99,
     category: "Endodontics",
     description: "Cordless ultrasonic irrigator that activates irrigant deep into canal anatomy for more effective debris and biofilm removal during endodontic treatment. Includes handpiece and charging stand \u2014 tips sold separately or choose the Full Kit for everything in one box.",
     longDescription: "UC-ONE is designed for clinicians who want a cordless, handheld way to ultrasonically activate sodium hypochlorite, EDTA, or other approved irrigants inside the root canal system. Ultrasonic energy creates acoustic streaming that drives irrigant into lateral canals, fins, and isthmuses\u2014areas that needle delivery alone may not reach effectively. Use only irrigants and settings consistent with manufacturer directions and your training.\n\nThis listing is for the UC-ONE handpiece unit with charging stand. Disposable plastic tips and metal tips are available separately, or you can order the UC-ONE Full Kit which bundles the handpiece with a complete tip set and tip stand.",
@@ -268,7 +269,7 @@ export const products = [
     slug: "uc-one-full-kit",
     mpn: "1002-Full Kit",
     name: "UC-ONE Full Kit (Ultrasonic Irrigation)",
-    price: 699.00,
+    price: 768.99,
     category: "Endodontics",
     description: "Everything you need in one box \u2014 UC-ONE cordless ultrasonic irrigator with complete tip set (Body, Short, Long, Endo) and tip stand. Ready to use out of the box.",
     longDescription: "UC-ONE Full Kit gives your practice a complete cordless ultrasonic irrigation setup without ordering accessories separately. The kit includes the UC-ONE handpiece, a full tip set covering Body, Short, Long, and Endo profiles, plus a tip stand for organized chairside access.\n\nUltrasonic energy creates acoustic streaming that drives irrigant into lateral canals, fins, and isthmuses\u2014areas that needle delivery alone may not reach effectively. Use only irrigants and settings consistent with manufacturer directions and your training.\n\nAdditional disposable plastic tips and metal tips are also available as separate add-ons when you need replacements.",
@@ -334,7 +335,7 @@ export const products = [
     slug: "gp-cut-fit",
     mpn: "1005-1",
     name: "GP Cut & Fit (Standard)",
-    price: 80.00,
+    price: 88.00,
     category: "Endodontics",
     description: "Affordable cordless GP cutter for everyday obturation. Quick-change tips, lightweight design, and reliable heating every time.",
     longDescription: "GP Cut & Fit delivers a budget-friendly path to warm GP trimming for general practices. Quick-change tips and a compact body make it easy to stage for single-visit and multi-visit endo. Pair with your preferred obturation technique and follow manufacturer guidance for tip sterilization.",
@@ -361,7 +362,7 @@ export const products = [
     slug: "ep-plugger-set",
     mpn: "1004-1",
     name: "EP Plugger Set",
-    price: 120.00,
+    price: 132.00,
     category: "Endodontics",
     description: "Two-piece ergonomic plugger set (FM/M and ML/L) for warm vertical condensation. Comfortable grip, precise tip control.",
     longDescription: "Warm vertical condensation demands plugger tips that feel balanced in the hand. This two-piece set covers fine-to-medium and medium-to-large canal sizes so you can adapt pluggers to anatomy without juggling mismatched handles.",
@@ -388,7 +389,7 @@ export const products = [
     slug: "ep-suction-system",
     mpn: "1003-1",
     name: "EP Suction System",
-    price: 60.00,
+    price: 66.00,
     category: "Endodontics",
     description: "Micro-suction system for canal drying during endo procedures. Comes with 2 adapters and 5 disposable tips for immediate use.",
     longDescription: "Dry canals before sealer placement or between irrigant changes. The micro-suction tip helps remove residual irrigant without over-drying dentin when used with controlled vacuum.",
@@ -415,7 +416,7 @@ export const products = [
     slug: "endoseal-mta-sealer",
     mpn: "MTA-1",
     name: "Endoseal MTA Sealer",
-    price: 90.00,
+    price: 99.99,
     category: "Endodontics",
     description: "Premixed injectable bioceramic sealer from Maruchi (Korea). 3g syringe with 20 tips, eugenol-free, sets in 10-12 minutes with high pH antibacterial properties.",
     longDescription: "Endoseal MTA is a ready-to-use bioceramic sealer formulated for hydraulic setting in moist environments. High radiopacity from zirconium oxide aids post-op verification. Commonly selected for single-cone and carrier-based techniques when the clinician wants a hydrophilic sealer line. Composition includes calcium silicates, calcium aluminates, and zirconium oxide radiopacifier with high pH antibacterial activity against E. faecalis.",
@@ -449,7 +450,7 @@ export const products = [
     slug: "endocem-mta-root-repair",
     mpn: "MTA-3",
     name: "Endocem MTA Root Repair",
-    price: 90.00,
+    price: 99.99,
     category: "Endodontics",
     description: "FDA 510(k) cleared MTA cement from Maruchi (Korea). Available as premixed 2g syringe or powder-liquid format. Prevents discoloration with zirconium oxide, not bismuth oxide.",
     longDescription: "Endocem MTA addresses scenarios where you need a fast-setting MTA-type cement for repair and vital pulp therapy applications. Composition includes tricalcium silicate and zirconium oxide with hemostatic phyllosilicate ingredients. FDA 510(k) cleared as a Class II device. Use for root-end retrofills, strip perforations, apexification, pulpotomy, direct pulp capping, and perforation repair when your diagnosis supports MTA therapy. Zirconium oxide radiopacifier prevents the tooth discoloration sometimes associated with bismuth oxide formulations.",
@@ -575,7 +576,7 @@ export const products = [
     slug: "airpeak-x600-45-surgical",
     mpn: "A1018",
     name: "AirPeak™ X600-45 (Surgical)",
-    price: 569.00,
+    price: 625.99,
     category: "Handpieces",
     description: "Angled 45° surgical handpiece with rear exhaust to prevent air embolism. Designed for third molar access and oral surgery procedures.",
     longDescription: "The 45° head improves line-of-sight on third molars and posterior surgical sites. Rear exhaust routing is intended to direct air away from the surgical site per common surgical handpiece design practice.",
@@ -743,7 +744,7 @@ export const products = [
     slug: "itesla-g600-d",
     mpn: "A1028",
     name: "iTesla™ G600-D (1:1 Blue Band)",
-    price: 399.00,
+    price: 526.99,
     category: "Handpieces",
     description: "1:1 direct-drive electric contra angle with internal water spray. Versatile workhorse for restorative, prophy, and endo prep.",
     longDescription: "Blue-band 1:1 is the generalist attachment: finishing, polishing, and selective prep tasks at motor-controlled RPM with steady torque feel.",
@@ -770,7 +771,7 @@ export const products = [
     slug: "itesla-g500-r20-implant",
     mpn: "A1020",
     name: "iTesla™ G500-R20 (20:1 Implant)",
-    price: 499.00,
+    price: 658.99,
     category: "Handpieces",
     description: "20:1 reduction implant handpiece with external irrigation clip. Precise torque delivery for implant placement and bone work.",
     longDescription: "20:1 reduction geometry slows motor output for osteotomy and implant insertion sequences. External irrigation clip keeps the field cool when using surgical-length burs and drivers.",
@@ -1187,7 +1188,7 @@ export const products = [
     slug: "ep-cure-led",
     mpn: "1007-1",
     name: "EP CURE",
-    price: 649.00,
+    price: 658.99,
     category: "Restorative",
     description: "High-intensity LED curing light with 1-second cure capability. Reduces chair time without compromising depth of cure.",
     longDescription: "EP CURE targets high-output curing for bulk-fill and posteriors where short cure cycles matter. Always verify manufacturer cure times for your specific composite shade and increment thickness.",
@@ -1307,6 +1308,7 @@ export const products = [
     mpn: "M1002",
     name: "SureTact G3 Rings (2pk)",
     price: 129.98,
+    promo: "Buy 2, Get 1 Free",
     category: "Restorative",
     description: "Replacement NiTi rings with strong spring-back memory. Universal fit for most sectional matrix systems. 2-pack.",
     longDescription: "Replacement NiTi rings for SureTact G3 or compatible sectional matrix bands when rings fatigue after repeated autoclaving.",

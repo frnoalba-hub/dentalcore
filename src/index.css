@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -7,10 +7,10 @@
 
 @layer base {
   :root {
-    --font-sans: 'Space Grotesk', sans-serif;
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    /* Fixed header: promo strip (28px) + main bar — taller on lg+ so the wordmark scales on desktop */
-    --site-header-height: 84px;
+    /* Fixed header: main bar + promo strip below wordmark */
+    --site-header-height: 88px;
     /* Extra breathing room below fixed header on interior pages */
     --site-page-top: calc(var(--site-header-height) + 1.5rem);
   }
@@ -23,7 +23,7 @@
 
   @media (min-width: 1024px) {
     :root {
-      --site-header-height: 104px;
+      --site-header-height: 108px;
       --site-page-top: calc(var(--site-header-height) + 3.5rem);
     }
   }
