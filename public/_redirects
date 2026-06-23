@@ -1,2 +1,3 @@
 # SPA fallback: all routes (including /p/*) serve index.html so React Router can handle them.
+/p/uc-one-full-kit    /p/uc-one    301
 /*    /index.html   200

@@ -1,34 +1,105 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowUpRight, ChevronLeft, ChevronRight, Tag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { products as catalog } from './productsData';
 import { trackEngagementEvent } from '@/lib/trackEvent';
 
-/** Flagship SKUs for the homepage hero carousel (order = first slide). */
+/** ~6s per slide — common retail carousel timing (5–8s range). */
+const ROTATE_MS = 6000;
+
 const HERO_PRODUCT_IDS = [
-  '1006-1',      // UC-CUT
-  '1002-1',      // UC-ONE
-  'MTA-1',       // Endoseal MTA Sealer
-  'A1004-V2',    // AirPeak X600-S (handpiece promo)
-  'A1030',       // McCare X Maintenance
-  'OS-SEAL-SYR', // OsseoSeal syringe
-  'OSTEO-PLUG',  // OsteoGen Plug
-  '1008-1',      // EP CURE MINI
+  '1006-1',
+  '1002-1',
+  'MTA-1',
+  'A1004-V2',
+  'M1001',
+  'M1002',
+  'A1003',
+  'M1042X',
+  'A1030',
+  'OS-SEAL-SYR',
+  'OSTEO-PLUG',
+  '1008-1',
 ];
 
-const ROTATE_MS = 4500;
+const HERO_PROMOS = [
+  {
+    id: 'promo-airpeak',
+    headline: 'AirPeak 3 + 1 Coupler',
+    detail: 'Bundle three handpieces plus a coupler for $1,000',
+    productId: 'A1004-V2',
+    linkLabel: 'Shop AirPeak',
+  },
+  {
+    id: 'promo-suretact',
+    headline: 'SureTact G3 Matrix Kit',
+    detail: 'Buy 2 complete kits for $400. Strong value on sectional matrix systems.',
+    productId: 'M1001',
+    linkLabel: 'Shop SureTact',
+  },
+  {
+    id: 'promo-b2g1-itesla',
+    headline: 'iTesla G600-S',
+    detail: 'Buy 2, Get 1 Free on the 1:5 red-band attachment.',
+    productId: 'A1003',
+    linkLabel: 'View iTesla',
+  },
+  {
+    id: 'promo-b2g1-modulite',
+    headline: 'ModuLite X Curing Light',
+    detail: 'Buy 2, Get 1 Free. Stack lights across operatories.',
+    productId: 'M1042X',
+    linkLabel: 'View ModuLite',
+  },
+  {
+    id: 'promo-b2g1-rings',
+    headline: 'SureTact G3 Rings',
+    detail: 'Buy 2 packs, Get 1 Free on replacement NiTi rings.',
+    productId: 'M1002',
+    linkLabel: 'Shop rings',
+  },
+  {
+    id: 'promo-osseo',
+    headline: 'OsseoSeal Bone Graft',
+    detail: 'Prefilled syringes, powder, and collagen membranes in stock.',
+    productId: 'OS-SEAL-SYR',
+    linkLabel: 'Shop OsseoSeal',
+  },
+];
+
+function buildHeroSlides() {
+  const slides = [];
+  let promoIdx = 0;
+  HERO_PRODUCT_IDS.forEach((id, i) => {
+    const product = catalog.find((p) => p.id === id);
+    if (product) slides.push({ type: 'product', id: product.id, product });
+    if ((i + 1) % 2 === 0 && promoIdx < HERO_PROMOS.length) {
+      slides.push({ type: 'promo', ...HERO_PROMOS[promoIdx++] });
+    }
+  });
+  while (promoIdx < HERO_PROMOS.length) {
+    slides.push({ type: 'promo', ...HERO_PROMOS[promoIdx++] });
+  }
+  return slides;
+}
 
 function formatUsd(value) {
   return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
 }
 
+function productThumb(product) {
+  return product?.image || product?.images?.[0] || '';
+}
+
+function promoThumb(promo) {
+  const linked = catalog.find((p) => p.id === promo.productId);
+  return productThumb(linked);
+}
+
 export default function HeroProductShowcase() {
-  const slides = useMemo(
-    () =>
-      HERO_PRODUCT_IDS.map((id) => catalog.find((p) => p.id === id)).filter(Boolean),
-    [],
-  );
+  const slides = useMemo(() => buildHeroSlides(), []);
+  const thumbStripRef = useRef(null);
 
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -46,10 +117,18 @@ export default function HeroProductShowcase() {
     return () => clearInterval(timer);
   }, [paused, go, slides.length]);
 
+  useEffect(() => {
+    const strip = thumbStripRef.current;
+    if (!strip) return;
+    const active = strip.querySelector('[data-active="true"]');
+    active?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }, [index]);
+
   if (!slides.length) return null;
 
-  const product = slides[index];
-  const image = product.image || product.images?.[0];
+  const slide = slides[index];
+  const isProduct = slide.type === 'product';
+  const product = isProduct ? slide.product : catalog.find((p) => p.id === slide.productId);
 
   return (
     <div
@@ -61,13 +140,13 @@ export default function HeroProductShowcase() {
     >
       <div className="flex items-center justify-between gap-3 mb-4">
         <p className="text-[10px] sm:text-[11px] uppercase tracking-[0.2em] font-semibold text-[#111]/40">
-          Featured products
+          Featured products &amp; promos
         </p>
         <div className="flex items-center gap-1">
           <button
             type="button"
             onClick={() => go(-1)}
-            aria-label="Previous product"
+            aria-label="Previous slide"
             className="p-2 text-[#111]/35 hover:text-[#111] transition-colors"
           >
             <ChevronLeft className="w-4 h-4" strokeWidth={1.75} />
@@ -75,7 +154,7 @@ export default function HeroProductShowcase() {
           <button
             type="button"
             onClick={() => go(1)}
-            aria-label="Next product"
+            aria-label="Next slide"
             className="p-2 text-[#111]/35 hover:text-[#111] transition-colors"
           >
             <ChevronRight className="w-4 h-4" strokeWidth={1.75} />
@@ -83,73 +162,134 @@ export default function HeroProductShowcase() {
         </div>
       </div>
 
-      <Link
-        to={`/p/${product.slug}`}
-        onClick={() =>
-          trackEngagementEvent('hero_product_click', {
-            sku: product.id,
-            slide_index: index,
-          })
-        }
-        className="group block border border-[#111]/10 bg-white hover:border-accent/40 transition-colors duration-300"
-      >
-        <div className="relative aspect-[4/3] sm:aspect-[5/4] lg:aspect-[4/3] overflow-hidden bg-[#f6f6f6]">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={product.id}
-              src={image}
-              alt={product.name}
-              initial={{ opacity: 0, scale: 1.03 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-              className="absolute inset-0 w-full h-full object-contain p-6 sm:p-8 lg:p-10"
-            />
-          </AnimatePresence>
-          {product.promo && (
-            <span className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-accent text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1">
-              Promo
-            </span>
-          )}
-        </div>
+      <AnimatePresence mode="wait">
+        {isProduct ? (
+          <motion.div
+            key={`product-${slide.id}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
+          >
+            <Link
+              to={`/p/${slide.product.slug}`}
+              onClick={() =>
+                trackEngagementEvent('hero_product_click', {
+                  sku: slide.product.id,
+                  slide_index: index,
+                })
+              }
+              className="group block border border-[#111]/10 bg-white hover:border-accent/40 transition-colors duration-300"
+            >
+              <div className="relative aspect-[4/3] sm:aspect-[5/4] lg:aspect-[4/3] overflow-hidden bg-[#f6f6f6]">
+                <img
+                  src={productThumb(slide.product)}
+                  alt={slide.product.name}
+                  className="absolute inset-0 w-full h-full object-contain p-6 sm:p-8 lg:p-10"
+                />
+                {slide.product.promo && (
+                  <span className="absolute top-3 left-3 sm:top-4 sm:left-4 bg-accent text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1">
+                    Promo
+                  </span>
+                )}
+                {slide.product.variants?.length > 0 && (
+                  <span className="absolute top-3 right-3 sm:top-4 sm:right-4 bg-[#111] text-white text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.12em] px-2.5 py-1">
+                    Kit options
+                  </span>
+                )}
+              </div>
 
-        <div className="border-t border-[#111]/10 px-4 sm:px-5 py-4 sm:py-5 flex items-end justify-between gap-4">
-          <div className="min-w-0">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-[#111]/40 font-semibold mb-1.5">
-              {product.category}
-            </p>
-            <p className="text-sm sm:text-base font-semibold text-[#111] truncate group-hover:text-accent transition-colors">
-              {product.name}
-            </p>
-            <div className="mt-2 flex items-baseline gap-2 flex-wrap">
-              <span className="text-lg sm:text-xl font-semibold text-[#111] tabular-nums">
-                {formatUsd(product.price)}
-              </span>
-              {product.originalPrice > product.price && (
-                <span className="text-sm text-[#111]/35 line-through tabular-nums">
-                  {formatUsd(product.originalPrice)}
+              <div className="border-t border-[#111]/10 px-4 sm:px-5 py-4 sm:py-5 flex items-end justify-between gap-4">
+                <div className="min-w-0">
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-[#111]/40 font-semibold mb-1.5">
+                    {slide.product.category}
+                  </p>
+                  <p className="text-sm sm:text-base font-semibold text-[#111] truncate group-hover:text-accent transition-colors">
+                    {slide.product.name}
+                  </p>
+                  <div className="mt-2 flex items-baseline gap-2 flex-wrap">
+                    {slide.product.variants?.length > 0 && (
+                      <span className="text-xs text-[#111]/45 uppercase tracking-widest font-semibold mr-1">From</span>
+                    )}
+                    <span className="text-lg sm:text-xl font-semibold text-[#111] tabular-nums">
+                      {formatUsd(slide.product.price)}
+                    </span>
+                    {slide.product.originalPrice > slide.product.price && (
+                      <span className="text-sm text-[#111]/35 line-through tabular-nums">
+                        {formatUsd(slide.product.originalPrice)}
+                      </span>
+                    )}
+                  </div>
+                  {slide.product.promo && (
+                    <p className="mt-1.5 text-[10px] sm:text-[11px] text-accent font-semibold uppercase tracking-[0.1em]">
+                      {slide.product.promo}
+                    </p>
+                  )}
+                </div>
+                <span className="shrink-0 flex items-center gap-1 text-[10px] sm:text-[11px] uppercase tracking-[0.14em] font-semibold text-[#111]/45 group-hover:text-accent transition-colors pb-0.5">
+                  View
+                  <ArrowUpRight className="w-3.5 h-3.5" />
                 </span>
-              )}
-            </div>
-            {product.promo && (
-              <p className="mt-1.5 text-[10px] sm:text-[11px] text-accent font-semibold uppercase tracking-[0.1em]">
-                {product.promo}
-              </p>
-            )}
-          </div>
-          <span className="shrink-0 flex items-center gap-1 text-[10px] sm:text-[11px] uppercase tracking-[0.14em] font-semibold text-[#111]/45 group-hover:text-accent transition-colors pb-0.5">
-            View
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </span>
-        </div>
-      </Link>
+              </div>
+            </Link>
+          </motion.div>
+        ) : (
+          <motion.div
+            key={`promo-${slide.id}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
+          >
+            <Link
+              to={product?.slug ? `/p/${product.slug}` : '/#catalog'}
+              onClick={() =>
+                trackEngagementEvent('hero_promo_click', {
+                  promo_id: slide.id,
+                  product_id: slide.productId,
+                  slide_index: index,
+                })
+              }
+              className="group block border border-accent/30 bg-[#111] hover:border-accent transition-colors duration-300"
+            >
+              <div className="relative aspect-[4/3] sm:aspect-[5/4] lg:aspect-[4/3] overflow-hidden">
+                {promoThumb(slide) && (
+                  <img
+                    src={promoThumb(slide)}
+                    alt=""
+                    className="absolute inset-0 w-full h-full object-contain p-10 opacity-25"
+                    aria-hidden
+                  />
+                )}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#111] via-[#141414] to-[#0a1628]/90" />
+                <div className="relative z-10 h-full flex flex-col items-start justify-center px-6 sm:px-8 lg:px-10 py-8">
+                  <span className="inline-flex items-center gap-1.5 text-accent text-[10px] font-bold uppercase tracking-[0.16em] mb-4">
+                    <Tag className="w-3.5 h-3.5" />
+                    Active promotion
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-semibold text-white tracking-tight mb-3">
+                    {slide.headline}
+                  </h3>
+                  <p className="text-sm sm:text-base text-white/60 font-body leading-relaxed max-w-md mb-6">
+                    {slide.detail}
+                  </p>
+                  <span className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.14em] font-semibold text-white/70 group-hover:text-accent transition-colors">
+                    {slide.linkLabel}
+                    <ArrowUpRight className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <div className="mt-4 flex items-center gap-2">
-        {slides.map((slide, i) => (
+      <div className="mt-4 flex items-center gap-1.5">
+        {slides.map((s, i) => (
           <button
-            key={slide.id}
+            key={s.type === 'product' ? s.id : s.id}
             type="button"
-            aria-label={`Show ${slide.name}`}
+            aria-label={s.type === 'product' ? `Show ${s.product.name}` : `Show promo: ${s.headline}`}
             aria-current={i === index ? 'true' : undefined}
             onClick={() => setIndex(i)}
             className={`h-1 flex-1 transition-colors duration-300 ${
@@ -159,22 +299,36 @@ export default function HeroProductShowcase() {
         ))}
       </div>
 
-      <div className="mt-3 flex gap-2 overflow-x-auto pb-1 scrollbar-none">
-        {slides.map((slide, i) => {
-          const thumb = slide.image || slide.images?.[0];
+      <div
+        ref={thumbStripRef}
+        className="mt-3 flex gap-2 overflow-x-auto pb-1 scrollbar-none snap-x snap-mandatory"
+      >
+        {slides.map((s, i) => {
+          const thumb =
+            s.type === 'product' ? productThumb(s.product) : promoThumb(s);
+          const label = s.type === 'product' ? s.product.name : s.headline;
           return (
             <button
-              key={slide.id}
+              key={s.type === 'product' ? `t-${s.id}` : `t-${s.id}`}
               type="button"
+              data-active={i === index ? 'true' : undefined}
               onClick={() => setIndex(i)}
-              aria-label={`Show ${slide.name}`}
-              className={`shrink-0 w-14 h-14 border transition-colors ${
+              aria-label={`Show ${label}`}
+              className={`shrink-0 snap-start w-14 h-14 sm:w-16 sm:h-16 border transition-all ${
                 i === index
-                  ? 'border-accent bg-white'
-                  : 'border-[#111]/10 bg-[#f8f8f8] hover:border-[#111]/25'
+                  ? 'border-accent bg-white ring-1 ring-accent/30'
+                  : s.type === 'promo'
+                    ? 'border-accent/25 bg-[#111] hover:border-accent/50'
+                    : 'border-[#111]/10 bg-[#f8f8f8] hover:border-[#111]/25'
               }`}
             >
-              <img src={thumb} alt="" className="w-full h-full object-contain p-1.5" />
+              {thumb ? (
+                <img src={thumb} alt="" className="w-full h-full object-contain p-1.5" />
+              ) : (
+                <span className="w-full h-full flex items-center justify-center text-[9px] text-white/60 uppercase tracking-widest px-1">
+                  Deal
+                </span>
+              )}
             </button>
           );
         })}
