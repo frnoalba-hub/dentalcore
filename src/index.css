@@ -11,11 +11,20 @@
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     /* Fixed header: promo strip (28px) + main bar — taller on lg+ so the wordmark scales on desktop */
     --site-header-height: 84px;
+    /* Extra breathing room below fixed header on interior pages */
+    --site-page-top: calc(var(--site-header-height) + 1.5rem);
+  }
+
+  @media (min-width: 640px) {
+    :root {
+      --site-page-top: calc(var(--site-header-height) + 2.25rem);
+    }
   }
 
   @media (min-width: 1024px) {
     :root {
       --site-header-height: 104px;
+      --site-page-top: calc(var(--site-header-height) + 3.5rem);
     }
   }
 
@@ -46,6 +55,19 @@
 }
 
 @layer components {
+  .site-page-main {
+    padding-top: var(--site-page-top);
+    @apply pb-24 lg:pb-32;
+  }
+
+  .site-page-inner {
+    @apply max-w-[1600px] mx-auto px-6 lg:px-16;
+  }
+
+  .site-page-hero {
+    @apply mb-10 lg:mb-16;
+  }
+
   .section-label {
     @apply text-[#111] font-medium tracking-[0.1em] text-sm uppercase mb-6 block;
     font-family: var(--font-sans);

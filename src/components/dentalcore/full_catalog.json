@@ -3,7 +3,7 @@
     "id": "1006-1",
     "name": "UC-CUT (Sonic GP Cutter)",
     "category": "UC-CUT (Sonic GP Cutter)",
-    "description": "UC-CUT (Sonic GP Cutter)",
+    "description": "Cordless sonic GP cutter with rapid heat-up and vibration-assisted removal. Clean, precise gutta-percha trimming with interchangeable tips — no cart required.",
     "price": 599,
     "image": "",
     "source": "Apex"
@@ -93,7 +93,7 @@
     "id": "1002-1",
     "name": "UC-ONE (Ultrasonic Irrigation)",
     "category": "UC-ONE (Ultrasonic Irrigator)",
-    "description": "UC-ONE (Ultrasonic Irrigation)",
+    "description": "Cordless ultrasonic irrigator that activates irrigant deep into canal anatomy for more effective debris and biofilm removal during endodontic treatment. Includes handpiece and charging stand — tips sold separately or choose the Full Kit for everything in one box.",
     "price": 599,
     "image": "",
     "source": "Apex"
@@ -156,7 +156,7 @@
     "id": "1007-1",
     "name": "EP CURE CURING LIGHT (WHITE)",
     "category": "EP LIGHT / EP CURE",
-    "description": "EP CURE CURING LIGHT (WHITE)",
+    "description": "High-intensity LED curing light with 1-second cure capability. Reduces chair time without compromising depth of cure.",
     "price": 599,
     "image": "",
     "source": "Apex"
@@ -174,7 +174,7 @@
     "id": "1008-1",
     "name": "EP CURE MINI (WHITE, NAVY BLUE, GREEN)",
     "category": "EP LIGHT / EP CURE",
-    "description": "EP CURE MINI (WHITE, NAVY BLUE, GREEN)",
+    "description": "Compact cordless LED curing light with 465nm output and dual cure modes (5-sec and 3-sec). Autoclavable tip, lightweight design — available in White, Black, and Green.",
     "price": 599,
     "image": "",
     "source": "Apex"
@@ -183,7 +183,7 @@
     "id": "1003-1",
     "name": "EP SUCTION",
     "category": "EP Suction",
-    "description": "EP SUCTION",
+    "description": "Micro-suction system for canal drying during endo procedures. Comes with 2 adapters and 5 disposable tips for immediate use.",
     "price": 60,
     "image": "",
     "source": "Apex"
@@ -192,7 +192,7 @@
     "id": "1005-1",
     "name": "GP CUT & FIT (GP CUTTER)",
     "category": "ENDO Accessories",
-    "description": "GP CUT & FIT (GP CUTTER)",
+    "description": "Affordable cordless GP cutter for everyday obturation. Quick-change tips, lightweight design, and reliable heating every time.",
     "price": 80,
     "image": "",
     "source": "Apex"
@@ -201,7 +201,7 @@
     "id": "1004-1",
     "name": "EP PLUGGER SET",
     "category": "ENDO Accessories",
-    "description": "EP PLUGGER SET",
+    "description": "Two-piece ergonomic plugger set (FM/M and ML/L) for warm vertical condensation. Comfortable grip, precise tip control.",
     "price": 120,
     "image": "",
     "source": "Apex"
@@ -210,7 +210,7 @@
     "id": "MTA-1",
     "name": "ENDOSEAL (MTA SEALER)",
     "category": "ENDO Accessories",
-    "description": "ENDOSEAL (MTA SEALER)",
+    "description": "Premixed injectable bioceramic sealer from Maruchi (Korea). 3g syringe with 20 tips, eugenol-free, sets in 10-12 minutes with high pH antibacterial properties.",
     "price": 90,
     "image": "",
     "source": "Apex"
@@ -228,7 +228,7 @@
     "id": "MTA-3",
     "name": "ENDOCEM (MTA ROOT REPAIR)",
     "category": "ENDO Accessories",
-    "description": "ENDOCEM (MTA ROOT REPAIR)",
+    "description": "FDA 510(k) cleared MTA cement from Maruchi (Korea). Available as premixed 2g syringe or powder-liquid format. Prevents discoloration with zirconium oxide, not bismuth oxide.",
     "price": 90,
     "image": "",
     "source": "Apex"
@@ -363,7 +363,7 @@
     "id": "A1003",
     "name": "iTesla™ G600-S, Expert Electric Handpiece, 1:5 Increaser,FG,Optic Quatrro Spray",
     "category": "Air & Elec Handpiece, Coupler",
-    "description": "iTesla™ G600-S, Expert Electric Handpiece, 1:5 Increaser,FG,Optic Quatrro Spray",
+    "description": "1:5 red-band electric handpiece attachment with DLC-coated titanium body and quad spray for high-speed prep under motor control.",
     "price": 729,
     "image": "",
     "source": "Apex"
@@ -372,7 +372,7 @@
     "id": "A1020",
     "name": "iTesla™ G600-R20:1, Expert Electric Handpiece, 20:1 Reducer, for Implant",
     "category": "Air & Elec Handpiece, Coupler",
-    "description": "iTesla™ G600-R20:1, Expert Electric Handpiece, 20:1 Reducer, for Implant",
+    "description": "20:1 reduction implant handpiece with external irrigation clip. Precise torque delivery for implant placement and bone work.",
     "price": 599,
     "image": "",
     "source": "Apex"
@@ -381,7 +381,7 @@
     "id": "A1028",
     "name": "iTesla™ G600-D, Expert Electric Handpiece, 1:1 Direct, CA,Optic, Single Spray",
     "category": "Air & Elec Handpiece, Coupler",
-    "description": "iTesla™ G600-D, Expert Electric Handpiece, 1:1 Direct, CA,Optic, Single Spray",
+    "description": "1:1 direct-drive electric contra angle with internal water spray. Versatile workhorse for restorative, prophy, and endo prep.",
     "price": 479,
     "image": "",
     "source": "Apex"
@@ -426,7 +426,7 @@
     "id": "A1004-V2",
     "name": "AirPeak™, X600-S/K, KaVo Backend, Quattro Spray, Fiber Optic, Titanium",
     "category": "Air & Elec Handpiece, Coupler",
-    "description": "AirPeak™, X600-S/K, KaVo Backend, Quattro Spray, Fiber Optic, Titanium",
+    "description": "KaVo MULTIflex compatible high-speed handpiece with titanium body, fiber optics, and quad-port spray for restorative and surgical workflows.",
     "price": 399,
     "image": "",
     "source": "Apex"
@@ -435,7 +435,7 @@
     "id": "A1005",
     "name": "AirPeak™, X600-M/N,NSK Backend, Quattro Spray, Fiber Optic, Titanium",
     "category": "Air & Elec Handpiece, Coupler",
-    "description": "AirPeak™, X600-M/N,NSK Backend, Quattro Spray, Fiber Optic, Titanium",
+    "description": "NSK style compatible high-speed handpiece with titanium construction, fiber optics, and quad spray for daily operative use.",
     "price": 399,
     "image": "",
     "source": "Apex"
@@ -444,7 +444,7 @@
     "id": "A1009B",
     "name": "AirPeak™, G100-LA, Push Button Contra Angle, 1:1, NS, Non-Optic, CA",
     "category": "Air & Elec Handpiece, Coupler",
-    "description": "AirPeak™, G100-LA, Push Button Contra Angle, 1:1, NS, Non-Optic, CA",
+    "description": "1:1 latch-type contra angle with push-button bur release. Smooth, quiet operation for restorative and prophy work.",
     "price": 129,
     "image": "",
     "source": "Apex"
@@ -462,7 +462,7 @@
     "id": "A1012",
     "name": "AirPeak™, G100-ST2, Straight Nose Cone, 1:1, Non-Spray, Non-Optic",
     "category": "Air & Elec Handpiece, Coupler",
-    "description": "AirPeak™, G100-ST2, Straight Nose Cone, 1:1, Non-Spray, Non-Optic",
+    "description": "1:1 straight nose cone for lab work, extraoral adjustments, and acrylic trimming. Durable stainless construction.",
     "price": 129,
     "image": "",
     "source": "Apex"
@@ -489,7 +489,7 @@
     "id": "A1018",
     "name": "AirPeak™, X600-45/K, KaVo Backend, Rear Exhaust, Triple Jet, Optic, Titanium",
     "category": "Air & Elec Handpiece, Coupler",
-    "description": "AirPeak™, X600-45/K, KaVo Backend, Rear Exhaust, Triple Jet, Optic, Titanium",
+    "description": "Angled 45° surgical handpiece with rear exhaust to prevent air embolism. Designed for third molar access and oral surgery procedures.",
     "price": 569,
     "image": "",
     "source": "Apex"

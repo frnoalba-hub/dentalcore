@@ -97,9 +97,10 @@ export default function BuyerGuidePage() {
       {faqSchema && (
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       )}
-      <main className="pt-[var(--site-header-height)] pb-24">
-        <div className="max-w-[1100px] mx-auto px-6 lg:px-12">
-          <p className="text-xs uppercase tracking-[0.24em] text-[#111]/40 font-semibold mb-3">Buyer Guide</p>
+      <main className="site-page-main">
+        <div className="site-page-inner max-w-[1100px]">
+          <header className="site-page-hero">
+          <p className="text-xs uppercase tracking-[0.24em] text-[#111]/40 font-semibold mb-4 lg:mb-5">Buyer Guide</p>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter text-[#111] leading-[1.08] max-w-5xl">
             {guide.title}
           </h1>
@@ -109,6 +110,7 @@ export default function BuyerGuidePage() {
           <p className="mt-4 text-xs uppercase tracking-[0.18em] text-[#111]/45">
             Last updated: {formatUpdatedLabel(guide.updatedAt)}
           </p>
+          </header>
 
           <div className="mt-10 space-y-8">
             {guide.sections.map((section) => (

@@ -110,22 +110,24 @@ export default function CategoryHubPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-      <main className="pt-[var(--site-header-height)] pb-24">
-        <div className="max-w-[1600px] mx-auto px-6 lg:px-12">
-          <p className="text-xs uppercase tracking-[0.25em] text-[#111]/40 font-semibold mb-3">
+      <main className="site-page-main">
+        <div className="site-page-inner">
+          <header className="site-page-hero">
+          <p className="text-xs uppercase tracking-[0.25em] text-[#111]/40 font-semibold mb-4 lg:mb-5">
             Category Hub
           </p>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tighter uppercase text-[#111] max-w-4xl leading-[1.08]">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-[3.25rem] font-medium tracking-tighter uppercase text-[#111] max-w-4xl leading-[1.08]">
             {hub.categoryName} at {companyInfo.companyName}
           </h1>
-          <p className="mt-6 text-sm sm:text-base text-[#111]/70 font-body leading-relaxed max-w-3xl">
+          <p className="mt-6 lg:mt-8 text-sm sm:text-base lg:text-lg text-[#111]/70 font-body leading-relaxed max-w-3xl">
             {hub.lead}
           </p>
-          <p className="mt-4 text-xs uppercase tracking-[0.18em] text-[#111]/45">
+          <p className="mt-5 lg:mt-6 text-xs uppercase tracking-[0.18em] text-[#111]/45">
             Last updated: {formatUpdatedLabel(hub.updatedAt)}
           </p>
+          </header>
 
-          <section className="mt-12 border border-[#111]/10 rounded-card bg-white shadow-card p-6 sm:p-8">
+          <section className="mt-14 lg:mt-20 border border-[#111]/10 rounded-card bg-white shadow-card p-6 sm:p-8 lg:p-10">
             <h2 className="text-lg sm:text-xl font-semibold tracking-tight text-[#111] mb-5">
               How to choose
             </h2>
@@ -139,9 +141,9 @@ export default function CategoryHubPage() {
             </dl>
           </section>
 
-          <section className="mt-12">
-            <div className="flex items-center justify-between gap-4 mb-6">
-              <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-[#111]">
+          <section className="mt-16 lg:mt-24">
+            <div className="flex items-center justify-between gap-4 mb-8 lg:mb-10">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#111]">
                 {hub.categoryName} products
               </h2>
               <Link
@@ -156,9 +158,9 @@ export default function CategoryHubPage() {
                 <Link
                   key={product.id}
                   to={productRelativePath(product)}
-                  className="block border-r border-b border-[#111]/10 bg-white hover:bg-[#FAFAFA] transition-colors p-5"
+                  className="block border-r border-b border-[#111]/10 bg-white hover:bg-[#FAFAFA] transition-colors p-5 lg:p-7"
                 >
-                  <div className="aspect-square bg-[#F7F7F7] border border-[#111]/10 rounded-sm p-4 mb-4">
+                  <div className="aspect-square bg-[#F7F7F7] border border-[#111]/10 rounded-sm p-4 lg:p-6 mb-5">
                     <img
                       src={getCatalogProductImage(product)}
                       alt={product.name}
@@ -166,18 +168,18 @@ export default function CategoryHubPage() {
                     />
                   </div>
                   <p className="text-[11px] uppercase tracking-[0.16em] text-[#111]/45 mb-1">{product.id}</p>
-                  <h3 className="text-base font-semibold text-[#111] leading-snug">{product.name}</h3>
-                  <p className="mt-2 text-sm text-[#111]/60 line-clamp-2">{product.description}</p>
+                  <h3 className="text-base lg:text-lg font-semibold text-[#111] leading-snug">{product.name}</h3>
+                  <p className="mt-2 lg:mt-3 text-sm lg:text-[15px] text-[#111]/60 line-clamp-3 leading-relaxed">{product.description}</p>
                 </Link>
               ))}
             </div>
           </section>
 
-          <section className="mt-14">
-            <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-[#111] mb-6">
+          <section className="mt-16 lg:mt-24">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#111] mb-8 lg:mb-10">
               Buyer guides
             </h2>
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 gap-5 lg:gap-6">
               {guides.map((guide) => (
                 <Link
                   key={guide.slug}
@@ -192,11 +194,11 @@ export default function CategoryHubPage() {
             </div>
           </section>
 
-          <section className="mt-14">
-            <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-[#111] mb-6">
+          <section className="mt-16 lg:mt-24">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-medium tracking-tight text-[#111] mb-8 lg:mb-10">
               Category FAQ
             </h2>
-            <div className="space-y-4 max-w-4xl">
+            <div className="space-y-5 lg:space-y-6 max-w-4xl">
               {hub.faqs.map((faq) => (
                 <article key={faq.question} className="border border-[#111]/10 bg-white rounded-card p-5 shadow-card">
                   <h3 className="text-sm font-semibold text-[#111] mb-2">{faq.question}</h3>

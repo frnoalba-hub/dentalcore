@@ -32,6 +32,12 @@ const resolveImage = (fileName) => {
   return `${prefix}products/${encodeURIComponent(fileName)}`;
 };
 
+/** Keep gallery order; drop duplicate URLs. */
+function uniqueImages(...urls) {
+  const seen = new Set();
+  return urls.filter((url) => url && !seen.has(url) && seen.add(url));
+}
+
 const img = {
   // UC-CUT
   uccut:              resolveImage('UC_CUT_Full_Device_1006-1.jpg'),
@@ -156,13 +162,13 @@ export const products = [
     description: "Cordless sonic GP cutter with rapid heat-up and vibration-assisted removal. Clean, precise gutta-percha trimming with interchangeable tips — no cart required.",
     longDescription: "UC-CUT is designed for chairside gutta-percha cutting without a bulky electrosurgery unit. The cordless handpiece combines rapid heat-up with sonic vibration to shear GP cleanly at the canal orifice, giving you consistent results during obturation and retreatment procedures.\n\nInterchangeable tips let you match the right profile to your case — posterior, anterior, and specialty options are available separately. The compact, lightweight design fits naturally alongside your existing endo setup.\n\nThis listing is for the UC-CUT handpiece unit. Tips are sold separately so you can build the set that matches your workflow.",
     image: img.uccut,
-    images: [
+    images: uniqueImages(
       img.uccut,
       img.uccut_unit_tip,
       img.uccut_unit,
       img.uccut_closeup,
       img.uccut_tip_included,
-    ],
+    ),
     features: [
       "Cordless, rechargeable operation for full operatory mobility",
       "Rapid heat-up for efficient GP trimming at the canal orifice",
@@ -208,11 +214,12 @@ export const products = [
     description: "Cordless ultrasonic irrigator that activates irrigant deep into canal anatomy for more effective debris and biofilm removal during endodontic treatment. Includes handpiece and charging stand \u2014 tips sold separately or choose the Full Kit for everything in one box.",
     longDescription: "UC-ONE is designed for clinicians who want a cordless, handheld way to ultrasonically activate sodium hypochlorite, EDTA, or other approved irrigants inside the root canal system. Ultrasonic energy creates acoustic streaming that drives irrigant into lateral canals, fins, and isthmuses\u2014areas that needle delivery alone may not reach effectively. Use only irrigants and settings consistent with manufacturer directions and your training.\n\nThis listing is for the UC-ONE handpiece unit with charging stand. Disposable plastic tips and metal tips are available separately, or you can order the UC-ONE Full Kit which bundles the handpiece with a complete tip set and tip stand.",
     image: img.ucone,
-    images: [
+    images: uniqueImages(
       img.ucone,
       img.ucone_dual,
+      img.ucone_sheet,
       img.ucone_charge,
-    ],
+    ),
     videoUrl: "https://www.youtube.com/watch?v=Myhnt67xVMk",
     videoTitle: "UC-ONE passive ultrasonic irrigation \u2014 clinical overview",
     discoveryHeading: "Why practices add ultrasonic activation",
@@ -266,7 +273,7 @@ export const products = [
     description: "Everything you need in one box \u2014 UC-ONE cordless ultrasonic irrigator with complete tip set (Body, Short, Long, Endo) and tip stand. Ready to use out of the box.",
     longDescription: "UC-ONE Full Kit gives your practice a complete cordless ultrasonic irrigation setup without ordering accessories separately. The kit includes the UC-ONE handpiece, a full tip set covering Body, Short, Long, and Endo profiles, plus a tip stand for organized chairside access.\n\nUltrasonic energy creates acoustic streaming that drives irrigant into lateral canals, fins, and isthmuses\u2014areas that needle delivery alone may not reach effectively. Use only irrigants and settings consistent with manufacturer directions and your training.\n\nAdditional disposable plastic tips and metal tips are also available as separate add-ons when you need replacements.",
     image: img.ucone_dual,
-    images: [
+    images: uniqueImages(
       img.ucone_dual,
       img.ucone_contents,
       img.ucone,
@@ -276,7 +283,7 @@ export const products = [
       img.ucone_metal_5,
       img.ucone_tip_holder,
       img.ucone_charge,
-    ],
+    ),
     videoUrl: "https://www.youtube.com/watch?v=Myhnt67xVMk",
     videoTitle: "UC-ONE passive ultrasonic irrigation \u2014 clinical overview",
     discoveryHeading: "Why practices add ultrasonic activation",
@@ -482,7 +489,7 @@ export const products = [
     description: "Cordless rechargeable heat pen for warm vertical obturation. Multiple tip sizes included. Lightweight and ready to use out of the box.",
     longDescription: "Stronic Touch & Heat gives you a cordless heat source for downpack and backfill steps without tethering to a wall unit. Multiple tips ship in-box so you can match canal taper on day one.",
     image: img.stronic_full,
-    images: [img.stronic_full, img.stronic_tip],
+    images: uniqueImages(img.stronic_full, img.stronic_tip),
     features: ["Cordless rechargeable heat pen", "Multiple tip sizes included", "Warm vertical and hybrid obturation support", "Lightweight for posterior access"],
     specs: { "Power": "Rechargeable battery", "Tips": "Multiple profiles included", "Use": "Warm GP condensation" },
     faqs: [
@@ -1185,6 +1192,7 @@ export const products = [
     description: "High-intensity LED curing light with 1-second cure capability. Reduces chair time without compromising depth of cure.",
     longDescription: "EP CURE targets high-output curing for bulk-fill and posteriors where short cure cycles matter. Always verify manufacturer cure times for your specific composite shade and increment thickness.",
     image: img.ep_cure,
+    images: uniqueImages(img.ep_cure, img.ep_cure_black, img.ep_cure_wb),
     features: ["High-intensity LED", "Fast (~1s) cure cycles on compatible resins", "Reduces per-tooth curing time", "Suitable for routine restorative ops"],
     specs: { "Type": "LED curing light", "Cure time": "Material-dependent (fast mode)" },
     faqs: [
@@ -1212,12 +1220,12 @@ export const products = [
     description: "Compact cordless LED curing light with 465nm output and dual cure modes (5-sec and 3-sec). Autoclavable tip, lightweight design — available in White, Black, and Green.",
     longDescription: "EP CURE MINI delivers 1,200 mW/cm\u00b2 at 465nm in a slim, cordless handpiece that fits easily alongside any restorative setup. Two cure modes let you choose between a 5-second standard cycle and a 3-second fast mode depending on your composite and increment thickness.\n\nThe light guide tip is autoclavable at 134\u00b0C, and the handpiece includes charge and buffer indicator lights so you always know your status. Available in White, Black, and Green colorways.",
     image: img.ep_mini_white,
-    images: [
+    images: uniqueImages(
       img.ep_mini_white,
       img.ep_mini_black,
       img.ep_mini_green,
       img.ep_mini_info,
-    ],
+    ),
     features: [
       "1,200 mW/cm\u00b2 LED output at 465nm",
       "Dual cure modes: 5-second standard and 3-second fast",
@@ -1303,7 +1311,7 @@ export const products = [
     description: "Replacement NiTi rings with strong spring-back memory. Universal fit for most sectional matrix systems. 2-pack.",
     longDescription: "Replacement NiTi rings for SureTact G3 or compatible sectional matrix bands when rings fatigue after repeated autoclaving.",
     image: img.suretact_r,
-    images: [img.suretact_r, img.suretact_r2],
+    images: uniqueImages(img.suretact_r, img.suretact_r2),
     features: ["2 replacement NiTi rings", "High spring-back memory", "Works with common sectional systems"],
     specs: { "Pack": "2 rings", "Material": "NiTi" },
     faqs: [
