@@ -7,15 +7,17 @@ import { trackEngagementEvent } from '@/lib/trackEvent';
 
 /** Flagship SKUs for the homepage hero carousel (order = first slide). */
 const HERO_PRODUCT_IDS = [
-  'A1004-V2',
-  '1002-1',
-  '1006-1',
-  'A1003',
-  '1007-1',
-  'OS-SEAL-SYR',
+  '1006-1',      // UC-CUT
+  '1002-1',      // UC-ONE
+  'MTA-1',       // Endoseal MTA Sealer
+  'A1004-V2',    // AirPeak X600-S (handpiece promo)
+  'A1030',       // McCare X Maintenance
+  'OS-SEAL-SYR', // OsseoSeal syringe
+  'OSTEO-PLUG',  // OsteoGen Plug
+  '1008-1',      // EP CURE MINI
 ];
 
-const ROTATE_MS = 5000;
+const ROTATE_MS = 4500;
 
 function formatUsd(value) {
   return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(value);
@@ -157,7 +159,7 @@ export default function HeroProductShowcase() {
         ))}
       </div>
 
-      <div className="mt-3 hidden sm:flex gap-2 overflow-x-auto pb-1">
+      <div className="mt-3 flex gap-2 overflow-x-auto pb-1 scrollbar-none">
         {slides.map((slide, i) => {
           const thumb = slide.image || slide.images?.[0];
           return (

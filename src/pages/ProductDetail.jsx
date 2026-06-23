@@ -4,7 +4,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { useTranslation } from '@/lib/i18n';
-import { products as localProducts, getCatalogProductImage, isDuplicateApiCatalogRow } from '../components/dentalcore/productsData';
+import { products as localProducts, getCatalogProductImage, buildStorefrontCatalog } from '../components/dentalcore/productsData';
 import ProductImageGallery from '../components/product/ProductImageGallery';
 import ProductPurchasePanel from '../components/product/ProductPurchasePanel';
 import ProductSpecsTabs from '../components/product/ProductSpecsTabs';
@@ -19,17 +19,6 @@ import { SITE_URL, productPageUrl } from '@/lib/siteUrl';
 import { getProductSlug } from '@/lib/productPaths';
 import { parseYouTubeVideoId } from '@/lib/youtubeEmbed';
 
-const SUPPRESSED_API_CATEGORIES = new Set([
-  'Allograft / Osseoseal Membrane', 'Allograft', 'Osseoseal',
-  'Wound Dressing', 'Collagen Dressing', 'Osteogen Plug',
-]);
-const SUPPRESSED_KEYWORDS = [
-  'osteogen', 'curagen', 'heliplug', 'heli-plug', 'collagen wound',
-  '0.3cc', '0.5cc', '1.0cc', '2.5cc', '5cc',
-  '15x20', '20x30', '30x40', '15×20', '20×30', '30×40',
-  '20 x 30', '30 x 40',
-];
-
 export default function ProductDetail() {
   const { productSlug } = useParams();
   const [searchParams] = useSearchParams();
@@ -42,29 +31,7 @@ export default function ProductDetail() {
     queryFn: () => base44.entities.Product.list(),
   });
 
-  const allProducts = useMemo(() => {
-    const localIds = new Set(localProducts.map(p => p.id));
-    const localNames = new Set(localProducts.map(p => p.name.toLowerCase()));
-    const consolidatedVariantIds = new Set();
-    localProducts.forEach(p => {
-      if (p.variants) p.variants.forEach(v => consolidatedVariantIds.add(v.id));
-    });
-    const apiOnly = apiProducts.filter((p) => {
-      const nameLower = p.name?.toLowerCase() || '';
-      const descLower = (p.description || '').toLowerCase();
-      const skuLower = (p.sku || '').toLowerCase();
-      const haystack = `${nameLower} ${descLower} ${skuLower}`;
-      return (
-        !localIds.has(p.id) &&
-        !consolidatedVariantIds.has(p.id) &&
-        !SUPPRESSED_API_CATEGORIES.has(p.category) &&
-        !localNames.has(nameLower) &&
-        !SUPPRESSED_KEYWORDS.some((kw) => haystack.includes(kw)) &&
-        !isDuplicateApiCatalogRow(p)
-      );
-    });
-    return [...localProducts, ...apiOnly];
-  }, [apiProducts]);
+  const allProducts = useMemo(() => buildStorefrontCatalog(apiProducts), [apiProducts]);
 
   const resolvedLocally = useMemo(() => {
     if (productSlug) {

@@ -1333,29 +1333,79 @@ export const products = [
   }
 ];
 
-/** Maps parent product id + every variant id → hero image (for API duplicate rows with broken CDN URLs). */
+/** Maps parent product id, mpn, and variant ids → hero image (for API duplicate rows). */
 export const catalogImageByKey = (() => {
   const m = new Map();
   for (const p of products) {
-    m.set(p.id, p.image);
+    if (p.image) {
+      m.set(p.id, p.image);
+      if (p.mpn) m.set(p.mpn, p.image);
+    }
     if (p.variants) {
       for (const v of p.variants) {
-        m.set(v.id, v.image);
+        if (v.image) m.set(v.id, v.image);
       }
     }
   }
   return m;
 })();
 
-const SKU_IN_TEXT = /SKU:\s*([A-Za-z0-9_.]+)/i;
+const LOCAL_CATALOG_IDS = new Set(products.map((p) => p.id));
+const LOCAL_CATALOG_MPNS = new Set(products.map((p) => p.mpn).filter(Boolean));
+const LOCAL_VARIANT_IDS = new Set(
+  products.flatMap((p) => (p.variants ? p.variants.map((v) => v.id) : [])),
+);
+
+export const SUPPRESSED_API_CATEGORIES = new Set([
+  'Allograft / Osseoseal Membrane',
+  'Allograft',
+  'Osseoseal',
+  'Wound Dressing',
+  'Collagen Dressing',
+  'Osteogen Plug',
+]);
+
+export const SUPPRESSED_API_KEYWORDS = [
+  'osteogen', 'curagen', 'heliplug', 'heli-plug', 'collagen wound',
+  '0.3cc', '0.5cc', '1.0cc', '2.5cc', '5cc',
+  '15x20', '20x30', '30x40', '15×20', '20×30', '30×40',
+  '20 x 30', '30 x 40',
+];
+
+const SKU_IN_TEXT = /SKU:\s*([A-Za-z0-9_.-]+)/i;
+
+/** Apex / Base44 rows that mirror a curated local product card (hide duplicates in the grid). */
+function matchesLocalCatalogDuplicate(pack) {
+  if (/x600[\s™,.-]*s|x600-s\/k|a1004[- ]?v2/i.test(pack)) return true;
+  if ((/x600[\s™,.-]*m\/n|x600-m\/n|a1005\b/i.test(pack)) && !/micro/i.test(pack)) return true;
+  if (/x600-45|x600[\s™,.-]*45|a1018\b/i.test(pack)) return true;
+  if (/x600[\s™,.-]*micro|a1004[- ]?v3/i.test(pack)) return true;
+  if (/g100-la|a1009b/i.test(pack)) return true;
+  if (/g100-st|a1012\b/i.test(pack)) return true;
+  if (/\buc[- ]?cut\b|1006-1\b/i.test(pack)) return true;
+  if (/\buc[- ]?one\b|1002-1\b/i.test(pack) && !/tip|plastic|metal|holder/i.test(pack)) return true;
+  if (/endoseal|mta-1\b/i.test(pack)) return true;
+  if (/endocem|mta-3\b/i.test(pack)) return true;
+  if (/ep cure mini|1008-1/i.test(pack)) return true;
+  if (/\bep cure\b|1007-1/i.test(pack) && !/mini/i.test(pack)) return true;
+  if (/mccare|a1030\b/i.test(pack)) return true;
+  if (/osteogen plug|osteo-plug/i.test(pack)) return true;
+  if (/itesla.*g600-s|a1003\b/i.test(pack)) return true;
+  if (/itesla.*g600-d|a1028\b/i.test(pack)) return true;
+  if (/modulite|m1042x/i.test(pack)) return true;
+  if (/suretact.*kit|m1001\b/i.test(pack)) return true;
+  return false;
+}
 
 /**
- * Prefer a working /products/… URL from the local catalog when the row is a Base44 duplicate
- * (same variant id or "SKU: …" in description) but `product.image` is missing or remote-only.
+ * Prefer a working /products/… or /product_images/… URL from the local catalog when the row is a
+ * Base44 duplicate but `product.image` is missing or remote-only.
  */
 export function getCatalogProductImage(product) {
   const primary = product?.image;
-  if (typeof primary === 'string' && primary.includes('/products/')) return primary;
+  if (typeof primary === 'string' && (primary.includes('/products/') || primary.includes('/product_images/'))) {
+    return primary;
+  }
 
   const keys = [product?.id, product?.sku].filter(Boolean);
   const fromDesc = String(product?.description || '').match(SKU_IN_TEXT);
@@ -1368,7 +1418,7 @@ export function getCatalogProductImage(product) {
   return primary || '';
 }
 
-/** True when a Base44 Product row mirrors a local consolidated variant (OsseoSeal, etc.). */
+/** True when a Base44 Product row mirrors a local consolidated or parent SKU. */
 export function isDuplicateApiCatalogRow(p) {
   const id = String(p?.id || '').trim();
   const sku = String(p?.sku || '').trim();
@@ -1376,9 +1426,40 @@ export function isDuplicateApiCatalogRow(p) {
   const desc = String(p?.description || '').toLowerCase();
   const pack = `${id} ${sku} ${name} ${desc}`.toLowerCase();
 
+  if (LOCAL_CATALOG_IDS.has(id) || LOCAL_CATALOG_IDS.has(sku)) return true;
+  if (LOCAL_CATALOG_MPNS.has(id) || LOCAL_CATALOG_MPNS.has(sku)) return true;
+  if (LOCAL_VARIANT_IDS.has(id) || LOCAL_VARIANT_IDS.has(sku)) return true;
+
+  const fromDesc = String(p?.description || '').match(SKU_IN_TEXT);
+  if (fromDesc) {
+    const sk = fromDesc[1];
+    if (LOCAL_CATALOG_IDS.has(sk) || LOCAL_CATALOG_MPNS.has(sk) || LOCAL_VARIANT_IDS.has(sk)) return true;
+  }
+
   if (/\bsku:\s*os[_\d]/i.test(pack)) return true;
   if (pack.includes('osseoseal') || pack.includes('osseo seal')) return true;
   if (/^os\d{4}$/i.test(id) || /^os\d{4}$/i.test(sku)) return true;
   if (/^os_[\d.]+cc$/i.test(id) || /^os_[\d.]+cc$/i.test(sku)) return true;
-  return false;
+
+  return matchesLocalCatalogDuplicate(pack);
+}
+
+/** Merge curated local cards with non-duplicate Base44 catalog rows. */
+export function buildStorefrontCatalog(apiProducts = []) {
+  const localNames = new Set(products.map((p) => p.name.toLowerCase()));
+  const apiOnly = apiProducts.filter((p) => {
+    const nameLower = p.name?.toLowerCase() || '';
+    const descLower = (p.description || '').toLowerCase();
+    const skuLower = (p.sku || '').toLowerCase();
+    const haystack = `${nameLower} ${descLower} ${skuLower}`;
+    return (
+      !LOCAL_CATALOG_IDS.has(p.id) &&
+      !LOCAL_VARIANT_IDS.has(p.id) &&
+      !SUPPRESSED_API_CATEGORIES.has(p.category) &&
+      !localNames.has(nameLower) &&
+      !SUPPRESSED_API_KEYWORDS.some((kw) => haystack.includes(kw)) &&
+      !isDuplicateApiCatalogRow(p)
+    );
+  });
+  return [...products, ...apiOnly];
 }
