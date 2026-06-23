@@ -118,11 +118,16 @@ export default function HeroProductShowcase() {
     return () => clearInterval(timer);
   }, [paused, go, slides.length]);
 
+  // Scroll only the thumbnail strip horizontally — never scrollIntoView (jumps the page).
   useEffect(() => {
     const strip = thumbStripRef.current;
     if (!strip) return;
     const active = strip.querySelector('[data-active="true"]');
-    active?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    if (!active) return;
+
+    const targetLeft =
+      active.offsetLeft - strip.clientWidth / 2 + active.offsetWidth / 2;
+    strip.scrollTo({ left: Math.max(0, targetLeft), behavior: 'smooth' });
   }, [index]);
 
   if (!slides.length) return null;
