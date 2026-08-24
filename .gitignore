@@ -36,3 +36,4 @@ scripts/apex_shop_scrape_report.json
 *.sw?
 
 .env
+base44/.app.jsonc
